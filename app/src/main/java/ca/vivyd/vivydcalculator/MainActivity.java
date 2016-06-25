@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
     public static int startTime = 0;
     public static int afterInitAllButtonsTime = 0;
 
-    public static String CONTACT_EMAIL = "calcbros@hoopla.com";
+    public static String CONTACT_EMAIL = "solutions.teamvivyd@gmail.com";
 
     private Context context = this;
     private EditText answerView;
