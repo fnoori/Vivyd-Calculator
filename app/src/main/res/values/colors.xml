@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#80CBC4</color>
+    <color name="colorAccent">#e8bfcd</color>
+
+    <color name="colorPrimaryDark">#212121</color>
+    <color name="colorNumpad">#2b2727</color>
+    <color name="colorMain">#4f4646</color>
+    <color name="colorPopup">#212121</color>
+
+    <color name="colorTextNumpad">#ffffff</color>
+    <color name="colorTextMain">#ffffff</color>
+    <color name="colorTextSecondary">#ffff</color>
+    <color name="colorTextAccentLight">#1976d2</color>
+    <color name="colorTextAccent">#ffffff</color>
+
+
+    <!-- *Theme colors* -->
+    <!-- Basic themes -->
+    <color name="BLUE_colorAccent">#1976d2</color>
+    <color name="BLUE_colorComp">#F50057</color>
+    <color name="PINK_colorAccent">#F50057</color>
+    <color name="PINK_colorComp">#1976d2</color>
+    <color name="MANGO_colorAccent">#E65100</color>
+    <color name="MANGO_colorComp">#0c4d96</color>
+    <color name="BASIC_background">#212121</color>
+    <color name="BASIC_numpad">#2b2727</color>
+    <color name="BASIC_text">#ffffff</color>
+    <color name="BASIC_text_screen">#ffffff</color>
+    <color name="BASIC_oppTray">#4f4646</color>
+
+    <!-- Chocolate theme -->
+    <color name="CHOC_colorAccent">#8D6E63</color>
+    <color name="CHOC_colorComp">#456254</color>
+    <color name="CHOC_background">#A1887F</color>
+    <color name="CHOC_numpad">#a1887f</color>
+    <color name="CHOC_text">#FFFFFF</color>
+    <color name="CHOC_text_screen">#ffffff</color>
+    <color name="CHOC_oppTray">#3E2723</color>
+
+    <!-- Sundae theme -->
+    <color name="SUND_colorAccent">#FFF9C4</color>
+    <color name="SUND_colorComp">#EF5350</color>
+    <color name="SUND_background">#3E2723</color>
+    <color name="SUND_numpad">#3E2723</color>
+    <color name="SUND_text_screen">#EF5350</color>
+    <color name="SUND_text">#ffffff</color>
+    <color name="SUND_oppTray">#EF5350</color>
+
+    <!-- Watermelon theme -->
+    <color name="WTRM_colorAccent">#62b07f</color>
+    <color name="WTRM_colorComp">#EF5350</color>
+    <color name="WTRM_background">@color/WTRM_numpad</color>
+    <color name="WTRM_numpad">#da8686</color>
+    <color name="WTRM_text_screen">#ffffff</color>
+    <color name="WTRM_text">#ebd7d2</color>
+    <color name="WTRM_oppTray">#28503a</color>
+
+    <!-- Red velvet theme -->
+    <color name="RVEL_colorAccent">#e4c2bf</color>
+    <color name="RVEL_colorComp">#EF5350</color>
+    <color name="RVEL_background">@color/RVEL_numpad</color>
+    <color name="RVEL_numpad">#382a2a</color>
+    <color name="RVEL_text_screen">#452F2F</color>
+    <color name="RVEL_text">#ebd7d2</color>
+    <color name="RVEL_oppTray">#963037</color>
+
+</resources>

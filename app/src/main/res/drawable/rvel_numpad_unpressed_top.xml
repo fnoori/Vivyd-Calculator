@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
+
+
+    <item >
+        <shape android:shape="rectangle"  >
+            <solid android:color="@color/RVEL_numpad" />
+        </shape>
+    </item>
+
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:startColor="#00000000"
+                android:centerColor="#15000000"
+                android:endColor="#4b000000"
+                android:centerY=".95"
+                android:angle="90"
+                />
+            <size android:height="50dp" />
+        </shape>
+    </item>
+</layer-list>

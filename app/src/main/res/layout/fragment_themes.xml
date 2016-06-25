@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorMain"
+    >
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/scrollView">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:text="BLUE"
+                android:id="@+id/blueButton"
+                android:background="@color/BLUE_colorAccent"
+                android:textColor="#ffffff"
+                android:layout_weight="1" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:text="PINK"
+                android:id="@+id/pinkButton"
+                android:background="@color/PINK_colorAccent"
+                android:textColor="#ffffff"
+                android:layout_weight="1" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:text="Mango"
+                android:id="@+id/mangButton"
+                android:background="#E65100"
+                android:textColor="#ffffff"
+                android:layout_weight="1" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:text="Chocolate"
+                android:id="@+id/chocButton"
+                android:background="@color/CHOC_oppTray"
+                android:textColor="@color/CHOC_text"
+                android:layout_weight="1" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:text="sundae"
+                android:id="@+id/sundaeButton"
+                android:background="#FFF9C4"
+                android:layout_weight="1"
+                android:textColor="#EF5350" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:text="Red Velvet"
+                android:id="@+id/rvelButton"
+                android:background="@color/RVEL_oppTray"
+                android:textColor="@color/RVEL_colorAccent"
+                android:layout_weight="1" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:text="WatermelÓn"
+                android:id="@+id/wtrmButton"
+                android:background="@color/WTRM_colorAccent"
+                android:layout_weight="1"
+                android:textStyle="bold"
+                android:textColor="@color/WTRM_oppTray" />
+
+        </LinearLayout>
+    </ScrollView>
+</FrameLayout>

@@ -1,0 +1,374 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/popMenu"
+    android:gravity="bottom|end"
+    android:paddingTop="1dp"
+    android:paddingRight="1dp">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="log"
+            android:textAllCaps="false"
+            android:id="@+id/logButton"
+            android:layout_weight="1"
+            android:background="@drawable/blue_numpad_transition"
+            android:textColor="@color/colorTextSecondary"
+            android:textSize="15dp"
+            android:layout_marginLeft="0dp"
+            android:layout_margin="0dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginRight="0dp"
+            android:layout_marginBottom="0dp" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="ln"
+            android:textAllCaps="false"
+            android:id="@+id/lnButton"
+            android:layout_weight="1"
+            android:background="@drawable/blue_numpad_transition"
+            android:textColor="@color/colorTextSecondary"
+            android:textSize="15dp"
+            android:layout_margin="0dp"
+            android:layout_marginLeft="0dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginRight="0dp"
+            android:layout_marginBottom="0dp" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Ans"
+            android:textAllCaps="false"
+            android:id="@+id/ansButton"
+            android:layout_weight="1"
+            android:background="@drawable/blue_numpad_transition"
+            android:textColor="@color/colorTextSecondary"
+            android:textSize="15dp"
+            android:layout_margin="0dp"
+            android:layout_marginLeft="0dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginRight="0dp"
+            android:layout_marginBottom="0dp" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textAllCaps="false"
+            android:text="EXP"
+            android:id="@+id/scndButton"
+            android:layout_weight="1"
+            android:background="@drawable/blue_numpad_transition"
+            android:textColor="@color/colorTextSecondary"
+            android:textSize="15dp"
+            android:layout_marginLeft="0dp"
+            android:layout_marginBottom="0dp"
+            android:layout_margin="0dp"
+            android:layout_marginRight="0dp"
+            android:layout_marginTop="0dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:layout_margin="0dp">
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="sin"
+            android:textAllCaps="false"
+            android:id="@+id/sineButton"
+            android:layout_weight="1"
+            android:background="@drawable/blue_numpad_transition"
+            android:textColor="@color/colorTextSecondary"
+            android:textSize="15dp"
+            android:layout_marginLeft="0dp"
+            android:layout_margin="0dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginRight="0dp"
+            android:layout_marginBottom="0dp" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="cos"
+            android:textAllCaps="false"
+            android:id="@+id/cosineButton"
+            android:layout_weight="1"
+            android:background="@drawable/blue_numpad_transition"
+            android:textColor="@color/colorTextSecondary"
+            android:textSize="15dp"
+            android:layout_margin="0dp"
+            android:layout_marginLeft="0dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginRight="0dp"
+            android:layout_marginBottom="0dp" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="tan"
+            android:textAllCaps="false"
+            android:id="@+id/tangentButton"
+            android:layout_weight="1"
+            android:background="@drawable/blue_numpad_transition"
+            android:textColor="@color/colorTextSecondary"
+            android:textSize="15dp"
+            android:layout_margin="0dp"
+            android:layout_marginLeft="0dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginRight="0dp"
+            android:layout_marginBottom="0dp" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="π"
+            android:textAllCaps="false"
+            android:id="@+id/piButton"
+            android:layout_weight="1"
+            android:background="@drawable/blue_numpad_transition"
+            android:textColor="@color/colorTextSecondary"
+            android:textSize="15dp"
+            android:layout_margin="0dp"
+            android:layout_marginRight="0dp"
+            android:layout_marginLeft="0dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginBottom="0dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:layout_margin="0dp">
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textAllCaps="false"
+            android:text="e"
+            android:id="@+id/eButton"
+            android:layout_weight="1"
+            android:background="@drawable/blue_numpad_transition"
+            android:textColor="@color/colorTextSecondary"
+            android:textSize="15dp"
+            android:layout_marginLeft="0dp"
+            android:layout_margin="0dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginRight="0dp"
+            android:layout_marginBottom="0dp" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="√x"
+            android:textAllCaps="false"
+            android:id="@+id/sqrtButton"
+            android:layout_weight="1"
+            android:background="@drawable/blue_numpad_transition"
+            android:textColor="@color/colorTextSecondary"
+            android:textSize="15dp"
+            android:layout_marginLeft="0dp"
+            android:layout_margin="0dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginRight="0dp"
+            android:layout_marginBottom="0dp" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="ⁿ√x"
+            android:textAllCaps="false"
+            android:id="@+id/usrDefinedRoot"
+            android:layout_weight="1"
+            android:background="@drawable/blue_numpad_transition"
+            android:textColor="@color/colorTextSecondary"
+            android:textSize="15dp"
+            android:layout_margin="0dp"
+            android:layout_marginLeft="0dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginRight="0dp"
+            android:layout_marginBottom="0dp" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="x!"
+            android:textAllCaps="false"
+            android:id="@+id/facttButton"
+            android:layout_weight="1"
+            android:background="@drawable/blue_numpad_transition"
+            android:textColor="@color/colorTextSecondary"
+            android:textSize="15dp"
+            android:layout_margin="0dp"
+            android:layout_marginRight="0dp"
+            android:layout_marginLeft="0dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginBottom="0dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:layout_margin="0dp">
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="x²"
+            android:textAllCaps="false"
+            android:id="@+id/sqrButton"
+            android:layout_weight="1"
+            android:background="@drawable/blue_numpad_transition"
+            android:textColor="@color/colorTextSecondary"
+            android:textSize="15dp"
+            android:layout_marginLeft="0dp"
+            android:layout_margin="0dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginRight="0dp"
+            android:layout_marginBottom="0dp" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="x³"
+            android:textAllCaps="false"
+            android:id="@+id/cubButton"
+            android:layout_weight="1"
+            android:background="@drawable/blue_numpad_transition"
+            android:textColor="@color/colorTextSecondary"
+            android:textSize="15dp"
+            android:layout_margin="0dp"
+            android:layout_marginLeft="0dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginRight="0dp"
+            android:layout_marginBottom="0dp" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="xⁿ"
+            android:textAllCaps="false"
+            android:id="@+id/pwrButton"
+            android:layout_weight="1"
+            android:background="@drawable/blue_numpad_transition"
+            android:textColor="@color/colorTextSecondary"
+            android:textSize="15dp"
+            android:layout_marginLeft="0dp"
+            android:layout_margin="0dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginRight="0dp"
+            android:layout_marginBottom="0dp" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="x⁻¹"
+            android:id="@+id/oneOverxButton"
+            android:textAllCaps="false"
+            android:layout_weight="1"
+            android:background="@drawable/blue_numpad_transition"
+            android:textColor="@color/colorTextSecondary"
+            android:textSize="15dp"
+            android:layout_margin="0dp"
+            android:layout_marginRight="0dp"
+            android:layout_marginLeft="0dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginBottom="0dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@color/colorPopup">
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="↷"
+            android:id="@+id/bakButton"
+            android:background="@color/colorTextAccentLight"
+            android:textColor="@color/colorTextAccent"
+            android:textSize="30dp"
+            android:layout_weight="1"
+            android:layout_marginLeft="0dp"
+            android:layout_margin="0dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginRight="0dp"
+            android:layout_marginBottom="0dp" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="+"
+            android:textAllCaps="false"
+            android:id="@+id/var1Button"
+            android:layout_weight="1"
+            android:background="@drawable/blue_numpad_transition"
+            android:textColor="@color/colorTextAccentLight"
+            android:textSize="15dp"
+            android:layout_marginLeft="0dp"
+            android:layout_margin="0dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginRight="0dp"
+            android:layout_marginBottom="0dp" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="+"
+            android:textAllCaps="false"
+            android:id="@+id/var2Button"
+            android:layout_weight="1"
+            android:background="@drawable/blue_numpad_transition"
+            android:textColor="@color/colorTextAccentLight"
+            android:textSize="15dp"
+            android:layout_marginLeft="0dp"
+            android:layout_margin="0dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginRight="0dp"
+            android:layout_marginBottom="0dp" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="+"
+            android:textAllCaps="false"
+            android:id="@+id/var3Button"
+            android:layout_weight="1"
+            android:background="@drawable/blue_numpad_transition"
+            android:textColor="@color/colorTextAccentLight"
+            android:textSize="15dp"
+            android:layout_marginLeft="0dp"
+            android:layout_margin="0dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginRight="0dp"
+            android:layout_marginBottom="0dp" />
+
+    </LinearLayout>
+
+</LinearLayout>
