@@ -28,7 +28,7 @@ import ca.vivyd.vivydcalculator.calc_logic.CalculatorButtons;
 import ca.vivyd.vivydcalculator.themes.Themer;
 
 
-// LOLOLOLOLOLOLOLOLOLOL
+// LOLOLOLOLOLOLOLOLOLOL yourself
 public class MainActivity extends AppCompatActivity {
     public static int startTime = 0;
     public static int afterInitAllButtonsTime = 0;
