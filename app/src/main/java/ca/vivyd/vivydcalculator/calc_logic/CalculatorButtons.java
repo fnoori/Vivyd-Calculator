@@ -856,7 +856,8 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
     public void checkBrace(ALL_BUTTONS type){
         if(type.equals(ALL_BUTTONS.BRACKET_OPEN) || type.equals(ALL_BUTTONS.SIN)
                 || type.equals(ALL_BUTTONS.COS) || type.equals(ALL_BUTTONS.TAN)
-                || type.equals(ALL_BUTTONS.LN) || type.equals(ALL_BUTTONS.LOG)){
+                || type.equals(ALL_BUTTONS.LN) || type.equals(ALL_BUTTONS.LOG)
+                || type.equals(ALL_BUTTONS.SQRT)){
             openBrace++;
             leftBraceCounter.setText(String.valueOf(openBrace));
         }
