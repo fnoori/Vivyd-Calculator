@@ -19,6 +19,8 @@ import net.objecthunter.exp4j.ExpressionBuilder;
 import net.objecthunter.exp4j.function.Function;
 import net.objecthunter.exp4j.operator.Operator;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.ArrayList;
@@ -691,11 +693,7 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
                         functionList.add(customOperators.getTanDegrees());
                         expressionToEvaluate = calculatorUtilities.replaceForDegrees(expressionToEvaluate);
                     }else{functionList.clear();}
-
-                    int percentIndex = 0;
-                    int lengthOfExpressionEvalString = expressionToEvaluate.length();
-                    determinePercentLogic(percentIndex, lengthOfExpressionEvalString);
-
+                    
                     Expression calc = new ExpressionBuilder(expressionToEvaluate)
                             .operator(operatorList)
                             .functions(functionList)
@@ -742,7 +740,9 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
         }
         if(percentIndex == lengthOfExpressionEvalString-1){
             expressionToEvaluate = expressionToEvaluate + "-0";
-        }else{customOperators.setIsComplexPercentage(true);}
+        }else{
+            customOperators.setIsComplexPercentage(true);
+        }
     }
 
     /**
