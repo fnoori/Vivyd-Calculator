@@ -238,7 +238,9 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
                 }
                 break;
             case R.id.eqnView:
+                Log.d("EQUATION_VIEW", equationView.getText().toString());
                 if(equationView.getText() != BLANK_STRING){
+                    countNumberOfBrackets(equationView.getText().toString());
                     answerView.setText(BLANK_STRING);
                     answerView.setText(equationView.getText().toString());
                     answerView.setSelection(answerView.getText().length());
@@ -256,6 +258,20 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
             default:
                 break;
         }
+    }
+
+    public void countNumberOfBrackets(String equationView){
+        openBrace = 0;
+        closeBrace = 0;
+        char[] equationArr = equationView.toCharArray();
+        for(char curr : equationArr){
+            Log.d("CURR", curr+"");
+            if(curr == '('){openBrace++;}
+            else if(curr == ')'){closeBrace++;}
+        }
+
+        leftBraceCounter.setText(String.valueOf(openBrace));
+        rightBraceCounter.setText(String.valueOf(closeBrace));
     }
 
     @Override
@@ -753,7 +769,7 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
         List<Operator> operatorList = new ArrayList<>();
         operatorList.add(customOperators.getFactorialOperator());
         operatorList.add(customOperators.getNrt());
-        operatorList.add(customOperators.getPercentageOperator());
+        //operatorList.add(customOperators.getPercentageOperator());
 
         List<Function> functionList = new ArrayList<>();
 
@@ -798,20 +814,27 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
 
     public void addToExpressionToBeEvaluated(String valueToAppend, ALL_BUTTONS type, boolean isExceptionToRule){
         String prevInput;
-        int cursorLocation;
+        int cursorLocation = 0;
 
         if(isAnswer){
             if(type.equals(ALL_BUTTONS.NUM)){answerView.setText(BLANK_STRING);}
             isAnswer = false;
         }
-
         checkBrace(type);
         prevInput = calculatorUtilities.getPreviousInput(expressionToEvaluate);
         if(calculatorUtilities.checkIfMoreOperandIsPossible(prevInput, isExceptionToRule)){return;}
 
         cursorLocation = answerView.getSelectionStart();
+        if(type.equals(ALL_BUTTONS.PRCNT)){
+            valueToAppend = valueToAppend + "(*1)";
+        }
+
         expressionToEvaluate = calculatorUtilities.replaceForDisplay(
                 answerView.getText().insert(cursorLocation, valueToAppend).toString());
+
+
+
+
         answerView.setText(expressionToEvaluate);
 
         expressionToEvaluate = calculatorUtilities.replaceForCalculations(expressionToEvaluate);
