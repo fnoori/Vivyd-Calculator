@@ -825,18 +825,10 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
         if(calculatorUtilities.checkIfMoreOperandIsPossible(prevInput, isExceptionToRule)){return;}
 
         cursorLocation = answerView.getSelectionStart();
-        if(type.equals(ALL_BUTTONS.PRCNT)){
-            valueToAppend = valueToAppend + "(*1)";
-        }
-
         expressionToEvaluate = calculatorUtilities.replaceForDisplay(
                 answerView.getText().insert(cursorLocation, valueToAppend).toString());
 
-
-
-
         answerView.setText(expressionToEvaluate);
-
         expressionToEvaluate = calculatorUtilities.replaceForCalculations(expressionToEvaluate);
         answerView.setSelection(answerView.getText().length());
     }

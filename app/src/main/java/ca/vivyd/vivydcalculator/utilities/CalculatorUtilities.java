@@ -18,18 +18,28 @@ public class CalculatorUtilities {
         return incoming
                 .replace("log(", "log10(").replace("ln(", "log(")
                 .replace("×", "*").replace("÷", "/")
-                .replace("√(", "sqrt(").replace("−", "-");
+                .replace("√(", "sqrt(").replace("−", "-")
+                .replace("%", "%(*1)");
     }
 
     public String replaceForDisplay(String incoming){
         return incoming
                 .replace("*", "×").replace("/", "÷")
-                .replace("-", "−").replace("sqrt(", "√(");
+                .replace("-", "−").replace("sqrt(", "√(")
+                .replace("%(×1)", "%");
     }
 
     public String replaceForDegrees(String stringToModify){
         return stringToModify.replace("sin(", "sind(")
                 .replace("cos(", "cosd("). replace("tan(", "tand(");
+    }
+
+    public String replacePercentageForCalc(String stringToModify){
+        return stringToModify.replace("%", "(*1)");
+    }
+
+    public String replacePercentageForDisplay(String stringToModify){
+        return stringToModify.replace("(*1)", "%");
     }
 
     public boolean isBracketCorrect(int openBrace, int closeBrace){
