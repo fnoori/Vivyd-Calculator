@@ -60,41 +60,6 @@ public class CustomOperators {
         }
     };
 
-
-
-
-    //private Operator percentageOperator = new Operator("%", 2, true, Operator.PRECEDENCE_DIVISION) {
-    //    @Override
-    //    public double apply(double... args) {
-
-    //        Log.d("ARG[0]", args[0]+"");
-    //        Log.d("ARG[1]", args[1]+"");
-
-    //        if(args[1] == -0.0){
-    //            return args[0] / 100;
-    //        }else{
-    //            return (args[0] / 100) * args[1];
-    //        }
-
-            /*
-            final double arg = args[0];
-            final double arg2 = args[1];
-            double solution = 0;
-
-            if(isComplexPercentage){
-                solution = ((arg / 100) * arg2);
-            }else{
-                solution = arg / 100;
-            }
-
-            isComplexPercentage = false;
-            return  solution;
-            */
-
-
-    //    }
-    //};
-
     private Function sinDegrees = new Function("sind", 1) {
         @Override
         public double apply(double... args) {

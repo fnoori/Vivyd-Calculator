@@ -680,28 +680,29 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
         if(answerView.getText().length() > 0){
             try{
                 if(calculatorUtilities.isBracketCorrect(openBrace, closeBrace)){
+                    String forEquationView = calculatorUtilities.replaceForDisplay(expressionToEvaluate);
+
                     List<Operator> operatorList = new ArrayList<>();
                     operatorList.add(customOperators.getFactorialOperator());
                     operatorList.add(customOperators.getNrt());
                     operatorList.add(customOperators.getPercentageOperator());
 
                     List<Function> functionList = new ArrayList<>();
-
                     if(trigType.equals(DEG_RAD.DEG)){
                         functionList.add(customOperators.getSinDegrees());
                         functionList.add(customOperators.getCosDegrees());
                         functionList.add(customOperators.getTanDegrees());
                         expressionToEvaluate = calculatorUtilities.replaceForDegrees(expressionToEvaluate);
                     }else{functionList.clear();}
-                    
+
                     Expression calc = new ExpressionBuilder(expressionToEvaluate)
                             .operator(operatorList)
                             .functions(functionList)
                             .build();
 
                     NumberFormat numFormat = new DecimalFormat("##.##########");
-                    equationView.setText(calculatorUtilities.replaceForDisplay(answerView.getText().toString()));
                     solution = String.valueOf(numFormat.format(calc.evaluate()));
+                    equationView.setText(forEquationView);
                     if(solution.contains(".")){dotCounter = 1;}
 
                     answerView.setText(calculatorUtilities.replaceForDisplay(solution));
@@ -815,42 +816,6 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
 
         expressionToEvaluate = calculatorUtilities.replaceForCalculations(expressionToEvaluate);
         answerView.setSelection(answerView.getText().length());
-
-        /*
-        if(isAnswer){
-            if(type.equals(ALL_BUTTONS.NUM)){answerView.setText(BLANK_STRING);}
-            isAnswer = false;
-        }
-        checkBrace(type);
-
-        Log.d("LEFT_BRACKET", openBrace+"");
-        Log.d("RIGHT_BRACKET", closeBrace+"");
-
-        String prevInput;
-        if(expressionDisplayString != null && expressionDisplayString.length() > 0){
-            prevInput = String.valueOf(expressionDisplayString.charAt(expressionDisplayString.length()-1));
-        }else{prevInput = "blah"; Log.d("EXPRESSION_DISPLAY_STR", "NULL");
-        }
-
-        if(prevInput.equals("+") || prevInput.equals("-") ||
-                prevInput.equals("/") || prevInput.equals("*")
-                || prevInput.equals("×") || prevInput.equals("÷")){
-            if(!isExceptionToRule){return;}
-        }
-
-        cursorLocation = answerView.getSelectionStart();
-
-        Editable text = answerView.getText();
-        String format = BLANK_STRING;
-        text.insert(cursorLocation, valueToAppend);
-
-        format = calculatorUtilities.replaceForDisplay(text.toString());
-        answerView.setText(format);
-
-        expressionEvalString = calculatorUtilities.replaceForCalculations(text.toString());
-        expressionDisplayString = text.toString();
-        answerView.setSelection(answerView.getText().length());
-        */
     }
 
     public void checkBrace(ALL_BUTTONS type){
