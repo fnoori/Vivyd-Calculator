@@ -19,8 +19,6 @@ import net.objecthunter.exp4j.ExpressionBuilder;
 import net.objecthunter.exp4j.function.Function;
 import net.objecthunter.exp4j.operator.Operator;
 
-import org.apache.commons.lang3.StringUtils;
-
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.ArrayList;
@@ -643,7 +641,7 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
                 rightBraceCounter.setText(String.valueOf(closeBrace));
             }
 
-            expressionToEvaluate = calculatorUtilities.replaceForDisplay(answerView.getText().toString().substring(0, indexFrom)
+            expressionToEvaluate = calculatorUtilities.replaceForAnsViewDisplay(answerView.getText().toString().substring(0, indexFrom)
                     + answerView.getText().toString().substring(indexTo));
             answerView.setText(expressionToEvaluate);
             answerView.setSelection(indexFrom);
@@ -696,7 +694,7 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
         if(answerView.getText().length() > 0){
             try{
                 if(calculatorUtilities.isBracketCorrect(openBrace, closeBrace)){
-                    String forEquationView = calculatorUtilities.replaceForDisplay(expressionToEvaluate);
+                    String forEquationView = calculatorUtilities.repalaceForEquViewDisplay(expressionToEvaluate);
 
                     List<Operator> operatorList = new ArrayList<>();
                     operatorList.add(customOperators.getFactorialOperator());
@@ -721,7 +719,7 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
                     equationView.setText(forEquationView);
                     if(solution.contains(".")){dotCounter = 1;}
 
-                    answerView.setText(calculatorUtilities.replaceForDisplay(solution));
+                    answerView.setText(calculatorUtilities.replaceForAnsViewDisplay(solution));
                     answerView.setSelection(answerView.getText().length());
 
                     //** There are some bugs on how the history is stored, will fix
@@ -825,7 +823,7 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
         if(calculatorUtilities.checkIfMoreOperandIsPossible(prevInput, isExceptionToRule)){return;}
 
         cursorLocation = answerView.getSelectionStart();
-        expressionToEvaluate = calculatorUtilities.replaceForDisplay(
+        expressionToEvaluate = calculatorUtilities.replaceForAnsViewDisplay(
                 answerView.getText().insert(cursorLocation, valueToAppend).toString());
 
         answerView.setText(expressionToEvaluate);

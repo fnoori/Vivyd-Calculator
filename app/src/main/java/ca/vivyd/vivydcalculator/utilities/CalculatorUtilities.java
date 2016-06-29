@@ -22,11 +22,19 @@ public class CalculatorUtilities {
                 .replace("%", "%(*1)");
     }
 
-    public String replaceForDisplay(String incoming){
+    public String replaceForAnsViewDisplay(String incoming){
         return incoming
                 .replace("*", "×").replace("/", "÷")
                 .replace("-", "−").replace("sqrt(", "√(")
                 .replace("%(×1)", "%");
+    }
+
+    public String repalaceForEquViewDisplay(String incoming){
+        return incoming
+                .replace("*", "×").replace("/", "÷")
+                .replace("-", "−").replace("sqrt(", "√(")
+                .replace("%(×1)", "%").replace("log(", "ln(")
+                .replace("log10(", "log(");
     }
 
     public String replaceForDegrees(String stringToModify){
