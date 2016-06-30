@@ -251,6 +251,7 @@ public class MainActivity extends AppCompatActivity {
         final Button nthRootButton = (Button) findViewById(R.id.usrDefinedRoot);
         final Button cubeButton = (Button) findViewById(R.id.cubButton);
         final Button inverseButton = (Button) findViewById(R.id.oneOverxButton);
+        final Button eeButton = (Button) findViewById(R.id.powerOfTenButton);
 
         // Variable buttons
 
@@ -266,7 +267,7 @@ public class MainActivity extends AppCompatActivity {
             add(logButton); add(lnButton); add(piButton);
             add(eButton); add(squareRootButton);  add(powerButton);
             add(squaredButton); add(factorialButton); add(nthRootButton);
-            add(cubeButton); add(inverseButton); add(var1Button);
+            add(cubeButton); add(inverseButton); add(eeButton); add(var1Button);
             add(var2Button); add(var3Button);
         }};
 

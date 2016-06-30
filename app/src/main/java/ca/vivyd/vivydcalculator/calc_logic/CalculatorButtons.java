@@ -41,7 +41,7 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
     private static final String[] NUMBERS_ARRAY = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "."};
     private static final String[] OPERANDS_ARRAY = {"+", "-", "/", "*", "%", "(", ")"};
     private static final String[] ADVANCED_OPERANDS_ARRAY = {"sin(", "cos(", "tan(", "log(", "ln(", "π",
-                                                        "e", "sqrt(", "|=", "^", "^2", "!", "^3", "^-1"};
+                                                        "e", "sqrt(", "|=", "^", "^2", "!", "^3", "^-1", "ᴇ"};
     private static final String CUSTOM_BUTTON = "";
     private static final String[] VALUES_NOT_ALLOWED_BEFORE = {"+", "−", "/", "*", "%", "(","sin(",
                                                         "cos(", "tan(", "log(", "ln(", "sqrt(", "|="};
@@ -56,7 +56,7 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
     private enum ALL_BUTTONS {
         ADD, SUB, MUL, DIV, NUM, DOT, BRACKET_OPEN, BRACKET_CLOSE,
         SIN, COS, TAN, LOG, LN, PI, EULER, SQRT, POWER,
-        FACT, SQR, NRT, PRCNT, CBRT, INVERSE, CSTM, DEG_RAND, EQUAL, DEL, CLR
+        FACT, SQR, NRT, PRCNT, CBRT, INVERSE, CSTM, EE, DEG_RAND, EQUAL, DEL, CLR
     }
     private enum BASIC_AND_ADVANCED_OPERANDS {
         ADD, SUB, MUL, DIV, BRACKET_OPEN, SIN, COS, TAN, LOG, LN,
@@ -450,6 +450,9 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
             case R.id.oneOverxButton:
                 animBtnLogic(v, transition, event, "inverse", 0);
                 break;
+            case R.id.powerOfTenButton:
+                animBtnLogic(v, transition, event, "ᴇ", 0);
+                break;
             case R.id.var1Button:
                 animBtnLogic(v, transition, event, "user1", 0);
                 break;
@@ -560,6 +563,9 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
                     break;
                 case "inverse":
                     addToExpressionToBeEvaluated(ADVANCED_OPERANDS_ARRAY[13], ALL_BUTTONS.INVERSE, true);
+                    break;
+                case "ᴇ":
+                    addToExpressionToBeEvaluated(ADVANCED_OPERANDS_ARRAY[14], ALL_BUTTONS.EE, true);
                     break;
                 case "user1":
                     if(!userDefValue1[0].equals("+") || !userDefValue1[1].equals("+")){
@@ -833,7 +839,12 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
         answerView.setText(expressionToEvaluate);
         expressionToEvaluate = calculatorUtilities.replaceForCalculations(expressionToEvaluate);
         //answerView.setSelection(answerView.getText().length());
-        answerView.setSelection(cursorLocation+1);
+
+        if(type.equals(ALL_BUTTONS.LOG) || type.equals(ALL_BUTTONS.SIN) || type.equals(ALL_BUTTONS.COS)
+                || type.equals(ALL_BUTTONS.TAN)){
+            answerView.setSelection(cursorLocation+4);
+        }else if(type.equals(ALL_BUTTONS.LN)){answerView.setSelection(cursorLocation+3);}
+        else{answerView.setSelection(cursorLocation+1);}
     }
 
     public void checkBrace(ALL_BUTTONS type){

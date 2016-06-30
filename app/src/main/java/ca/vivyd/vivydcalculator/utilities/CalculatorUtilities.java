@@ -19,7 +19,7 @@ public class CalculatorUtilities {
                 .replace("log(", "log10(").replace("ln(", "log(")
                 .replace("×", "*").replace("÷", "/")
                 .replace("√(", "sqrt(").replace("−", "-")
-                .replace("%", "%(*1)");
+                .replace("%", "%(*1)").replace("ᴇ", "e");
     }
 
     public String replaceForAnsViewDisplay(String incoming){
@@ -34,7 +34,7 @@ public class CalculatorUtilities {
                 .replace("*", "×").replace("/", "÷")
                 .replace("-", "−").replace("sqrt(", "√(")
                 .replace("%(×1)", "%").replace("log(", "ln(")
-                .replace("log10(", "log(");
+                .replace("log10(", "log(").replace("e", "ᴇ");
     }
 
     public String replaceForDegrees(String stringToModify){
