@@ -242,6 +242,8 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
                     answerView.setText(BLANK_STRING);
                     answerView.setText(equationView.getText().toString());
                     answerView.setSelection(answerView.getText().length());
+                    openBrace = 0;
+                    closeBrace = 0;
 
                     expressionToEvaluate = calculatorUtilities.replaceForCalculations(
                             answerView.getText().toString()
@@ -641,9 +643,11 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
             if(answerView.getText().toString().contains(".")){dotCounter = 0;}
             if(answerView.getText().toString().charAt(indexFrom) == '('){
                 openBrace--;
+                if(openBrace < 0){openBrace = 0;}
                 leftBraceCounter.setText(String.valueOf(openBrace));
             }else if(answerView.getText().toString().charAt(indexFrom) == ')'){
                 closeBrace--;
+                if(closeBrace < 0){closeBrace = 0;}
                 rightBraceCounter.setText(String.valueOf(closeBrace));
             }
 
@@ -854,6 +858,9 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
             closeBrace++;
             rightBraceCounter.setText(String.valueOf(closeBrace));
         }
+
+        Log.d("OPEN_BRACKET_CHECK", openBrace+"");
+        Log.d("CLOSE_BRACKET_CHECK", closeBrace+"");
     }
 
     /**
