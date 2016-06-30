@@ -734,7 +734,11 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
                     calculatorUtilities.postEqualLogic(isAnswer, customOperators, openBrace,
                             closeBrace, rightBraceCounter, leftBraceCounter, previousInput);
                 }else{
-                    Toast.makeText(context, "Incorrect Brackets", Toast.LENGTH_SHORT).show();
+                    do{
+                        closeBrace++;
+                        expressionToEvaluate = expressionToEvaluate + ")";
+                    }while(closeBrace < openBrace);
+                    equalButtonLogic();
                 }
 
             }catch(IllegalArgumentException | EmptyStackException e){
@@ -828,7 +832,8 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
 
         answerView.setText(expressionToEvaluate);
         expressionToEvaluate = calculatorUtilities.replaceForCalculations(expressionToEvaluate);
-        answerView.setSelection(answerView.getText().length());
+        //answerView.setSelection(answerView.getText().length());
+        answerView.setSelection(cursorLocation+1);
     }
 
     public void checkBrace(ALL_BUTTONS type){
