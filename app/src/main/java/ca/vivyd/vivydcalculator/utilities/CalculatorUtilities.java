@@ -3,6 +3,7 @@ package ca.vivyd.vivydcalculator.utilities;
 import android.util.Log;
 import android.widget.TextView;
 
+import ca.vivyd.vivydcalculator.calc_logic.CalculatorButtons;
 import ca.vivyd.vivydcalculator.calc_logic.CustomOperators;
 
 /**
@@ -11,6 +12,11 @@ import ca.vivyd.vivydcalculator.calc_logic.CustomOperators;
  * A general multi-purpose class
  */
 public class CalculatorUtilities {
+    public enum ALL_BUTTONS {
+        ADD, SUB, MUL, DIV, NUM, DOT, BRACKET_OPEN, BRACKET_CLOSE,
+        SIN, COS, TAN, LOG, LN, PI, EULER, SQRT, POWER,
+        FACT, SQR, NRT, PRCNT, CBRT, INVERSE, CSTM, EE, DEG_RAND, EQUAL, DEL, CLR
+    }
 
     public CalculatorUtilities(){}
 
@@ -19,7 +25,7 @@ public class CalculatorUtilities {
                 .replace("log(", "log10(").replace("ln(", "log(")
                 .replace("×", "*").replace("÷", "/")
                 .replace("√(", "sqrt(").replace("−", "-")
-                .replace("%", "%(*1)").replace("ᴇ", "e");
+                .replace("%", "%(*1)").replace("ᴇ", "§");
     }
 
     public String replaceForAnsViewDisplay(String incoming){
@@ -34,7 +40,47 @@ public class CalculatorUtilities {
                 .replace("*", "×").replace("/", "÷")
                 .replace("-", "−").replace("sqrt(", "√(")
                 .replace("%(×1)", "%").replace("log(", "ln(")
-                .replace("log10(", "log(").replace("e", "ᴇ");
+                .replace("log10(", "log(").replace("§", "ᴇ");
+    }
+
+    public int determineCursorLocation(CalculatorButtons.ALL_BUTTONS type, int cursorLocation){
+        switch (type){
+            case LOG:
+            case SIN:
+            case COS:
+            case TAN:
+                return cursorLocation+4;
+            case LN:
+                return cursorLocation+3;
+            case SQRT:
+                return cursorLocation+2;
+            case SQR:
+            case CBRT:
+            case INVERSE:
+            case NRT:
+                return cursorLocation;
+            default:
+                return cursorLocation+1;
+        }
+
+/*
+        if(type.equals(CalculatorButtons.ALL_BUTTONS.LOG)
+                || type.equals(CalculatorButtons.ALL_BUTTONS.SIN)
+                || type.equals(CalculatorButtons.ALL_BUTTONS.COS)
+                || type.equals(CalculatorButtons.ALL_BUTTONS.TAN)){
+            return cursorLocation+4;
+        }else if(type.equals(CalculatorButtons.ALL_BUTTONS.LN)){
+            return cursorLocation+3;
+        }else if(type.equals(CalculatorButtons.ALL_BUTTONS.SQRT)){
+            return cursorLocation+2;
+        }else if(type.equals(CalculatorButtons.ALL_BUTTONS.SQR)
+                || type.equals(CalculatorButtons.ALL_BUTTONS.CBRT) || type.equals(CalculatorButtons.ALL_BUTTONS.INVERSE)
+                || type.equals(CalculatorButtons.ALL_BUTTONS.NRT)){
+            return cursorLocation;
+        }else{
+            return cursorLocation+1;
+        }
+*/
     }
 
     public String replaceForDegrees(String stringToModify){

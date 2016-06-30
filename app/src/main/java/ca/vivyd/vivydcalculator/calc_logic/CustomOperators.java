@@ -60,6 +60,13 @@ public class CustomOperators {
         }
     };
 
+    private Operator tenToPowerOfOperator = new Operator("§", 2, true, Operator.PRECEDENCE_MULTIPLICATION) {
+        @Override
+        public double apply(double... args) {
+            return (args[0] * Math.pow(10, args[1]));
+        }
+    };
+
     private Function sinDegrees = new Function("sind", 1) {
         @Override
         public double apply(double... args) {
@@ -96,6 +103,8 @@ public class CustomOperators {
     public Operator getNrt(){
         return nrt;
     }
+
+    public Operator getTenToPowerOfOperator(){return tenToPowerOfOperator;}
 
     public Function getSinDegrees(){
         return sinDegrees;

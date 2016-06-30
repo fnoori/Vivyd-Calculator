@@ -53,7 +53,7 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
     private static final String DEGREE = "DEG";
     private static final String RADIAN = "RAD";
 
-    private enum ALL_BUTTONS {
+    public enum ALL_BUTTONS {
         ADD, SUB, MUL, DIV, NUM, DOT, BRACKET_OPEN, BRACKET_CLOSE,
         SIN, COS, TAN, LOG, LN, PI, EULER, SQRT, POWER,
         FACT, SQR, NRT, PRCNT, CBRT, INVERSE, CSTM, EE, DEG_RAND, EQUAL, DEL, CLR
@@ -706,6 +706,7 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
                     operatorList.add(customOperators.getFactorialOperator());
                     operatorList.add(customOperators.getNrt());
                     operatorList.add(customOperators.getPercentageOperator());
+                    operatorList.add(customOperators.getTenToPowerOfOperator());
 
                     List<Function> functionList = new ArrayList<>();
                     if(trigType.equals(DEG_RAD.DEG)){
@@ -838,13 +839,7 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
 
         answerView.setText(expressionToEvaluate);
         expressionToEvaluate = calculatorUtilities.replaceForCalculations(expressionToEvaluate);
-        //answerView.setSelection(answerView.getText().length());
-
-        if(type.equals(ALL_BUTTONS.LOG) || type.equals(ALL_BUTTONS.SIN) || type.equals(ALL_BUTTONS.COS)
-                || type.equals(ALL_BUTTONS.TAN)){
-            answerView.setSelection(cursorLocation+4);
-        }else if(type.equals(ALL_BUTTONS.LN)){answerView.setSelection(cursorLocation+3);}
-        else{answerView.setSelection(cursorLocation+1);}
+        answerView.setSelection(calculatorUtilities.determineCursorLocation(type, cursorLocation));
     }
 
     public void checkBrace(ALL_BUTTONS type){
