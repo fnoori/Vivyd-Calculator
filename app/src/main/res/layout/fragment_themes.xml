@@ -47,7 +47,7 @@
                 android:layout_height="100dp"
                 android:text="Chocolate"
                 android:id="@+id/chocButton"
-                android:background="@color/CHOC_oppTray"
+                android:background="@color/CHOC_numpad"
                 android:textColor="@color/CHOC_text"
                 android:layout_weight="1" />
 
@@ -74,10 +74,9 @@
                 android:layout_height="100dp"
                 android:text="WatermelÓn"
                 android:id="@+id/wtrmButton"
-                android:background="@color/WTRM_colorAccent"
+                android:background="@color/WTRM_numpad"
                 android:layout_weight="1"
-                android:textStyle="bold"
-                android:textColor="@color/WTRM_oppTray" />
+                android:textColor="@color/WTRM_colorAccent" />
 
         </LinearLayout>
     </ScrollView>

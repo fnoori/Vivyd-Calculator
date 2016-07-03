@@ -30,31 +30,31 @@
     <color name="BASIC_oppTray">#4f4646</color>
 
     <!-- Chocolate theme -->
-    <color name="CHOC_colorAccent">#8D6E63</color>
+    <color name="CHOC_colorAccent">#a1887f</color>
     <color name="CHOC_colorComp">#456254</color>
-    <color name="CHOC_background">#A1887F</color>
-    <color name="CHOC_numpad">#a1887f</color>
+    <color name="CHOC_background">#3E2723</color>
+    <color name="CHOC_numpad">#3E2723</color>
     <color name="CHOC_text">#FFFFFF</color>
-    <color name="CHOC_text_screen">#ffffff</color>
-    <color name="CHOC_oppTray">#3E2723</color>
+    <color name="CHOC_text_screen">#3E2723</color>
+    <color name="CHOC_oppTray">#8D6E63</color>
 
     <!-- Sundae theme -->
-    <color name="SUND_colorAccent">#FFF9C4</color>
+    <color name="SUND_colorAccent">#fff7b2</color>
     <color name="SUND_colorComp">#EF5350</color>
-    <color name="SUND_background">#3E2723</color>
+    <color name="SUND_background">#34211e</color>
     <color name="SUND_numpad">#3E2723</color>
     <color name="SUND_text_screen">#EF5350</color>
     <color name="SUND_text">#ffffff</color>
     <color name="SUND_oppTray">#EF5350</color>
 
     <!-- Watermelon theme -->
-    <color name="WTRM_colorAccent">#62b07f</color>
+    <color name="WTRM_colorAccent">#e76c6a</color>
     <color name="WTRM_colorComp">#EF5350</color>
-    <color name="WTRM_background">@color/WTRM_numpad</color>
-    <color name="WTRM_numpad">#da8686</color>
+    <color name="WTRM_background">#1e402e</color>
+    <color name="WTRM_numpad">#28503a</color>
     <color name="WTRM_text_screen">#ffffff</color>
-    <color name="WTRM_text">#ebd7d2</color>
-    <color name="WTRM_oppTray">#28503a</color>
+    <color name="WTRM_text">#ffffff</color>
+    <color name="WTRM_oppTray">#4a9867</color>
 
     <!-- Red velvet theme -->
     <color name="RVEL_colorAccent">#e4c2bf</color>

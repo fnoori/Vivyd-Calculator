@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -114,13 +115,6 @@ public class MainActivity extends AppCompatActivity {
             moreButtonListener(morButton, calcButtons);
         }
 
-        // If the current orientation is landscape, initialize advanced buttons
-
-        if (getScreenOrientation() == Configuration.ORIENTATION_LANDSCAPE) {
-            ArrayList<Button> scienceButts = setScienceButts();
-            calcButtons.addAdvanceOperands(scienceButts);
-        }
-
         // ad-related stuff
         AdView mAdView = (AdView) findViewById(R.id.adView);
         // We have to use 'test-ads' for developing, lest google overlords think we're cheap chimps
@@ -177,11 +171,22 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+
+
         // For themes. This must come after any button initializations.
         SharedPreferences prefs = getSharedPreferences("CalcData", Context.MODE_PRIVATE);
         themer = new Themer(this, commonButtons, commonOperands);
         Themer.CURRENT_THEME = prefs.getInt("Theme", 1);
         setTheme(themer);
+
+        // If the current orientation is landscape, initialize advanced buttons
+        // Must come after initialization of themer or could crash in odd case where app launches
+        // In landscape
+        if (getScreenOrientation() == Configuration.ORIENTATION_LANDSCAPE) {
+            ArrayList<Button> scienceButts = setScienceButts();
+            calcButtons.addAdvanceOperands(scienceButts);
+        }
+
     }
 
     @Override
@@ -321,7 +326,10 @@ public class MainActivity extends AppCompatActivity {
         // If possible, need to move this to Themer.setButtAnimations() where the rest of the drawables
         // are set
         if (getScreenOrientation() == Configuration.ORIENTATION_PORTRAIT) {
-            morButton.setTextColor(colorAccent);
+            ImageView imageMor = (ImageView) findViewById(R.id.imageMor);
+            imageMor.setColorFilter(colorAccent);
+
+           // morButton.setTextColor(colorAccent);
             switch (Themer.CURRENT_THEME){
                 case Themer.BLUE_THEME:
                     morButton.setBackgroundResource(R.drawable.blue_numpad_transition);

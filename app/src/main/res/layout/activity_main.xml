@@ -215,21 +215,30 @@
                         android:shadowRadius="5"
                         />
 
-                    <Button
+                    <FrameLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:text="DEL"
-                        android:id="@+id/delButton"
-                        android:layout_weight="1"
-                        android:background="@drawable/blue_numpad_transition_noshad"
-                        android:textSize="15dp"
-                        android:textColor="@color/colorTextAccent"
-                        android:stateListAnimator="@null"
+                        android:layout_weight="1">
 
-                        android:shadowColor="#239e9e9e"
-                        android:shadowDx="-3"
-                        android:shadowDy="1"
-                        android:shadowRadius="5"/>
+                        <Button
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:id="@+id/delButton"
+                            android:layout_weight="1"
+                            android:background="@drawable/blue_numpad_transition_noshad"
+                            android:textColor="@color/colorTextAccent"
+                            android:stateListAnimator="@null"
+
+                            />
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:id="@+id/imageDel"
+                            android:src="@drawable/ic_backspace_24dp"
+                            android:layout_gravity="center"
+                            android:scaleType="centerInside" />
+                    </FrameLayout>
 
                     <Button
                         android:layout_width="match_parent"
@@ -238,7 +247,7 @@
                         android:id="@+id/clrButton"
                         android:layout_weight="1"
                         android:background="@drawable/blue_numpad_transition_noshad"
-                        android:textSize="15dp"
+                        android:textSize="17dp"
                         android:textColor="@color/colorTextAccent"
                         android:stateListAnimator="@null"
                         android:shadowColor="#239e9e9e"
@@ -264,7 +273,8 @@
                         android:background="@drawable/blue_numpad_transition_top"
                         android:textSize="27dp"
                         android:textColor="@color/colorTextNumpad"
-                        android:layout_marginBottom="1dp" />
+                        android:layout_marginBottom="1dp"
+                        android:stateListAnimator="@null" />
 
                     <Button
                         android:layout_width="match_parent"
@@ -276,7 +286,8 @@
                         android:textSize="27dp"
                         android:textColor="@color/colorTextNumpad"
                         android:layout_marginLeft="1dp"
-                        android:layout_marginBottom="1dp" />
+                        android:layout_marginBottom="1dp"
+                        android:stateListAnimator="@null" />
 
                     <Button
                         android:layout_width="match_parent"
@@ -290,7 +301,8 @@
                         android:layout_marginLeft="1dp"
                         android:layout_marginBottom="1dp"
                         android:backgroundTintMode="src_over"
-                        android:layout_marginRight="0dp" />
+                        android:layout_marginRight="0dp"
+                        android:stateListAnimator="@null" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -308,7 +320,8 @@
                         android:background="@drawable/blue_numpad_transition"
                         android:textSize="27dp"
                         android:textColor="@color/colorTextNumpad"
-                        android:layout_marginBottom="1dp" />
+                        android:layout_marginBottom="1dp"
+                        android:stateListAnimator="@null" />
 
                     <Button
                         android:layout_width="match_parent"
@@ -320,7 +333,8 @@
                         android:textSize="27dp"
                         android:textColor="@color/colorTextNumpad"
                         android:layout_marginLeft="1dp"
-                        android:layout_marginBottom="1dp" />
+                        android:layout_marginBottom="1dp"
+                        android:stateListAnimator="@null" />
 
                     <Button
                         android:layout_width="match_parent"
@@ -333,7 +347,8 @@
                         android:textColor="@color/colorTextNumpad"
                         android:layout_marginLeft="1dp"
                         android:layout_marginRight="0dp"
-                        android:layout_marginBottom="1dp" />
+                        android:layout_marginBottom="1dp"
+                        android:stateListAnimator="@null" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -352,7 +367,8 @@
                         android:background="@drawable/blue_numpad_transition"
                         android:textSize="27dp"
                         android:textColor="@color/colorTextNumpad"
-                        android:layout_marginBottom="1dp" />
+                        android:layout_marginBottom="1dp"
+                        android:stateListAnimator="@null" />
 
                     <Button
                         android:layout_width="match_parent"
@@ -364,7 +380,8 @@
                         android:textSize="27dp"
                         android:textColor="@color/colorTextNumpad"
                         android:layout_marginLeft="1dp"
-                        android:layout_marginBottom="1dp" />
+                        android:layout_marginBottom="1dp"
+                        android:stateListAnimator="@null" />
 
                     <Button
                         android:layout_width="match_parent"
@@ -377,7 +394,8 @@
                         android:textColor="@color/colorTextNumpad"
                         android:layout_marginLeft="1dp"
                         android:layout_marginRight="0dp"
-                        android:layout_marginBottom="1dp" />
+                        android:layout_marginBottom="1dp"
+                        android:stateListAnimator="@null" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -388,15 +406,31 @@
                     android:id="@+id/bottomRow"
                     >
 
-                    <Button
+                    <FrameLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:text="⤴"
-                        android:id="@+id/morButton"
-                        android:layout_weight="1"
-                        android:background="@drawable/blue_numpad_transition"
-                        android:textColor="@color/colorTextAccentLight"
-                        android:textSize="30dp" />
+                        android:layout_weight="1">
+
+                        <Button
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:id="@+id/morButton"
+                            android:layout_weight="1"
+                            android:background="@drawable/blue_numpad_transition"
+                            android:textColor="@color/colorTextAccentLight"
+                            android:textSize="30dp"
+                            android:stateListAnimator="@null" />
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:id="@+id/imageMor"
+                            android:src="@drawable/ic_expand_less_black_24dp"
+                            android:tint="@color/BLUE_colorAccent"
+                            android:scaleType="centerCrop"
+                            android:layout_gravity="center"
+                            android:padding="33dp" />
+                    </FrameLayout>
 
                     <Button
                         android:layout_width="match_parent"
@@ -407,7 +441,8 @@
                         android:background="@drawable/blue_numpad_transition"
                         android:textSize="27dp"
                         android:textColor="@color/colorTextNumpad"
-                        android:layout_marginLeft="1dp" />
+                        android:layout_marginLeft="1dp"
+                        android:stateListAnimator="@null" />
 
                     <Button
                         android:layout_width="match_parent"
@@ -419,7 +454,8 @@
                         android:textSize="27dp"
                         android:textColor="@color/colorTextNumpad"
                         android:layout_marginLeft="1dp"
-                        android:layout_marginRight="0dp" />
+                        android:layout_marginRight="0dp"
+                        android:stateListAnimator="@null" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -429,20 +465,29 @@
                 android:layout_height="match_parent"
                 android:layout_weight="4.5">
 
-                <Button
+                <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="☛"
-                    android:id="@+id/menuButton"
-                    android:background="@drawable/basic_main_transition_top"
-                    android:textColor="@color/colorTextSecondary"
-                    android:textSize="30dp"
-                    android:shadowColor="#64212121"
-                    android:shadowDx="2"
-                    android:shadowDy="3"
-                    android:shadowRadius="20"
+                    android:layout_weight="1">
 
-                    android:layout_weight="1" />
+                    <Button
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/menuButton"
+                        android:background="@drawable/basic_main_transition_top"
+                        android:textColor="@color/colorTextSecondary"
+                        android:textSize="30dp"
+                        android:layout_weight="1"
+                        android:stateListAnimator="@null" />
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/imageMenu"
+                        android:src="@drawable/ic_color_lens_24dp"
+                        android:layout_gravity="center"
+                        android:scaleType="centerInside" />
+                </FrameLayout>
 
                 <Button
                     android:layout_width="match_parent"
@@ -454,7 +499,8 @@
                     android:textSize="27dp"
                     android:textColor="@color/colorTextSecondary"
                     android:typeface="serif"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:stateListAnimator="@null" />
 
                 <Button
                     android:layout_width="match_parent"
@@ -466,7 +512,8 @@
                     android:textSize="30dp"
                     android:textColor="@color/colorTextSecondary"
                     android:typeface="serif"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:stateListAnimator="@null" />
 
                 <Button
                     android:layout_width="match_parent"
@@ -478,7 +525,8 @@
                     android:textSize="25dp"
                     android:textColor="@color/colorTextSecondary"
                     android:typeface="serif"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:stateListAnimator="@null" />
 
                 <Button
                     android:layout_width="match_parent"
@@ -491,7 +539,7 @@
                     android:textColor="@color/colorTextSecondary"
                     android:typeface="serif"
                     android:textStyle="bold"
-                    />
+                    android:stateListAnimator="@null" />
 
                 <Button
                     android:layout_width="match_parent"
@@ -503,7 +551,10 @@
                     android:textColor="@color/colorTextSecondary"
                     android:typeface="serif"
                     android:textStyle="bold"
-                    android:layout_weight="1" />
+                    android:layout_weight="1"
+                    android:stateListAnimator="@null"
+                    android:layout_marginBottom="2dp"
+                    android:layout_marginTop="4dp" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
