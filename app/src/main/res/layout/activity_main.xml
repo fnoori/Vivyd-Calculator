@@ -95,6 +95,7 @@
                     android:paddingRight="35dp"
                     android:gravity="top|right"
                     android:layout_alignParentBottom="true"
+                    android:textCursorDrawable="@null"
                     android:autoText="false" />
 
                 <Button

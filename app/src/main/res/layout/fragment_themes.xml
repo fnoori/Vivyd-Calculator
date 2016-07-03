@@ -65,8 +65,8 @@
                 android:layout_height="100dp"
                 android:text="Red Velvet"
                 android:id="@+id/rvelButton"
-                android:background="@color/RVEL_oppTray"
-                android:textColor="@color/RVEL_colorAccent"
+                android:background="@color/RVEL_colorAccent"
+                android:textColor="@color/RVEL_text"
                 android:layout_weight="1" />
 
             <Button

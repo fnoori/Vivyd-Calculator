@@ -48,7 +48,7 @@
     <color name="SUND_oppTray">#EF5350</color>
 
     <!-- Watermelon theme -->
-    <color name="WTRM_colorAccent">#e76c6a</color>
+    <color name="WTRM_colorAccent">#e75956</color>
     <color name="WTRM_colorComp">#EF5350</color>
     <color name="WTRM_background">#204531</color>
     <color name="WTRM_numpad">#28503a</color>
@@ -57,12 +57,12 @@
     <color name="WTRM_oppTray">#4a9867</color>
 
     <!-- Red velvet theme -->
-    <color name="RVEL_colorAccent">#e4c2bf</color>
+    <color name="RVEL_colorAccent">#963037</color>
     <color name="RVEL_colorComp">#EF5350</color>
-    <color name="RVEL_background">@color/RVEL_numpad</color>
+    <color name="RVEL_background">#2e2323</color>
     <color name="RVEL_numpad">#382a2a</color>
-    <color name="RVEL_text_screen">#452F2F</color>
+    <color name="RVEL_text_screen">#FFFFFF</color>
     <color name="RVEL_text">#ebd7d2</color>
-    <color name="RVEL_oppTray">#963037</color>
+    <color name="RVEL_oppTray">#663d40</color>
 
 </resources>
