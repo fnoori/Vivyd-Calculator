@@ -735,6 +735,7 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
                     solution = String.valueOf(numFormat.format(calc.evaluate()));
                     equationView.setText(forEquationView);
                     if(solution.contains(".")){dotCounter = 1;}
+                    solution = calculatorUtilities.convertToScientific(solution);
 
                     answerView.setText(calculatorUtilities.replaceForAnsViewDisplay(solution));
                     answerView.setSelection(answerView.getText().length());

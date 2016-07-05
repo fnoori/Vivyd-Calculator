@@ -1,9 +1,13 @@
 package ca.vivyd.vivydcalculator.utilities;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.util.Log;
 import android.widget.TextView;
+
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 
 import ca.vivyd.vivydcalculator.calc_logic.CalculatorButtons;
 import ca.vivyd.vivydcalculator.calc_logic.CustomOperators;
@@ -37,7 +41,7 @@ public class CalculatorUtilities {
         return incoming
                 .replace("*", "×").replace("/", "÷")
                 .replace("-", "−").replace("sqrt(", "√(")
-                .replace("%(×1)", "%");
+                .replace("%(×1)", "%").replace("E", "ᴇ");
     }
 
     public String repalaceForEquViewDisplay(String incoming){
@@ -71,25 +75,6 @@ public class CalculatorUtilities {
             default:
                 return cursorLocation+1;
         }
-
-/*
-        if(type.equals(CalculatorButtons.ALL_BUTTONS.LOG)
-                || type.equals(CalculatorButtons.ALL_BUTTONS.SIN)
-                || type.equals(CalculatorButtons.ALL_BUTTONS.COS)
-                || type.equals(CalculatorButtons.ALL_BUTTONS.TAN)){
-            return cursorLocation+4;
-        }else if(type.equals(CalculatorButtons.ALL_BUTTONS.LN)){
-            return cursorLocation+3;
-        }else if(type.equals(CalculatorButtons.ALL_BUTTONS.SQRT)){
-            return cursorLocation+2;
-        }else if(type.equals(CalculatorButtons.ALL_BUTTONS.SQR)
-                || type.equals(CalculatorButtons.ALL_BUTTONS.CBRT) || type.equals(CalculatorButtons.ALL_BUTTONS.INVERSE)
-                || type.equals(CalculatorButtons.ALL_BUTTONS.NRT)){
-            return cursorLocation;
-        }else{
-            return cursorLocation+1;
-        }
-*/
     }
 
     public String replaceForDegrees(String stringToModify){
@@ -149,6 +134,18 @@ public class CalculatorUtilities {
     public String getFromSharedPrefs(String varToGet){
         SharedPreferences prefs = context.getSharedPreferences("CalcData", context.MODE_PRIVATE);
         return prefs.getString(varToGet, "");
+    }
+
+    public String convertToScientific(String incoming){
+        double value = Double.parseDouble(incoming);
+        NumberFormat formatter = new DecimalFormat();
+
+        if(incoming.length() > 6) {
+            formatter = new DecimalFormat("0.####E0");
+            return formatter.format(value);
+        }else{
+            return incoming;
+        }
     }
 
     public boolean checkIfMoreOperandIsPossible(String prevInput, boolean isExceptionToRule) {
