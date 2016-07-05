@@ -275,6 +275,7 @@ public class MainActivity extends AppCompatActivity {
         final Button cubeButton = (Button) findViewById(R.id.cubButton);
         final Button inverseButton = (Button) findViewById(R.id.oneOverxButton);
         final Button eeButton = (Button) findViewById(R.id.powerOfTenButton);
+        final Button ansButton = (Button) findViewById(R.id.ansButton);
 
         // Variable buttons
 
@@ -290,8 +291,9 @@ public class MainActivity extends AppCompatActivity {
             add(logButton); add(lnButton); add(piButton);
             add(eButton); add(squareRootButton);  add(powerButton);
             add(squaredButton); add(factorialButton); add(nthRootButton);
-            add(cubeButton); add(inverseButton); add(eeButton); add(var1Button);
-            add(var2Button); add(var3Button);
+            add(cubeButton); add(inverseButton); add(eeButton);
+            add(var1Button); add(var2Button); add(var3Button);
+            add(ansButton);
         }};
 
         return advancedOperands;

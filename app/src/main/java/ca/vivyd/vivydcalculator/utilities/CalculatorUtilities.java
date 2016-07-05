@@ -1,5 +1,7 @@
 package ca.vivyd.vivydcalculator.utilities;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.util.Log;
 import android.widget.TextView;
 
@@ -12,13 +14,16 @@ import ca.vivyd.vivydcalculator.calc_logic.CustomOperators;
  * A general multi-purpose class
  */
 public class CalculatorUtilities {
+    private Context context;
     public enum ALL_BUTTONS {
         ADD, SUB, MUL, DIV, NUM, DOT, BRACKET_OPEN, BRACKET_CLOSE,
         SIN, COS, TAN, LOG, LN, PI, EULER, SQRT, POWER,
         FACT, SQR, NRT, PRCNT, CBRT, INVERSE, CSTM, EE, DEG_RAND, EQUAL, DEL, CLR
     }
 
-    public CalculatorUtilities(){}
+    public CalculatorUtilities(Context context){
+        this.context = context;
+    }
 
     public String replaceForCalculations(String incoming){
         return incoming
@@ -61,6 +66,7 @@ public class CalculatorUtilities {
             case NRT:
                 return cursorLocation;
             case CSTM:
+            case ANS:
                 return cursorLocation + valueToAppend.length();
             default:
                 return cursorLocation+1;
@@ -128,6 +134,21 @@ public class CalculatorUtilities {
             toReturn = "blah";
         }
         return toReturn;
+    }
+
+    public void saveToSharedPrefs(String sharedPrefsVarName, String sharedPrefsValue){
+        SharedPreferences prefs;
+        SharedPreferences.Editor editor;
+
+        prefs = context.getSharedPreferences("CalcData", Context.MODE_PRIVATE);
+        editor = prefs.edit();
+        editor.putString(sharedPrefsVarName, sharedPrefsValue);
+        editor.apply();
+    }
+
+    public String getFromSharedPrefs(String varToGet){
+        SharedPreferences prefs = context.getSharedPreferences("CalcData", context.MODE_PRIVATE);
+        return prefs.getString(varToGet, "");
     }
 
     public boolean checkIfMoreOperandIsPossible(String prevInput, boolean isExceptionToRule) {

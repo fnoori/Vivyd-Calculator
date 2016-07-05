@@ -56,7 +56,7 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
     public enum ALL_BUTTONS {
         ADD, SUB, MUL, DIV, NUM, DOT, BRACKET_OPEN, BRACKET_CLOSE,
         SIN, COS, TAN, LOG, LN, PI, EULER, SQRT, POWER,
-        FACT, SQR, NRT, PRCNT, CBRT, INVERSE, CSTM, EE, DEG_RAND, EQUAL, DEL, CLR
+        FACT, SQR, NRT, PRCNT, CBRT, INVERSE, CSTM, EE, ANS, DEG_RAND, EQUAL, DEL, CLR
     }
     private enum BASIC_AND_ADVANCED_OPERANDS {
         ADD, SUB, MUL, DIV, BRACKET_OPEN, SIN, COS, TAN, LOG, LN,
@@ -124,7 +124,7 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
         historyData = new HistoryData(context);
         historyData.clearDatabase();
         customOperators = new CustomOperators();
-        calculatorUtilities = new CalculatorUtilities();
+        calculatorUtilities = new CalculatorUtilities(context);
         userDefButtons = new UserDefinedButtons(context);
 
         for(Button curr : commonButtons){
@@ -151,7 +151,7 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
         expressionDisplayString = null;
         expressionEvalString = null;
         expressionToEvaluate = null;
-        calculatorUtilities = new CalculatorUtilities();
+        calculatorUtilities = new CalculatorUtilities(context);
         solution = null;
 
         trigType = DEG_RAD.RAD;
@@ -455,6 +455,9 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
             case R.id.powerOfTenButton:
                 animBtnLogic(v, transition, event, "ᴇ", 0);
                 break;
+            case R.id.ansButton:
+                animBtnLogic(v, transition, event, "ans", 0);
+                break;
             case R.id.var1Button:
                 animBtnLogic(v, transition, event, "user1", 0);
                 break;
@@ -568,6 +571,9 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
                     break;
                 case "ᴇ":
                     addToExpressionToBeEvaluated(ADVANCED_OPERANDS_ARRAY[14], ALL_BUTTONS.EE, true);
+                    break;
+                case "ans":
+                    addToExpressionToBeEvaluated(calculatorUtilities.getFromSharedPrefs("ANS"), ALL_BUTTONS.ANS, true);
                     break;
                 case "user1":
                     if(!userDefValue1[0].equals("+") || !userDefValue1[1].equals("+")){
@@ -742,8 +748,10 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
                         Log.d("SOLUTION_HISTORY", tmp_solution_list.get(i));
                     }
 
+                    Log.d("SOLUTION", solution);
                     calculatorUtilities.postEqualLogic(isAnswer, customOperators, openBrace,
                             closeBrace, rightBraceCounter, leftBraceCounter, previousInput);
+                    calculatorUtilities.saveToSharedPrefs("ANS", solution);
                 }else{
                     do{
                         closeBrace++;
@@ -840,6 +848,8 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
         cursorLocation = answerView.getSelectionStart();
         expressionToEvaluate = calculatorUtilities.replaceForAnsViewDisplay(
                 answerView.getText().insert(cursorLocation, valueToAppend).toString());
+
+        Log.d("TYPE", type.toString());
 
         answerView.setText(expressionToEvaluate);
         expressionToEvaluate = calculatorUtilities.replaceForCalculations(expressionToEvaluate);
