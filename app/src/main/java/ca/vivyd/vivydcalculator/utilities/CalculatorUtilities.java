@@ -43,22 +43,25 @@ public class CalculatorUtilities {
                 .replace("log10(", "log(").replace("§", "ᴇ");
     }
 
-    public int determineCursorLocation(CalculatorButtons.ALL_BUTTONS type, int cursorLocation){
+    public int determineCursorLocation(CalculatorButtons.ALL_BUTTONS type, int cursorLocation,
+                                       String valueToAppend){
         switch (type){
             case LOG:
             case SIN:
             case COS:
             case TAN:
                 return cursorLocation+4;
-            case LN:
-                return cursorLocation+3;
             case SQRT:
-                return cursorLocation+2;
             case SQR:
             case CBRT:
+                return cursorLocation+2;
+            case LN:
             case INVERSE:
+                return cursorLocation+3;
             case NRT:
                 return cursorLocation;
+            case CSTM:
+                return cursorLocation + valueToAppend.length();
             default:
                 return cursorLocation+1;
         }
@@ -128,8 +131,10 @@ public class CalculatorUtilities {
     }
 
     public boolean checkIfMoreOperandIsPossible(String prevInput, boolean isExceptionToRule) {
+        Log.d("PREV_INPUT", prevInput);
         return (prevInput.equals("+") ||
                 prevInput.equals("/") || prevInput.equals("*") ||
-                prevInput.equals("×") || prevInput.equals("÷")) && !isExceptionToRule;
+                prevInput.equals("×") || prevInput.equals("÷") ||
+                prevInput.equals("%(*1)")) && !isExceptionToRule;
     }
 }

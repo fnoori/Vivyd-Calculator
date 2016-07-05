@@ -843,7 +843,7 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
 
         answerView.setText(expressionToEvaluate);
         expressionToEvaluate = calculatorUtilities.replaceForCalculations(expressionToEvaluate);
-        answerView.setSelection(calculatorUtilities.determineCursorLocation(type, cursorLocation));
+        answerView.setSelection(calculatorUtilities.determineCursorLocation(type, cursorLocation, valueToAppend));
     }
 
     public void checkBrace(ALL_BUTTONS type){
