@@ -280,13 +280,13 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
     public boolean onLongClick(View v) {
         switch (v.getId()){
             case R.id.var1Button:
-                    if(!var1Button.getText().toString().equals("+")){userDefButtons.launchUserInputDialog(this, var1Button);}
+                    if(!userDefValue1[0].equals("+")){userDefButtons.launchUserInputDialog(this, var1Button);}
                 break;
             case R.id.var2Button:
-                    if(!var2Button.getText().toString().equals("+")){userDefButtons.launchUserInputDialog(this, var2Button);}
+                    if(!userDefValue2[0].equals("+")){userDefButtons.launchUserInputDialog(this, var2Button);}
                 break;
             case R.id.var3Button:
-                    if(!var3Button.getText().toString().equals("+")){userDefButtons.launchUserInputDialog(this, var3Button);}
+                    if(!userDefValue3[0].equals("+")){userDefButtons.launchUserInputDialog(this, var3Button);}
                 break;
             default:
                 break;
