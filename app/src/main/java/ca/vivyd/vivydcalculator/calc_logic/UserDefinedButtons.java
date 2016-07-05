@@ -6,6 +6,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
+
+import org.apache.commons.lang3.StringUtils;
 
 import ca.vivyd.vivydcalculator.R;
 
@@ -40,8 +43,13 @@ public class UserDefinedButtons {
         confirmButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                calcButtons.setUserDefinedValues(inButton, varName.getText().toString(), varValue.getText().toString());
-                customButtonIputDialog.dismiss();
+                if(StringUtils.isNumeric(varValue.getText().toString()) && !varName.getText().toString().equals("")){
+                    calcButtons.setUserDefinedValues(inButton, varName.getText().toString(), varValue.getText().toString());
+                    customButtonIputDialog.dismiss();
+                }else{
+                    Toast.makeText(context, "Please Enter Correct Details", Toast.LENGTH_LONG).show();
+                }
+
             }
         });
 
