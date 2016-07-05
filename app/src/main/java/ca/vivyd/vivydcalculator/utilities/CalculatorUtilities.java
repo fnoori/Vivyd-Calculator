@@ -132,7 +132,7 @@ public class CalculatorUtilities {
     }
 
     public String getFromSharedPrefs(String varToGet){
-        SharedPreferences prefs = context.getSharedPreferences("CalcData", context.MODE_PRIVATE);
+        SharedPreferences prefs = context.getSharedPreferences("CalcData", Context.MODE_PRIVATE);
         return prefs.getString(varToGet, "");
     }
 

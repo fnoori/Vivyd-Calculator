@@ -90,6 +90,7 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
     public static int openBrace;
     public static int closeBrace;
     private boolean isAnswer;
+    private boolean isOnTouchActive;
     private HistoryData historyData;
     private CustomOperators customOperators;
     private CalculatorUtilities calculatorUtilities;
@@ -120,6 +121,7 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
         openBrace = 0;
         closeBrace = 0;
         isAnswer = false;
+        isOnTouchActive = false;
 
         historyData = new HistoryData(context);
         historyData.clearDatabase();
@@ -278,13 +280,21 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
     public boolean onLongClick(View v) {
         switch (v.getId()){
             case R.id.var1Button:
-                userDefButtons.launchUserInputDialog(this, var1Button);
+                if(!isOnTouchActive){
+                    userDefButtons.launchUserInputDialog(this, var1Button);
+                }
                 break;
             case R.id.var2Button:
-                userDefButtons.launchUserInputDialog(this, var2Button);
+                if(!isOnTouchActive){
+                    userDefButtons.launchUserInputDialog(this, var2Button);
+
+                }
                 break;
             case R.id.var3Button:
-                userDefButtons.launchUserInputDialog(this, var3Button);
+                if(!isOnTouchActive){
+                    userDefButtons.launchUserInputDialog(this, var3Button);
+
+                }
                 break;
             default:
                 break;
@@ -576,23 +586,26 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
                     addToExpressionToBeEvaluated(calculatorUtilities.getFromSharedPrefs("ANS"), ALL_BUTTONS.ANS, true);
                     break;
                 case "user1":
-                    if(!userDefValue1[0].equals("+") || !userDefValue1[1].equals("+")){
+                    if(!userDefValue1[0].equals("+")){
                         addToExpressionToBeEvaluated(userDefValue1[1], ALL_BUTTONS.CSTM, true);
                     }else{
+                        isOnTouchActive = true;
                         userDefButtons.launchUserInputDialog(this, var1Button);
                     }
                     break;
                 case "user2":
-                    if(!userDefValue2[0].equals("+") || !userDefValue2[1].equals("+")){
+                    if(!userDefValue2[0].equals("+")){
                         addToExpressionToBeEvaluated(userDefValue2[1], ALL_BUTTONS.CSTM, true);
                     }else{
+                        isOnTouchActive = true;
                         userDefButtons.launchUserInputDialog(this, var2Button);
                     }
                     break;
                 case "user3":
-                    if(!userDefValue3[0].equals("+") || !userDefValue3[1].equals("+")){
+                    if(!userDefValue3[0].equals("+")){
                         addToExpressionToBeEvaluated(userDefValue3[1], ALL_BUTTONS.CSTM, true);
                     }else{
+                        isOnTouchActive = true;
                         userDefButtons.launchUserInputDialog(this, var3Button);
                     }
                     break;
