@@ -87,8 +87,8 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
     private DEG_RAD trigType;
     private int cursorLocation;
     private int dotCounter;
-    private int openBrace;
-    private int closeBrace;
+    public static int openBrace;
+    public static int closeBrace;
     private boolean isAnswer;
     private HistoryData historyData;
     private CustomOperators customOperators;

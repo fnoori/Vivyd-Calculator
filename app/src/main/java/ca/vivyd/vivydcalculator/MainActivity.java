@@ -29,7 +29,6 @@ import ca.vivyd.vivydcalculator.calc_logic.CalculatorButtons;
 import ca.vivyd.vivydcalculator.themes.Themer;
 
 
-// LOLOLOLOLOLOLOLOLOLOL yourself
 public class MainActivity extends AppCompatActivity {
     public static int startTime = 0;
     public static int afterInitAllButtonsTime = 0;
@@ -44,6 +43,8 @@ public class MainActivity extends AppCompatActivity {
     private Button menuButton;
     static int popHeight = 0;
     static int popWidth = 0;
+
+    private static int notExited = 0;
 
     Themer themer;
 
@@ -172,19 +173,28 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-
         // For themes. This must come after any button initializations.
         SharedPreferences prefs = getSharedPreferences("CalcData", Context.MODE_PRIVATE);
         themer = new Themer(this, commonButtons, commonOperands);
         Themer.CURRENT_THEME = prefs.getInt("Theme", 1);
         setTheme(themer);
 
-        // If the current orientation is landscape, initialize advanced buttons
-        // Must come after initialization of themer or could crash in odd case where app launches
-        // In landscape
+
+        /** If the current orientation is landscape, initialize advanced buttons
+        / Must come after initialization of themer or could crash in odd case where app launches
+        / In landscape
+        **/
         if (getScreenOrientation() == Configuration.ORIENTATION_LANDSCAPE) {
             ArrayList<Button> scienceButts = setScienceButts();
             calcButtons.addAdvanceOperands(scienceButts);
+            notExited = 1;
+        }
+
+        if (notExited == 1){
+            CalculatorButtons.openBrace = prefs.getInt("openBrace", 0);
+            CalculatorButtons.closeBrace = prefs.getInt("closeBrace", 0);
+            leftBraceCounter.setText(String.valueOf(CalculatorButtons.openBrace));
+            rightBraceCounter.setText(String.valueOf(CalculatorButtons.closeBrace));
         }
 
     }
@@ -204,6 +214,8 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences prefs = getSharedPreferences("CalcData", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
         editor.putInt("Theme", Themer.CURRENT_THEME);
+        editor.putInt("openBrace", CalculatorButtons.openBrace);
+        editor.putInt("closeBrace", CalculatorButtons.closeBrace);
         editor.apply();
     }
 
