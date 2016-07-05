@@ -332,7 +332,7 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
 
     }
 
-    // AMAIR: Had to move the stuff from onClick to onTouch for animations to work. yolo.
+    // AMAIR: Had to move the stuff from onClick to onTouch for animations to work.
     int startTran = 50;
     int endTran = 300;
     int fast_endTran = 150;

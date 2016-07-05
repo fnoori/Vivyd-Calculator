@@ -37,6 +37,8 @@ public class MainActivity extends AppCompatActivity {
 
     private Context context = this;
     private EditText answerView;
+    private TextView leftBraceCounter;
+    private TextView rightBraceCounter;
 
     // The following stuff is code related to the popupwindow feature
     private Button morButton;
@@ -61,8 +63,8 @@ public class MainActivity extends AppCompatActivity {
         answerView.setSingleLine();
 
         TextView equationView = (TextView) findViewById(R.id.eqnView);
-        TextView leftBraceCounter = (TextView) findViewById(R.id.numLeftBrace);
-        TextView rightBraceCounter = (TextView) findViewById(R.id.numRightBrace);
+        leftBraceCounter = (TextView) findViewById(R.id.numLeftBrace);
+        rightBraceCounter = (TextView) findViewById(R.id.numRightBrace);
 
         /* START COMMON BUTTONS */
         final Button zeroButton = (Button) findViewById(R.id.zeroButton);
@@ -171,14 +173,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-
         // For themes. This must come after any button initializations.
         SharedPreferences prefs = getSharedPreferences("CalcData", Context.MODE_PRIVATE);
         themer = new Themer(this, commonButtons, commonOperands);
         Themer.CURRENT_THEME = prefs.getInt("Theme", 1);
         setTheme(themer);
-
 
         /** If the current orientation is landscape, initialize advanced buttons
         / Must come after initialization of themer or could crash in odd case where app launches
@@ -191,21 +190,28 @@ public class MainActivity extends AppCompatActivity {
         }
 
         if (notExited == 1){
+            calcButtons.countNumberOfBrackets(answerView.getText().toString());
             CalculatorButtons.openBrace = prefs.getInt("openBrace", 0);
             CalculatorButtons.closeBrace = prefs.getInt("closeBrace", 0);
             leftBraceCounter.setText(String.valueOf(CalculatorButtons.openBrace));
             rightBraceCounter.setText(String.valueOf(CalculatorButtons.closeBrace));
         }
-
     }
+
 
     @Override
     public void onResume(){
         super.onResume();
         disableSoftKeyboard(answerView);
         LinearLayout popSpace = (LinearLayout) findViewById(R.id.popSpace);
+        assert popSpace != null;
         popSpace.removeView(findViewById(R.id.popMenu));
         setTheme(themer);
+
+        if (answerView.getText().toString().matches("")){
+            leftBraceCounter.setText("0");
+            rightBraceCounter.setText("0");
+        }
     }
 
     @Override
