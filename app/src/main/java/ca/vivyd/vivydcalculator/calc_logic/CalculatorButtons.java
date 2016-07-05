@@ -280,21 +280,13 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
     public boolean onLongClick(View v) {
         switch (v.getId()){
             case R.id.var1Button:
-                if(!isOnTouchActive){
-                    userDefButtons.launchUserInputDialog(this, var1Button);
-                }
+                    if(!var1Button.getText().toString().equals("+")){userDefButtons.launchUserInputDialog(this, var1Button);}
                 break;
             case R.id.var2Button:
-                if(!isOnTouchActive){
-                    userDefButtons.launchUserInputDialog(this, var2Button);
-
-                }
+                    if(!var2Button.getText().toString().equals("+")){userDefButtons.launchUserInputDialog(this, var2Button);}
                 break;
             case R.id.var3Button:
-                if(!isOnTouchActive){
-                    userDefButtons.launchUserInputDialog(this, var3Button);
-
-                }
+                    if(!var3Button.getText().toString().equals("+")){userDefButtons.launchUserInputDialog(this, var3Button);}
                 break;
             default:
                 break;
@@ -589,7 +581,6 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
                     if(!userDefValue1[0].equals("+")){
                         addToExpressionToBeEvaluated(userDefValue1[1], ALL_BUTTONS.CSTM, true);
                     }else{
-                        isOnTouchActive = true;
                         userDefButtons.launchUserInputDialog(this, var1Button);
                     }
                     break;
@@ -597,7 +588,6 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
                     if(!userDefValue2[0].equals("+")){
                         addToExpressionToBeEvaluated(userDefValue2[1], ALL_BUTTONS.CSTM, true);
                     }else{
-                        isOnTouchActive = true;
                         userDefButtons.launchUserInputDialog(this, var2Button);
                     }
                     break;
@@ -605,7 +595,6 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
                     if(!userDefValue3[0].equals("+")){
                         addToExpressionToBeEvaluated(userDefValue3[1], ALL_BUTTONS.CSTM, true);
                     }else{
-                        isOnTouchActive = true;
                         userDefButtons.launchUserInputDialog(this, var3Button);
                     }
                     break;
