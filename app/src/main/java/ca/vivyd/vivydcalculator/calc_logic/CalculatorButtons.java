@@ -148,24 +148,6 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
         Toast.makeText(context, "Total time to init all compenents: " + totalTime, Toast.LENGTH_LONG).show();
     }
 
-    /**
-     * This constructor should only be used for testing purposes
-     * */
-    public CalculatorButtons(){
-        expressionDisplayString = null;
-        expressionEvalString = null;
-        expressionToEvaluate = null;
-        calculatorUtilities = new CalculatorUtilities(context);
-        solution = null;
-
-        trigType = DEG_RAD.RAD;
-
-        openBrace = 0;
-        closeBrace = 0;
-        isAnswer = false;
-        customOperators = new CustomOperators();
-    }
-
     // AMAIR: Had to move the stuff from onClick to onTouch for animations to work. yolo.
     @Override
     public void onClick(View v) {
@@ -734,69 +716,6 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
         }
     }
 
-
-    public void determinePercentLogic(int percentIndex, int lengthOfExpressionEvalString){
-        if(expressionToEvaluate.contains("%")){
-            percentIndex = expressionToEvaluate.indexOf("%");
-            lengthOfExpressionEvalString = expressionToEvaluate.length();
-        }
-        if(percentIndex == lengthOfExpressionEvalString-1){
-            expressionToEvaluate = expressionToEvaluate + "-0";
-        }else{
-            customOperators.setIsComplexPercentage(true);
-        }
-    }
-
-    /**
-     * This method should only be used for testing purposes
-     * */
-    public void equalLogicForTesting(){
-        List<Operator> operatorList = new ArrayList<>();
-        operatorList.add(customOperators.getFactorialOperator());
-        operatorList.add(customOperators.getNrt());
-        //operatorList.add(customOperators.getPercentageOperator());
-
-        List<Function> functionList = new ArrayList<>();
-
-        Log.d("TRIG_TYPE", trigType+"");
-        if(trigType.equals(DEG_RAD.DEG)){
-            functionList.add(customOperators.getSinDegrees());
-            functionList.add(customOperators.getCosDegrees());
-            functionList.add(customOperators.getTanDegrees());
-
-            if(expressionToEvaluate != null){
-                Log.d("EXPRESSION_EVAL", expressionToEvaluate);
-            }else{
-                Log.d("EXPRESSION_EVAL", "NULL");
-            }
-
-            if(calculatorUtilities != null){
-                Log.d("CALC_UTIL", "NOT NULL");
-            }else{
-                Log.d("CALC_UTIL", "NULL");
-            }
-
-            expressionToEvaluate = calculatorUtilities.replaceForDegrees(expressionToEvaluate);
-        }else{functionList.clear();}
-
-        int percentIndex = 0;
-        int lengthOfExpressionEvalString = expressionToEvaluate.length();
-        determinePercentLogic(percentIndex, lengthOfExpressionEvalString);
-
-        Expression calc = new ExpressionBuilder(expressionToEvaluate)
-                .operator(operatorList)
-                .functions(functionList)
-                .build();
-
-        NumberFormat numFormat = new DecimalFormat("##.##########");
-        solution = String.valueOf(numFormat.format(calc.evaluate()));
-        if(solution.contains(".")){dotCounter = 1;}
-        isAnswer = true;
-        customOperators.setIsComplexPercentage(false);
-        openBrace = 0;
-        closeBrace = 0;
-    }
-
     public void addToExpressionToBeEvaluated(String valueToAppend, ALL_BUTTONS type, boolean isExceptionToRule){
         String prevInput;
         int cursorLocation = 0;
@@ -835,15 +754,6 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
 
         Log.d("OPEN_BRACKET_CHECK", openBrace+"");
         Log.d("CLOSE_BRACKET_CHECK", closeBrace+"");
-    }
-
-    /**
-     * Should only be used for testing
-     * */
-    public String setExpressionEvalString(String toEvaluate){
-        expressionToEvaluate = toEvaluate;
-        equalLogicForTesting();
-        return solution;
     }
 
     public void changeTrigType(){

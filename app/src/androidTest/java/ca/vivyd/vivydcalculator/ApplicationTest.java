@@ -13,16 +13,18 @@ import ca.vivyd.vivydcalculator.calc_logic.CalculatorButtons;
  * <a href="http://d.android.com/tools/testing/testing_android.html">Testing Fundamentals</a>
  */
 public class ApplicationTest extends ApplicationTestCase<Application> {
+    /*
     private CalculatorButtons calculatorButtons;
     private String solutionGot;
     private String solutionExpected;
     private String toEvaluate;
 
     private NumberFormat numFormat;
-
+    */
 
     public ApplicationTest() {
         super(Application.class);
+        /*
         calculatorButtons = new CalculatorButtons();
         solutionExpected = null;
         solutionGot = null;
@@ -40,8 +42,10 @@ public class ApplicationTest extends ApplicationTestCase<Application> {
         nth_root();
         complex_log_test();
         cube_root_nth_root_factorial_test();
+        */
     }
 
+    /*
     public void trivial_simple_test(){
         toEvaluate = "2+4";
         solutionGot = calculatorButtons.setExpressionEvalString(toEvaluate);
@@ -135,4 +139,5 @@ public class ApplicationTest extends ApplicationTestCase<Application> {
         solutionGot = null;
         toEvaluate = null;
     }
+    */
 }
