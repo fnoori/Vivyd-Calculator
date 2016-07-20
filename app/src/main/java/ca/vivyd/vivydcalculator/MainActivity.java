@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
@@ -232,7 +233,9 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 final LinearLayout popSpace = (LinearLayout) findViewById(R.id.popSpace);
                 LinearLayout bottomRow = (LinearLayout) findViewById(R.id.bottomRow);
+                assert bottomRow != null;
                 int popHeight =  4*bottomRow.getHeight();
+                assert popSpace != null;
                 int popWidth = popSpace.getWidth();
                 final View popMenu = getLayoutInflater().inflate(R.layout.activity_popup, null);
                 popMenu.setMinimumHeight(popHeight);
@@ -282,8 +285,11 @@ public class MainActivity extends AppCompatActivity {
         final Button var1Button = (Button) findViewById(R.id.var1Button);
         final Button var2Button = (Button) findViewById(R.id.var2Button);
         final Button var3Button = (Button) findViewById(R.id.var3Button);
+        assert var1Button != null;
         var1Button.setTextColor(Themer.colorArray.get(Themer.COLOR_ACCENT));
+        assert var2Button != null;
         var2Button.setTextColor(Themer.colorArray.get(Themer.COLOR_ACCENT));
+        assert var3Button != null;
         var3Button.setTextColor(Themer.colorArray.get(Themer.COLOR_ACCENT));
 
         ArrayList<Button> advancedOperands = new ArrayList<Button>(){{
@@ -309,37 +315,54 @@ public class MainActivity extends AppCompatActivity {
         lemur.setButtAnimation();
         int colorAccent = Themer.colorArray.get(Themer.COLOR_ACCENT);
         int colorTextScreen = Themer.colorArray.get(Themer.COLOR_TEXT_SCREEN);
+        int colorOppTray = Themer.colorArray.get(Themer.COLOR_OPPTRAY);
+        int colorNumpad = Themer.colorArray.get(Themer.COLOR_NUMPAD);
+        int dark_colorNumpad = Themer.colorArray.get(Themer.COLOR_NUMPAD_DARK);
 
 
         LinearLayout backgroundView = (LinearLayout) findViewById(R.id.backgroundView);
-        backgroundView.setBackgroundColor(Themer.colorArray.get(Themer.COLOR_BACKGROUND));
-
+        assert backgroundView != null;
         TextView eqnView = (TextView) findViewById(R.id.eqnView);
         assert eqnView != null;
-        eqnView.setBackgroundColor(colorAccent);
-        eqnView.setTextColor(colorTextScreen);
-
         EditText ansView = (EditText) findViewById(R.id.ansView);
         assert ansView != null;
-        ansView.setBackgroundColor(colorAccent);
-        ansView.setTextColor(colorTextScreen);
-
         Button degRandButton = (Button) findViewById(R.id.degRandButton);
         assert degRandButton != null;
-        degRandButton.setBackgroundColor(colorAccent);
+        Button var1Button = (Button) findViewById(R.id.var1Button);
+        TextView numLeftBrace = (TextView) findViewById(R.id.numLeftBrace);
+        assert numLeftBrace != null;
+        TextView numRightBrace = (TextView) findViewById(R.id.numRightBrace);
+        assert numRightBrace != null;
 
-        final Button var1Button = (Button) findViewById(R.id.var1Button);
+
+        backgroundView.setBackgroundColor(Themer.colorArray.get(Themer.COLOR_BACKGROUND));
+        eqnView.setBackgroundColor(colorAccent);
+        eqnView.setTextColor(colorTextScreen);
+        ansView.setBackgroundColor(colorAccent);
+        ansView.setTextColor(colorTextScreen);
+        degRandButton.setBackgroundColor(colorAccent);
         if (var1Button != null) {
             final Button var2Button = (Button) findViewById(R.id.var2Button);
             final Button var3Button = (Button) findViewById(R.id.var3Button);
             var1Button.setTextColor(colorAccent);
+            assert var2Button != null;
             var2Button.setTextColor(colorAccent);
+            assert var3Button != null;
             var3Button.setTextColor(colorAccent);
             if (getScreenOrientation() == Configuration.ORIENTATION_PORTRAIT) {
                 Button bakButton = (Button) findViewById(R.id.bakButton);
+                assert bakButton != null;
                 bakButton.setBackgroundColor(colorAccent);
                 bakButton.setTextColor(colorTextScreen);
             }
+        }
+        if (numLeftBrace.getText().equals(numRightBrace.getText())) {
+            numLeftBrace.setTextColor(dark_colorNumpad);
+            numRightBrace.setTextColor(dark_colorNumpad);
+        }
+        else {
+            numLeftBrace.setTextColor(colorAccent);
+            numRightBrace.setTextColor(colorAccent);
         }
 
 
@@ -347,6 +370,7 @@ public class MainActivity extends AppCompatActivity {
         // are set
         if (getScreenOrientation() == Configuration.ORIENTATION_PORTRAIT) {
             ImageView imageMor = (ImageView) findViewById(R.id.imageMor);
+            assert imageMor != null;
             imageMor.setColorFilter(colorAccent);
 
            // morButton.setTextColor(colorAccent);
@@ -376,6 +400,7 @@ public class MainActivity extends AppCompatActivity {
         }
         else {
             LinearLayout adLayout = (LinearLayout)findViewById(R.id.adLayout);
+            assert adLayout != null;
             adLayout.setBackgroundColor(colorAccent);
             ArrayList<Button> advancedOperands = setScienceButts();
             themer.setSciButtsAnim(advancedOperands);

@@ -30,6 +30,7 @@ import ca.vivyd.vivydcalculator.R;
 import ca.vivyd.vivydcalculator.menu.MenuActivity;
 import ca.vivyd.vivydcalculator.sqlite_database.DatabaseTable;
 import ca.vivyd.vivydcalculator.sqlite_database.HistoryData;
+import ca.vivyd.vivydcalculator.themes.Themer;
 import ca.vivyd.vivydcalculator.utilities.CalculatorUtilities;
 
 /**
@@ -396,9 +397,11 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
                 break;
             case R.id.openBrace:
                 animBtnLogic(v, transition, event, "open_brace", 0);
+                setBraceColor();
                 break;
             case R.id.closeBrace:
                 animBtnLogic(v, transition, event, "close_brace", 0);
+                setBraceColor();
                 break;
             case R.id.clrButton:
                 animBtnLogic(v, transition, event, "clr", 0);
@@ -475,6 +478,17 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
         return false;
     }
 
+    private void setBraceColor() {
+        if (!leftBraceCounter.getText().equals(rightBraceCounter.getText())) {
+            leftBraceCounter.setTextColor(Themer.colorArray.get(Themer.COLOR_ACCENT));
+            rightBraceCounter.setTextColor(Themer.colorArray.get(Themer.COLOR_ACCENT));
+        }
+        else {
+            leftBraceCounter.setTextColor(Themer.colorArray.get(Themer.COLOR_NUMPAD_DARK));
+            rightBraceCounter.setTextColor(Themer.colorArray.get(Themer.COLOR_NUMPAD_DARK));
+        }
+    }
+
 
     public void animBtnLogic(View v, TransitionDrawable transition, MotionEvent event, String type, int num) {
         SharedPreferences prefs = context.getSharedPreferences("CalcData", Context.MODE_PRIVATE);
@@ -517,6 +531,7 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
                     break;
                 case "clr":
                     clearButtonLogic();
+                    setBraceColor();
                     break;
                 case "eql":
                     equalButtonLogic();

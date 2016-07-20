@@ -1,6 +1,7 @@
 package ca.vivyd.vivydcalculator.themes;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.v4.content.ContextCompat;
 import android.widget.Button;
 
@@ -26,6 +27,7 @@ public class Themer {
     public static int COLOR_TEXT = 4;
     public static int COLOR_TEXT_SCREEN = 5;
     public static int COLOR_OPPTRAY = 6;
+    public static int COLOR_NUMPAD_DARK = 7;
 
 
     public static int CURRENT_THEME = 1;
@@ -36,9 +38,6 @@ public class Themer {
     public final static int SUND_THEME = 5;
     public final static int WTRM_THEME = 6;
     public final static int RVEL_THEME = 7;
-
-
-
 
     // Basic themes
     public static int BLUE_ACCENT;
@@ -105,6 +104,7 @@ public class Themer {
         colorArray.add(COLOR_TEXT, BASIC_TEXT);
         colorArray.add(COLOR_TEXT_SCREEN, BASIC_TEXT_SCREEN);
         colorArray.add(COLOR_OPPTRAY, BASIC_OPPTRAY);
+        colorArray.add(COLOR_NUMPAD_DARK, 0);
 
 
         // Initialize Basic Themes
@@ -379,6 +379,12 @@ public class Themer {
                 }
                 break;
         }
+
+        float[] hsv = new float[3];
+        Color.colorToHSV(colorArray.get(COLOR_NUMPAD), hsv);
+        hsv[2] = 1.0f - 0.8f*(1.0f - hsv[2]);
+        colorArray.add(COLOR_NUMPAD_DARK, Color.HSVToColor(hsv));
+
     }
 
     public void setSciButtsAnim(ArrayList<Button> advancedOperands) {
