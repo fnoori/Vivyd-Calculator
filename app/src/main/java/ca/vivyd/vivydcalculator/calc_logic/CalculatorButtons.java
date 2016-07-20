@@ -546,18 +546,23 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
                     break;
                 case "sin":
                     addToExpressionToBeEvaluated(ADVANCED_OPERANDS_ARRAY[0], ALL_BUTTONS.SIN, true);
+                    setBraceColor();
                     break;
                 case "cos":
                     addToExpressionToBeEvaluated(ADVANCED_OPERANDS_ARRAY[1], ALL_BUTTONS.COS, true);
+                    setBraceColor();
                     break;
                 case "tan":
                     addToExpressionToBeEvaluated(ADVANCED_OPERANDS_ARRAY[2], ALL_BUTTONS.TAN, true);
+                    setBraceColor();
                     break;
                 case "log":
                     addToExpressionToBeEvaluated(ADVANCED_OPERANDS_ARRAY[3], ALL_BUTTONS.LOG, true);
+                    setBraceColor();
                     break;
                 case "ln":
                     addToExpressionToBeEvaluated(ADVANCED_OPERANDS_ARRAY[4], ALL_BUTTONS.LN, true);
+                    setBraceColor();
                     break;
                 case "pi":
                     addToExpressionToBeEvaluated(ADVANCED_OPERANDS_ARRAY[5], ALL_BUTTONS.PI, true);
@@ -567,6 +572,7 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
                     break;
                 case "sqrt":
                     addToExpressionToBeEvaluated(ADVANCED_OPERANDS_ARRAY[7], ALL_BUTTONS.SQRT, true);
+                    setBraceColor();
                     break;
                 case "nrt":
                     addToExpressionToBeEvaluated(ADVANCED_OPERANDS_ARRAY[8], ALL_BUTTONS.NRT, true);

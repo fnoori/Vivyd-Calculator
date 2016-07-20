@@ -8,10 +8,14 @@ import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.graphics.Color;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.InputType;
+import android.transition.Fade;
+import android.transition.Slide;
+import android.transition.TransitionManager;
 import android.view.Display;
 import android.view.View;
 import android.widget.Button;
@@ -239,10 +243,17 @@ public class MainActivity extends AppCompatActivity {
                 int popWidth = popSpace.getWidth();
                 final View popMenu = getLayoutInflater().inflate(R.layout.activity_popup, null);
                 popMenu.setMinimumHeight(popHeight);
-                LayoutTransition transition = new LayoutTransition();
-                popSpace.setLayoutTransition(transition);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    Slide mSlide = new Slide();
+                    mSlide.setDuration(200);
+                    TransitionManager.beginDelayedTransition(popSpace, mSlide);
+                }
+                else {
+                    LayoutTransition transition = new LayoutTransition();
+                    transition.setDuration(100);
+                    popSpace.setLayoutTransition(transition);
+                }
                 popSpace.addView(popMenu);
-
 
                 ArrayList<Button> advancedOperands = setScienceButts();
                 themer.setSciButtsAnim(advancedOperands);
@@ -255,6 +266,11 @@ public class MainActivity extends AppCompatActivity {
                 bakButton.setTextColor(Themer.colorArray.get(Themer.COLOR_TEXT_SCREEN));
                 bakButton.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                            Slide mSlide = new Slide();
+                            mSlide.setDuration(200);
+                            TransitionManager.beginDelayedTransition(popSpace, mSlide);
+                        }
                         popSpace.removeView(popMenu);
                     }
                 });
