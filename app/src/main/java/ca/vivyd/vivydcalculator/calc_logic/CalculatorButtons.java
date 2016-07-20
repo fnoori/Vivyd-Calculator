@@ -92,6 +92,10 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
     private CalculatorUtilities calculatorUtilities;
     private UserDefinedButtons userDefButtons;
 
+    private SharedPreferences prefs;
+    private SharedPreferences.Editor editor;
+    private SharedPreferencesLogic sharedPrefsLogic;
+
     public CalculatorButtons(Context context, EditText answerView,
                              TextView equationView, ArrayList<Button> commonButtons,
                              ArrayList<Button> commonOperands, TextView leftBraceCounter,
@@ -124,6 +128,8 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
         customOperators = new CustomOperators();
         calculatorUtilities = new CalculatorUtilities(context);
         userDefButtons = new UserDefinedButtons(context);
+
+        sharedPrefsLogic = new SharedPreferencesLogic(context, prefs, editor);
 
         for(Button curr : commonButtons){
             curr.setOnClickListener(this);
@@ -228,38 +234,27 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
     }
 
     public void setUserDefinedValues(Button whichButton, String varName, String varValue){
-        SharedPreferences prefs;
-        SharedPreferences.Editor editor;
         switch (whichButton.getId()){
             case R.id.var1Button:
                 userDefValue1[0] = varName;
                 userDefValue1[1] = varValue;
                 var1Button.setText(userDefValue1[0]);
-                prefs = context.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
-                editor = prefs.edit();
-                editor.putString("Var1Name", userDefValue1[0]);
-                editor.putString("Var1Value", userDefValue1[1]);
-                editor.apply();
+                sharedPrefsLogic.variableDataInput("Var1Name", userDefValue1[0],
+                         "Var1Value", userDefValue1[1]);
                 break;
             case R.id.var2Button:
                 userDefValue2[0] = varName;
                 userDefValue2[1] = varValue;
                 var2Button.setText(userDefValue2[0]);
-                prefs = context.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
-                editor = prefs.edit();
-                editor.putString("Var2Name", userDefValue2[0]);
-                editor.putString("Var2Value", userDefValue2[1]);
-                editor.apply();
+                sharedPrefsLogic.variableDataInput("Var2Name", userDefValue2[0],
+                        "Var2Value", userDefValue2[1]);
                 break;
             case R.id.var3Button:
                 userDefValue3[0] = varName;
                 userDefValue3[1] = varValue;
                 var3Button.setText(userDefValue3[0]);
-                prefs = context.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
-                editor = prefs.edit();
-                editor.putString("Var3Name", userDefValue3[0]);
-                editor.putString("Var3Value", userDefValue3[1]);
-                editor.apply();
+                sharedPrefsLogic.variableDataInput("Var3Name", userDefValue3[0],
+                        "Var3Value", userDefValue3[1]);
                 break;
             default:
                 break;
@@ -571,25 +566,20 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
                 var1Button = curr; curr.setOnLongClickListener(this);
                 userDefValue1[0] = prefs.getString("Var1Name", PLUS_SYMBOL);
                 userDefValue1[1] = prefs.getString("Var1Value", PLUS_SYMBOL);
-                if(!userDefValue1[0].equals(PLUS_SYMBOL) && !userDefValue1[1].equals(PLUS_SYMBOL)){
-                    curr.setText(userDefValue1[0]);
-                }
+                curr.setText(userDefValue1[0]);
+
             }
             else if(curr.getId() == R.id.var2Button){
                 var2Button = curr; curr.setOnLongClickListener(this);
                 userDefValue2[0] = prefs.getString("Var2Name", PLUS_SYMBOL);
                 userDefValue2[1] = prefs.getString("Var2Value", PLUS_SYMBOL);
-                if(!userDefValue2[0].equals(PLUS_SYMBOL) && !userDefValue2[1].equals(PLUS_SYMBOL)){
-                    curr.setText(userDefValue2[0]);
-                }
+                curr.setText(userDefValue2[0]);
             }
             else if(curr.getId() == R.id.var3Button){
                 var3Button = curr; curr.setOnLongClickListener(this);
                 userDefValue3[0] = prefs.getString("Var3Name", PLUS_SYMBOL);
                 userDefValue3[1] = prefs.getString("Var3Value", PLUS_SYMBOL);
-                if(!userDefValue3[0].equals(PLUS_SYMBOL) && !userDefValue3[1].equals(PLUS_SYMBOL)){
-                    curr.setText(userDefValue3[0]);
-                }
+                curr.setText(userDefValue3[0]);
             }
             curr.setOnTouchListener(this);
         }
