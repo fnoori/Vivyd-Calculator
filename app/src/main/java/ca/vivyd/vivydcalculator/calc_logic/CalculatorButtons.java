@@ -201,13 +201,13 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
     public boolean onLongClick(View v) {
         switch (v.getId()){
             case R.id.var1Button:
-                    if(!userDefValue1[0].equals("+")){userDefButtons.launchUserInputDialog(this, var1Button);}
+                    if(!userDefValue1[0].equals(PLUS_SYMBOL)){userDefButtons.launchUserInputDialog(this, var1Button);}
                 break;
             case R.id.var2Button:
-                    if(!userDefValue2[0].equals("+")){userDefButtons.launchUserInputDialog(this, var2Button);}
+                    if(!userDefValue2[0].equals(PLUS_SYMBOL)){userDefButtons.launchUserInputDialog(this, var2Button);}
                 break;
             case R.id.var3Button:
-                    if(!userDefValue3[0].equals("+")){userDefButtons.launchUserInputDialog(this, var3Button);}
+                    if(!userDefValue3[0].equals(PLUS_SYMBOL)){userDefButtons.launchUserInputDialog(this, var3Button);}
                 break;
             default:
                 break;
@@ -427,7 +427,7 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
                     dotCounter = 0;
                     break;
                 case "sub":
-                    addToExpressionToBeEvaluated(OPERANDS_ARRAY[1], ALL_BUTTONS.SUB, true);
+                    addToExpressionToBeEvaluated(OPERANDS_ARRAY[1], ALL_BUTTONS.SUB, false);
                     dotCounter = 0;
                     break;
                 case "mul":

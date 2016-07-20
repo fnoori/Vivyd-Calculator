@@ -153,6 +153,7 @@ public class CalculatorUtilities {
         return (prevInput.equals("+") ||
                 prevInput.equals("/") || prevInput.equals("*") ||
                 prevInput.equals("×") || prevInput.equals("÷") ||
-                prevInput.equals("%(*1)")) && !isExceptionToRule;
+                prevInput.equals("%(*1)") || prevInput.equals("-") ||
+                prevInput.equals("−")) && !isExceptionToRule;
     }
 }
