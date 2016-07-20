@@ -121,21 +121,6 @@ public class CalculatorUtilities {
         return toReturn;
     }
 
-    public void saveToSharedPrefs(String sharedPrefsVarName, String sharedPrefsValue){
-        SharedPreferences prefs;
-        SharedPreferences.Editor editor;
-
-        prefs = context.getSharedPreferences("CalcData", Context.MODE_PRIVATE);
-        editor = prefs.edit();
-        editor.putString(sharedPrefsVarName, sharedPrefsValue);
-        editor.apply();
-    }
-
-    public String getFromSharedPrefs(String varToGet){
-        SharedPreferences prefs = context.getSharedPreferences("CalcData", Context.MODE_PRIVATE);
-        return prefs.getString(varToGet, "");
-    }
-
     public String convertToScientific(String incoming){
         double value = Double.parseDouble(incoming);
         NumberFormat formatter = new DecimalFormat();

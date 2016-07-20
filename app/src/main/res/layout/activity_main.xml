@@ -56,12 +56,13 @@
             android:layout_width="match_parent"
             android:layout_height="65dp">
 
-            <TextView
+            <EditText
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:id="@+id/eqnView"
                 android:textIsSelectable="false"
-                android:textSize="25dp"
+                android:cursorVisible="false"
+                android:textSize="25sp"
                 android:textColor="#EF5350"
                 android:paddingTop="20dp"
                 android:layout_weight="1"

@@ -127,9 +127,8 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
         historyData.clearDatabase();
         customOperators = new CustomOperators();
         calculatorUtilities = new CalculatorUtilities(context);
-        userDefButtons = new UserDefinedButtons(context);
-
         sharedPrefsLogic = new SharedPreferencesLogic(context, prefs, editor);
+        userDefButtons = new UserDefinedButtons(context, sharedPrefsLogic);
 
         for(Button curr : commonButtons){
             curr.setOnClickListener(this);
@@ -533,7 +532,7 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
                     addToExpressionToBeEvaluated(ADVANCED_OPERANDS_ARRAY[14], ALL_BUTTONS.EE, true);
                     break;
                 case "ans":
-                    addToExpressionToBeEvaluated(calculatorUtilities.getFromSharedPrefs("ANS"), ALL_BUTTONS.ANS, true);
+                    addToExpressionToBeEvaluated(sharedPrefsLogic.getData("ANS"), ALL_BUTTONS.ANS, true);
                     break;
                 case "user1":
                     if(!userDefValue1[0].equals("+")){
@@ -697,7 +696,7 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
                     Log.d("SOLUTION", solution);
                     calculatorUtilities.postEqualLogic(isAnswer, customOperators, openBrace,
                             closeBrace, rightBraceCounter, leftBraceCounter, previousInput);
-                    calculatorUtilities.saveToSharedPrefs("ANS", solution);
+                    sharedPrefsLogic.generalPurposeDataInput("ANS", solution);
                 }else{
                     do{
                         closeBrace++;

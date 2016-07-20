@@ -22,10 +22,12 @@ public class UserDefinedButtons {
     private Context context;
     private String valuesToReturn[];
     private Button currentButton;
+    private SharedPreferencesLogic sharedPrefs;
 
-    public UserDefinedButtons(Context context){
+    public UserDefinedButtons(Context context, SharedPreferencesLogic sharedPrefs){
         this.context = context;
         valuesToReturn = new String[2];
+        this.sharedPrefs = sharedPrefs;
     }
 
     public void launchUserInputDialog(final CalculatorButtons calcButtons, final Button inButton){
@@ -35,10 +37,18 @@ public class UserDefinedButtons {
 
         final EditText varName = (EditText) theView.findViewById(R.id.nameOfVar);
         final EditText varValue = (EditText) theView.findViewById(R.id.valueOfVar);
+        final Button ansButton = (Button) theView.findViewById(R.id.userDefAnsButton);
         Button confirmButton = (Button) theView.findViewById(R.id.confirmVarButton);
         Button cancelButton = (Button) theView.findViewById(R.id.cancelVarButton);
 
         currentButton = inButton;
+
+        ansButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                varValue.append(sharedPrefs.getData("ANS"));
+            }
+        });
 
         confirmButton.setOnClickListener(new View.OnClickListener() {
             @Override

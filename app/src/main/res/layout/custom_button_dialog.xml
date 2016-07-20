@@ -4,7 +4,7 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:text="Input Variable Details"
+        android:text="@string/inputVarName"
         android:textSize="18sp"
         android:gravity="start|center"
         android:paddingStart="15dp"
@@ -26,7 +26,7 @@
         android:layout_marginEnd="20dp">
         <EditText
             android:id="@+id/nameOfVar"
-            android:hint="Enter Name..."
+            android:hint="@string/enterName"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </RelativeLayout>
@@ -40,7 +40,7 @@
         android:layout_marginEnd="20dp">
         <EditText
             android:id="@+id/valueOfVar"
-            android:hint="Enter Value..."
+            android:hint="@string/enterValue"
             android:inputType="numberDecimal"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
@@ -78,6 +78,17 @@
             android:layout_toLeftOf="@+id/confirmVarButton"
             android:layout_toStartOf="@+id/confirmVarButton"
             style="?android:attr/borderlessButtonStyle"/>
+
+        <Button
+            style="?android:attr/borderlessButtonStyle"
+            android:id="@+id/userDefAnsButton"
+            android:text="@string/answer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
 
     </RelativeLayout>
 
