@@ -91,29 +91,22 @@ public class CustomOperators {
     public CustomOperators(){
         isComplexPercentage = false;
     }
-
     public Operator getPercentageOperator(){
         return percentageOperator;
     }
-
     public Operator getFactorialOperator(){
         return factorialOperator;
     }
-
     public Operator getNrt(){
         return nrt;
     }
-
     public Operator getTenToPowerOfOperator(){return tenToPowerOfOperator;}
-
     public Function getSinDegrees(){
         return sinDegrees;
     }
-
     public Function getCosDegrees() {
         return cosDegrees;
     }
-
     public Function getTanDegrees(){
         return tanDegrees;
     }

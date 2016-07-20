@@ -305,7 +305,7 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
                 animBtnLogic(v, transition, event, NUM, 9);
                 break;
             case R.id.dotButton:
-                animBtnLogic(v, transition, event, NUM, 10);
+                animBtnLogic(v, transition, event, "dot", 10);
                 break;
             case R.id.addButton:
                 animBtnLogic(v, transition, event, "add", 0);
@@ -428,27 +428,41 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
             if (transComplete == 1){
                 return;
             }
+            Log.d("DOT_COUNTER", dotCounter+"");
             switch (type) {
+                case "dot":
+                    if(dotCounter == 1){break;}
+                    else{
+                        addToExpressionToBeEvaluated(NUMBERS_ARRAY[10], ALL_BUTTONS.DOT, true);
+                        dotCounter = 1;
+                    }
+                    break;
                 case NUM:
                     addToExpressionToBeEvaluated(NUMBERS_ARRAY[num], ALL_BUTTONS.NUM, true);
                     break;
                 case "add":
                     addToExpressionToBeEvaluated(OPERANDS_ARRAY[0], ALL_BUTTONS.ADD, false);
+                    dotCounter = 0;
                     break;
                 case "sub":
                     addToExpressionToBeEvaluated(OPERANDS_ARRAY[1], ALL_BUTTONS.SUB, true);
+                    dotCounter = 0;
                     break;
                 case "mul":
                     addToExpressionToBeEvaluated(OPERANDS_ARRAY[3], ALL_BUTTONS.DIV, false);
+                    dotCounter = 0;
                     break;
                 case "div":
                     addToExpressionToBeEvaluated(OPERANDS_ARRAY[2], ALL_BUTTONS.MUL, false);
+                    dotCounter = 0;
                     break;
                 case "prcnt":
                     addToExpressionToBeEvaluated(OPERANDS_ARRAY[4], ALL_BUTTONS.PRCNT, false);
+                    dotCounter = 0;
                     break;
                 case "open_brace":
                     addToExpressionToBeEvaluated(OPERANDS_ARRAY[5], ALL_BUTTONS.BRACKET_OPEN, true);
+                    dotCounter = 0;
                     break;
                 case "close_brace":
                     addToExpressionToBeEvaluated(OPERANDS_ARRAY[6], ALL_BUTTONS.BRACKET_CLOSE, true);
@@ -474,50 +488,64 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
                 case "sin":
                     addToExpressionToBeEvaluated(ADVANCED_OPERANDS_ARRAY[0], ALL_BUTTONS.SIN, true);
                     setBraceColor();
+                    dotCounter = 0;
                     break;
                 case "cos":
                     addToExpressionToBeEvaluated(ADVANCED_OPERANDS_ARRAY[1], ALL_BUTTONS.COS, true);
                     setBraceColor();
+                    dotCounter = 0;
                     break;
                 case "tan":
                     addToExpressionToBeEvaluated(ADVANCED_OPERANDS_ARRAY[2], ALL_BUTTONS.TAN, true);
                     setBraceColor();
+                    dotCounter = 0;
                     break;
                 case "log":
                     addToExpressionToBeEvaluated(ADVANCED_OPERANDS_ARRAY[3], ALL_BUTTONS.LOG, true);
                     setBraceColor();
+                    dotCounter = 0;
                     break;
                 case "ln":
                     addToExpressionToBeEvaluated(ADVANCED_OPERANDS_ARRAY[4], ALL_BUTTONS.LN, true);
                     setBraceColor();
+                    dotCounter = 0;
                     break;
                 case "pi":
                     addToExpressionToBeEvaluated(ADVANCED_OPERANDS_ARRAY[5], ALL_BUTTONS.PI, true);
+                    dotCounter = 0;
                     break;
                 case "euler":
                     addToExpressionToBeEvaluated(ADVANCED_OPERANDS_ARRAY[6], ALL_BUTTONS.EULER, true);
+                    dotCounter = 0;
                     break;
                 case "sqrt":
                     addToExpressionToBeEvaluated(ADVANCED_OPERANDS_ARRAY[7], ALL_BUTTONS.SQRT, true);
                     setBraceColor();
+                    dotCounter = 0;
                     break;
                 case "nrt":
                     addToExpressionToBeEvaluated(ADVANCED_OPERANDS_ARRAY[8], ALL_BUTTONS.NRT, true);
+                    dotCounter = 0;
                     break;
                 case "power":
                     addToExpressionToBeEvaluated(ADVANCED_OPERANDS_ARRAY[9], ALL_BUTTONS.POWER, true);
+                    dotCounter = 0;
                     break;
                 case "sqr":
                     addToExpressionToBeEvaluated(ADVANCED_OPERANDS_ARRAY[10], ALL_BUTTONS.SQR, true);
+                    dotCounter = 0;
                     break;
                 case "fact":
                     addToExpressionToBeEvaluated(ADVANCED_OPERANDS_ARRAY[11], ALL_BUTTONS.FACT, true);
+                    dotCounter = 0;
                     break;
                 case "cbrt":
                     addToExpressionToBeEvaluated(ADVANCED_OPERANDS_ARRAY[12], ALL_BUTTONS.CBRT, true);
+                    dotCounter = 0;
                     break;
                 case "inverse":
                     addToExpressionToBeEvaluated(ADVANCED_OPERANDS_ARRAY[13], ALL_BUTTONS.INVERSE, true);
+                    dotCounter = 0;
                     break;
                 case "ᴇ":
                     addToExpressionToBeEvaluated(ADVANCED_OPERANDS_ARRAY[14], ALL_BUTTONS.EE, true);
@@ -531,6 +559,7 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
                     }else{
                         userDefButtons.launchUserInputDialog(this, var1Button);
                     }
+                    dotCounter = 0;
                     break;
                 case "user2":
                     if(!userDefValue2[0].equals("+")){
@@ -538,6 +567,7 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
                     }else{
                         userDefButtons.launchUserInputDialog(this, var2Button);
                     }
+                    dotCounter = 0;
                     break;
                 case "user3":
                     if(!userDefValue3[0].equals("+")){
@@ -545,6 +575,7 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
                     }else{
                         userDefButtons.launchUserInputDialog(this, var3Button);
                     }
+                    dotCounter = 0;
                     break;
             }
             transition.reverseTransition(endTran);
@@ -770,6 +801,8 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
         String prevInput;
         int cursorLocation = 0;
 
+        Log.d("VALUE_TO_APPEND", valueToAppend);
+
         if(isAnswer){
             if(type.equals(ALL_BUTTONS.NUM)){answerView.setText(BLANK_STRING);}
             isAnswer = false;
@@ -781,8 +814,6 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
         cursorLocation = answerView.getSelectionStart();
         expressionToEvaluate = calculatorUtilities.replaceForAnsViewDisplay(
                 answerView.getText().insert(cursorLocation, valueToAppend).toString());
-
-        Log.d("TYPE", type.toString());
 
         answerView.setText(expressionToEvaluate);
         expressionToEvaluate = calculatorUtilities.replaceForCalculations(expressionToEvaluate);
