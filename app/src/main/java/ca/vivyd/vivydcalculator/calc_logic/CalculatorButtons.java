@@ -450,6 +450,7 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
                     break;
                 case "del":
                     deleteButtonLogic();
+                    setBraceColor();
                     break;
                 case "clr":
                     clearButtonLogic();
