@@ -60,13 +60,12 @@ public class CalculatorUtilities {
                 return cursorLocation+4;
             case SQRT:
             case SQR:
-            case CBRT:
-                return cursorLocation+2;
             case LN:
             case INVERSE:
                 return cursorLocation+3;
+            case CBRT:
             case NRT:
-                return cursorLocation;
+                return cursorLocation+2;
             case CSTM:
             case ANS:
                 return cursorLocation + valueToAppend.length();
@@ -127,7 +126,7 @@ public class CalculatorUtilities {
         double value = Double.parseDouble(incoming);
         NumberFormat formatter = new DecimalFormat();
 
-        if(incoming.length() > 10) {
+        if(incoming.length() > 15) {
             formatter = new DecimalFormat("0.####E0");
             return formatter.format(value);
         }else{
