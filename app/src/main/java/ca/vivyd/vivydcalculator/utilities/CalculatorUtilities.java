@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
+import java.util.prefs.PreferenceChangeEvent;
 
 import ca.vivyd.vivydcalculator.calc_logic.CalculatorButtons;
 import ca.vivyd.vivydcalculator.calc_logic.CustomOperators;
@@ -130,6 +131,18 @@ public class CalculatorUtilities {
 
     public boolean checkIfMoreOperandIsPossible(String prevInput, CalculatorButtons.ALL_BUTTONS currentInput, CalculatorButtons.ALL_BUTTONS prevInputEnum,
                                                 boolean isExceptionToRule) {
+        return (prevInputEnum != null) && !((prevInput.equals("+") ||
+                prevInput.equals("/") || prevInput.equals("*") ||
+                prevInput.equals("×") || prevInput.equals("÷") ||
+                prevInputEnum.equals(CalculatorButtons.ALL_BUTTONS.PRCNT))
+                &&
+                currentInput.equals(CalculatorButtons.ALL_BUTTONS.SUB))
+                &&
+                (prevInput.equals("+") ||
+                prevInput.equals("/") || prevInput.equals("*") ||
+                prevInput.equals("×") || prevInput.equals("÷") || prevInputEnum.equals(CalculatorButtons.ALL_BUTTONS.PRCNT)
+                || prevInput.equals("-") || prevInput.equals("−")) && !isExceptionToRule;
+        /*
         return prevInputEnum != null && !(prevInputEnum.equals(CalculatorButtons.ALL_BUTTONS.ADD) ||
                 prevInputEnum.equals(CalculatorButtons.ALL_BUTTONS.DIV) ||
                 prevInputEnum.equals(CalculatorButtons.ALL_BUTTONS.MUL) ||
@@ -138,5 +151,17 @@ public class CalculatorUtilities {
                 && (prevInputEnum.equals(CalculatorButtons.ALL_BUTTONS.ADD) ||
                 prevInputEnum.equals(CalculatorButtons.ALL_BUTTONS.PRCNT) ||
                 prevInputEnum.equals(CalculatorButtons.ALL_BUTTONS.SUB)) && !isExceptionToRule;
+
+
+                        return !((prevInput.equals("+") ||
+                        prevInput.equals("/") || prevInput.equals("*") ||
+                        prevInput.equals("×") || prevInput.equals("÷") ||
+                        prevInput.equals("%(*1)"))
+                        && currentInput.equals(CalculatorButtons.ALL_BUTTONS.SUB))
+                        && (prevInput.equals("+") ||
+                        prevInput.equals("/") || prevInput.equals("*") ||
+                        prevInput.equals("×") || prevInput.equals("÷") || prevInput.equals("%(*1)")
+                        || prevInput.equals("-") || prevInput.equals("−")) && !isExceptionToRule;
+         */
     }
 }
