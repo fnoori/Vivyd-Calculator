@@ -81,12 +81,10 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
     private String[] userDefValue2;
     private String[] userDefValue3;
     private DEG_RAD trigType;
-    private int cursorLocation;
     private int dotCounter;
     public static int openBrace;
     public static int closeBrace;
     private boolean isAnswer;
-    private boolean isOnTouchActive;
     private HistoryData historyData;
     private CustomOperators customOperators;
     private CalculatorUtilities calculatorUtilities;
@@ -116,12 +114,10 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
         userDefValue3 = new String[2];
         previousInput = STRING_PLACE_HOLDER;
         trigType = DEG_RAD.RAD;
-        cursorLocation = 0;
         dotCounter = 0;
         openBrace = 0;
         closeBrace = 0;
         isAnswer = false;
-        isOnTouchActive = false;
 
         historyData = new HistoryData(context);
         historyData.clearDatabase();
@@ -170,10 +166,7 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
                     openBrace = 0;
                     closeBrace = 0;
 
-                    expressionToEvaluate = calculatorUtilities.replaceForCalculations(
-                            answerView.getText().toString()
-                    );
-
+                    expressionToEvaluate = calculatorUtilities.replaceForCalculations(answerView.getText().toString());
                     isAnswer = !isAnswer;
                 }
                 break;
@@ -187,7 +180,6 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
         closeBrace = 0;
         char[] equationArr = equationView.toCharArray();
         for(char curr : equationArr){
-            Log.d("CURR", curr+"");
             if(curr == '('){openBrace++;}
             else if(curr == ')'){closeBrace++;}
         }
@@ -397,7 +389,6 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
         }
     }
 
-
     public void animBtnLogic(View v, TransitionDrawable transition, MotionEvent event, String type, int num) {
         SharedPreferences prefs = context.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
@@ -409,7 +400,6 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
             if (transComplete == 1){
                 return;
             }
-            Log.d("DOT_COUNTER", dotCounter+"");
             switch (type) {
                 case "dot":
                     if(dotCounter == 1){break;}
@@ -536,7 +526,7 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
                     addToExpressionToBeEvaluated(sharedPrefsLogic.getData("ANS"), ALL_BUTTONS.ANS, true);
                     break;
                 case "user1":
-                    if(!userDefValue1[0].equals("+")){
+                    if(!userDefValue1[0].equals(PLUS_SYMBOL)){
                         addToExpressionToBeEvaluated(userDefValue1[1], ALL_BUTTONS.CSTM, true);
                     }else{
                         userDefButtons.launchUserInputDialog(this, var1Button);
@@ -544,7 +534,7 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
                     dotCounter = 0;
                     break;
                 case "user2":
-                    if(!userDefValue2[0].equals("+")){
+                    if(!userDefValue2[0].equals(PLUS_SYMBOL)){
                         addToExpressionToBeEvaluated(userDefValue2[1], ALL_BUTTONS.CSTM, true);
                     }else{
                         userDefButtons.launchUserInputDialog(this, var2Button);
@@ -552,7 +542,7 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
                     dotCounter = 0;
                     break;
                 case "user3":
-                    if(!userDefValue3[0].equals("+")){
+                    if(!userDefValue3[0].equals(PLUS_SYMBOL)){
                         addToExpressionToBeEvaluated(userDefValue3[1], ALL_BUTTONS.CSTM, true);
                     }else{
                         userDefButtons.launchUserInputDialog(this, var3Button);
@@ -620,13 +610,6 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
             answerView.setText(expressionToEvaluate);
             answerView.setSelection(indexFrom);
             expressionToEvaluate = calculatorUtilities.replaceForCalculations(expressionToEvaluate);
-
-
-            if(expressionToEvaluate.length() > 0){
-                Log.d("EXPRESSION_IN_DEL", expressionToEvaluate);
-            }else{
-                Log.d("EXPRESSION_IN_DEL", "NULL");
-            }
 
             if(expressionToEvaluate.length() < 1){
                 expressionToEvaluate = BLANK_STRING;
@@ -720,8 +703,6 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
         String prevInput;
         int cursorLocation = 0;
 
-        Log.d("VALUE_TO_APPEND", valueToAppend);
-
         if(isAnswer){
             if(type.equals(ALL_BUTTONS.NUM)){answerView.setText(BLANK_STRING);}
             isAnswer = false;
@@ -751,9 +732,6 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
             closeBrace++;
             rightBraceCounter.setText(String.valueOf(closeBrace));
         }
-
-        Log.d("OPEN_BRACKET_CHECK", openBrace+"");
-        Log.d("CLOSE_BRACKET_CHECK", closeBrace+"");
     }
 
     public void changeTrigType(){

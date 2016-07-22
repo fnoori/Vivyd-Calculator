@@ -19,11 +19,6 @@ import ca.vivyd.vivydcalculator.calc_logic.CustomOperators;
  */
 public class CalculatorUtilities {
     private Context context;
-    public enum ALL_BUTTONS {
-        ADD, SUB, MUL, DIV, NUM, DOT, BRACKET_OPEN, BRACKET_CLOSE,
-        SIN, COS, TAN, LOG, LN, PI, EULER, SQRT, POWER,
-        FACT, SQR, NRT, PRCNT, CBRT, INVERSE, CSTM, EE, DEG_RAND, EQUAL, DEL, CLR
-    }
 
     public CalculatorUtilities(Context context){
         this.context = context;
