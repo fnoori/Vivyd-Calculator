@@ -267,7 +267,7 @@ public class MainActivity extends AppCompatActivity {
                 Button bakButton = (Button) findViewById(R.id.bakButton);
                 assert bakButton != null;
                 bakButton.setBackgroundColor(Themer.colorArray.get(Themer.COLOR_ACCENT));
-                bakButton.setTextColor(Themer.colorArray.get(Themer.COLOR_TEXT_SCREEN));
+                bakButton.setTextColor(Themer.colorArray.get(Themer.COLOR_COMP));
                 bakButton.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -338,6 +338,7 @@ public class MainActivity extends AppCompatActivity {
         int colorOppTray = Themer.colorArray.get(Themer.COLOR_OPPTRAY);
         int colorNumpad = Themer.colorArray.get(Themer.COLOR_NUMPAD);
         int dark_colorNumpad = Themer.colorArray.get(Themer.COLOR_NUMPAD_DARK);
+        int colorComp = Themer.colorArray.get(Themer.COLOR_COMP);
 
 
         LinearLayout backgroundView = (LinearLayout) findViewById(R.id.backgroundView);
@@ -381,8 +382,8 @@ public class MainActivity extends AppCompatActivity {
             numRightBrace.setTextColor(dark_colorNumpad);
         }
         else {
-            numLeftBrace.setTextColor(colorAccent);
-            numRightBrace.setTextColor(colorAccent);
+            numLeftBrace.setTextColor(colorComp);
+            numRightBrace.setTextColor(colorComp);
         }
 
 

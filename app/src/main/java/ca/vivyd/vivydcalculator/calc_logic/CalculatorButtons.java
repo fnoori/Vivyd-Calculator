@@ -238,7 +238,7 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
 
     // AMAIR: Had to move the stuff from onClick to onTouch for animations to work.
     int startTran = 50;
-    int endTran = 500; //300
+    int endTran = 600; //300
     int fast_endTran = 150;
     int transComplete = 0;
     String prevMotionEvent = "";
@@ -383,10 +383,10 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
         return false;
     }
 
-    private void setBraceColor() {
+    public void setBraceColor() {
         if (!leftBraceCounter.getText().equals(rightBraceCounter.getText())) {
-            leftBraceCounter.setTextColor(Themer.colorArray.get(Themer.COLOR_ACCENT));
-            rightBraceCounter.setTextColor(Themer.colorArray.get(Themer.COLOR_ACCENT));
+            leftBraceCounter.setTextColor(Themer.colorArray.get(Themer.COLOR_COMP));
+            rightBraceCounter.setTextColor(Themer.colorArray.get(Themer.COLOR_COMP));
         }
         else {
             leftBraceCounter.setTextColor(Themer.colorArray.get(Themer.COLOR_NUMPAD_DARK));
@@ -481,6 +481,7 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
                 break;
             case "eql":
                 equalButtonLogic();
+                setBraceColor();
                 break;
             case "menu":
                 Intent toMenu = new Intent();
