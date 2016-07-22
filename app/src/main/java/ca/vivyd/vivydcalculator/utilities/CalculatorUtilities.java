@@ -6,6 +6,8 @@ import android.content.SharedPreferences;
 import android.util.Log;
 import android.widget.TextView;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.prefs.PreferenceChangeEvent;
@@ -117,6 +119,11 @@ public class CalculatorUtilities {
         return toReturn;
     }
 
+    public boolean isPreviousValueNumeric(String incoming){
+        Log.d("PREV_VAL_NUMERIC", String.valueOf(incoming.charAt(incoming.length()-1)));
+        return StringUtils.isNumeric(String.valueOf(incoming.charAt(incoming.length()-1)));
+    }
+
     public String convertToScientific(String incoming){
         double value = Double.parseDouble(incoming);
         NumberFormat formatter = new DecimalFormat();
@@ -131,17 +138,35 @@ public class CalculatorUtilities {
 
     public boolean checkIfMoreOperandIsPossible(String prevInput, CalculatorButtons.ALL_BUTTONS currentInput, CalculatorButtons.ALL_BUTTONS prevInputEnum,
                                                 boolean isExceptionToRule) {
-        return (prevInputEnum != null) && !((prevInput.equals("+") ||
-                prevInput.equals("/") || prevInput.equals("*") ||
-                prevInput.equals("×") || prevInput.equals("÷") ||
+
+        if(prevInputEnum != null){Log.d("PREV_INPUT", prevInputEnum.toString());}
+        Log.d("CURR_INPUT", currentInput.toString());
+
+        return (prevInputEnum != null) && !((prevInputEnum.equals(CalculatorButtons.ALL_BUTTONS.ADD) ||
+
+                prevInputEnum.equals(CalculatorButtons.ALL_BUTTONS.DIV) ||
+
+                prevInputEnum.equals(CalculatorButtons.ALL_BUTTONS.MUL) ||
+
+                //prevInput.equals("×") || prevInput.equals("÷") ||
+
                 prevInputEnum.equals(CalculatorButtons.ALL_BUTTONS.PRCNT))
                 &&
                 currentInput.equals(CalculatorButtons.ALL_BUTTONS.SUB))
                 &&
-                (prevInput.equals("+") ||
-                prevInput.equals("/") || prevInput.equals("*") ||
-                prevInput.equals("×") || prevInput.equals("÷") || prevInputEnum.equals(CalculatorButtons.ALL_BUTTONS.PRCNT)
-                || prevInput.equals("-") || prevInput.equals("−")) && !isExceptionToRule;
+                (prevInputEnum.equals(CalculatorButtons.ALL_BUTTONS.ADD) ||
+
+                prevInputEnum.equals(CalculatorButtons.ALL_BUTTONS.DIV) ||
+
+                prevInputEnum.equals(CalculatorButtons.ALL_BUTTONS.MUL) ||
+
+                //prevInput.equals("×") || prevInput.equals("÷") ||
+
+                prevInputEnum.equals(CalculatorButtons.ALL_BUTTONS.PRCNT)||
+
+                prevInputEnum.equals(CalculatorButtons.ALL_BUTTONS.SUB) /*|| prevInput.equals("−")*/)
+                &&
+                !isExceptionToRule;
         /*
         return prevInputEnum != null && !(prevInputEnum.equals(CalculatorButtons.ALL_BUTTONS.ADD) ||
                 prevInputEnum.equals(CalculatorButtons.ALL_BUTTONS.DIV) ||
