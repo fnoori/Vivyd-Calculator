@@ -136,8 +136,8 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
             curr.setOnClickListener(this);
             curr.setOnTouchListener(this);
         }
-        equationView.setOnClickListener(this);
         degRandButton.setOnClickListener(this);
+        equationView.setOnLongClickListener(this);
 
         MainActivity.afterInitAllButtonsTime = (int) System.currentTimeMillis();
         int totalTime = MainActivity.afterInitAllButtonsTime - MainActivity.startTime;
@@ -157,20 +157,7 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
                     degRandButton.setText(DEGREE);
                 }
                 break;
-            case R.id.eqnView:
-                Log.d("EQUATION_VIEW", equationView.getText().toString());
-                if(equationView.getText() != BLANK_STRING){
-                    countNumberOfBrackets(equationView.getText().toString());
-                    answerView.setText(BLANK_STRING);
-                    answerView.setText(equationView.getText().toString());
-                    answerView.setSelection(answerView.getText().length());
-                    openBrace = 0;
-                    closeBrace = 0;
 
-                    expressionToEvaluate = calculatorUtilities.replaceForCalculations(answerView.getText().toString());
-                    isAnswer = false;
-                }
-                break;
             default:
                 break;
         }
@@ -200,6 +187,20 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
                 break;
             case R.id.var3Button:
                     if(!userDefValue3[0].equals(PLUS_SYMBOL)){userDefButtons.launchUserInputDialog(this, var3Button);}
+                break;
+            case R.id.eqnView:
+                Log.d("EQN_VIEW_LONG", "TRUE");
+                if(equationView.getText() != BLANK_STRING){
+                    countNumberOfBrackets(equationView.getText().toString());
+                    answerView.setText(BLANK_STRING);
+                    answerView.setText(equationView.getText().toString());
+                    answerView.setSelection(answerView.getText().length());
+                    openBrace = 0;
+                    closeBrace = 0;
+
+                    expressionToEvaluate = calculatorUtilities.replaceForCalculations(answerView.getText().toString());
+                    isAnswer = false;
+                }
                 break;
             default:
                 break;

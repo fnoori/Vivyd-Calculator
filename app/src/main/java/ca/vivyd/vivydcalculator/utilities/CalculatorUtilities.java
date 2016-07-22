@@ -127,7 +127,7 @@ public class CalculatorUtilities {
         double value = Double.parseDouble(incoming);
         NumberFormat formatter = new DecimalFormat();
 
-        if(incoming.length() > 6) {
+        if(incoming.length() > 10) {
             formatter = new DecimalFormat("0.####E0");
             return formatter.format(value);
         }else{
