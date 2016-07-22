@@ -85,18 +85,32 @@ public class UserDefinedButtons {
     }
 
     public void setFieldsValues(Button inButton, EditText varName, EditText varValue){
+        boolean retrievedName;
+        boolean retrievedValue;
         switch (inButton.getId()){
             case R.id.var1Button:
-                varName.setText(sharedPrefs.getData("Var1Name"));
-                varValue.setText(sharedPrefs.getData("Var1Value"));
+                retrievedName = !sharedPrefs.getData("Var1Name").equals("+");
+                retrievedValue = !sharedPrefs.getData("Var1Value").equals("+");
+                if(retrievedName && retrievedValue){
+                    varName.setText(sharedPrefs.getData("Var1Name"));
+                    varValue.setText(sharedPrefs.getData("Var1Value"));
+                }
                 break;
             case R.id.var2Button:
-                varName.setText(sharedPrefs.getData("Var2Name"));
-                varValue.setText(sharedPrefs.getData("Var2Value"));
+                retrievedName = !sharedPrefs.getData("Var2Name").equals("+");
+                retrievedValue = !sharedPrefs.getData("Var2Value").equals("+");
+                if(retrievedName && retrievedValue){
+                    varName.setText(sharedPrefs.getData("Var2Name"));
+                    varValue.setText(sharedPrefs.getData("Var2Value"));
+                }
                 break;
             case R.id.var3Button:
-                varName.setText(sharedPrefs.getData("Var3Name"));
-                varValue.setText(sharedPrefs.getData("Var3Value"));
+                retrievedName = !sharedPrefs.getData("Var3Name").equals("+");
+                retrievedValue = !sharedPrefs.getData("Var3Value").equals("+");
+                if(retrievedName && retrievedValue){
+                    varName.setText(sharedPrefs.getData("Var3Name"));
+                    varValue.setText(sharedPrefs.getData("Var3Value"));
+                }
                 break;
         }
         varName.setSelection(varName.length());
