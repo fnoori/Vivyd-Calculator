@@ -238,10 +238,11 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
 
     // AMAIR: Had to move the stuff from onClick to onTouch for animations to work.
     int startTran = 50;
-    int endTran = 300;
+    int endTran = 500; //300
     int fast_endTran = 150;
     int transComplete = 0;
     String prevMotionEvent = "";
+    int prevID = 0;
     double scalefactor = 2;
     private Rect rect;
 
@@ -272,6 +273,7 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
                 break;
             case R.id.sevenButton:
                 animBtnLogic(v, transition, event, NUM, 7);
+                System.out.println("sevena action = " + prevMotionEvent);
                 break;
             case R.id.eightButton:
                 animBtnLogic(v, transition, event, NUM, 8);
@@ -377,6 +379,7 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
             default:
                 break;
         }
+        prevID = v.getId();
         return false;
     }
 
@@ -393,181 +396,192 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
 
     public void animBtnLogic(View v, TransitionDrawable transition, MotionEvent event, String type, int num) {
         SharedPreferences prefs = context.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
-        if (event.getAction() == MotionEvent.ACTION_DOWN) {
-            transComplete = 0;
-            rect = new Rect(v.getLeft(), v.getTop(), v.getRight(), v.getBottom());
-            transition.startTransition(startTran);
-            prevMotionEvent = "ACTION_DOWN";
-        }
-        else if (event.getAction() == MotionEvent.ACTION_UP) {
-            if (prevMotionEvent.equals("ACTION_UP")){
+
+        switch (event.getActionMasked()) {
+
+            case MotionEvent.ACTION_DOWN:
                 transComplete = 0;
-            }
-            if (transComplete == 1){
-                return;
-            }
-            transComplete = 0;
-            switch (type) {
-                case "dot":
-                    if(dotCounter == 1){break;}
-                    else{
-                        addToExpressionToBeEvaluated(NUMBERS_ARRAY[10], ALL_BUTTONS.DOT, true);
-                        dotCounter = 1;
+                rect = new Rect(v.getLeft(), v.getTop(), v.getRight(), v.getBottom());
+                transition.startTransition(startTran);
+                System.out.println("prevM" + prevMotionEvent);
+                prevMotionEvent = "ACTION_DOWN";
+                //Log.i("ello", prevMotionEvent + " : " + num + " transcomplete = " + transComplete);
+                break;
+
+            case MotionEvent.ACTION_MOVE:
+                if (!rect.contains(v.getLeft() + (int) event.getX(), v.getTop() + (int) event.getY())) {
+                    if (transComplete != 1) {
+                        transition.reverseTransition(fast_endTran);
+                        transComplete = 1;
                     }
-                    break;
-                case NUM:
-                    addToExpressionToBeEvaluated(NUMBERS_ARRAY[num], ALL_BUTTONS.NUM, true);
-                    break;
-                case "add":
-                    addToExpressionToBeEvaluated(OPERANDS_ARRAY[0], ALL_BUTTONS.ADD, false);
-                    dotCounter = 0;
-                    break;
-                case "sub":
-                    addToExpressionToBeEvaluated(OPERANDS_ARRAY[1], ALL_BUTTONS.SUB, false);
-                    dotCounter = 0;
-                    break;
-                case "mul":
-                    addToExpressionToBeEvaluated(OPERANDS_ARRAY[3], ALL_BUTTONS.MUL, false);
-                    dotCounter = 0;
-                    break;
-                case "div":
-                    addToExpressionToBeEvaluated(OPERANDS_ARRAY[2], ALL_BUTTONS.DIV, false);
-                    dotCounter = 0;
-                    break;
-                case "prcnt":
-                    addToExpressionToBeEvaluated(OPERANDS_ARRAY[4], ALL_BUTTONS.PRCNT, false);
-                    dotCounter = 0;
-                    break;
-                case "open_brace":
-                    addToExpressionToBeEvaluated(OPERANDS_ARRAY[5], ALL_BUTTONS.BRACKET_OPEN, true);
-                    dotCounter = 0;
-                    break;
-                case "close_brace":
-                    addToExpressionToBeEvaluated(OPERANDS_ARRAY[6], ALL_BUTTONS.BRACKET_CLOSE, true);
-                    break;
-                case "del":
-                    deleteButtonLogic();
-                    setBraceColor();
-                    break;
-                case "clr":
-                    clearButtonLogic();
-                    setBraceColor();
-                    break;
-                case "eql":
-                    equalButtonLogic();
-                    break;
-                case "menu":
-                    Intent toMenu = new Intent();
-                    toMenu.setClass(context, MenuActivity.class);
-                    context.startActivity(toMenu);
-                    // Apparently this next line is not best practice, but I don't know what else to do
-                    // at the moment. AmairJ
-                    ((Activity)context).overridePendingTransition(R.anim.right_in, R.anim.left_out);
-                    break;
-                case "sin":
-                    addToExpressionToBeEvaluated(ADVANCED_OPERANDS_ARRAY[0], ALL_BUTTONS.SIN, true);
-                    setBraceColor();
-                    dotCounter = 0;
-                    break;
-                case "cos":
-                    addToExpressionToBeEvaluated(ADVANCED_OPERANDS_ARRAY[1], ALL_BUTTONS.COS, true);
-                    setBraceColor();
-                    dotCounter = 0;
-                    break;
-                case "tan":
-                    addToExpressionToBeEvaluated(ADVANCED_OPERANDS_ARRAY[2], ALL_BUTTONS.TAN, true);
-                    setBraceColor();
-                    dotCounter = 0;
-                    break;
-                case "log":
-                    addToExpressionToBeEvaluated(ADVANCED_OPERANDS_ARRAY[3], ALL_BUTTONS.LOG, true);
-                    setBraceColor();
-                    dotCounter = 0;
-                    break;
-                case "ln":
-                    addToExpressionToBeEvaluated(ADVANCED_OPERANDS_ARRAY[4], ALL_BUTTONS.LN, true);
-                    setBraceColor();
-                    dotCounter = 0;
-                    break;
-                case "pi":
-                    addToExpressionToBeEvaluated(ADVANCED_OPERANDS_ARRAY[5], ALL_BUTTONS.PI, true);
-                    dotCounter = 0;
-                    break;
-                case "euler":
-                    addToExpressionToBeEvaluated(ADVANCED_OPERANDS_ARRAY[6], ALL_BUTTONS.EULER, true);
-                    dotCounter = 0;
-                    break;
-                case "sqrt":
-                    addToExpressionToBeEvaluated(ADVANCED_OPERANDS_ARRAY[7], ALL_BUTTONS.SQRT, true);
-                    setBraceColor();
-                    dotCounter = 0;
-                    break;
-                case "nrt":
-                    addToExpressionToBeEvaluated(ADVANCED_OPERANDS_ARRAY[8], ALL_BUTTONS.NRT, true);
-                    dotCounter = 0;
-                    break;
-                case "power":
-                    addToExpressionToBeEvaluated(ADVANCED_OPERANDS_ARRAY[9], ALL_BUTTONS.POWER, true);
-                    dotCounter = 0;
-                    break;
-                case "sqr":
-                    addToExpressionToBeEvaluated(ADVANCED_OPERANDS_ARRAY[10], ALL_BUTTONS.SQR, true);
-                    dotCounter = 0;
-                    break;
-                case "fact":
-                    addToExpressionToBeEvaluated(ADVANCED_OPERANDS_ARRAY[11], ALL_BUTTONS.FACT, true);
-                    dotCounter = 0;
-                    break;
-                case "cbrt":
-                    addToExpressionToBeEvaluated(ADVANCED_OPERANDS_ARRAY[12], ALL_BUTTONS.CBRT, true);
-                    dotCounter = 0;
-                    break;
-                case "inverse":
-                    addToExpressionToBeEvaluated(ADVANCED_OPERANDS_ARRAY[13], ALL_BUTTONS.INVERSE, true);
-                    dotCounter = 0;
-                    break;
-                case "ᴇ":
-                    addToExpressionToBeEvaluated(ADVANCED_OPERANDS_ARRAY[14], ALL_BUTTONS.EE, true);
-                    break;
-                case "ans":
-                    addToExpressionToBeEvaluated(sharedPrefsLogic.getData("ANS"), ALL_BUTTONS.ANS, true);
-                    break;
-                case "user1":
-                    if(!userDefValue1[0].equals(PLUS_SYMBOL)){
-                        addToExpressionToBeEvaluated(userDefValue1[1], ALL_BUTTONS.CSTM, true);
-                    }else{
-                        userDefButtons.launchUserInputDialog(this, var1Button);
-                    }
-                    dotCounter = 0;
-                    break;
-                case "user2":
-                    if(!userDefValue2[0].equals(PLUS_SYMBOL)){
-                        addToExpressionToBeEvaluated(userDefValue2[1], ALL_BUTTONS.CSTM, true);
-                    }else{
-                        userDefButtons.launchUserInputDialog(this, var2Button);
-                    }
-                    dotCounter = 0;
-                    break;
-                case "user3":
-                    if(!userDefValue3[0].equals(PLUS_SYMBOL)){
-                        addToExpressionToBeEvaluated(userDefValue3[1], ALL_BUTTONS.CSTM, true);
-                    }else{
-                        userDefButtons.launchUserInputDialog(this, var3Button);
-                    }
-                    dotCounter = 0;
-                    break;
-            }
-            transition.reverseTransition(endTran);
-            prevMotionEvent = "ACTION_UP";
-        }
-        else if (event.getAction() == MotionEvent.ACTION_MOVE) {
-            if (!rect.contains(v.getLeft() + (int) event.getX(), v.getTop() + (int) event.getY())) {
-                if (transComplete != 1) {
-                    transition.reverseTransition(fast_endTran);
-                    transComplete = 1;
                 }
-            }
-            prevMotionEvent = "ACTION_MOVE";
+                prevMotionEvent = "ACTION_MOVE";
+                //Log.i("ello", prevMotionEvent + " : " + num + " transcomplete = " + transComplete);
+                break;
+
+            case MotionEvent.ACTION_UP:
+                if (transComplete == 1){
+                    return;
+                }
+                btnFunction(type, num);
+                transition.reverseTransition(endTran);
+                prevMotionEvent = "ACTION_UP";
+                //Log.i("ello", prevMotionEvent + " : " + num + " transcomplete = " + transComplete);
+                break;
+
+        }
+    }
+
+    private void btnFunction(String type, int num) {
+        switch (type) {
+            case "dot":
+                if(dotCounter == 1){break;}
+                else{
+                    addToExpressionToBeEvaluated(NUMBERS_ARRAY[10], ALL_BUTTONS.DOT, true);
+                    dotCounter = 1;
+                }
+                break;
+            case NUM:
+                addToExpressionToBeEvaluated(NUMBERS_ARRAY[num], ALL_BUTTONS.NUM, true);
+                break;
+            case "add":
+                addToExpressionToBeEvaluated(OPERANDS_ARRAY[0], ALL_BUTTONS.ADD, false);
+                dotCounter = 0;
+                break;
+            case "sub":
+                addToExpressionToBeEvaluated(OPERANDS_ARRAY[1], ALL_BUTTONS.SUB, false);
+                dotCounter = 0;
+                break;
+            case "mul":
+                addToExpressionToBeEvaluated(OPERANDS_ARRAY[3], ALL_BUTTONS.MUL, false);
+                dotCounter = 0;
+                break;
+            case "div":
+                addToExpressionToBeEvaluated(OPERANDS_ARRAY[2], ALL_BUTTONS.DIV, false);
+                dotCounter = 0;
+                break;
+            case "prcnt":
+                addToExpressionToBeEvaluated(OPERANDS_ARRAY[4], ALL_BUTTONS.PRCNT, false);
+                dotCounter = 0;
+                break;
+            case "open_brace":
+                addToExpressionToBeEvaluated(OPERANDS_ARRAY[5], ALL_BUTTONS.BRACKET_OPEN, true);
+                dotCounter = 0;
+                break;
+            case "close_brace":
+                addToExpressionToBeEvaluated(OPERANDS_ARRAY[6], ALL_BUTTONS.BRACKET_CLOSE, true);
+                break;
+            case "del":
+                deleteButtonLogic();
+                setBraceColor();
+                break;
+            case "clr":
+                clearButtonLogic();
+                setBraceColor();
+                break;
+            case "eql":
+                equalButtonLogic();
+                break;
+            case "menu":
+                Intent toMenu = new Intent();
+                toMenu.setClass(context, MenuActivity.class);
+                context.startActivity(toMenu);
+                // Apparently this next line is not best practice, but I don't know what else to do
+                // at the moment. AmairJ
+                ((Activity)context).overridePendingTransition(R.anim.right_in, R.anim.left_out);
+                break;
+            case "sin":
+                addToExpressionToBeEvaluated(ADVANCED_OPERANDS_ARRAY[0], ALL_BUTTONS.SIN, true);
+                setBraceColor();
+                dotCounter = 0;
+                break;
+            case "cos":
+                addToExpressionToBeEvaluated(ADVANCED_OPERANDS_ARRAY[1], ALL_BUTTONS.COS, true);
+                setBraceColor();
+                dotCounter = 0;
+                break;
+            case "tan":
+                addToExpressionToBeEvaluated(ADVANCED_OPERANDS_ARRAY[2], ALL_BUTTONS.TAN, true);
+                setBraceColor();
+                dotCounter = 0;
+                break;
+            case "log":
+                addToExpressionToBeEvaluated(ADVANCED_OPERANDS_ARRAY[3], ALL_BUTTONS.LOG, true);
+                setBraceColor();
+                dotCounter = 0;
+                break;
+            case "ln":
+                addToExpressionToBeEvaluated(ADVANCED_OPERANDS_ARRAY[4], ALL_BUTTONS.LN, true);
+                setBraceColor();
+                dotCounter = 0;
+                break;
+            case "pi":
+                addToExpressionToBeEvaluated(ADVANCED_OPERANDS_ARRAY[5], ALL_BUTTONS.PI, true);
+                dotCounter = 0;
+                break;
+            case "euler":
+                addToExpressionToBeEvaluated(ADVANCED_OPERANDS_ARRAY[6], ALL_BUTTONS.EULER, true);
+                dotCounter = 0;
+                break;
+            case "sqrt":
+                addToExpressionToBeEvaluated(ADVANCED_OPERANDS_ARRAY[7], ALL_BUTTONS.SQRT, true);
+                setBraceColor();
+                dotCounter = 0;
+                break;
+            case "nrt":
+                addToExpressionToBeEvaluated(ADVANCED_OPERANDS_ARRAY[8], ALL_BUTTONS.NRT, true);
+                dotCounter = 0;
+                break;
+            case "power":
+                addToExpressionToBeEvaluated(ADVANCED_OPERANDS_ARRAY[9], ALL_BUTTONS.POWER, true);
+                dotCounter = 0;
+                break;
+            case "sqr":
+                addToExpressionToBeEvaluated(ADVANCED_OPERANDS_ARRAY[10], ALL_BUTTONS.SQR, true);
+                dotCounter = 0;
+                break;
+            case "fact":
+                addToExpressionToBeEvaluated(ADVANCED_OPERANDS_ARRAY[11], ALL_BUTTONS.FACT, true);
+                dotCounter = 0;
+                break;
+            case "cbrt":
+                addToExpressionToBeEvaluated(ADVANCED_OPERANDS_ARRAY[12], ALL_BUTTONS.CBRT, true);
+                dotCounter = 0;
+                break;
+            case "inverse":
+                addToExpressionToBeEvaluated(ADVANCED_OPERANDS_ARRAY[13], ALL_BUTTONS.INVERSE, true);
+                dotCounter = 0;
+                break;
+            case "ᴇ":
+                addToExpressionToBeEvaluated(ADVANCED_OPERANDS_ARRAY[14], ALL_BUTTONS.EE, true);
+                break;
+            case "ans":
+                addToExpressionToBeEvaluated(sharedPrefsLogic.getData("ANS"), ALL_BUTTONS.ANS, true);
+                break;
+            case "user1":
+                if(!userDefValue1[0].equals(PLUS_SYMBOL)){
+                    addToExpressionToBeEvaluated(userDefValue1[1], ALL_BUTTONS.CSTM, true);
+                }else{
+                    userDefButtons.launchUserInputDialog(this, var1Button);
+                }
+                dotCounter = 0;
+                break;
+            case "user2":
+                if(!userDefValue2[0].equals(PLUS_SYMBOL)){
+                    addToExpressionToBeEvaluated(userDefValue2[1], ALL_BUTTONS.CSTM, true);
+                }else{
+                    userDefButtons.launchUserInputDialog(this, var2Button);
+                }
+                dotCounter = 0;
+                break;
+            case "user3":
+                if(!userDefValue3[0].equals(PLUS_SYMBOL)){
+                    addToExpressionToBeEvaluated(userDefValue3[1], ALL_BUTTONS.CSTM, true);
+                }else{
+                    userDefButtons.launchUserInputDialog(this, var3Button);
+                }
+                dotCounter = 0;
+                break;
         }
     }
 

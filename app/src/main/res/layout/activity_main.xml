@@ -132,12 +132,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:id="@+id/popSpace">
+                android:id="@+id/popSpace"
+                android:splitMotionEvents="false"
+                >
 
                 <LinearLayout
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
-                    android:layout_height="60dp">
+                    android:layout_height="60dp"
+                    android:splitMotionEvents="false"
+                    >
 
                     <FrameLayout
                         android:layout_width="match_parent"
@@ -264,7 +268,9 @@
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="1">
+                    android:layout_weight="1"
+                    android:splitMotionEvents="false"
+                    >
 
                     <Button
                         android:layout_width="match_parent"
@@ -311,7 +317,9 @@
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="1">
+                    android:layout_weight="1"
+                    android:splitMotionEvents="false"
+                    >
 
                     <Button
                         android:layout_width="match_parent"
@@ -358,7 +366,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:id="@+id/scndRow">
+                    android:id="@+id/scndRow"
+                    android:splitMotionEvents="false"
+                    >
 
                     <Button
                         android:layout_width="match_parent"
@@ -406,6 +416,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:id="@+id/bottomRow"
+                    android:splitMotionEvents="false"
                     >
 
                     <FrameLayout
@@ -465,7 +476,9 @@
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="4.5">
+                android:layout_weight="4.5"
+                android:splitMotionEvents="false"
+                >
 
                 <FrameLayout
                     android:layout_width="match_parent"
