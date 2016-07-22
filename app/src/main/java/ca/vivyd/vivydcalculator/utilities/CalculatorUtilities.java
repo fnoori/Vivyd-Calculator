@@ -133,12 +133,18 @@ public class CalculatorUtilities {
         }
     }
 
-    public boolean checkIfMoreOperandIsPossible(String prevInput, boolean isExceptionToRule) {
+    public boolean checkIfMoreOperandIsPossible(String prevInput, CalculatorButtons.ALL_BUTTONS currentInput , boolean isExceptionToRule) {
         Log.d("PREV_INPUT", prevInput);
-        return (prevInput.equals("+") ||
+        Log.d("CURRENT_INPUT", currentInput.toString());
+
+        return !((prevInput.equals("+") ||
                 prevInput.equals("/") || prevInput.equals("*") ||
                 prevInput.equals("×") || prevInput.equals("÷") ||
-                prevInput.equals("%(*1)") || prevInput.equals("-") ||
-                prevInput.equals("−")) && !isExceptionToRule;
+                prevInput.equals("%(*1)"))
+                && currentInput.equals(CalculatorButtons.ALL_BUTTONS.SUB))
+                && (prevInput.equals("+") ||
+                prevInput.equals("/") || prevInput.equals("*") ||
+                prevInput.equals("×") || prevInput.equals("÷") || prevInput.equals("%(*1)")
+                || prevInput.equals("-") || prevInput.equals("−")) && !isExceptionToRule;
     }
 }

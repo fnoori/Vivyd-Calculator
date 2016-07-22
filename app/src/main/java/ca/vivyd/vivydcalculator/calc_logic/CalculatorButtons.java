@@ -430,11 +430,11 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
                     dotCounter = 0;
                     break;
                 case "mul":
-                    addToExpressionToBeEvaluated(OPERANDS_ARRAY[3], ALL_BUTTONS.DIV, false);
+                    addToExpressionToBeEvaluated(OPERANDS_ARRAY[3], ALL_BUTTONS.MUL, false);
                     dotCounter = 0;
                     break;
                 case "div":
-                    addToExpressionToBeEvaluated(OPERANDS_ARRAY[2], ALL_BUTTONS.MUL, false);
+                    addToExpressionToBeEvaluated(OPERANDS_ARRAY[2], ALL_BUTTONS.DIV, false);
                     dotCounter = 0;
                     break;
                 case "prcnt":
@@ -728,7 +728,7 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
         }
         checkBrace(type);
         prevInput = calculatorUtilities.getPreviousInput(expressionToEvaluate);
-        if(calculatorUtilities.checkIfMoreOperandIsPossible(prevInput, isExceptionToRule)){return;}
+        if(calculatorUtilities.checkIfMoreOperandIsPossible(prevInput, type, isExceptionToRule)){return;}
 
         cursorLocation = answerView.getSelectionStart();
         expressionToEvaluate = calculatorUtilities.replaceForAnsViewDisplay(
