@@ -119,9 +119,8 @@ public class CalculatorUtilities {
         return toReturn;
     }
 
-    public boolean isPreviousValueNumeric(String incoming){
-        Log.d("PREV_VAL_NUMERIC", String.valueOf(incoming.charAt(incoming.length()-1)));
-        return StringUtils.isNumeric(String.valueOf(incoming.charAt(incoming.length()-1)));
+    public boolean isPreviousValueNumeric(String incoming) {
+        return (incoming.length() > 0) && StringUtils.isNumeric(String.valueOf(incoming.charAt(incoming.length() - 1)));
     }
 
     public String convertToScientific(String incoming){
