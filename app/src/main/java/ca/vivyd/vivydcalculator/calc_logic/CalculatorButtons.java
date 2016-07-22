@@ -241,6 +241,7 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
     int endTran = 300;
     int fast_endTran = 150;
     int transComplete = 0;
+    String prevMotionEvent = "";
     double scalefactor = 2;
     private Rect rect;
 
@@ -396,11 +397,16 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
             transComplete = 0;
             rect = new Rect(v.getLeft(), v.getTop(), v.getRight(), v.getBottom());
             transition.startTransition(startTran);
+            prevMotionEvent = "ACTION_DOWN";
         }
         else if (event.getAction() == MotionEvent.ACTION_UP) {
+            if (prevMotionEvent.equals("ACTION_UP")){
+                transComplete = 0;
+            }
             if (transComplete == 1){
                 return;
             }
+            transComplete = 0;
             switch (type) {
                 case "dot":
                     if(dotCounter == 1){break;}
@@ -552,6 +558,7 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
                     break;
             }
             transition.reverseTransition(endTran);
+            prevMotionEvent = "ACTION_UP";
         }
         else if (event.getAction() == MotionEvent.ACTION_MOVE) {
             if (!rect.contains(v.getLeft() + (int) event.getX(), v.getTop() + (int) event.getY())) {
@@ -560,6 +567,7 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
                     transComplete = 1;
                 }
             }
+            prevMotionEvent = "ACTION_MOVE";
         }
     }
 
