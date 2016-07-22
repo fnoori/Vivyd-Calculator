@@ -24,18 +24,20 @@
 
             <com.google.android.gms.ads.AdView
                 android:id="@+id/adView"
-                android:layout_width="500dp"
-                android:layout_height="match_parent"
-                android:layout_centerHorizontal="true"
-                android:layout_alignParentBottom="true"
-                ads:adSize="BANNER"
-                ads:adUnitId="@string/banner_ad_unit_id"
-                android:layout_weight="1"
-                android:layout_gravity="left">
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                ads:adSize="SMART_BANNER"
+                ads:adUnitId="@string/banner_ad_unit_id">
             </com.google.android.gms.ads.AdView>
+            <!--android:layout_centerHorizontal="true"
+               android:layout_alignParentBottom="true"
+                               android:layout_weight="1"
+                               android:layout_gravity="left"
+
+               -->
 
             <ImageButton
-                android:layout_width="30dp"
+                android:layout_width="20dp"
                 android:textAllCaps="false"
                 android:layout_height="match_parent"
                 android:text="i"

@@ -27,6 +27,7 @@ import android.widget.TextView;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
 
 import java.util.ArrayList;
 
@@ -63,6 +64,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         startTime = (int) System.currentTimeMillis();
+
+        MobileAds.initialize(getApplicationContext(), "ca-app-pub-7966297715259412/8066957483");
+        // ad-related stuff
+        AdView mAdView = (AdView) findViewById(R.id.adView);
+        // We have to use 'test-ads' for developing, lest google overlords think we're cheap chimps
+        AdRequest request = new AdRequest.Builder().build();
+        mAdView.loadAd(request);
 
         answerView = (EditText) findViewById(R.id.ansView);
         disableSoftKeyboard(answerView);
@@ -130,10 +138,9 @@ public class MainActivity extends AppCompatActivity {
             moreButtonListener(morButton, calcButtons);
         }
 
-        // ad-related stuff
-        AdView mAdView = (AdView) findViewById(R.id.adView);
-        // We have to use 'test-ads' for developing, lest google overlords think we're cheap chimps
-        AdRequest request = new AdRequest.Builder()
+
+
+                        /*
                 .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)        // All emulators
                 // Remember to add a test device ID for each device that should request test ads.
                 // Device IDs are written to the system log by the Mobile Ads SDK, so you can find
@@ -143,8 +150,7 @@ public class MainActivity extends AppCompatActivity {
                 .addTestDevice("F3F9F302D12D212C9142645902C94D5C")  // Farzam moto E
                 .build();
         // To use a real ad, which is discouraged by google when developing, use this:
-        // AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(request);
+        // AdRequest adRequest = new AdRequest.Builder().build();*/
 
         ImageButton inspButton = (ImageButton) findViewById(R.id.inspireButton);
         assert inspButton != null;
