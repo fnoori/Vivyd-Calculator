@@ -57,7 +57,7 @@
             android:layout_height="65dp">
 
             <EditText
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:id="@+id/eqnView"
                 android:textIsSelectable="false"
@@ -67,9 +67,13 @@
                 android:paddingTop="20dp"
                 android:layout_weight="1"
                 android:background="@color/colorTextAccentLight"
-                android:gravity="right"
+                android:gravity="end"
+                android:paddingStart="25dp"
+                android:paddingLeft="25dp"
                 android:paddingRight="35dp"
-                android:paddingEnd="35dp" />
+                android:paddingEnd="35dp"
+                android:fadeScrollbars="true"
+                android:scrollIndicators="end|right" />
 
         </LinearLayout>
 
@@ -89,15 +93,18 @@
                     android:textIsSelectable="true"
                     android:inputType="none"
                     android:cursorVisible="true"
-                    android:textSize="45dp"
+                    android:textSize="45sp"
                     android:background="@color/colorTextAccentLight"
                     android:textColor="#EF5350"
-                    android:paddingEnd="35dp"
-                    android:paddingRight="35dp"
+                    android:paddingStart="10dp"
+                    android:paddingLeft="10dp"
+                    android:paddingEnd="25dp"
+                    android:paddingRight="25dp"
                     android:gravity="top|right"
                     android:layout_alignParentBottom="true"
                     android:textCursorDrawable="@null"
-                    android:autoText="false" />
+                    android:autoText="false"
+                    />
 
                 <Button
                     android:layout_width="70dp"
