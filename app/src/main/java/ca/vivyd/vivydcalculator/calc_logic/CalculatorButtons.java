@@ -168,7 +168,7 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
                     closeBrace = 0;
 
                     expressionToEvaluate = calculatorUtilities.replaceForCalculations(answerView.getText().toString());
-                    isAnswer = !isAnswer;
+                    isAnswer = false;
                 }
                 break;
             default:
@@ -711,9 +711,9 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
                         Log.d("SOLUTION_HISTORY", tmp_solution_list.get(i));
                     }
 
-                    Log.d("SOLUTION", solution);
                     calculatorUtilities.postEqualLogic(isAnswer, customOperators, openBrace,
                             closeBrace, rightBraceCounter, leftBraceCounter, previousInput);
+                    isAnswer = true;
                     sharedPrefsLogic.generalPurposeDataInput("ANS", solution);
                 }else{
                     do{
@@ -737,17 +737,11 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
         String prevInput;
         int cursorLocation = 0;
 
-        if(prevInputEnum != null){
-            Log.d("PREV_INPUT_ENUM", prevInputEnum.toString());
-        }else{
-            Log.d("PREV_INPUT_ENUM", "NULL");
-        }
-
         if(isAnswer){
             if(type.equals(ALL_BUTTONS.NUM)){answerView.setText(BLANK_STRING);}
             isAnswer = false;
         }
-        checkBrace(type);
+        checkBrackets(type);
         prevInput = calculatorUtilities.getPreviousInput(expressionToEvaluate);
         if(calculatorUtilities.checkIfMoreOperandIsPossible(prevInput, type, prevInputEnum, isExceptionToRule)){return;}
 
@@ -761,7 +755,7 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
         prevInputEnum = type;
     }
 
-    public void checkBrace(ALL_BUTTONS type){
+    public void checkBrackets(ALL_BUTTONS type){
         if(type.equals(ALL_BUTTONS.BRACKET_OPEN) || type.equals(ALL_BUTTONS.SIN)
                 || type.equals(ALL_BUTTONS.COS) || type.equals(ALL_BUTTONS.TAN)
                 || type.equals(ALL_BUTTONS.LN) || type.equals(ALL_BUTTONS.LOG)
