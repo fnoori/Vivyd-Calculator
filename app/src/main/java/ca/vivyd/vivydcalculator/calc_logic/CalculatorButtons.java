@@ -93,6 +93,7 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
     private SharedPreferences prefs;
     private SharedPreferences.Editor editor;
     private SharedPreferencesLogic sharedPrefsLogic;
+    private ALL_BUTTONS prevInputEnum;
 
     public CalculatorButtons(Context context, EditText answerView,
                              TextView equationView, ArrayList<Button> commonButtons,
@@ -703,13 +704,19 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
         String prevInput;
         int cursorLocation = 0;
 
+        if(prevInputEnum != null){
+            Log.d("PREV_INPUT_ENUM", prevInputEnum.toString());
+        }else{
+            Log.d("PREV_INPUT_ENUM", "NULL");
+        }
+
         if(isAnswer){
             if(type.equals(ALL_BUTTONS.NUM)){answerView.setText(BLANK_STRING);}
             isAnswer = false;
         }
         checkBrace(type);
         prevInput = calculatorUtilities.getPreviousInput(expressionToEvaluate);
-        if(calculatorUtilities.checkIfMoreOperandIsPossible(prevInput, type, isExceptionToRule)){return;}
+        if(calculatorUtilities.checkIfMoreOperandIsPossible(prevInput, type, prevInputEnum, isExceptionToRule)){return;}
 
         cursorLocation = answerView.getSelectionStart();
         expressionToEvaluate = calculatorUtilities.replaceForAnsViewDisplay(
@@ -718,6 +725,7 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
         answerView.setText(expressionToEvaluate);
         expressionToEvaluate = calculatorUtilities.replaceForCalculations(expressionToEvaluate);
         answerView.setSelection(calculatorUtilities.determineCursorLocation(type, cursorLocation, valueToAppend));
+        prevInputEnum = type;
     }
 
     public void checkBrace(ALL_BUTTONS type){

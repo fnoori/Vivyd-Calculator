@@ -128,18 +128,15 @@ public class CalculatorUtilities {
         }
     }
 
-    public boolean checkIfMoreOperandIsPossible(String prevInput, CalculatorButtons.ALL_BUTTONS currentInput , boolean isExceptionToRule) {
-        Log.d("PREV_INPUT", prevInput);
-        Log.d("CURRENT_INPUT", currentInput.toString());
-
-        return !((prevInput.equals("+") ||
-                prevInput.equals("/") || prevInput.equals("*") ||
-                prevInput.equals("×") || prevInput.equals("÷") ||
-                prevInput.equals("%(*1)"))
-                && currentInput.equals(CalculatorButtons.ALL_BUTTONS.SUB))
-                && (prevInput.equals("+") ||
-                prevInput.equals("/") || prevInput.equals("*") ||
-                prevInput.equals("×") || prevInput.equals("÷") || prevInput.equals("%(*1)")
-                || prevInput.equals("-") || prevInput.equals("−")) && !isExceptionToRule;
+    public boolean checkIfMoreOperandIsPossible(String prevInput, CalculatorButtons.ALL_BUTTONS currentInput, CalculatorButtons.ALL_BUTTONS prevInputEnum,
+                                                boolean isExceptionToRule) {
+        return prevInputEnum != null && !(prevInputEnum.equals(CalculatorButtons.ALL_BUTTONS.ADD) ||
+                prevInputEnum.equals(CalculatorButtons.ALL_BUTTONS.DIV) ||
+                prevInputEnum.equals(CalculatorButtons.ALL_BUTTONS.MUL) ||
+                prevInputEnum.equals(CalculatorButtons.ALL_BUTTONS.PRCNT)
+                && (currentInput != null && (currentInput.equals(CalculatorButtons.ALL_BUTTONS.SUB))))
+                && (prevInputEnum.equals(CalculatorButtons.ALL_BUTTONS.ADD) ||
+                prevInputEnum.equals(CalculatorButtons.ALL_BUTTONS.PRCNT) ||
+                prevInputEnum.equals(CalculatorButtons.ALL_BUTTONS.SUB)) && !isExceptionToRule;
     }
 }

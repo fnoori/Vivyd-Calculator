@@ -17,17 +17,14 @@ import ca.vivyd.vivydcalculator.R;
 /**
  * Created by Farzam on 2016-06-23.
  *
- * Will add code for the custom buttons here
+ * Handles the logic for the Custom buttons dialog box
  */
 public class UserDefinedButtons {
     private Context context;
-    private String valuesToReturn[];
-    private Button currentButton;
     private SharedPreferencesLogic sharedPrefs;
 
     public UserDefinedButtons(Context context, SharedPreferencesLogic sharedPrefs){
         this.context = context;
-        valuesToReturn = new String[2];
         this.sharedPrefs = sharedPrefs;
     }
 
