@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "771780405773",
+    "firebase_url": "https://vivyd-calculator.firebaseio.com",
+    "project_id": "vivyd-calculator",
+    "storage_bucket": "vivyd-calculator.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:771780405773:android:51d9b639e8933b45",
+        "android_client_info": {
+          "package_name": "ca.vivyd.vivydcalculator"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "771780405773-bb9lnelifh9jk5bin8v287nljqs4bbbj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAoExU0jTg7r89OR1hh97wrQqihTx7h7R8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
