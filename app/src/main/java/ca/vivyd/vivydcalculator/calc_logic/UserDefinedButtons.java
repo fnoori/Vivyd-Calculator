@@ -2,6 +2,7 @@ package ca.vivyd.vivydcalculator.calc_logic;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -41,19 +42,28 @@ public class UserDefinedButtons {
         Button confirmButton = (Button) theView.findViewById(R.id.confirmVarButton);
         Button cancelButton = (Button) theView.findViewById(R.id.cancelVarButton);
 
-        currentButton = inButton;
+        setFieldsValues(inButton, varName, varValue);
 
         ansButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                varValue.append(sharedPrefs.getData("ANS"));
+                varValue.setText("");
+                varValue.setText(sharedPrefs.getData("ANS"));
+                varValue.setSelection(varValue.length());
             }
         });
 
         confirmButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(StringUtils.isNumeric(varValue.getText().toString()) && !varName.getText().toString().equals("")){
+
+                varName.setSelection(varName.length());
+                varValue.setSelection(varValue.length());
+
+                Log.d("VAR_NAME", varName.getText().toString());
+                Log.d("VAR_VALUE", varValue.getText().toString());
+
+                if(!varName.getText().toString().equals("")){
                     calcButtons.setUserDefinedValues(inButton, varName.getText().toString(), varValue.getText().toString());
                     customButtonIputDialog.dismiss();
                 }else{
@@ -74,11 +84,22 @@ public class UserDefinedButtons {
         customButtonIputDialog.show();
     }
 
-    public String[] getValues(){
-        return valuesToReturn;
-    }
-
-    public Button getCurrentButton(){
-        return currentButton;
+    public void setFieldsValues(Button inButton, EditText varName, EditText varValue){
+        switch (inButton.getId()){
+            case R.id.var1Button:
+                varName.setText(sharedPrefs.getData("Var1Name"));
+                varValue.setText(sharedPrefs.getData("Var1Value"));
+                break;
+            case R.id.var2Button:
+                varName.setText(sharedPrefs.getData("Var2Name"));
+                varValue.setText(sharedPrefs.getData("Var2Value"));
+                break;
+            case R.id.var3Button:
+                varName.setText(sharedPrefs.getData("Var3Name"));
+                varValue.setText(sharedPrefs.getData("Var3Value"));
+                break;
+        }
+        varName.setSelection(varName.length());
+        varValue.setSelection(varValue.length());
     }
 }
