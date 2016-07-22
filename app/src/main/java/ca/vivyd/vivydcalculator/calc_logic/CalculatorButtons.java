@@ -632,15 +632,9 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
             expressionToEvaluate = calculatorUtilities.replaceForAnsViewDisplay(answerView.getText().toString().substring(0, indexFrom)
                     + answerView.getText().toString().substring(indexTo));
 
-            Log.d("PREV_VALUE_DEL", calculatorUtilities.getPreviousInput(expressionToEvaluate));
-            Log.d("PREV_INPUT_BOOL", calculatorUtilities.isPreviousValueNumeric(expressionToEvaluate)+"");
-            Log.d("PREV_ENUM_DEL_BEF", prevInputEnum.toString());
-            if(calculatorUtilities.isPreviousValueNumeric(expressionToEvaluate)){
-                prevInputEnum = ALL_BUTTONS.NUM;
-            }else{
-                prevInputEnum = ALL_BUTTONS.PRCNT;
-            }
-            Log.d("PREV_ENUM_DEL_AFT", prevInputEnum.toString());
+            if(calculatorUtilities.isPreviousValueNumeric(expressionToEvaluate)){prevInputEnum = ALL_BUTTONS.NUM;}
+            else{prevInputEnum = ALL_BUTTONS.PRCNT;}
+            isAnswer = false;
 
             answerView.setText(expressionToEvaluate);
             answerView.setSelection(indexFrom);
