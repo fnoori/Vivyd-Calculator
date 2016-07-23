@@ -18,13 +18,12 @@
 
         <LinearLayout
             android:orientation="horizontal"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="left"
             android:layout_marginTop="2dp">
 
             <ImageButton
-                android:layout_width="30dp"
+                android:layout_width="50dp"
                 android:textAllCaps="false"
                 android:layout_height="match_parent"
                 android:text="i"
@@ -32,11 +31,10 @@
                 android:textColor="@color/colorTextNumpad"
                 android:theme="@style/AppTheme"
                 android:background="@android:color/holo_red_light"
-                android:layout_marginRight="2dp"
                 android:src="@android:drawable/ic_dialog_email"
                 android:scaleType="centerInside"
-                android:paddingLeft="5dp"
-                android:paddingRight="5dp"
+                android:paddingTop="15dp"
+                android:paddingBottom="15dp"
                 android:layout_marginLeft="2dp" />
 
             <com.google.android.gms.ads.AdView
@@ -64,15 +62,36 @@
         android:layout_weight="2.5"
         android:background="@color/BLUE_colorAccent"
         android:gravity="right"
-        android:paddingRight="35dp"
-        android:paddingEnd="35dp"
-        android:paddingTop="3dp" />
+        android:paddingEnd="20dp"
+        android:paddingRight="20dp"
+        android:paddingTop="3dp"
+         />
 
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="2.3">
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="RAD"
+            android:id="@+id/degRandButton"
+            android:textColor="@color/colorNumpad"
+            android:elegantTextHeight="false"
+            android:stateListAnimator="@null"
+            android:layout_weight="10"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:textSize="13sp"
+            android:background="@color/BLUE_colorAccent"
+            android:gravity="bottom|end"
+            android:paddingEnd="5dp"
+            android:paddingRight="5dp"
+            android:paddingBottom="10dp"
+ />
 
         <EditText
             android:layout_width="match_parent"
@@ -84,12 +103,14 @@
             android:textSize="35sp"
             android:background="@color/BLUE_colorAccent"
             android:textColor="@color/colorTextMain"
-            android:paddingEnd="35dp"
-            android:paddingRight="35dp"
             android:gravity="top|right"
             android:layout_alignParentBottom="true"
             android:autoText="false"
-            android:paddingBottom="5dp" />
+            android:paddingBottom="5dp"
+            android:layout_weight="1"
+            android:paddingLeft="10dp"
+            android:paddingEnd="20dp"
+            android:paddingRight="20dp" />
 
     </LinearLayout>
 
@@ -382,22 +403,21 @@
                 android:layout_height="match_parent"
                 android:splitMotionEvents="false"
                 android:layout_weight="1">
+
                 <Button
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="RAD"
-                    android:id="@+id/degRandButton"
-                    android:textColor="@color/colorTextSecondary"
-                    android:elegantTextHeight="false"
-                    android:stateListAnimator="@null"
-                    android:layout_weight="1"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentTop="true"
+                    android:text="+"
+                    android:textAllCaps="false"
+                    android:id="@+id/var3Button"
+                    android:layout_weight="2"
                     android:background="@drawable/blue_numpad_transition"
-                    android:paddingBottom="5dp"
+                    android:textColor="@color/colorTextAccentLight"
+                    android:textSize="15dp"
+                    android:layout_marginLeft="1dp"
                     android:layout_marginTop="1dp"
-                    android:textSize="13sp" />
+                    android:layout_marginRight="0dp"
+                    android:layout_marginBottom="0dp" />
 
                 <Button
                     android:layout_width="match_parent"
@@ -405,7 +425,7 @@
                     android:text="+"
                     android:textAllCaps="false"
                     android:id="@+id/var1Button"
-                    android:layout_weight="1"
+                    android:layout_weight="3"
                     android:background="@drawable/blue_numpad_transition"
                     android:textColor="@color/colorTextAccentLight"
                     android:textSize="15sp"
@@ -420,7 +440,7 @@
                     android:text="+"
                     android:textAllCaps="false"
                     android:id="@+id/var2Button"
-                    android:layout_weight="1"
+                    android:layout_weight="3"
                     android:background="@drawable/blue_numpad_transition"
                     android:textColor="@color/colorTextAccentLight"
                     android:textSize="15dp"
@@ -429,20 +449,6 @@
                     android:layout_marginRight="0dp"
                     android:layout_marginBottom="0dp" />
 
-                <Button
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="+"
-                    android:textAllCaps="false"
-                    android:id="@+id/var3Button"
-                    android:layout_weight="1"
-                    android:background="@drawable/blue_numpad_transition"
-                    android:textColor="@color/colorTextAccentLight"
-                    android:textSize="15dp"
-                    android:layout_marginLeft="1dp"
-                    android:layout_marginTop="1dp"
-                    android:layout_marginRight="0dp"
-                    android:layout_marginBottom="0dp" />
             </LinearLayout>
         </LinearLayout>
 
@@ -725,8 +731,7 @@
                         android:textSize="15sp"
                         android:textColor="@color/colorTextNumpad"
                         android:layout_marginTop="1dp"
-                        android:layout_marginLeft="1dp"
-                        android:layout_marginBottom="1dp" />
+                        android:layout_marginLeft="1dp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -741,8 +746,8 @@
                     <Button
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:text="0"
-                        android:id="@+id/zeroButton"
+                        android:text="."
+                        android:id="@+id/dotButton"
                         android:layout_weight="1"
                         android:background="@drawable/blue_numpad_transition"
                         android:textSize="15sp"
@@ -752,8 +757,8 @@
                     <Button
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:text="."
-                        android:id="@+id/dotButton"
+                        android:text="0"
+                        android:id="@+id/zeroButton"
                         android:layout_weight="1"
                         android:background="@drawable/blue_numpad_transition"
                         android:textSize="15sp"
@@ -773,7 +778,10 @@
                         android:textStyle="bold"
                         android:layout_weight="1"
                         android:layout_marginLeft="1dp"
-                        android:stateListAnimator="@null" />
+                        android:stateListAnimator="@null"
+                        android:layout_marginBottom="1dp"
+                        android:layout_marginTop="1dp" />
+
                 </LinearLayout>
             </LinearLayout>
 
@@ -810,7 +818,8 @@
                         android:id="@+id/imageMenu"
                         android:src="@drawable/ic_color_lens_24dp"
                         android:layout_gravity="center"
-                        android:scaleType="centerInside" />
+                        android:scaleType="centerInside"
+                        android:layout_marginLeft="1dp" />
                 </FrameLayout>
 
                 <Button
@@ -824,8 +833,8 @@
                     android:textColor="@color/colorTextSecondary"
                     android:typeface="serif"
                     android:textStyle="bold"
-                    android:layout_marginLeft="1dp"
-                    android:stateListAnimator="@null" />
+                    android:stateListAnimator="@null"
+                    android:layout_marginLeft="1dp" />
 
                 <Button
                     android:layout_width="match_parent"
@@ -838,8 +847,8 @@
                     android:textColor="@color/colorTextSecondary"
                     android:typeface="serif"
                     android:textStyle="bold"
-                    android:layout_marginLeft="1dp"
-                    android:stateListAnimator="@null" />
+                    android:stateListAnimator="@null"
+                    android:layout_marginLeft="1dp" />
 
                 <Button
                     android:layout_width="match_parent"
@@ -852,8 +861,8 @@
                     android:textColor="@color/colorTextSecondary"
                     android:typeface="serif"
                     android:textStyle="bold"
-                    android:layout_marginLeft="1dp"
-                    android:stateListAnimator="@null" />
+                    android:stateListAnimator="@null"
+                    android:layout_marginLeft="1dp" />
 
                 <Button
                     android:layout_width="match_parent"
@@ -866,7 +875,8 @@
                     android:textColor="@color/colorTextSecondary"
                     android:typeface="serif"
                     android:textStyle="bold"
-                    android:stateListAnimator="@null" />
+                    android:stateListAnimator="@null"
+                    android:layout_marginBottom="1dp" />
 
             </LinearLayout>
         </LinearLayout>

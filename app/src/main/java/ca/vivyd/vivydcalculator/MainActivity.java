@@ -199,15 +199,19 @@ public class MainActivity extends AppCompatActivity {
         setTheme(themer);
 
         /** If the current orientation is landscape, initialize advanced buttons
-        / Must come after initialization of themer or could crash in odd case where app launches
-        / In landscape
-        **/
+         *  Must come after initialization of themer or could crash in odd case where app launches
+         *  in landscape
+         */
         if (getScreenOrientation() == Configuration.ORIENTATION_LANDSCAPE) {
             ArrayList<Button> scienceButts = setScienceButts();
             calcButtons.addAdvanceOperands(scienceButts);
             notExited = 1;
         }
 
+        /**
+         *  Values that should persist when the app switches to landscape mode should be placed
+         *  and accounted for here.
+         */
         if (notExited == 1){
             calcButtons.countNumberOfBrackets(answerView.getText().toString());
             CalculatorButtons.openBrace = prefs.getInt("openBrace", 0);
@@ -372,6 +376,8 @@ public class MainActivity extends AppCompatActivity {
         Button degRandButton = (Button) findViewById(R.id.degRandButton);
         assert degRandButton != null;
         Button var1Button = (Button) findViewById(R.id.var1Button);
+        ImageButton helpButton = (ImageButton) findViewById(R.id.inspireButton);
+        assert helpButton != null;
         TextView numLeftBrace = (TextView) findViewById(R.id.numLeftBrace);
         assert numLeftBrace != null;
         TextView numRightBrace = (TextView) findViewById(R.id.numRightBrace);
@@ -384,6 +390,7 @@ public class MainActivity extends AppCompatActivity {
         ansView.setBackgroundColor(colorAccent);
         ansView.setTextColor(colorTextScreen);
         degRandButton.setBackgroundColor(colorAccent);
+        helpButton.setBackgroundColor(colorComp);
         if (var1Button != null) {
             final Button var2Button = (Button) findViewById(R.id.var2Button);
             final Button var3Button = (Button) findViewById(R.id.var3Button);
