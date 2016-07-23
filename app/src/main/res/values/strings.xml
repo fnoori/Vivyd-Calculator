@@ -6,4 +6,5 @@
     <string name="inputVarName">Input Variable Details</string>
     <string name="enterName">Enter Name…</string>
     <string name="enterValue">Enter Value…</string>
+    <string name="clear">Clear</string>
 </resources>

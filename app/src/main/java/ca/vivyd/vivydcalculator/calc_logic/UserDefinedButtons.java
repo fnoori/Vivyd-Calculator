@@ -36,6 +36,8 @@ public class UserDefinedButtons {
         final EditText varName = (EditText) theView.findViewById(R.id.nameOfVar);
         final EditText varValue = (EditText) theView.findViewById(R.id.valueOfVar);
         final Button ansButton = (Button) theView.findViewById(R.id.userDefAnsButton);
+        final Button varNameClear = (Button) theView.findViewById(R.id.nameClearButton);
+        final Button varValueClear = (Button) theView.findViewById(R.id.valueClearButton);
         Button confirmButton = (Button) theView.findViewById(R.id.confirmVarButton);
         Button cancelButton = (Button) theView.findViewById(R.id.cancelVarButton);
 
@@ -47,6 +49,20 @@ public class UserDefinedButtons {
                 varValue.setText("");
                 varValue.setText(sharedPrefs.getData("ANS"));
                 varValue.setSelection(varValue.length());
+            }
+        });
+
+        varNameClear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                varName.setText("");
+            }
+        });
+
+        varValueClear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                varValue.setText("");
             }
         });
 

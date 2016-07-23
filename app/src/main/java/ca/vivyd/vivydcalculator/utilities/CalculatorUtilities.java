@@ -59,13 +59,13 @@ public class CalculatorUtilities {
                                        String valueToAppend){
         if (type.equals(ALL_BUTTS[11]) || type.equals(ALL_BUTTS[8]) || type.equals(ALL_BUTTS[9]) || type.equals(ALL_BUTTS[10])) {
             return cursorLocation + 4;
-        } else if (type.equals(ALL_BUTTS[15]) || type.equals(ALL_BUTTS[18]) || type.equals(ALL_BUTTS[12]) || type.equals(ALL_BUTTS[22])) {
+        } else if (type.equals(ALL_BUTTS[12]) || type.equals(ALL_BUTTS[22])) {
             return cursorLocation + 3;
-        } else if (type.equals(ALL_BUTTS[21]) || type.equals(ALL_BUTTS[19])) {
+        } else if (type.equals(ALL_BUTTS[18]) ||type.equals(ALL_BUTTS[21]) || type.equals(ALL_BUTTS[19]) || type.equals(ALL_BUTTS[15])) {
             return cursorLocation + 2;
         } else if (type.equals(ALL_BUTTS[23]) || type.equals(ALL_BUTTS[25])) {
             return cursorLocation + valueToAppend.length();
-        } else {
+        }else {
             return cursorLocation + 1;
         }
     }

@@ -27,8 +27,20 @@
         <EditText
             android:id="@+id/nameOfVar"
             android:hint="@string/enterName"
+            android:maxLength="15"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
+
+        <Button
+            android:id="@+id/nameClearButton"
+            android:text="@string/clear"
+            android:textSize="12sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/Widget.AppCompat.Button.Borderless.Colored"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
     </RelativeLayout>
 
 
@@ -42,8 +54,20 @@
             android:id="@+id/valueOfVar"
             android:hint="@string/enterValue"
             android:inputType="numberDecimal"
+            android:maxLength="15"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"/>
+
+        <Button
+            style="@style/Widget.AppCompat.Button.Borderless.Colored"
+            android:id="@+id/valueClearButton"
+            android:text="@string/clear"
+            android:textSize="12sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
     </RelativeLayout>
 
     <RelativeLayout
@@ -56,7 +80,7 @@
         <Button
             android:id="@+id/confirmVarButton"
             android:text="@string/accept"
-            android:layout_width="wrap_content"
+            android:layout_width="80dp"
             android:layout_height="wrap_content"
             android:textSize="12sp"
             android:layout_marginBottom="5dp"
@@ -65,11 +89,11 @@
             android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
-            style="?android:attr/borderlessButtonStyle"/>
+            style="@style/Widget.AppCompat.Button.Borderless.Colored"/>
         <Button
             android:id="@+id/cancelVarButton"
             android:text="@string/decline"
-            android:layout_width="wrap_content"
+            android:layout_width="80dp"
             android:layout_height="wrap_content"
             android:textSize="12sp"
             android:layout_marginBottom="5dp"
@@ -77,18 +101,20 @@
             android:layout_marginLeft="0dp"
             android:layout_toLeftOf="@+id/confirmVarButton"
             android:layout_toStartOf="@+id/confirmVarButton"
-            style="?android:attr/borderlessButtonStyle"/>
+            style="@style/Widget.AppCompat.Button.Borderless.Colored"/>
 
         <Button
-            style="?android:attr/borderlessButtonStyle"
+            style="@style/Widget.AppCompat.Button.Borderless.Colored"
             android:id="@+id/userDefAnsButton"
             android:text="@string/answer"
-            android:layout_width="70dp"
+            android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:textSize="12sp"
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
+
+
 
     </RelativeLayout>
 

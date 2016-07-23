@@ -6,14 +6,12 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.InputType;
-import android.transition.Fade;
 import android.transition.Slide;
 import android.transition.TransitionManager;
 import android.util.Log;
@@ -26,12 +24,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
 
 import java.util.ArrayList;
-import java.util.logging.Handler;
 
 import ca.vivyd.vivydcalculator.calc_logic.CalculatorButtons;
 import ca.vivyd.vivydcalculator.themes.Themer;
@@ -215,10 +210,10 @@ public class MainActivity extends AppCompatActivity {
          */
         if (notExited == 1){
             calcButtons.countNumberOfBrackets(answerView.getText().toString());
-            CalculatorButtons.openBrace = prefs.getInt("openBrace", 0);
-            CalculatorButtons.closeBrace = prefs.getInt("closeBrace", 0);
-            leftBraceCounter.setText(String.valueOf(CalculatorButtons.openBrace));
-            rightBraceCounter.setText(String.valueOf(CalculatorButtons.closeBrace));
+            CalculatorButtons.openBracket = prefs.getInt("openBracket", 0);
+            CalculatorButtons.closeBracket = prefs.getInt("closeBracket", 0);
+            leftBraceCounter.setText(String.valueOf(CalculatorButtons.openBracket));
+            rightBraceCounter.setText(String.valueOf(CalculatorButtons.closeBracket));
             Log.i("TrigStateChange", "Checking..." + prefs.getString("deg_rad_state", CalculatorButtons.RADIAN));
             if (prefs.getString("deg_rad_state", CalculatorButtons.RADIAN).equals(CalculatorButtons.RADIAN)){
                 CalculatorButtons.setRad(degRadButton);
@@ -253,8 +248,8 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences prefs = getSharedPreferences("CalcData", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
         editor.putInt("Theme", Themer.CURRENT_THEME);
-        editor.putInt("openBrace", CalculatorButtons.openBrace);
-        editor.putInt("closeBrace", CalculatorButtons.closeBrace);
+        editor.putInt("openBracket", CalculatorButtons.openBracket);
+        editor.putInt("closeBracket", CalculatorButtons.closeBracket);
         editor.putString("deg_rad_state", CalculatorButtons.DEG_RAND_STATE);
         Log.i("TrigStateChange", " into sharedprefs, i.e the DEG_RAND_STATE: " + CalculatorButtons.DEG_RAND_STATE);
         editor.apply();
