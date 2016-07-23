@@ -6,7 +6,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.graphics.Rect;
 import android.graphics.drawable.TransitionDrawable;
 import android.util.Log;
@@ -27,8 +26,6 @@ import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.EmptyStackException;
 import java.util.List;
-import java.util.logging.Handler;
-import java.util.logging.LogRecord;
 
 import ca.vivyd.vivydcalculator.MainActivity;
 import ca.vivyd.vivydcalculator.R;
@@ -46,7 +43,7 @@ import ca.vivyd.vivydcalculator.utilities.CalculatorUtilities;
 public class CalculatorButtons implements View.OnClickListener, View.OnTouchListener, View.OnLongClickListener {
     private static final String PLUS_SYMBOL = "+";
     private static final String SHARED_PREF_NAME = "CalcData";
-    private static final String NUM = "num";
+    private static final String NUMBER = "num";
     private static final String STRING_PLACE_HOLDER = "blah";
 
     private static final String[] NUMBERS_ARRAY = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "."};
@@ -60,12 +57,15 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
     public static String DEG_RAND_STATE;
     private static String ERROR_MSG = "ERROR";
 
+    /*
     public enum ALL_BUTTONS {
-        ADD, SUB, MUL, DIV, NUM, DOT, BRACKET_OPEN, BRACKET_CLOSE,
+        ADD, SUB, MUL, DIV, NUMBER, DOT, BRACKET_OPEN, BRACKET_CLOSE,
         SIN, COS, TAN, LOG, LN, PI, EULER, SQRT, POWER,
         FACT, SQR, NRT, PRCNT, CBRT, INVERSE, CSTM, EE, ANS, DEG_RAND, EQUAL, DEL, CLR
     }
     public enum DEG_RAD {DEG, RAD}
+    */
+
 
     private Context context;
     private EditText answerView;
@@ -88,20 +88,22 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
     private String[] userDefValue1;
     private String[] userDefValue2;
     private String[] userDefValue3;
-    public static DEG_RAD trigType;
+    //public static DEG_RAD trigType;
+    private static String trigType;
     private int dotCounter;
     public static int openBrace;
     public static int closeBrace;
     private boolean isAnswer;
     private HistoryData historyData;
     private CustomOperators customOperators;
-    private CalculatorUtilities calculatorUtilities;
+    private static CalculatorUtilities calculatorUtilities;
     private UserDefinedButtons userDefButtons;
 
     private SharedPreferences prefs;
     private SharedPreferences.Editor editor;
     private SharedPreferencesLogic sharedPrefsLogic;
-    private ALL_BUTTONS prevInputEnum;
+    //private ALL_BUTTONS prevInputEnum;
+    private String previousInputType;
 
     public CalculatorButtons(Context context, EditText answerView,
                              TextView equationView, ArrayList<Button> commonButtons,
@@ -125,15 +127,15 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
         if (DEG_RAND_STATE != null) {
             Log.i("TrigStateChange", "DEG_RAND_STATE in calcButton: " + DEG_RAND_STATE);
             if (DEG_RAND_STATE.equals(DEGREE)) {
-                trigType = DEG_RAD.DEG;
+                trigType = calculatorUtilities.DEG_RAD[0];
             }
             else
-                trigType = DEG_RAD.RAD;
+                trigType = calculatorUtilities.DEG_RAD[1];
         }
         else {
             Log.i("TrigStateChange", "DEG_RAND_STATE was null");
             DEG_RAND_STATE = RADIAN;
-            trigType = DEG_RAD.RAD;
+            trigType = calculatorUtilities.DEG_RAD[0];
         }
         dotCounter = 0;
         openBrace = 0;
@@ -168,7 +170,7 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.degRandButton:
-                if(trigType.equals(DEG_RAD.DEG)){
+                if(trigType.equals(calculatorUtilities.DEG_RAD[1])){
                     setRad(degRandButton);
                 }else{
                     setDeg(degRandButton);
@@ -181,13 +183,13 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
     }
 
     public static void setRad(Button degRandButton) {
-        trigType = DEG_RAD.RAD;
+        trigType = calculatorUtilities.DEG_RAD[1];
         degRandButton.setText(RADIAN);
         DEG_RAND_STATE = RADIAN;
     }
 
     public static void setDeg(Button degRandButton) {
-        trigType = DEG_RAD.DEG;
+        trigType = calculatorUtilities.DEG_RAD[0];
         degRandButton.setText(DEGREE);
         DEG_RAND_STATE = DEGREE;
     }
@@ -280,35 +282,35 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
         TransitionDrawable transition = (TransitionDrawable) v.getBackground();
         switch (v.getId()) {
             case R.id.zeroButton:
-                animBtnLogic(v, transition, event, NUM, 0);
+                animBtnLogic(v, transition, event, NUMBER, 0);
                 break;
             case R.id.oneButton:
-                animBtnLogic(v, transition, event, NUM, 1);
+                animBtnLogic(v, transition, event, NUMBER, 1);
                 break;
             case R.id.twoButton:
-                animBtnLogic(v, transition, event, NUM, 2);
+                animBtnLogic(v, transition, event, NUMBER, 2);
                 break;
             case R.id.threeButton:
-                animBtnLogic(v, transition, event, NUM, 3);
+                animBtnLogic(v, transition, event, NUMBER, 3);
                 break;
             case R.id.fourButton:
-                animBtnLogic(v, transition, event, NUM, 4);
+                animBtnLogic(v, transition, event, NUMBER, 4);
                 break;
             case R.id.fiveButton:
-                animBtnLogic(v, transition, event, NUM, 5);
+                animBtnLogic(v, transition, event, NUMBER, 5);
                 break;
             case R.id.sixButton:
-                animBtnLogic(v, transition, event, NUM, 6);
+                animBtnLogic(v, transition, event, NUMBER, 6);
                 break;
             case R.id.sevenButton:
-                animBtnLogic(v, transition, event, NUM, 7);
+                animBtnLogic(v, transition, event, NUMBER, 7);
                 System.out.println("sevena action = " + prevMotionEvent);
                 break;
             case R.id.eightButton:
-                animBtnLogic(v, transition, event, NUM, 8);
+                animBtnLogic(v, transition, event, NUMBER, 8);
                 break;
             case R.id.nineButton:
-                animBtnLogic(v, transition, event, NUM, 9);
+                animBtnLogic(v, transition, event, NUMBER, 9);
                 break;
             case R.id.dotButton:
                 animBtnLogic(v, transition, event, "dot", 10);
@@ -466,39 +468,39 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
             case "dot":
                 if(dotCounter == 1){break;}
                 else{
-                    addToExpressionToBeEvaluated(NUMBERS_ARRAY[10], ALL_BUTTONS.DOT, true);
+                    addToExpressionToBeEvaluated(NUMBERS_ARRAY[10], calculatorUtilities.ALL_BUTTS[5], true);
                     dotCounter = 1;
                 }
                 break;
-            case NUM:
-                addToExpressionToBeEvaluated(NUMBERS_ARRAY[num], ALL_BUTTONS.NUM, true);
+            case NUMBER:
+                addToExpressionToBeEvaluated(NUMBERS_ARRAY[num], calculatorUtilities.ALL_BUTTS[4], true);
                 break;
             case "add":
-                addToExpressionToBeEvaluated(OPERANDS_ARRAY[0], ALL_BUTTONS.ADD, false);
+                addToExpressionToBeEvaluated(OPERANDS_ARRAY[0], calculatorUtilities.ALL_BUTTS[0], false);
                 dotCounter = 0;
                 break;
             case "sub":
-                addToExpressionToBeEvaluated(OPERANDS_ARRAY[1], ALL_BUTTONS.SUB, false);
+                addToExpressionToBeEvaluated(OPERANDS_ARRAY[1], calculatorUtilities.ALL_BUTTS[1], false);
                 dotCounter = 0;
                 break;
             case "mul":
-                addToExpressionToBeEvaluated(OPERANDS_ARRAY[3], ALL_BUTTONS.MUL, false);
+                addToExpressionToBeEvaluated(OPERANDS_ARRAY[3], calculatorUtilities.ALL_BUTTS[2], false);
                 dotCounter = 0;
                 break;
             case "div":
-                addToExpressionToBeEvaluated(OPERANDS_ARRAY[2], ALL_BUTTONS.DIV, false);
+                addToExpressionToBeEvaluated(OPERANDS_ARRAY[2], calculatorUtilities.ALL_BUTTS[3], false);
                 dotCounter = 0;
                 break;
             case "prcnt":
-                addToExpressionToBeEvaluated(OPERANDS_ARRAY[4], ALL_BUTTONS.PRCNT, false);
+                addToExpressionToBeEvaluated(OPERANDS_ARRAY[4], calculatorUtilities.ALL_BUTTS[20], false);
                 dotCounter = 0;
                 break;
             case "open_brace":
-                addToExpressionToBeEvaluated(OPERANDS_ARRAY[5], ALL_BUTTONS.BRACKET_OPEN, true);
+                addToExpressionToBeEvaluated(OPERANDS_ARRAY[5], calculatorUtilities.ALL_BUTTS[6], true);
                 dotCounter = 0;
                 break;
             case "close_brace":
-                addToExpressionToBeEvaluated(OPERANDS_ARRAY[6], ALL_BUTTONS.BRACKET_CLOSE, true);
+                addToExpressionToBeEvaluated(OPERANDS_ARRAY[6], calculatorUtilities.ALL_BUTTS[7], true);
                 break;
             case "del":
                 deleteButtonLogic();
@@ -521,76 +523,76 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
                 ((Activity)context).overridePendingTransition(R.anim.right_in, R.anim.left_out);
                 break;
             case "sin":
-                addToExpressionToBeEvaluated(ADVANCED_OPERANDS_ARRAY[0], ALL_BUTTONS.SIN, true);
+                addToExpressionToBeEvaluated(ADVANCED_OPERANDS_ARRAY[0], calculatorUtilities.ALL_BUTTS[8], true);
                 setBraceColor();
                 dotCounter = 0;
                 break;
             case "cos":
-                addToExpressionToBeEvaluated(ADVANCED_OPERANDS_ARRAY[1], ALL_BUTTONS.COS, true);
+                addToExpressionToBeEvaluated(ADVANCED_OPERANDS_ARRAY[1], calculatorUtilities.ALL_BUTTS[9], true);
                 setBraceColor();
                 dotCounter = 0;
                 break;
             case "tan":
-                addToExpressionToBeEvaluated(ADVANCED_OPERANDS_ARRAY[2], ALL_BUTTONS.TAN, true);
+                addToExpressionToBeEvaluated(ADVANCED_OPERANDS_ARRAY[2], calculatorUtilities.ALL_BUTTS[10], true);
                 setBraceColor();
                 dotCounter = 0;
                 break;
             case "log":
-                addToExpressionToBeEvaluated(ADVANCED_OPERANDS_ARRAY[3], ALL_BUTTONS.LOG, true);
+                addToExpressionToBeEvaluated(ADVANCED_OPERANDS_ARRAY[3], calculatorUtilities.ALL_BUTTS[11], true);
                 setBraceColor();
                 dotCounter = 0;
                 break;
             case "ln":
-                addToExpressionToBeEvaluated(ADVANCED_OPERANDS_ARRAY[4], ALL_BUTTONS.LN, true);
+                addToExpressionToBeEvaluated(ADVANCED_OPERANDS_ARRAY[4], calculatorUtilities.ALL_BUTTS[12], true);
                 setBraceColor();
                 dotCounter = 0;
                 break;
             case "pi":
-                addToExpressionToBeEvaluated(ADVANCED_OPERANDS_ARRAY[5], ALL_BUTTONS.PI, true);
+                addToExpressionToBeEvaluated(ADVANCED_OPERANDS_ARRAY[5], calculatorUtilities.ALL_BUTTS[13], true);
                 dotCounter = 0;
                 break;
             case "euler":
-                addToExpressionToBeEvaluated(ADVANCED_OPERANDS_ARRAY[6], ALL_BUTTONS.EULER, true);
+                addToExpressionToBeEvaluated(ADVANCED_OPERANDS_ARRAY[6], calculatorUtilities.ALL_BUTTS[14], true);
                 dotCounter = 0;
                 break;
             case "sqrt":
-                addToExpressionToBeEvaluated(ADVANCED_OPERANDS_ARRAY[7], ALL_BUTTONS.SQRT, true);
+                addToExpressionToBeEvaluated(ADVANCED_OPERANDS_ARRAY[7], calculatorUtilities.ALL_BUTTS[15], true);
                 setBraceColor();
                 dotCounter = 0;
                 break;
             case "nrt":
-                addToExpressionToBeEvaluated(ADVANCED_OPERANDS_ARRAY[8], ALL_BUTTONS.NRT, true);
+                addToExpressionToBeEvaluated(ADVANCED_OPERANDS_ARRAY[8], calculatorUtilities.ALL_BUTTS[18], true);
                 dotCounter = 0;
                 break;
             case "power":
-                addToExpressionToBeEvaluated(ADVANCED_OPERANDS_ARRAY[9], ALL_BUTTONS.POWER, true);
+                addToExpressionToBeEvaluated(ADVANCED_OPERANDS_ARRAY[9], calculatorUtilities.ALL_BUTTS[16], true);
                 dotCounter = 0;
                 break;
             case "sqr":
-                addToExpressionToBeEvaluated(ADVANCED_OPERANDS_ARRAY[10], ALL_BUTTONS.SQR, true);
+                addToExpressionToBeEvaluated(ADVANCED_OPERANDS_ARRAY[10], calculatorUtilities.ALL_BUTTS[18], true);
                 dotCounter = 0;
                 break;
             case "fact":
-                addToExpressionToBeEvaluated(ADVANCED_OPERANDS_ARRAY[11], ALL_BUTTONS.FACT, true);
+                addToExpressionToBeEvaluated(ADVANCED_OPERANDS_ARRAY[11], calculatorUtilities.ALL_BUTTS[17], true);
                 dotCounter = 0;
                 break;
             case "cbrt":
-                addToExpressionToBeEvaluated(ADVANCED_OPERANDS_ARRAY[12], ALL_BUTTONS.CBRT, true);
+                addToExpressionToBeEvaluated(ADVANCED_OPERANDS_ARRAY[12], calculatorUtilities.ALL_BUTTS[21], true);
                 dotCounter = 0;
                 break;
             case "inverse":
-                addToExpressionToBeEvaluated(ADVANCED_OPERANDS_ARRAY[13], ALL_BUTTONS.INVERSE, true);
+                addToExpressionToBeEvaluated(ADVANCED_OPERANDS_ARRAY[13], calculatorUtilities.ALL_BUTTS[22], true);
                 dotCounter = 0;
                 break;
             case "ᴇ":
-                addToExpressionToBeEvaluated(ADVANCED_OPERANDS_ARRAY[14], ALL_BUTTONS.EE, true);
+                addToExpressionToBeEvaluated(ADVANCED_OPERANDS_ARRAY[14], calculatorUtilities.ALL_BUTTS[24], true);
                 break;
             case "ans":
-                addToExpressionToBeEvaluated(sharedPrefsLogic.getData("ANS"), ALL_BUTTONS.ANS, true);
+                addToExpressionToBeEvaluated(sharedPrefsLogic.getData("ANS"), calculatorUtilities.ALL_BUTTS[25], true);
                 break;
             case "user1":
                 if(!userDefValue1[0].equals(PLUS_SYMBOL)){
-                    addToExpressionToBeEvaluated(userDefValue1[1], ALL_BUTTONS.CSTM, true);
+                    addToExpressionToBeEvaluated(userDefValue1[1], calculatorUtilities.ALL_BUTTS[23], true);
                 }else{
                     userDefButtons.launchUserInputDialog(this, var1Button);
                 }
@@ -598,7 +600,7 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
                 break;
             case "user2":
                 if(!userDefValue2[0].equals(PLUS_SYMBOL)){
-                    addToExpressionToBeEvaluated(userDefValue2[1], ALL_BUTTONS.CSTM, true);
+                    addToExpressionToBeEvaluated(userDefValue2[1], calculatorUtilities.ALL_BUTTS[23], true);
                 }else{
                     userDefButtons.launchUserInputDialog(this, var2Button);
                 }
@@ -606,7 +608,7 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
                 break;
             case "user3":
                 if(!userDefValue3[0].equals(PLUS_SYMBOL)){
-                    addToExpressionToBeEvaluated(userDefValue3[1], ALL_BUTTONS.CSTM, true);
+                    addToExpressionToBeEvaluated(userDefValue3[1], calculatorUtilities.ALL_BUTTS[23], true);
                 }else{
                     userDefButtons.launchUserInputDialog(this, var3Button);
                 }
@@ -660,8 +662,8 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
             expressionToEvaluate = calculatorUtilities.replaceForAnsViewDisplay(answerView.getText().toString().substring(0, indexFrom)
                     + answerView.getText().toString().substring(indexTo));
 
-            if(calculatorUtilities.isPreviousValueNumeric(expressionToEvaluate)){prevInputEnum = ALL_BUTTONS.NUM;}
-            else{prevInputEnum = ALL_BUTTONS.PRCNT;}
+            if(calculatorUtilities.isPreviousValueNumeric(expressionToEvaluate)){previousInputType = calculatorUtilities.ALL_BUTTS[4];}
+            else{previousInputType = calculatorUtilities.ALL_BUTTS[20];}
             isAnswer = false;
 
             answerView.setText(expressionToEvaluate);
@@ -704,7 +706,7 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
                     operatorList.add(customOperators.getTenToPowerOfOperator());
 
                     List<Function> functionList = new ArrayList<>();
-                    if(trigType.equals(DEG_RAD.DEG)){
+                    if(trigType.equals(calculatorUtilities.DEG_RAD[0])){
                         functionList.add(customOperators.getSinDegrees());
                         functionList.add(customOperators.getCosDegrees());
                         functionList.add(customOperators.getTanDegrees());
@@ -776,17 +778,17 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
     }
 
 
-    public void addToExpressionToBeEvaluated(String valueToAppend, ALL_BUTTONS type, boolean isExceptionToRule){
+    public void addToExpressionToBeEvaluated(String valueToAppend, String type, boolean isExceptionToRule){
         String prevInput;
         int cursorLocation = 0;
 
         if(isAnswer){
-            if(type.equals(ALL_BUTTONS.NUM)){answerView.setText(BLANK_STRING);}
+            if(type.equals(calculatorUtilities.ALL_BUTTS[4])){answerView.setText(BLANK_STRING);}
             isAnswer = false;
         }
         checkBrackets(type);
         prevInput = calculatorUtilities.getPreviousInput(expressionToEvaluate);
-        if(calculatorUtilities.checkIfMoreOperandIsPossible(prevInput, type, prevInputEnum, isExceptionToRule)){return;}
+        if(calculatorUtilities.checkIfMoreOperandIsPossible(prevInput, type, previousInputType, isExceptionToRule)){return;}
 
         cursorLocation = answerView.getSelectionStart();
         expressionToEvaluate = calculatorUtilities.replaceForAnsViewDisplay(
@@ -795,30 +797,30 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
         answerView.setText(expressionToEvaluate);
         expressionToEvaluate = calculatorUtilities.replaceForCalculations(expressionToEvaluate);
         answerView.setSelection(calculatorUtilities.determineCursorLocation(type, cursorLocation, valueToAppend));
-        prevInputEnum = type;
+        previousInputType = type;
     }
 
-    public void checkBrackets(ALL_BUTTONS type){
-        if(type.equals(ALL_BUTTONS.BRACKET_OPEN) || type.equals(ALL_BUTTONS.SIN)
-                || type.equals(ALL_BUTTONS.COS) || type.equals(ALL_BUTTONS.TAN)
-                || type.equals(ALL_BUTTONS.LN) || type.equals(ALL_BUTTONS.LOG)
-                || type.equals(ALL_BUTTONS.SQRT)){
+    public void checkBrackets(String type){
+        if(type.equals(calculatorUtilities.ALL_BUTTS[6]) || type.equals(calculatorUtilities.ALL_BUTTS[8])
+                || type.equals(calculatorUtilities.ALL_BUTTS[9]) || type.equals(calculatorUtilities.ALL_BUTTS[10])
+                || type.equals(calculatorUtilities.ALL_BUTTS[12]) || type.equals(calculatorUtilities.ALL_BUTTS[11])
+                || type.equals(calculatorUtilities.ALL_BUTTS[15])){
             openBrace++;
             leftBraceCounter.setText(String.valueOf(openBrace));
         }
-        if(type.equals(ALL_BUTTONS.BRACKET_CLOSE)){
+        if(type.equals(calculatorUtilities.ALL_BUTTS[7])){
             closeBrace++;
             rightBraceCounter.setText(String.valueOf(closeBrace));
         }
     }
 
     public void changeTrigType(){
-        if(trigType.equals(DEG_RAD.RAD)){
-            trigType = DEG_RAD.DEG;
+        if(trigType.equals(calculatorUtilities.DEG_RAD[1])){
+            trigType = calculatorUtilities.DEG_RAD[0];
             DEG_RAND_STATE = DEGREE;
         }
-        else if(trigType.equals(DEG_RAD.DEG)){
-            trigType = DEG_RAD.RAD;
+        else if(trigType.equals(calculatorUtilities.DEG_RAD[0])){
+            trigType = calculatorUtilities.DEG_RAD[1];
             DEG_RAND_STATE = RADIAN;
         }
     }

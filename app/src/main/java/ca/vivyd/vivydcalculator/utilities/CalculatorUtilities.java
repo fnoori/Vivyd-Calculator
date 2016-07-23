@@ -23,6 +23,11 @@ import ca.vivyd.vivydcalculator.calc_logic.CustomOperators;
 public class CalculatorUtilities {
     private Context context;
 
+    public static final String[] ALL_BUTTS = {"ADD", "SUB", "MUL", "DIV", "NUM", "DOT", "BRACKET_OPEN", "BRACKET_CLOSE",
+            "SIN", "COS", "TAN", "LOG", "LN", "PI", "EULER", "SQRT", "POWER",
+            "FACT", "SQR", "NRT", "PRCNT", "CBRT", "INVERSE", "CSTM", "EE", "ANS", "DEG_RAND", "EQUAL", "DEL", "CLR"};
+    public static final String[] DEG_RAD = {"DEG", "RAD"};
+
     public CalculatorUtilities(Context context){
         this.context = context;
     }
@@ -50,27 +55,18 @@ public class CalculatorUtilities {
                 .replace("log10(", "log(").replace("§", "ᴇ");
     }
 
-    public int determineCursorLocation(CalculatorButtons.ALL_BUTTONS type, int cursorLocation,
+    public int determineCursorLocation(String type, int cursorLocation,
                                        String valueToAppend){
-        switch (type){
-            case LOG:
-            case SIN:
-            case COS:
-            case TAN:
-                return cursorLocation+4;
-            case SQRT:
-            case SQR:
-            case LN:
-            case INVERSE:
-                return cursorLocation+3;
-            case CBRT:
-            case NRT:
-                return cursorLocation+2;
-            case CSTM:
-            case ANS:
-                return cursorLocation + valueToAppend.length();
-            default:
-                return cursorLocation+1;
+        if (type.equals(ALL_BUTTS[11]) || type.equals(ALL_BUTTS[8]) || type.equals(ALL_BUTTS[9]) || type.equals(ALL_BUTTS[10])) {
+            return cursorLocation + 4;
+        } else if (type.equals(ALL_BUTTS[15]) || type.equals(ALL_BUTTS[18]) || type.equals(ALL_BUTTS[12]) || type.equals(ALL_BUTTS[22])) {
+            return cursorLocation + 3;
+        } else if (type.equals(ALL_BUTTS[21]) || type.equals(ALL_BUTTS[19])) {
+            return cursorLocation + 2;
+        } else if (type.equals(ALL_BUTTS[23]) || type.equals(ALL_BUTTS[25])) {
+            return cursorLocation + valueToAppend.length();
+        } else {
+            return cursorLocation + 1;
         }
     }
 
@@ -134,35 +130,35 @@ public class CalculatorUtilities {
         }
     }
 
-    public boolean checkIfMoreOperandIsPossible(String prevInput, CalculatorButtons.ALL_BUTTONS currentInput, CalculatorButtons.ALL_BUTTONS prevInputEnum,
+    public boolean checkIfMoreOperandIsPossible(String prevInput, String currentInputType, String prevInputType,
                                                 boolean isExceptionToRule) {
 
-        if(prevInputEnum != null){Log.d("PREV_INPUT", prevInputEnum.toString());}
-        Log.d("CURR_INPUT", currentInput.toString());
+        if(prevInputType != null){Log.d("PREV_INPUT", prevInputType);}
+        Log.d("CURR_INPUT", currentInputType);
 
-        return (prevInputEnum != null) && !((prevInputEnum.equals(CalculatorButtons.ALL_BUTTONS.ADD) ||
+        return (prevInputType != null) && !((prevInputType.equals(ALL_BUTTS[0]) ||
 
-                prevInputEnum.equals(CalculatorButtons.ALL_BUTTONS.DIV) ||
+                prevInputType.equals(ALL_BUTTS[3]) ||
 
-                prevInputEnum.equals(CalculatorButtons.ALL_BUTTONS.MUL) ||
-
-                //prevInput.equals("×") || prevInput.equals("÷") ||
-
-                prevInputEnum.equals(CalculatorButtons.ALL_BUTTONS.PRCNT))
-                &&
-                currentInput.equals(CalculatorButtons.ALL_BUTTONS.SUB))
-                &&
-                (prevInputEnum.equals(CalculatorButtons.ALL_BUTTONS.ADD) ||
-
-                prevInputEnum.equals(CalculatorButtons.ALL_BUTTONS.DIV) ||
-
-                prevInputEnum.equals(CalculatorButtons.ALL_BUTTONS.MUL) ||
+                prevInputType.equals(ALL_BUTTS[2]) ||
 
                 //prevInput.equals("×") || prevInput.equals("÷") ||
 
-                prevInputEnum.equals(CalculatorButtons.ALL_BUTTONS.PRCNT)||
+                prevInputType.equals(ALL_BUTTS[20]))
+                &&
+                currentInputType.equals(ALL_BUTTS[1]))
+                &&
+                (prevInputType.equals(ALL_BUTTS[0]) ||
 
-                prevInputEnum.equals(CalculatorButtons.ALL_BUTTONS.SUB) /*|| prevInput.equals("−")*/)
+                prevInputType.equals(ALL_BUTTS[3]) ||
+
+                prevInputType.equals(ALL_BUTTS[2]) ||
+
+                //prevInput.equals("×") || prevInput.equals("÷") ||
+
+                prevInputType.equals(ALL_BUTTS[20])||
+
+                prevInputType.equals(ALL_BUTTS[1]) /*|| prevInput.equals("−")*/)
                 &&
                 !isExceptionToRule;
         /*
