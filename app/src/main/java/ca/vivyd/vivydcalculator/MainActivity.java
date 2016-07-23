@@ -221,13 +221,12 @@ public class MainActivity extends AppCompatActivity {
             Log.i("TrigStateChange", "Checking..." + prefs.getString("deg_rad_state", CalculatorButtons.RADIAN));
             if (prefs.getString("deg_rad_state", CalculatorButtons.RADIAN).equals(CalculatorButtons.RADIAN)){
                 CalculatorButtons.setRad(degRadButton);
-                Log.i("TrigStateChange", CalculatorButtons.RADIAN);
+                Log.i("TrigStateChange", "setRad: " + CalculatorButtons.RADIAN);
             }
             else if (prefs.getString("deg_rad_state", CalculatorButtons.RADIAN).equals(CalculatorButtons.DEGREE)){
                 CalculatorButtons.setDeg(degRadButton);
-                Log.i("TrigStateChange", CalculatorButtons.DEGREE);
+                Log.i("TrigStateChange", "setTrig: " + CalculatorButtons.DEGREE);
             }
-            CalculatorButtons.DEG_RAND_STATE = prefs.getString("deg_rand_state", CalculatorButtons.RADIAN);
         }
     }
 
@@ -256,7 +255,7 @@ public class MainActivity extends AppCompatActivity {
         editor.putInt("openBrace", CalculatorButtons.openBrace);
         editor.putInt("closeBrace", CalculatorButtons.closeBrace);
         editor.putString("deg_rad_state", CalculatorButtons.DEG_RAND_STATE);
-        Log.i("TrigStateChange", " into sharedprefs: " + CalculatorButtons.DEG_RAND_STATE);
+        Log.i("TrigStateChange", " into sharedprefs, i.e the DEG_RAND_STATE: " + CalculatorButtons.DEG_RAND_STATE);
         editor.apply();
     }
 

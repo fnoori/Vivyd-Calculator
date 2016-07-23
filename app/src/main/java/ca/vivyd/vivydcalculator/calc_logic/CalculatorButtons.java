@@ -52,7 +52,7 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
     private static final String NULL_STRING = null;
     public static final String DEGREE = "DEG";
     public static final String RADIAN = "RAD";
-    public static String DEG_RAND_STATE = RADIAN;
+    public static String DEG_RAND_STATE;
 
     public enum ALL_BUTTONS {
         ADD, SUB, MUL, DIV, NUM, DOT, BRACKET_OPEN, BRACKET_CLOSE,
@@ -81,7 +81,7 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
     private String[] userDefValue1;
     private String[] userDefValue2;
     private String[] userDefValue3;
-    public static DEG_RAD trigType = DEG_RAD.RAD;
+    public static DEG_RAD trigType;
     private int dotCounter;
     public static int openBrace;
     public static int closeBrace;
@@ -115,10 +115,19 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
         userDefValue2 = new String[2];
         userDefValue3 = new String[2];
         previousInput = STRING_PLACE_HOLDER;
-        if (DEG_RAND_STATE.equals(RADIAN))
+        if (DEG_RAND_STATE != null) {
+            Log.i("TrigStateChange", "DEG_RAND_STATE in calcButton: " + DEG_RAND_STATE);
+            if (DEG_RAND_STATE.equals(DEGREE)) {
+                trigType = DEG_RAD.DEG;
+            }
+            else
+                trigType = DEG_RAD.RAD;
+        }
+        else {
+            Log.i("TrigStateChange", "DEG_RAND_STATE was null");
+            DEG_RAND_STATE = RADIAN;
             trigType = DEG_RAD.RAD;
-        else
-            trigType = DEG_RAD.DEG;
+        }
         dotCounter = 0;
         openBrace = 0;
         closeBrace = 0;
