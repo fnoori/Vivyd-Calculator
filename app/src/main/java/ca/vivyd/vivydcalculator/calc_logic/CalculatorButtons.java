@@ -240,6 +240,7 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
 
                     expressionToEvaluate = calculatorUtilities.replaceForCalculations(answerView.getText().toString());
                     isAnswer = false;
+                    setBraceColor();
                 }
                 break;
             default:
@@ -421,17 +422,6 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
         }
         prevID = v.getId();
         return false;
-    }
-
-    public void setBraceColor() {
-        if (!leftBracketCounter.getText().equals(rightBracketCounter.getText())) {
-            leftBracketCounter.setTextColor(Themer.colorArray.get(Themer.COLOR_COMP));
-            rightBracketCounter.setTextColor(Themer.colorArray.get(Themer.COLOR_COMP));
-        }
-        else {
-            leftBracketCounter.setTextColor(Themer.colorArray.get(Themer.COLOR_NUMPAD_DARK));
-            rightBracketCounter.setTextColor(Themer.colorArray.get(Themer.COLOR_NUMPAD_DARK));
-        }
     }
 
     public void animBtnLogic(View v, TransitionDrawable transition, MotionEvent event, String type, int num) {
@@ -797,6 +787,7 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
 
         answerView.setText(ERROR_MSG);
         isError = true;
+        resetBrace();
     }
 
     public void addToExpressionToBeEvaluated(String valueToAppend, String type, boolean isExceptionToRule){
@@ -836,6 +827,23 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
             closeBracket++;
             rightBracketCounter.setText(String.valueOf(closeBracket));
         }
+    }
+
+    public void setBraceColor() {
+        if (!leftBracketCounter.getText().equals(rightBracketCounter.getText())) {
+            leftBracketCounter.setTextColor(Themer.colorArray.get(Themer.COLOR_COMP));
+            rightBracketCounter.setTextColor(Themer.colorArray.get(Themer.COLOR_COMP));
+        }
+        else {
+            leftBracketCounter.setTextColor(Themer.colorArray.get(Themer.COLOR_NUMPAD_DARK));
+            rightBracketCounter.setTextColor(Themer.colorArray.get(Themer.COLOR_NUMPAD_DARK));
+        }
+    }
+
+    private void resetBrace() {
+        leftBracketCounter.setText("0");
+        rightBracketCounter.setText("0");
+        setBraceColor();
     }
 
     public void changeTrigType(){

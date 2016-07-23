@@ -24,6 +24,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
 
 import java.util.ArrayList;
@@ -52,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
 
     private static int notExited = 0;
 
-    Themer themer;
+    private Themer themer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,12 +64,31 @@ public class MainActivity extends AppCompatActivity {
 
         startTime = (int) System.currentTimeMillis();
 
-        MobileAds.initialize(getApplicationContext(), "ca-app-pub-7966297715259412/8066957483");
-        // ad-related stuff
-        //AdView mAdView = (AdView) findViewById(R.id.adView);
-        // We have to use 'test-ads' for developing, lest google overlords think we're cheap chimps
-        //AdRequest request = new AdRequest.Builder().build();
-        //mAdView.loadAd(request);
+
+        AdView mAdView = (AdView) findViewById(R.id.adView);
+        assert mAdView != null;
+        /**
+         * Real ad.
+         * Uncomment following line for real ads, but make sure to comment out subsequent test ad
+         * lines.
+         */
+        // MobileAds.initialize(getApplicationContext(), "ca-app-pub-7966297715259412/8066957483");
+        // AdRequest request = new AdRequest.Builder().build();
+        /**
+         * Test Ad.
+         * Uncomment following line for test ads, but make sure to comment out previous real ad line
+         */
+        AdRequest request = new AdRequest.Builder()
+                .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)        // All emulators
+                // Remember to add a test device ID for each device that should request test ads.
+                // Device IDs are written to the system log by the Mobile Ads SDK, so you can find
+                // your device's ID by running your app and checking logcat.
+                .addTestDevice("AC98C820A50B4AD8A2106EDE96FB87D4")  // An example device ID
+                .addTestDevice("BD18BDB8D3C29637DDA85D96148E76B2")  // My moto G Decice Id, found in logcat
+                .addTestDevice("F3F9F302D12D212C9142645902C94D5C")  // Farzam moto E
+                .build();
+
+        mAdView.loadAd(request);
 
         answerView = (EditText) findViewById(R.id.ansView);
         disableSoftKeyboard(answerView);
@@ -360,6 +381,7 @@ public class MainActivity extends AppCompatActivity {
         int colorNumpad = Themer.colorArray.get(Themer.COLOR_NUMPAD);
         int dark_colorNumpad = Themer.colorArray.get(Themer.COLOR_NUMPAD_DARK);
         int colorComp = Themer.colorArray.get(Themer.COLOR_COMP);
+        int colorBG = Themer.colorArray.get(Themer.COLOR_BACKGROUND);
 
 
         LinearLayout backgroundView = (LinearLayout) findViewById(R.id.backgroundView);

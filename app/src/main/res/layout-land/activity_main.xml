@@ -13,14 +13,14 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/BLUE_colorAccent"
         android:id="@+id/adLayout">
 
         <LinearLayout
             android:orientation="horizontal"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="2dp">
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="2dp">
 
             <ImageButton
                 android:layout_width="50dp"
@@ -64,8 +64,7 @@
         android:gravity="right"
         android:paddingEnd="20dp"
         android:paddingRight="20dp"
-        android:paddingTop="3dp"
-         />
+        android:paddingTop="5dp" />
 
     <FrameLayout
         android:orientation="horizontal"
