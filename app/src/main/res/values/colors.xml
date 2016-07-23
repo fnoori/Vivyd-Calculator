@@ -48,8 +48,8 @@
     <color name="SUND_oppTray">#EF5350</color>
 
     <!-- Watermelon theme -->
-    <color name="WTRM_colorAccent">#e75956</color>
-    <color name="WTRM_colorComp">#EF5350</color>
+    <color name="WTRM_colorAccent">#EF5350</color>
+    <color name="WTRM_colorComp">#C4F071</color>
     <color name="WTRM_background">#204531</color>
     <color name="WTRM_numpad">#28503a</color>
     <color name="WTRM_text_screen">#ffffff</color>

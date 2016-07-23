@@ -31,6 +31,7 @@ import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
 
 import java.util.ArrayList;
+import java.util.logging.Handler;
 
 import ca.vivyd.vivydcalculator.calc_logic.CalculatorButtons;
 import ca.vivyd.vivydcalculator.themes.Themer;
@@ -388,7 +389,7 @@ public class MainActivity extends AppCompatActivity {
         eqnView.setTextColor(colorTextScreen);
         ansView.setBackgroundColor(colorAccent);
         ansView.setTextColor(colorTextScreen);
-        degRandButton.setBackgroundColor(colorAccent);
+        //degRandButton.setBackgroundColor(colorAccent);
         helpButton.setBackgroundColor(colorComp);
         if (var1Button != null) {
             final Button var2Button = (Button) findViewById(R.id.var2Button);
@@ -471,5 +472,4 @@ public class MainActivity extends AppCompatActivity {
         }
         return orientation;
     }
-
 }

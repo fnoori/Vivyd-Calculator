@@ -1,9 +1,12 @@
 package ca.vivyd.vivydcalculator.calc_logic;
 
+import android.animation.ArgbEvaluator;
+import android.animation.ValueAnimator;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.graphics.Rect;
 import android.graphics.drawable.TransitionDrawable;
 import android.util.Log;
@@ -24,6 +27,8 @@ import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.EmptyStackException;
 import java.util.List;
+import java.util.logging.Handler;
+import java.util.logging.LogRecord;
 
 import ca.vivyd.vivydcalculator.MainActivity;
 import ca.vivyd.vivydcalculator.R;
@@ -53,6 +58,7 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
     public static final String DEGREE = "DEG";
     public static final String RADIAN = "RAD";
     public static String DEG_RAND_STATE;
+    private static String ERROR_MSG = "ERROR";
 
     public enum ALL_BUTTONS {
         ADD, SUB, MUL, DIV, NUM, DOT, BRACKET_OPEN, BRACKET_CLOSE,
@@ -72,6 +78,7 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
     private Button degRandButton;
     private String expressionEvalString;
     private String expressionDisplayString;
+
 
     // Playing with this, to see if performance improves
     private String expressionToEvaluate;
@@ -739,15 +746,35 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
                     equalButtonLogic();
                 }
 
-            }catch(IllegalArgumentException | EmptyStackException e){
-                Toast.makeText(context, "Error", Toast.LENGTH_LONG).show();
+            }catch(IllegalArgumentException | EmptyStackException | ArithmeticException e){
+                //Toast.makeText(context, "Error", Toast.LENGTH_LONG).show();
+                errorAnim();
                 e.printStackTrace();
-            }catch(ArithmeticException e){
-                Toast.makeText(context, "Arithmetic Exception", Toast.LENGTH_LONG).show();
-                e.printStackTrace();
+                setBraceColor();
             }
         }
     }
+
+    public void errorAnim() {
+        int startColor = Themer.colorArray.get(Themer.COLOR_ACCENT);
+        int endColor = Themer.colorArray.get(Themer.COLOR_BACKGROUND);
+        ValueAnimator colorAnim = ValueAnimator.ofObject(new ArgbEvaluator(), startColor, endColor);
+        colorAnim.setDuration(1000);
+        colorAnim.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator animation) {
+                answerView.setBackgroundColor((int) animation.getAnimatedValue());
+                equationView.setBackgroundColor((int) animation.getAnimatedValue());
+            }
+        });
+        colorAnim.setRepeatMode(ValueAnimator.REVERSE);
+        colorAnim.setRepeatCount(1);
+        colorAnim.start();
+
+        answerView.setText(ERROR_MSG);
+
+    }
+
 
     public void addToExpressionToBeEvaluated(String valueToAppend, ALL_BUTTONS type, boolean isExceptionToRule){
         String prevInput;
