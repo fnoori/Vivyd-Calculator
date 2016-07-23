@@ -69,10 +69,10 @@ public class MainActivity extends AppCompatActivity {
 
         MobileAds.initialize(getApplicationContext(), "ca-app-pub-7966297715259412/8066957483");
         // ad-related stuff
-        AdView mAdView = (AdView) findViewById(R.id.adView);
+        //AdView mAdView = (AdView) findViewById(R.id.adView);
         // We have to use 'test-ads' for developing, lest google overlords think we're cheap chimps
-        AdRequest request = new AdRequest.Builder().build();
-        mAdView.loadAd(request);
+        //AdRequest request = new AdRequest.Builder().build();
+        //mAdView.loadAd(request);
 
         answerView = (EditText) findViewById(R.id.ansView);
         disableSoftKeyboard(answerView);

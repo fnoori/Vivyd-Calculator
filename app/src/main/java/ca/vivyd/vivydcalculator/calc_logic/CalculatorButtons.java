@@ -648,31 +648,37 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
             int indexFrom = answerView.getSelectionStart()-1;
             int indexTo = answerView.getSelectionStart();
 
-            if(answerView.getText().toString().contains(".")){dotCounter = 0;}
-            if(answerView.getText().toString().charAt(indexFrom) == '('){
-                openBrace--;
-                if(openBrace < 0){openBrace = 0;}
-                leftBraceCounter.setText(String.valueOf(openBrace));
-            }else if(answerView.getText().toString().charAt(indexFrom) == ')'){
-                closeBrace--;
-                if(closeBrace < 0){closeBrace = 0;}
-                rightBraceCounter.setText(String.valueOf(closeBrace));
-            }
 
-            expressionToEvaluate = calculatorUtilities.replaceForAnsViewDisplay(answerView.getText().toString().substring(0, indexFrom)
-                    + answerView.getText().toString().substring(indexTo));
+            Log.d("INDEX_FROM", indexFrom+"");
+            Log.d("INDEX_TO", indexTo+"");
 
-            if(calculatorUtilities.isPreviousValueNumeric(expressionToEvaluate)){previousInputType = CalculatorUtilities.ALL_BUTTS[4];}
-            else{previousInputType = CalculatorUtilities.ALL_BUTTS[20];}
-            isAnswer = false;
+            if(indexFrom > 0){
+                if(answerView.getText().toString().contains(".")){dotCounter = 0;}
+                if(answerView.getText().toString().charAt(indexFrom) == '('){
+                    openBrace--;
+                    if(openBrace < 0){openBrace = 0;}
+                    leftBraceCounter.setText(String.valueOf(openBrace));
+                }else if(answerView.getText().toString().charAt(indexFrom) == ')'){
+                    closeBrace--;
+                    if(closeBrace < 0){closeBrace = 0;}
+                    rightBraceCounter.setText(String.valueOf(closeBrace));
+                }
 
-            answerView.setText(expressionToEvaluate);
-            answerView.setSelection(indexFrom);
-            expressionToEvaluate = calculatorUtilities.replaceForCalculations(expressionToEvaluate);
+                expressionToEvaluate = calculatorUtilities.replaceForAnsViewDisplay(answerView.getText().toString().substring(0, indexFrom)
+                        + answerView.getText().toString().substring(indexTo));
 
-            if(expressionToEvaluate.length() < 1){
-                expressionToEvaluate = BLANK_STRING;
-                answerView.setText(BLANK_STRING);
+                if(calculatorUtilities.isPreviousValueNumeric(expressionToEvaluate)){previousInputType = CalculatorUtilities.ALL_BUTTS[4];}
+                else{previousInputType = CalculatorUtilities.ALL_BUTTS[20];}
+                isAnswer = false;
+
+                answerView.setText(expressionToEvaluate);
+                answerView.setSelection(indexFrom);
+                expressionToEvaluate = calculatorUtilities.replaceForCalculations(expressionToEvaluate);
+
+                if(expressionToEvaluate.length() < 1){
+                    expressionToEvaluate = BLANK_STRING;
+                    answerView.setText(BLANK_STRING);
+                }
             }
         }
     }
@@ -741,10 +747,18 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
                     isAnswer = true;
                     sharedPrefsLogic.generalPurposeDataInput("ANS", solution);
                 }else{
-                    do{
-                        closeBrace++;
-                        expressionToEvaluate = expressionToEvaluate + ")";
-                    }while(closeBrace < openBrace);
+                    if(closeBrace > openBrace){
+                        do{
+                            openBrace++;
+                            expressionToEvaluate = "(" + expressionToEvaluate;
+                        }while(openBrace < closeBrace);
+                    }else{
+                        do{
+                            closeBrace++;
+                            expressionToEvaluate = expressionToEvaluate + ")";
+                        }while(closeBrace < openBrace);
+                    }
+
                     equalButtonLogic();
                 }
 
@@ -784,6 +798,8 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
 
         if(isAnswer){
             if(type.equals(CalculatorUtilities.ALL_BUTTS[4])){answerView.setText(BLANK_STRING);}
+            openBrace = 0;
+            closeBrace = 0;
             isAnswer = false;
         }
         checkBrackets(type);
