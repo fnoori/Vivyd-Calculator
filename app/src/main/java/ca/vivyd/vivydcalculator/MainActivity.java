@@ -16,6 +16,7 @@ import android.text.InputType;
 import android.transition.Fade;
 import android.transition.Slide;
 import android.transition.TransitionManager;
+import android.util.Log;
 import android.view.Display;
 import android.view.View;
 import android.widget.Button;
@@ -108,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
         final Button openBracketButton = (Button) findViewById(R.id.openBrace);
         final Button closeBracketButton = (Button) findViewById(R.id.closeBrace);
         final Button percentageButton = (Button) findViewById(R.id.prcntButton);
-        final Button degreeRadiaButton = (Button) findViewById(R.id.degRandButton);
+        final Button degRadButton = (Button) findViewById(R.id.degRandButton);
         /* END OF COMMON OPERATOR BUTTONS */
 
         final Button deleteButton = (Button) findViewById(R.id.delButton);
@@ -130,7 +131,7 @@ public class MainActivity extends AppCompatActivity {
 
         final CalculatorButtons calcButtons = new CalculatorButtons(context, answerView,
                 equationView, commonButtons, commonOperands, leftBraceCounter, rightBraceCounter,
-                degreeRadiaButton);
+                degRadButton);
 
         // For popupMenu
         if (getScreenOrientation() == Configuration.ORIENTATION_PORTRAIT) {
@@ -213,6 +214,16 @@ public class MainActivity extends AppCompatActivity {
             CalculatorButtons.closeBrace = prefs.getInt("closeBrace", 0);
             leftBraceCounter.setText(String.valueOf(CalculatorButtons.openBrace));
             rightBraceCounter.setText(String.valueOf(CalculatorButtons.closeBrace));
+            Log.i("TrigStateChange", "Checking..." + prefs.getString("deg_rad_state", CalculatorButtons.RADIAN));
+            if (prefs.getString("deg_rad_state", CalculatorButtons.RADIAN).equals(CalculatorButtons.RADIAN)){
+                CalculatorButtons.setRad(degRadButton);
+                Log.i("TrigStateChange", CalculatorButtons.RADIAN);
+            }
+            else if (prefs.getString("deg_rad_state", CalculatorButtons.RADIAN).equals(CalculatorButtons.DEGREE)){
+                CalculatorButtons.setDeg(degRadButton);
+                Log.i("TrigStateChange", CalculatorButtons.DEGREE);
+            }
+            CalculatorButtons.DEG_RAND_STATE = prefs.getString("deg_rand_state", CalculatorButtons.RADIAN);
         }
     }
 
@@ -240,6 +251,8 @@ public class MainActivity extends AppCompatActivity {
         editor.putInt("Theme", Themer.CURRENT_THEME);
         editor.putInt("openBrace", CalculatorButtons.openBrace);
         editor.putInt("closeBrace", CalculatorButtons.closeBrace);
+        editor.putString("deg_rad_state", CalculatorButtons.DEG_RAND_STATE);
+        Log.i("TrigStateChange", " into sharedprefs: " + CalculatorButtons.DEG_RAND_STATE);
         editor.apply();
     }
 

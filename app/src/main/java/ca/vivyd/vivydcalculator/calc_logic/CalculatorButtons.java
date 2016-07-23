@@ -50,15 +50,16 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
                                                         "e", "sqrt(", "|=", "^", "^2", "!", "^3", "^-1", "ᴇ"};
     private static final String BLANK_STRING = "";
     private static final String NULL_STRING = null;
-    private static final String DEGREE = "DEG";
-    private static final String RADIAN = "RAD";
+    public static final String DEGREE = "DEG";
+    public static final String RADIAN = "RAD";
+    public static String DEG_RAND_STATE = RADIAN;
 
     public enum ALL_BUTTONS {
         ADD, SUB, MUL, DIV, NUM, DOT, BRACKET_OPEN, BRACKET_CLOSE,
         SIN, COS, TAN, LOG, LN, PI, EULER, SQRT, POWER,
         FACT, SQR, NRT, PRCNT, CBRT, INVERSE, CSTM, EE, ANS, DEG_RAND, EQUAL, DEL, CLR
     }
-    private enum DEG_RAD {DEG, RAD}
+    public enum DEG_RAD {DEG, RAD}
 
     private Context context;
     private EditText answerView;
@@ -80,7 +81,7 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
     private String[] userDefValue1;
     private String[] userDefValue2;
     private String[] userDefValue3;
-    private DEG_RAD trigType;
+    public static DEG_RAD trigType = DEG_RAD.RAD;
     private int dotCounter;
     public static int openBrace;
     public static int closeBrace;
@@ -114,7 +115,10 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
         userDefValue2 = new String[2];
         userDefValue3 = new String[2];
         previousInput = STRING_PLACE_HOLDER;
-        trigType = DEG_RAD.RAD;
+        if (DEG_RAND_STATE.equals(RADIAN))
+            trigType = DEG_RAD.RAD;
+        else
+            trigType = DEG_RAD.DEG;
         dotCounter = 0;
         openBrace = 0;
         closeBrace = 0;
@@ -144,23 +148,32 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
         Toast.makeText(context, "Total time to init all compenents: " + totalTime, Toast.LENGTH_LONG).show();
     }
 
-    // AMAIR: Had to move the stuff from onClick to onTouch for animations to work. yolo.
     @Override
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.degRandButton:
                 if(trigType.equals(DEG_RAD.DEG)){
-                    trigType = DEG_RAD.RAD;
-                    degRandButton.setText(RADIAN);
+                    setRad(degRandButton);
                 }else{
-                    trigType = DEG_RAD.DEG;
-                    degRandButton.setText(DEGREE);
+                    setDeg(degRandButton);
                 }
                 break;
 
             default:
                 break;
         }
+    }
+
+    public static void setRad(Button degRandButton) {
+        trigType = DEG_RAD.RAD;
+        degRandButton.setText(RADIAN);
+        DEG_RAND_STATE = RADIAN;
+    }
+
+    public static void setDeg(Button degRandButton) {
+        trigType = DEG_RAD.DEG;
+        degRandButton.setText(DEGREE);
+        DEG_RAND_STATE = DEGREE;
     }
 
     public void countNumberOfBrackets(String equationView){
@@ -237,7 +250,6 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
 
     }
 
-    // AMAIR: Had to move the stuff from onClick to onTouch for animations to work.
     int startTran = 50;
     int endTran = 600; //300
     int fast_endTran = 150;
@@ -765,7 +777,13 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
     }
 
     public void changeTrigType(){
-        if(trigType.equals(DEG_RAD.RAD)){trigType = DEG_RAD.DEG;}
-        else if(trigType.equals(DEG_RAD.DEG)){trigType = DEG_RAD.RAD;}
+        if(trigType.equals(DEG_RAD.RAD)){
+            trigType = DEG_RAD.DEG;
+            DEG_RAND_STATE = DEGREE;
+        }
+        else if(trigType.equals(DEG_RAD.DEG)){
+            trigType = DEG_RAD.RAD;
+            DEG_RAND_STATE = RADIAN;
+        }
     }
 }

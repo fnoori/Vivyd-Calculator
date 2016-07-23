@@ -98,6 +98,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/wholeView"
+        android:splitMotionEvents="false"
         android:layout_weight="1">
 
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -107,6 +108,7 @@
             android:id="@+id/linearLayout"
             android:gravity="bottom|end"
             android:layout_weight="1"
+            android:splitMotionEvents="false"
             android:layout_marginRight="2dp">
 
             <LinearLayout
@@ -114,6 +116,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:splitMotionEvents="false"
                 android:layout_margin="0dp" >
 
                 <Button
@@ -172,6 +175,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:splitMotionEvents="false"
                 android:layout_marginBottom="1dp">
 
                 <Button
@@ -239,6 +243,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:splitMotionEvents="false"
                 android:layout_margin="0dp" >
 
                 <Button
@@ -307,6 +312,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:splitMotionEvents="false"
                 android:layout_margin="0dp" >
 
                 <Button
@@ -374,6 +380,7 @@
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:splitMotionEvents="false"
                 android:layout_weight="1">
                 <Button
                     android:layout_width="match_parent"
@@ -401,7 +408,7 @@
                     android:layout_weight="1"
                     android:background="@drawable/blue_numpad_transition"
                     android:textColor="@color/colorTextAccentLight"
-                    android:textSize="15dp"
+                    android:textSize="15sp"
                     android:layout_marginLeft="1dp"
                     android:layout_marginTop="1dp"
                     android:layout_marginRight="0dp"
@@ -444,6 +451,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:splitMotionEvents="false"
             android:id="@+id/fourByfour">
 
             <LinearLayout
@@ -451,13 +459,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:id="@+id/popSpace">
+                android:id="@+id/popSpace"
+                android:splitMotionEvents="false"
+                >
 
                 <LinearLayout
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="1">
+                    android:layout_weight="1"
+                    android:splitMotionEvents="false">
 
                     <FrameLayout
                         android:layout_width="match_parent"
@@ -592,7 +603,9 @@
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="1">
+                    android:layout_weight="1"
+                    android:splitMotionEvents="false"
+                    >
 
                     <Button
                         android:layout_width="match_parent"
@@ -635,6 +648,7 @@
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:splitMotionEvents="false"
                     android:layout_weight="1">
 
                     <Button
@@ -675,6 +689,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:splitMotionEvents="false"
                     android:id="@+id/scndRow">
 
                     <Button
@@ -719,6 +734,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:splitMotionEvents="false"
                     android:id="@+id/bottomRow"
                     >
 
