@@ -704,6 +704,9 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
     }
 
     public void clearButtonLogic(){
+        isEqnViewERR = equationView.getText().toString().equals(ILLEGAL_ARGUMENT_MSG) || equationView.getText().toString().equals(EMPTY_STACK_MSG)
+                || equationView.getText().toString().equals(ARITH_MSG);
+
         if(answerView.getText().length() < 1 || isEqnViewERR){equationView.setText(BLANK_STRING);}
 
         answerView.setText(BLANK_STRING);
