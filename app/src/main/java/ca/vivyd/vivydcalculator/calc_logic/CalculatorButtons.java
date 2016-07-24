@@ -72,6 +72,10 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
     private static final String NULL_STRING = null;
     public static final String DEGREE = "DEG";
     public static final String RADIAN = "RAD";
+    private static final String EMPTY_STACK_MSG =  "ERROR";
+    private static final String ILLEGAL_ARGUMENT_MSG = "Incorrect Parameter";
+    private static final String ARITH_MSG = "Can't divide by 0";
+
     public static String DEG_RAND_STATE;
     private static String ERROR_MSG = "ERROR";
 
@@ -113,6 +117,7 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
     public static int closeBracket;
     private boolean isAnswer;
     private boolean isError;
+    private boolean isEqnViewERR = false;
     private HistoryData historyData;
     private CustomOperators customOperators;
     private static CalculatorUtilities calculatorUtilities;
@@ -656,6 +661,12 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
 
     public void deleteButtonLogic(){
         if(answerView.getText().length() > 0){
+
+            if (answerView.getText().length() == 1 && isEqnViewERR){
+                equationView.setText("");
+                isEqnViewERR = false;
+            }
+
             int indexFrom = answerView.getSelectionStart()-1;
             int indexTo = answerView.getSelectionStart();
 
@@ -693,7 +704,7 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
     }
 
     public void clearButtonLogic(){
-        if(answerView.getText().length() < 1){equationView.setText(BLANK_STRING);}
+        if(answerView.getText().length() < 1 || isEqnViewERR){equationView.setText(BLANK_STRING);}
 
         answerView.setText(BLANK_STRING);
         expressionEvalString = BLANK_STRING;
@@ -773,25 +784,28 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
                 }
 
             }catch(IllegalArgumentException e){
-                errorAnim("Incorrect Parameter");
+                errorAnim(ILLEGAL_ARGUMENT_MSG);
                 e.printStackTrace();
             }catch (EmptyStackException e){
-                errorAnim("ERROR");
+                errorAnim(EMPTY_STACK_MSG);
                 e.printStackTrace();
             }catch (ArithmeticException e){
-                errorAnim("Can't divide by 0");
+                errorAnim(ARITH_MSG);
                 e.printStackTrace();
             }
         }
     }
 
     public void errorAnim(String errorMsg) {
-        int durationERR = 600;
-        final int durationRel = 300;
-        int startColor = Themer.colorArray.get(Themer.COLOR_ACCENT);
+        int durationERR = 750;
+        final int durationRel = 600;
+        final int startColor = Themer.colorArray.get(Themer.COLOR_ACCENT);
         final int endColor = Themer.colorArray.get(Themer.COLOR_COMP);
         final int colorText = Themer.colorArray.get(Themer.COLOR_TEXT_SCREEN);
         final String currEqn = equationView.getText().toString();
+
+        isEqnViewERR = currEqn.equals(ILLEGAL_ARGUMENT_MSG) || currEqn.equals(EMPTY_STACK_MSG)
+                || currEqn.equals(ARITH_MSG) || currEqn.equals("");
 
         // Change Background color
         ValueAnimator colorAnim = ValueAnimator.ofObject(new ArgbEvaluator(), startColor, endColor);
@@ -809,7 +823,7 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
         colorAnim.start();
 
         // change eqnView error alert, reverse only if eqnView was not empty
-        ValueAnimator textAnim = ValueAnimator.ofObject(new ArgbEvaluator(), Color.TRANSPARENT, colorText);
+        ValueAnimator textAnim = ValueAnimator.ofObject(new ArgbEvaluator(), startColor, colorText);
         textAnim.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
@@ -818,7 +832,7 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
         });
         textAnim.setDuration(durationERR);
         textAnim.setInterpolator(new DecelerateInterpolator());
-        if (!currEqn.equals("")) {
+        if (!currEqn.equals("") && !isEqnViewERR) {
             textAnim.setRepeatMode(ValueAnimator.REVERSE);
             textAnim.setRepeatCount(1);
         }
@@ -829,18 +843,18 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                if (!currEqn.equals("")){
-                    equationView.setTextColor(endColor);
+                if (!currEqn.equals("") && !isEqnViewERR){
+                    equationView.setTextColor(Color.TRANSPARENT);
                     equationView.setText(currEqn);
                 }
             }
         }, 2*durationERR);
 
-        if (!currEqn.equals("")) {
+        if (!currEqn.equals("") && !isEqnViewERR) {
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    ValueAnimator textRelease = ValueAnimator.ofObject(new ArgbEvaluator(), endColor, colorText);
+                    ValueAnimator textRelease = ValueAnimator.ofObject(new ArgbEvaluator(), startColor, colorText);
                     textRelease.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                         @Override
                         public void onAnimationUpdate(ValueAnimator animation) {
@@ -848,10 +862,15 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
                         }
                     });
                     textRelease.setDuration(durationRel);
+                    textRelease.setInterpolator(new LinearInterpolator());
                     textRelease.start();
                 }
             }, durationERR * 2);
         }
+
+        isEqnViewERR = currEqn.equals(ILLEGAL_ARGUMENT_MSG) || currEqn.equals(EMPTY_STACK_MSG)
+                || currEqn.equals(ARITH_MSG) || currEqn.equals("");
+
         //isError = true;
         //resetBrace();
     }
