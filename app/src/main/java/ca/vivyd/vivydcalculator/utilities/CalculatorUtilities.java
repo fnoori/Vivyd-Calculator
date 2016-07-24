@@ -52,7 +52,9 @@ public class CalculatorUtilities {
                 .replace("*", "×").replace("/", "÷")
                 .replace("-", "−").replace("sqrt(", "√(")
                 .replace("%(×1)", "%").replace("log(", "ln(")
-                .replace("log10(", "log(").replace("§", "ᴇ");
+                .replace("log10(", "log(").replace("§", "ᴇ")
+                .replace("cosd(", "cos(").replace("sind(", "sin(")
+                .replace("tand(", "tan(");
     }
 
     public int determineCursorLocation(String type, int cursorLocation,
@@ -100,11 +102,6 @@ public class CalculatorUtilities {
     }
 
     public String getPreviousInput(String incoming){
-        if(incoming != null){
-            Log.d("INCOMING", incoming);
-        }else{
-            Log.d("INCOMING", "NULL");
-        }
         String toReturn;
         if(incoming != null && incoming.length() > 0){
             toReturn = String.valueOf(incoming.charAt(incoming.length()-1));
@@ -132,55 +129,16 @@ public class CalculatorUtilities {
 
     public boolean checkIfMoreOperandIsPossible(String prevInput, String currentInputType, String prevInputType,
                                                 boolean isExceptionToRule) {
-
-        if(prevInputType != null){Log.d("PREV_INPUT", prevInputType);}
-        Log.d("CURR_INPUT", currentInputType);
-
         return (prevInputType != null) && !((prevInputType.equals(ALL_BUTTS[0]) ||
-
                 prevInputType.equals(ALL_BUTTS[3]) ||
-
                 prevInputType.equals(ALL_BUTTS[2]) ||
-
-                //prevInput.equals("×") || prevInput.equals("÷") ||
-
-                prevInputType.equals(ALL_BUTTS[20]))
-                &&
-                currentInputType.equals(ALL_BUTTS[1]))
-                &&
+                prevInputType.equals(ALL_BUTTS[20]))&&
+                currentInputType.equals(ALL_BUTTS[1]))&&
                 (prevInputType.equals(ALL_BUTTS[0]) ||
-
                 prevInputType.equals(ALL_BUTTS[3]) ||
-
                 prevInputType.equals(ALL_BUTTS[2]) ||
-
-                //prevInput.equals("×") || prevInput.equals("÷") ||
-
                 prevInputType.equals(ALL_BUTTS[20])||
-
-                prevInputType.equals(ALL_BUTTS[1]) /*|| prevInput.equals("−")*/)
-                &&
+                prevInputType.equals(ALL_BUTTS[1]))&&
                 !isExceptionToRule;
-        /*
-        return prevInputEnum != null && !(prevInputEnum.equals(CalculatorButtons.ALL_BUTTONS.ADD) ||
-                prevInputEnum.equals(CalculatorButtons.ALL_BUTTONS.DIV) ||
-                prevInputEnum.equals(CalculatorButtons.ALL_BUTTONS.MUL) ||
-                prevInputEnum.equals(CalculatorButtons.ALL_BUTTONS.PRCNT)
-                && (currentInput != null && (currentInput.equals(CalculatorButtons.ALL_BUTTONS.SUB))))
-                && (prevInputEnum.equals(CalculatorButtons.ALL_BUTTONS.ADD) ||
-                prevInputEnum.equals(CalculatorButtons.ALL_BUTTONS.PRCNT) ||
-                prevInputEnum.equals(CalculatorButtons.ALL_BUTTONS.SUB)) && !isExceptionToRule;
-
-
-                        return !((prevInput.equals("+") ||
-                        prevInput.equals("/") || prevInput.equals("*") ||
-                        prevInput.equals("×") || prevInput.equals("÷") ||
-                        prevInput.equals("%(*1)"))
-                        && currentInput.equals(CalculatorButtons.ALL_BUTTONS.SUB))
-                        && (prevInput.equals("+") ||
-                        prevInput.equals("/") || prevInput.equals("*") ||
-                        prevInput.equals("×") || prevInput.equals("÷") || prevInput.equals("%(*1)")
-                        || prevInput.equals("-") || prevInput.equals("−")) && !isExceptionToRule;
-         */
     }
 }

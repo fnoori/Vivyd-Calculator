@@ -196,9 +196,9 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
         switch (v.getId()){
             case R.id.degRandButton:
                 if(trigType.equals(CalculatorUtilities.DEG_RAD[1])){
-                    setRad(degRandButton);
-                }else{
                     setDeg(degRandButton);
+                }else{
+                    setRad(degRandButton);
                 }
                 break;
 
@@ -252,8 +252,8 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
                     answerView.setText(BLANK_STRING);
                     answerView.setText(equationView.getText().toString());
                     answerView.setSelection(answerView.getText().length());
-                    openBracket = 0;
-                    closeBracket = 0;
+                    //openBracket = 0;
+                    //closeBracket = 0;
 
                     expressionToEvaluate = calculatorUtilities.replaceForCalculations(answerView.getText().toString());
                     isAnswer = false;
@@ -724,8 +724,12 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
 
 
     public void equalButtonLogic(){
+        Log.d("EQUATION", expressionToEvaluate);
+
         if(answerView.getText().length() > 0){
             try{
+                Log.d("OPEN_BRACKET_BEF", openBracket+"");
+                Log.d("CLOSE_BRACKET_BEF", closeBracket+"");
                 if(calculatorUtilities.isBracketCorrect(openBracket, closeBracket)){
                     String forEquationView = calculatorUtilities.repalaceForEquViewDisplay(expressionToEvaluate);
 
@@ -770,6 +774,10 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
                             closeBracket, rightBracketCounter, leftBracketCounter, previousInput);
                     isAnswer = true;
                     sharedPrefsLogic.generalPurposeDataInput("ANS", solution);
+
+                    Log.d("OPEN_BRACKET", openBracket+"");
+                    Log.d("CLOSE_BRACKET", closeBracket+"");
+
                 }else{
                     if(closeBracket > openBracket){
                         do{
@@ -782,7 +790,8 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
                             expressionToEvaluate = expressionToEvaluate + ")";
                         }while(closeBracket < openBracket);
                     }
-
+                    Log.d("OPEN_BRACKET", openBracket+"");
+                    Log.d("CLOSE_BRACKET", closeBracket+"");
                     equalButtonLogic();
                 }
 
@@ -883,7 +892,16 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
         int cursorLocation = 0;
 
         if(isAnswer || isError){
-            if(type.equals(CalculatorUtilities.ALL_BUTTS[4])){answerView.setText(BLANK_STRING);}
+
+            if(type.equals(CalculatorUtilities.ALL_BUTTS[4]) ||
+                    (!type.equals(CalculatorUtilities.ALL_BUTTS[0]) ||
+                            !type.equals(CalculatorUtilities.ALL_BUTTS[1]) ||
+                            !type.equals(CalculatorUtilities.ALL_BUTTS[2]) ||
+                            !type.equals(CalculatorUtilities.ALL_BUTTS[3]))
+
+
+
+                    ){answerView.setText(BLANK_STRING);}
             openBracket = 0;
             closeBracket = 0;
             isAnswer = false;
