@@ -31,7 +31,7 @@
 
     <!-- Chocolate theme -->
     <color name="CHOC_colorAccent">#bea49b</color>
-    <color name="CHOC_colorComp">#E65100</color>
+    <color name="CHOC_colorComp">#fcf8e8</color>
     <color name="CHOC_background">#2f1e1b</color>
     <color name="CHOC_numpad">#3E2723</color>
     <color name="CHOC_text">#FFFFFF</color>
@@ -40,7 +40,7 @@
 
     <!-- Sundae theme -->
     <color name="SUND_colorAccent">#fff7b2</color>
-    <color name="SUND_colorComp">#EF5350</color>
+    <color name="SUND_colorComp">#6df9d8</color>
     <color name="SUND_background">#34211e</color>
     <color name="SUND_numpad">#3E2723</color>
     <color name="SUND_text_screen">#cb5754</color>
