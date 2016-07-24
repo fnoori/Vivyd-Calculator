@@ -1,18 +1,28 @@
 package ca.vivyd.vivydcalculator.calc_logic;
 
 import android.animation.ArgbEvaluator;
+import android.animation.LayoutTransition;
 import android.animation.ValueAnimator;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.graphics.Rect;
 import android.graphics.drawable.TransitionDrawable;
+import android.os.Handler;
+import android.support.v4.view.animation.LinearOutSlowInInterpolator;
+import android.text.method.KeyListener;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.animation.AccelerateInterpolator;
+import android.view.animation.AnticipateOvershootInterpolator;
+import android.view.animation.DecelerateInterpolator;
+import android.view.animation.LinearInterpolator;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,6 +30,8 @@ import net.objecthunter.exp4j.Expression;
 import net.objecthunter.exp4j.ExpressionBuilder;
 import net.objecthunter.exp4j.function.Function;
 import net.objecthunter.exp4j.operator.Operator;
+
+import org.apache.commons.math3.geometry.euclidean.threed.Line;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
@@ -761,7 +773,6 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
                 }
 
             }catch(IllegalArgumentException | EmptyStackException | ArithmeticException e){
-                //Toast.makeText(context, "Error", Toast.LENGTH_LONG).show();
                 errorAnim();
                 e.printStackTrace();
                 setBraceColor();
@@ -770,10 +781,12 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
     }
 
     public void errorAnim() {
+        int durationERR = 600;
+        final int durationRel = 300;
         int startColor = Themer.colorArray.get(Themer.COLOR_ACCENT);
-        int endColor = Themer.colorArray.get(Themer.COLOR_BACKGROUND);
+        final int endColor = Themer.colorArray.get(Themer.COLOR_COMP);
+        final int colorText = Themer.colorArray.get(Themer.COLOR_TEXT_SCREEN);
         ValueAnimator colorAnim = ValueAnimator.ofObject(new ArgbEvaluator(), startColor, endColor);
-        colorAnim.setDuration(1000);
         colorAnim.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
@@ -781,13 +794,52 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
                 equationView.setBackgroundColor((int) animation.getAnimatedValue());
             }
         });
+        colorAnim.setDuration(durationERR);
+        colorAnim.setInterpolator(new DecelerateInterpolator());
         colorAnim.setRepeatMode(ValueAnimator.REVERSE);
         colorAnim.setRepeatCount(1);
         colorAnim.start();
 
+        ValueAnimator textAnim = ValueAnimator.ofObject(new ArgbEvaluator(), Color.TRANSPARENT, colorText);
+        textAnim.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator animation) {
+                answerView.setTextColor((int) animation.getAnimatedValue());
+            }
+        });
+        textAnim.setDuration(durationERR);
+        textAnim.setInterpolator(new DecelerateInterpolator());
+        textAnim.setRepeatMode(ValueAnimator.REVERSE);
+        textAnim.setRepeatCount(1);
+        textAnim.start();
+
+        final String currEqn = answerView.getText().toString();
         answerView.setText(ERROR_MSG);
-        isError = true;
-        resetBrace();
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                answerView.setTextColor(endColor);
+                answerView.setText(currEqn);
+            }
+        }, 2*durationERR);
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                ValueAnimator textRelease = ValueAnimator.ofObject(new ArgbEvaluator(), endColor, colorText);
+                textRelease.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                    @Override
+                    public void onAnimationUpdate(ValueAnimator animation) {
+                        answerView.setTextColor((int) animation.getAnimatedValue());
+                    }
+                });
+                textRelease.setDuration(durationRel);
+                textRelease.start();
+            }
+        }, durationERR*2);
+
+        //isError = true;
+        //resetBrace();
     }
 
     public void addToExpressionToBeEvaluated(String valueToAppend, String type, boolean isExceptionToRule){
@@ -829,7 +881,7 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
         }
     }
 
-    public void setBraceColor() {
+    public void  setBraceColor() {
         if (!leftBracketCounter.getText().equals(rightBracketCounter.getText())) {
             leftBracketCounter.setTextColor(Themer.colorArray.get(Themer.COLOR_COMP));
             rightBracketCounter.setTextColor(Themer.colorArray.get(Themer.COLOR_COMP));

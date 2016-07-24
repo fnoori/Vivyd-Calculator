@@ -41,7 +41,6 @@ public class MainActivity extends AppCompatActivity {
     public static String CONTACT_EMAIL = "solutions.teamvivyd@gmail.com";
 
     private Context context = this;
-    private EditText equationView;
     private EditText answerView;
     private TextView leftBraceCounter;
     private TextView rightBraceCounter;
@@ -97,7 +96,8 @@ public class MainActivity extends AppCompatActivity {
         answerView.setCursorVisible(true);
         answerView.setSingleLine();
 
-        equationView = (EditText) findViewById(R.id.eqnView);
+        EditText equationView = (EditText) findViewById(R.id.eqnView);
+        assert equationView != null;
         disableSoftKeyboard(equationView);
         equationView.setFocusable(false);
         equationView.setSingleLine();

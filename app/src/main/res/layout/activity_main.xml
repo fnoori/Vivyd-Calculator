@@ -48,20 +48,19 @@
         </LinearLayout>
 
         <LinearLayout
-            android:orientation="horizontal"
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="65dp">
+            android:layout_height="wrap_content">
 
             <EditText
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_height="65dp"
                 android:id="@+id/eqnView"
                 android:cursorVisible="false"
                 android:isScrollContainer="true"
                 android:textSize="25sp"
                 android:textColor="#EF5350"
                 android:paddingTop="20dp"
-                android:layout_weight="1"
                 android:background="@color/colorTextAccentLight"
                 android:gravity="end"
                 android:paddingStart="25dp"
@@ -71,16 +70,9 @@
                 android:fadeScrollbars="true"
                 />
 
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="97dp">
-
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="97dp">
 
                 <EditText
                     android:layout_width="match_parent"
