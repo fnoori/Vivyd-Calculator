@@ -772,20 +772,28 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
                     equalButtonLogic();
                 }
 
-            }catch(IllegalArgumentException | EmptyStackException | ArithmeticException e){
-                errorAnim();
+            }catch(IllegalArgumentException e){
+                errorAnim("Incorrect Parameter");
                 e.printStackTrace();
-                setBraceColor();
+            }catch (EmptyStackException e){
+                errorAnim("ERROR");
+                e.printStackTrace();
+            }catch (ArithmeticException e){
+                errorAnim("Can't divide by 0");
+                e.printStackTrace();
             }
         }
     }
 
-    public void errorAnim() {
+    public void errorAnim(String errorMsg) {
         int durationERR = 600;
         final int durationRel = 300;
         int startColor = Themer.colorArray.get(Themer.COLOR_ACCENT);
         final int endColor = Themer.colorArray.get(Themer.COLOR_COMP);
         final int colorText = Themer.colorArray.get(Themer.COLOR_TEXT_SCREEN);
+        final String currEqn = equationView.getText().toString();
+
+        // Change Background color
         ValueAnimator colorAnim = ValueAnimator.ofObject(new ArgbEvaluator(), startColor, endColor);
         colorAnim.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
@@ -800,44 +808,50 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
         colorAnim.setRepeatCount(1);
         colorAnim.start();
 
+        // change eqnView error alert, reverse only if eqnView was not empty
         ValueAnimator textAnim = ValueAnimator.ofObject(new ArgbEvaluator(), Color.TRANSPARENT, colorText);
         textAnim.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
-                answerView.setTextColor((int) animation.getAnimatedValue());
+                equationView.setTextColor((int) animation.getAnimatedValue());
             }
         });
         textAnim.setDuration(durationERR);
         textAnim.setInterpolator(new DecelerateInterpolator());
-        textAnim.setRepeatMode(ValueAnimator.REVERSE);
-        textAnim.setRepeatCount(1);
+        if (!currEqn.equals("")) {
+            textAnim.setRepeatMode(ValueAnimator.REVERSE);
+            textAnim.setRepeatCount(1);
+        }
         textAnim.start();
 
-        final String currEqn = answerView.getText().toString();
-        answerView.setText(ERROR_MSG);
+        equationView.setText(errorMsg);
         final Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                answerView.setTextColor(endColor);
-                answerView.setText(currEqn);
+                if (!currEqn.equals("")){
+                    equationView.setTextColor(endColor);
+                    equationView.setText(currEqn);
+                }
             }
         }, 2*durationERR);
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                ValueAnimator textRelease = ValueAnimator.ofObject(new ArgbEvaluator(), endColor, colorText);
-                textRelease.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                    @Override
-                    public void onAnimationUpdate(ValueAnimator animation) {
-                        answerView.setTextColor((int) animation.getAnimatedValue());
-                    }
-                });
-                textRelease.setDuration(durationRel);
-                textRelease.start();
-            }
-        }, durationERR*2);
 
+        if (!currEqn.equals("")) {
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    ValueAnimator textRelease = ValueAnimator.ofObject(new ArgbEvaluator(), endColor, colorText);
+                    textRelease.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                        @Override
+                        public void onAnimationUpdate(ValueAnimator animation) {
+                            equationView.setTextColor((int) animation.getAnimatedValue());
+                        }
+                    });
+                    textRelease.setDuration(durationRel);
+                    textRelease.start();
+                }
+            }, durationERR * 2);
+        }
         //isError = true;
         //resetBrace();
     }
