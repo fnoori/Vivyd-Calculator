@@ -114,6 +114,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:baselineAligned="false"
+        android:splitMotionEvents="false"
         android:id="@+id/fourByfour">
 
         <LinearLayout
@@ -258,12 +259,15 @@
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:splitMotionEvents="false"
                 android:id="@+id/num_area">
                 <TableLayout
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:measureWithLargestChild="false"
-                    android:stretchColumns="*">
+                    android:stretchColumns="*"
+                    android:splitMotionEvents="false"
+                    >
                     <TableRow
                         android:orientation="horizontal"
                         android:layout_width="wrap_content"
@@ -291,6 +295,7 @@
                             android:textSize="27sp"
                             android:textColor="@color/colorTextNumpad"
                             android:layout_marginLeft="1dp"
+                            android:layout_marginStart="1dp"
                             android:layout_marginBottom="1dp"
                             android:stateListAnimator="@null" />
 
@@ -303,9 +308,11 @@
                             android:textSize="27sp"
                             android:textColor="@color/colorTextNumpad"
                             android:layout_marginLeft="1dp"
+                            android:layout_marginStart="1dp"
                             android:layout_marginBottom="1dp"
                             android:backgroundTintMode="src_over"
                             android:layout_marginRight="0dp"
+                            android:layout_marginEnd="0dp"
                             android:stateListAnimator="@null" />
                     </TableRow>
 
