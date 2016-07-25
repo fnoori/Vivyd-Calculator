@@ -63,7 +63,6 @@ public class MainActivity extends AppCompatActivity {
 
         startTime = (int) System.currentTimeMillis();
 
-
         AdView mAdView = (AdView) findViewById(R.id.adView);
         assert mAdView != null;
         /**

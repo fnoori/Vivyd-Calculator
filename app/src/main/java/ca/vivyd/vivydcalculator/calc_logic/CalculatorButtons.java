@@ -892,15 +892,11 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
         int cursorLocation = 0;
 
         if(isAnswer || isError){
-
             if(type.equals(CalculatorUtilities.ALL_BUTTS[4]) ||
                     (!type.equals(CalculatorUtilities.ALL_BUTTS[0]) ||
                             !type.equals(CalculatorUtilities.ALL_BUTTS[1]) ||
                             !type.equals(CalculatorUtilities.ALL_BUTTS[2]) ||
                             !type.equals(CalculatorUtilities.ALL_BUTTS[3]))
-
-
-
                     ){answerView.setText(BLANK_STRING);}
             openBracket = 0;
             closeBracket = 0;
