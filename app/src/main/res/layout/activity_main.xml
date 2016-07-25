@@ -4,473 +4,131 @@
     xmlns:ads="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal"
-    android:id="@+id/backgroundView"
+    android:orientation="vertical"
+    android:id="@+id/wholeView"
     tools:context=".MainActivity"
     android:background="@color/colorPopup">
 
     <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/wholeView">
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="3dp"
+        android:layout_marginTop="2dp">
 
-        <LinearLayout
-            android:orientation="horizontal"
+        <com.google.android.gms.ads.AdView
+            android:id="@+id/adView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="3dp"
-            android:layout_marginTop="2dp">
+            ads:adSize="SMART_BANNER"
+            ads:adUnitId="@string/banner_ad_unit_id">
+        </com.google.android.gms.ads.AdView>
 
-            <com.google.android.gms.ads.AdView
-                android:id="@+id/adView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                ads:adSize="SMART_BANNER"
-                ads:adUnitId="@string/banner_ad_unit_id">
-            </com.google.android.gms.ads.AdView>
+        <ImageButton
+            android:layout_width="20dp"
+            android:textAllCaps="false"
+            android:layout_height="match_parent"
+            android:text="i"
+            android:id="@+id/inspireButton"
+            android:textColor="@color/colorTextNumpad"
+            android:theme="@style/AppTheme"
+            android:background="@android:color/holo_red_light"
+            android:src="@android:drawable/ic_dialog_email"
+            android:scaleType="centerInside"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:layout_marginRight="2dp"
+            android:layout_marginEnd="2dp"
+            android:contentDescription="contact button" />
 
-            <ImageButton
-                android:layout_width="20dp"
-                android:textAllCaps="false"
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:id="@+id/eqnView"
+            android:cursorVisible="false"
+            android:isScrollContainer="true"
+            android:textSize="25sp"
+            android:textColor="#EF5350"
+            android:paddingTop="20dp"
+            android:background="@color/colorTextAccentLight"
+            android:gravity="end"
+            android:paddingStart="25dp"
+            android:paddingLeft="25dp"
+            android:paddingRight="35dp"
+            android:paddingEnd="25dp"
+            android:fadeScrollbars="true"
+            />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="97dp">
+
+            <EditText
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="i"
-                android:id="@+id/inspireButton"
-                android:textColor="@color/colorTextNumpad"
-                android:theme="@style/AppTheme"
-                android:background="@android:color/holo_red_light"
-                android:layout_marginRight="2dp"
-                android:src="@android:drawable/ic_dialog_email"
-                android:scaleType="centerInside"
-                android:paddingLeft="5dp"
-                android:paddingRight="5dp" />
+                android:id="@+id/ansView"
+                android:textIsSelectable="true"
+                android:inputType="none"
+                android:cursorVisible="true"
+                android:textSize="45sp"
+                android:background="@color/colorTextAccentLight"
+                android:textColor="#EF5350"
+                android:paddingStart="10dp"
+                android:paddingLeft="10dp"
+                android:paddingEnd="25dp"
+                android:paddingRight="25dp"
+                android:gravity="top|end"
+                android:layout_alignParentBottom="true"
+                android:textCursorDrawable="@null"
+                android:autoText="false"
+                />
 
-        </LinearLayout>
+            <Button
+                android:layout_width="70dp"
+                android:layout_height="match_parent"
+                android:text="RAD"
+                android:id="@+id/degRandButton"
+                android:textColor="@color/colorNumpad"
+                android:elegantTextHeight="false"
+                android:stateListAnimator="@null"
+                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="60dp"
+                android:layout_alignParentTop="true"
+                android:background="#00ffffff" />
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:baselineAligned="false"
+        android:id="@+id/fourByfour">
 
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="65dp"
-                android:id="@+id/eqnView"
-                android:cursorVisible="false"
-                android:isScrollContainer="true"
-                android:textSize="25sp"
-                android:textColor="#EF5350"
-                android:paddingTop="20dp"
-                android:background="@color/colorTextAccentLight"
-                android:gravity="end"
-                android:paddingStart="25dp"
-                android:paddingLeft="25dp"
-                android:paddingRight="35dp"
-                android:paddingEnd="25dp"
-                android:fadeScrollbars="true"
-                />
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="97dp">
-
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:id="@+id/ansView"
-                    android:textIsSelectable="true"
-                    android:inputType="none"
-                    android:cursorVisible="true"
-                    android:textSize="45sp"
-                    android:background="@color/colorTextAccentLight"
-                    android:textColor="#EF5350"
-                    android:paddingStart="10dp"
-                    android:paddingLeft="10dp"
-                    android:paddingEnd="25dp"
-                    android:paddingRight="25dp"
-                    android:gravity="top|end"
-                    android:layout_alignParentBottom="true"
-                    android:textCursorDrawable="@null"
-                    android:autoText="false"
-                    />
-
-                <Button
-                    android:layout_width="70dp"
-                    android:layout_height="match_parent"
-                    android:text="RAD"
-                    android:id="@+id/degRandButton"
-                    android:textColor="@color/colorNumpad"
-                    android:elegantTextHeight="false"
-                    android:stateListAnimator="@null"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginStart="10dp"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
-                    android:layout_marginTop="60dp"
-                    android:layout_alignParentTop="true"
-                    android:background="#00ffffff" />
-            </RelativeLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:baselineAligned="false"
-            android:id="@+id/fourByfour">
+            android:id="@+id/popSpace"
+            android:splitMotionEvents="false"
+            >
 
             <LinearLayout
-                android:orientation="vertical"
+                android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:id="@+id/popSpace"
-                android:splitMotionEvents="false"
-                >
-
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="60dp"
-                    android:splitMotionEvents="false"
-                    >
-
-                    <FrameLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1">
-
-                        <Button
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:text="("
-                            android:id="@+id/openBrace"
-                            android:background="@drawable/blue_numpad_transition_noshad"
-                            android:textSize="15dp"
-                            android:textColor="@color/colorTextAccent"
-                            android:stateListAnimator="@null"
-                            android:shadowColor="#239e9e9e"
-                            android:shadowDx="-3"
-                            android:shadowDy="1"
-                            android:shadowRadius="5" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:text="0"
-                            android:id="@+id/numLeftBrace"
-                            android:paddingTop="10dp"
-                            android:textColor="@color/colorMain"
-                            android:layout_gravity="right"
-                            android:layout_marginRight="10dp" />
-
-                    </FrameLayout>
-
-                    <FrameLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1">
-
-                        <Button
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:text=")"
-                            android:id="@+id/closeBrace"
-                            android:layout_weight="1"
-                            android:background="@drawable/blue_numpad_transition_noshad"
-                            android:textSize="15dp"
-                            android:textColor="@color/colorTextAccent"
-                            android:stateListAnimator="@null"
-                            android:shadowColor="#239e9e9e"
-                            android:shadowDx="-3"
-                            android:shadowDy="1"
-                            android:shadowRadius="5" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:text="0"
-                            android:id="@+id/numRightBrace"
-                            android:paddingTop="10dp"
-                            android:textColor="@color/colorMain"
-                            android:layout_marginRight="12dp"
-                            android:layout_gravity="right" />
-                    </FrameLayout>
-
-                    <Button
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:text="%"
-                        android:id="@+id/prcntButton"
-                        android:layout_weight="1"
-                        android:background="@drawable/blue_numpad_transition_noshad"
-                        android:textSize="20sp"
-                        android:textColor="@color/colorTextAccent"
-                        android:stateListAnimator="@null"
-                        android:shadowColor="#239e9e9e"
-                        android:shadowDx="-3"
-                        android:shadowDy="1"
-                        android:shadowRadius="5"
-                        />
-
-                    <FrameLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1">
-
-                        <Button
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:id="@+id/delButton"
-                            android:layout_weight="1"
-                            android:background="@drawable/blue_numpad_transition_noshad"
-                            android:textColor="@color/colorTextAccent"
-                            android:stateListAnimator="@null"
-
-                            />
-
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:id="@+id/imageDel"
-                            android:src="@drawable/ic_backspace_24dp"
-                            android:layout_gravity="center"
-                            android:scaleType="centerInside" />
-                    </FrameLayout>
-
-                    <Button
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:text="C"
-                        android:id="@+id/clrButton"
-                        android:layout_weight="1"
-                        android:background="@drawable/blue_numpad_transition_noshad"
-                        android:textSize="17dp"
-                        android:textColor="@color/colorTextAccent"
-                        android:stateListAnimator="@null"
-                        android:shadowColor="#239e9e9e"
-                        android:shadowDx="-3"
-                        android:shadowDy="1"
-                        android:shadowRadius="5"
-                        />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:splitMotionEvents="false"
-                    >
-
-                    <Button
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:text="7"
-                        android:id="@+id/sevenButton"
-                        android:layout_weight="1"
-                        android:background="@drawable/blue_numpad_transition_top"
-                        android:textSize="27dp"
-                        android:textColor="@color/colorTextNumpad"
-                        android:layout_marginBottom="1dp"
-                        android:stateListAnimator="@null" />
-
-                    <Button
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:text="8"
-                        android:id="@+id/eightButton"
-                        android:layout_weight="1"
-                        android:background="@drawable/blue_numpad_transition_top"
-                        android:textSize="27dp"
-                        android:textColor="@color/colorTextNumpad"
-                        android:layout_marginLeft="1dp"
-                        android:layout_marginBottom="1dp"
-                        android:stateListAnimator="@null" />
-
-                    <Button
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:text="9"
-                        android:id="@+id/nineButton"
-                        android:layout_weight="1"
-                        android:background="@drawable/blue_numpad_transition_top"
-                        android:textSize="27dp"
-                        android:textColor="@color/colorTextNumpad"
-                        android:layout_marginLeft="1dp"
-                        android:layout_marginBottom="1dp"
-                        android:backgroundTintMode="src_over"
-                        android:layout_marginRight="0dp"
-                        android:stateListAnimator="@null" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:splitMotionEvents="false"
-                    >
-
-                    <Button
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:text="4"
-                        android:id="@+id/fourButton"
-                        android:layout_weight="1"
-                        android:background="@drawable/blue_numpad_transition"
-                        android:textSize="27dp"
-                        android:textColor="@color/colorTextNumpad"
-                        android:layout_marginBottom="1dp"
-                        android:stateListAnimator="@null" />
-
-                    <Button
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:text="5"
-                        android:id="@+id/fiveButton"
-                        android:layout_weight="1"
-                        android:background="@drawable/blue_numpad_transition"
-                        android:textSize="27dp"
-                        android:textColor="@color/colorTextNumpad"
-                        android:layout_marginLeft="1dp"
-                        android:layout_marginBottom="1dp"
-                        android:stateListAnimator="@null" />
-
-                    <Button
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:text="6"
-                        android:id="@+id/sixButton"
-                        android:layout_weight="1"
-                        android:background="@drawable/blue_numpad_transition"
-                        android:textSize="27dp"
-                        android:textColor="@color/colorTextNumpad"
-                        android:layout_marginLeft="1dp"
-                        android:layout_marginRight="0dp"
-                        android:layout_marginBottom="1dp"
-                        android:stateListAnimator="@null" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:id="@+id/scndRow"
-                    android:splitMotionEvents="false"
-                    >
-
-                    <Button
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:text="1"
-                        android:id="@+id/oneButton"
-                        android:layout_weight="1"
-                        android:background="@drawable/blue_numpad_transition"
-                        android:textSize="27dp"
-                        android:textColor="@color/colorTextNumpad"
-                        android:layout_marginBottom="1dp"
-                        android:stateListAnimator="@null" />
-
-                    <Button
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:text="2"
-                        android:id="@+id/twoButton"
-                        android:layout_weight="1"
-                        android:background="@drawable/blue_numpad_transition"
-                        android:textSize="27dp"
-                        android:textColor="@color/colorTextNumpad"
-                        android:layout_marginLeft="1dp"
-                        android:layout_marginBottom="1dp"
-                        android:stateListAnimator="@null" />
-
-                    <Button
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:text="3"
-                        android:id="@+id/threeButton"
-                        android:layout_weight="1"
-                        android:background="@drawable/blue_numpad_transition"
-                        android:textSize="27dp"
-                        android:textColor="@color/colorTextNumpad"
-                        android:layout_marginLeft="1dp"
-                        android:layout_marginRight="0dp"
-                        android:layout_marginBottom="1dp"
-                        android:stateListAnimator="@null" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:id="@+id/bottomRow"
-                    android:splitMotionEvents="false"
-                    >
-
-                    <FrameLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1">
-
-                        <Button
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:id="@+id/morButton"
-                            android:layout_weight="1"
-                            android:background="@drawable/blue_numpad_transition"
-                            android:textColor="@color/colorTextAccentLight"
-                            android:textSize="30dp"
-                            android:stateListAnimator="@null" />
-
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:id="@+id/imageMor"
-                            android:src="@drawable/ic_expand_less_black_24dp"
-                            android:tint="@color/BLUE_colorAccent"
-                            android:scaleType="centerCrop"
-                            android:layout_gravity="center"
-                            android:padding="33dp" />
-                    </FrameLayout>
-
-                    <Button
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:text="0"
-                        android:id="@+id/zeroButton"
-                        android:layout_weight="1"
-                        android:background="@drawable/blue_numpad_transition"
-                        android:textSize="27dp"
-                        android:textColor="@color/colorTextNumpad"
-                        android:layout_marginLeft="1dp"
-                        android:stateListAnimator="@null" />
-
-                    <Button
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:text="."
-                        android:id="@+id/dotButton"
-                        android:layout_weight="1"
-                        android:background="@drawable/blue_numpad_transition"
-                        android:textSize="27dp"
-                        android:textColor="@color/colorTextNumpad"
-                        android:layout_marginLeft="1dp"
-                        android:layout_marginRight="0dp"
-                        android:stateListAnimator="@null" />
-                </LinearLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="4.5"
+                android:layout_height="60dp"
                 android:splitMotionEvents="false"
                 >
 
@@ -482,89 +140,421 @@
                     <Button
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:id="@+id/menuButton"
-                        android:background="@drawable/basic_main_transition_top"
-                        android:textColor="@color/colorTextSecondary"
-                        android:textSize="30dp"
-                        android:layout_weight="1"
-                        android:stateListAnimator="@null" />
+                        android:text="("
+                        android:id="@+id/openBrace"
+                        android:background="@drawable/blue_numpad_transition_noshad"
+                        android:textSize="15sp"
+                        android:textColor="@color/colorTextAccent"
+                        android:stateListAnimator="@null"
+                        android:shadowColor="#239e9e9e"
+                        android:shadowDx="-3"
+                        android:shadowDy="1"
+                        android:shadowRadius="5" />
 
-                    <ImageView
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="0"
+                        android:id="@+id/numLeftBrace"
+                        android:paddingTop="10dp"
+                        android:textColor="@color/colorMain"
+                        android:layout_gravity="end"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginEnd="10dp" />
+
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
+                    <Button
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:id="@+id/imageMenu"
-                        android:src="@drawable/ic_color_lens_24dp"
-                        android:layout_gravity="center"
-                        android:scaleType="centerInside" />
+                        android:text=")"
+                        android:id="@+id/closeBrace"
+                        android:background="@drawable/blue_numpad_transition_noshad"
+                        android:textSize="15sp"
+                        android:textColor="@color/colorTextAccent"
+                        android:stateListAnimator="@null"
+                        android:shadowColor="#239e9e9e"
+                        android:shadowDx="-3"
+                        android:shadowDy="1"
+                        android:shadowRadius="5" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="0"
+                        android:id="@+id/numRightBrace"
+                        android:paddingTop="10dp"
+                        android:textColor="@color/colorMain"
+                        android:layout_marginRight="12dp"
+                        android:layout_marginEnd="12dp"
+                        android:layout_gravity="end" />
                 </FrameLayout>
 
                 <Button
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="÷"
-                    android:id="@+id/divButton"
+                    android:text="%"
+                    android:id="@+id/prcntButton"
                     android:layout_weight="1"
-                    android:background="@drawable/basic_main_transition"
-                    android:textSize="27dp"
-                    android:textColor="@color/colorTextSecondary"
-                    android:typeface="serif"
-                    android:textStyle="bold"
-                    android:stateListAnimator="@null" />
-
-                <Button
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="×"
-                    android:id="@+id/multButton"
-                    android:layout_weight="1"
-                    android:background="@drawable/basic_main_transition"
-                    android:textSize="30dp"
-                    android:textColor="@color/colorTextSecondary"
-                    android:typeface="serif"
-                    android:textStyle="bold"
-                    android:stateListAnimator="@null" />
-
-                <Button
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="−"
-                    android:id="@+id/minusButton"
-                    android:layout_weight="1"
-                    android:background="@drawable/basic_main_transition"
-                    android:textSize="25dp"
-                    android:textColor="@color/colorTextSecondary"
-                    android:typeface="serif"
-                    android:textStyle="bold"
-                    android:stateListAnimator="@null" />
-
-                <Button
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="+"
-                    android:id="@+id/addButton"
-                    android:layout_weight="1"
-                    android:background="@drawable/basic_main_transition"
-                    android:textSize="30dp"
-                    android:textColor="@color/colorTextSecondary"
-                    android:typeface="serif"
-                    android:textStyle="bold"
-                    android:stateListAnimator="@null" />
-
-                <Button
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="="
-                    android:id="@+id/eqlButton"
-                    android:background="@drawable/basic_main_transition"
-                    android:textSize="27dp"
-                    android:textColor="@color/colorTextSecondary"
-                    android:typeface="serif"
-                    android:textStyle="bold"
-                    android:layout_weight="1"
+                    android:background="@drawable/blue_numpad_transition_noshad"
+                    android:textSize="20sp"
+                    android:textColor="@color/colorTextAccent"
                     android:stateListAnimator="@null"
-                    android:layout_marginBottom="2dp"
-                    android:layout_marginTop="1dp" />
+                    android:shadowColor="#239e9e9e"
+                    android:shadowDx="-3"
+                    android:shadowDy="1"
+                    android:shadowRadius="5"
+                    />
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
+                    <Button
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/delButton"
+                        android:background="@drawable/blue_numpad_transition_noshad"
+                        android:textColor="@color/colorTextAccent"
+                        android:stateListAnimator="@null"
+                        />
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/imageDel"
+                        android:src="@drawable/ic_backspace_24dp"
+                        android:layout_gravity="center"
+                        android:scaleType="centerInside"
+                        android:contentDescription="del_button" />
+
+                </FrameLayout>
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="C"
+                    android:id="@+id/clrButton"
+                    android:layout_weight="1"
+                    android:background="@drawable/blue_numpad_transition_noshad"
+                    android:textSize="17sp"
+                    android:textColor="@color/colorTextAccent"
+                    android:stateListAnimator="@null"
+                    android:shadowColor="#239e9e9e"
+                    android:shadowDx="-3"
+                    android:shadowDy="1"
+                    android:shadowRadius="5"
+                    />
+
             </LinearLayout>
+
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/num_area">
+                <TableLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:measureWithLargestChild="false"
+                    android:stretchColumns="*">
+                    <TableRow
+                        android:orientation="horizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:splitMotionEvents="false"
+                        android:layout_weight="1">
+
+                        <Button
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="7"
+                            android:id="@+id/sevenButton"
+                            android:background="@drawable/blue_numpad_transition_top"
+                            android:textSize="27sp"
+                            android:textColor="@color/colorTextNumpad"
+                            android:layout_marginBottom="1dp"
+                            android:stateListAnimator="@null" />
+
+                        <Button
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="8"
+                            android:id="@+id/eightButton"
+                            android:background="@drawable/blue_numpad_transition_top"
+                            android:textSize="27sp"
+                            android:textColor="@color/colorTextNumpad"
+                            android:layout_marginLeft="1dp"
+                            android:layout_marginBottom="1dp"
+                            android:stateListAnimator="@null" />
+
+                        <Button
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="9"
+                            android:id="@+id/nineButton"
+                            android:background="@drawable/blue_numpad_transition_top"
+                            android:textSize="27sp"
+                            android:textColor="@color/colorTextNumpad"
+                            android:layout_marginLeft="1dp"
+                            android:layout_marginBottom="1dp"
+                            android:backgroundTintMode="src_over"
+                            android:layout_marginRight="0dp"
+                            android:stateListAnimator="@null" />
+                    </TableRow>
+
+                    <TableRow
+                        android:orientation="horizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:splitMotionEvents="false"
+                        android:layout_weight="1">
+
+                        <Button
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="4"
+                            android:id="@+id/fourButton"
+                            android:background="@drawable/blue_numpad_transition"
+                            android:textSize="27sp"
+                            android:textColor="@color/colorTextNumpad"
+                            android:layout_marginBottom="1dp"
+                            android:stateListAnimator="@null" />
+
+                        <Button
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="5"
+                            android:id="@+id/fiveButton"
+                            android:background="@drawable/blue_numpad_transition"
+                            android:textSize="27sp"
+                            android:textColor="@color/colorTextNumpad"
+                            android:layout_marginLeft="1dp"
+                            android:layout_marginBottom="1dp"
+                            android:stateListAnimator="@null" />
+
+                        <Button
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="6"
+                            android:id="@+id/sixButton"
+                            android:background="@drawable/blue_numpad_transition"
+                            android:textSize="27sp"
+                            android:textColor="@color/colorTextNumpad"
+                            android:layout_marginLeft="1dp"
+                            android:layout_marginRight="0dp"
+                            android:layout_marginBottom="1dp"
+                            android:stateListAnimator="@null" />
+                    </TableRow>
+
+                    <TableRow
+                        android:orientation="horizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/scndRow"
+                        android:splitMotionEvents="false"
+                        android:layout_weight="1">
+
+                        <Button
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="1"
+                            android:id="@+id/oneButton"
+                            android:background="@drawable/blue_numpad_transition"
+                            android:textSize="27sp"
+                            android:textColor="@color/colorTextNumpad"
+                            android:layout_marginBottom="1dp"
+                            android:stateListAnimator="@null" />
+
+                        <Button
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="2"
+                            android:id="@+id/twoButton"
+                            android:background="@drawable/blue_numpad_transition"
+                            android:textSize="27sp"
+                            android:textColor="@color/colorTextNumpad"
+                            android:layout_marginLeft="1dp"
+                            android:layout_marginBottom="1dp"
+                            android:stateListAnimator="@null" />
+
+                        <Button
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="3"
+                            android:id="@+id/threeButton"
+                            android:background="@drawable/blue_numpad_transition"
+                            android:textSize="27sp"
+                            android:textColor="@color/colorTextNumpad"
+                            android:layout_marginLeft="1dp"
+                            android:layout_marginRight="0dp"
+                            android:layout_marginBottom="1dp"
+                            android:stateListAnimator="@null" />
+                    </TableRow>
+
+                    <TableRow
+                        android:orientation="horizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/bottomRow"
+                        android:splitMotionEvents="false"
+                        android:layout_weight="1">
+
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <Button
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:id="@+id/morButton"
+                                android:layout_weight="1"
+                                android:background="@drawable/blue_numpad_transition"
+                                android:textColor="@color/colorTextAccentLight"
+                                android:textSize="30dp"
+                                android:stateListAnimator="@null" />
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:id="@+id/imageMor"
+                                android:src="@drawable/ic_expand_less_black_24dp"
+                                android:tint="@color/BLUE_colorAccent"
+                                android:scaleType="centerInside" />
+                        </FrameLayout>
+
+                        <Button
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="0"
+                            android:id="@+id/zeroButton"
+                            android:background="@drawable/blue_numpad_transition"
+                            android:textSize="27sp"
+                            android:textColor="@color/colorTextNumpad"
+                            android:layout_marginLeft="1dp"
+                            android:stateListAnimator="@null" />
+
+                        <Button
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="."
+                            android:id="@+id/dotButton"
+                            android:background="@drawable/blue_numpad_transition"
+                            android:textSize="27sp"
+                            android:textColor="@color/colorTextNumpad"
+                            android:layout_marginLeft="1dp"
+                            android:layout_marginRight="0dp"
+                            android:stateListAnimator="@null" />
+                    </TableRow>
+                </TableLayout>
+            </FrameLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="4.5"
+            android:splitMotionEvents="false"
+            >
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/menuButton"
+                    android:background="@drawable/basic_main_transition_top"
+                    android:textColor="@color/colorTextSecondary"
+                    android:textSize="30dp"
+                    android:layout_weight="1"
+                    android:stateListAnimator="@null" />
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/imageMenu"
+                    android:src="@drawable/ic_color_lens_24dp"
+                    android:layout_gravity="center"
+                    android:scaleType="centerInside" />
+            </FrameLayout>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="÷"
+                android:id="@+id/divButton"
+                android:layout_weight="1"
+                android:background="@drawable/basic_main_transition"
+                android:textSize="27dp"
+                android:textColor="@color/colorTextSecondary"
+                android:typeface="serif"
+                android:textStyle="bold"
+                android:stateListAnimator="@null" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="×"
+                android:id="@+id/multButton"
+                android:layout_weight="1"
+                android:background="@drawable/basic_main_transition"
+                android:textSize="30dp"
+                android:textColor="@color/colorTextSecondary"
+                android:typeface="serif"
+                android:textStyle="bold"
+                android:stateListAnimator="@null" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="−"
+                android:id="@+id/minusButton"
+                android:layout_weight="1"
+                android:background="@drawable/basic_main_transition"
+                android:textSize="25dp"
+                android:textColor="@color/colorTextSecondary"
+                android:typeface="serif"
+                android:textStyle="bold"
+                android:stateListAnimator="@null" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="+"
+                android:id="@+id/addButton"
+                android:layout_weight="1"
+                android:background="@drawable/basic_main_transition"
+                android:textSize="30dp"
+                android:textColor="@color/colorTextSecondary"
+                android:typeface="serif"
+                android:textStyle="bold"
+                android:stateListAnimator="@null" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="="
+                android:id="@+id/eqlButton"
+                android:background="@drawable/basic_main_transition"
+                android:textSize="27dp"
+                android:textColor="@color/colorTextSecondary"
+                android:typeface="serif"
+                android:textStyle="bold"
+                android:layout_weight="1"
+                android:stateListAnimator="@null"
+                android:layout_marginBottom="2dp"
+                android:layout_marginTop="1dp" />
+
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

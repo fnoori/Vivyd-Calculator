@@ -19,9 +19,11 @@ import android.view.Display;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 
 import com.google.android.gms.ads.AdRequest;
@@ -281,25 +283,27 @@ public class MainActivity extends AppCompatActivity {
         moreButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final LinearLayout popSpace = (LinearLayout) findViewById(R.id.popSpace);
-                LinearLayout bottomRow = (LinearLayout) findViewById(R.id.bottomRow);
+                final FrameLayout numArea = (FrameLayout) findViewById(R.id.num_area);
+                assert numArea != null;
+
+                TableRow bottomRow = (TableRow) findViewById(R.id.bottomRow);
                 assert bottomRow != null;
                 int popHeight =  4*bottomRow.getHeight();
-                assert popSpace != null;
-                int popWidth = popSpace.getWidth();
+
                 final View popMenu = getLayoutInflater().inflate(R.layout.activity_popup, null);
                 popMenu.setMinimumHeight(popHeight);
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                     Slide mSlide = new Slide();
-                    mSlide.setDuration(200);
-                    TransitionManager.beginDelayedTransition(popSpace, mSlide);
+                    mSlide.setDuration(150);
+                    System.out.println("HOOHA " + popHeight);
+                    TransitionManager.beginDelayedTransition(numArea, mSlide);
                 }
                 else {
                     LayoutTransition transition = new LayoutTransition();
                     transition.setDuration(100);
-                    popSpace.setLayoutTransition(transition);
+                    numArea.setLayoutTransition(transition);
                 }
-                popSpace.addView(popMenu);
+                numArea.addView(popMenu);
 
                 ArrayList<Button> advancedOperands = setScienceButts();
                 themer.setSciButtsAnim(advancedOperands);
@@ -315,9 +319,9 @@ public class MainActivity extends AppCompatActivity {
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                             Slide mSlide = new Slide();
                             mSlide.setDuration(200);
-                            TransitionManager.beginDelayedTransition(popSpace, mSlide);
+                            TransitionManager.beginDelayedTransition(numArea, mSlide);
                         }
-                        popSpace.removeView(popMenu);
+                        numArea.removeView(popMenu);
                     }
                 });
             }
@@ -384,8 +388,8 @@ public class MainActivity extends AppCompatActivity {
         int colorBG = Themer.colorArray.get(Themer.COLOR_BACKGROUND);
 
 
-        LinearLayout backgroundView = (LinearLayout) findViewById(R.id.backgroundView);
-        assert backgroundView != null;
+        LinearLayout wholeView = (LinearLayout) findViewById(R.id.wholeView);
+        assert wholeView != null;
         TextView eqnView = (TextView) findViewById(R.id.eqnView);
         assert eqnView != null;
         EditText ansView = (EditText) findViewById(R.id.ansView);
@@ -401,7 +405,7 @@ public class MainActivity extends AppCompatActivity {
         assert numRightBrace != null;
 
 
-        backgroundView.setBackgroundColor(Themer.colorArray.get(Themer.COLOR_BACKGROUND));
+        wholeView.setBackgroundColor(Themer.colorArray.get(Themer.COLOR_BACKGROUND));
         eqnView.setBackgroundColor(colorAccent);
         eqnView.setTextColor(colorTextScreen);
         ansView.setBackgroundColor(colorAccent);

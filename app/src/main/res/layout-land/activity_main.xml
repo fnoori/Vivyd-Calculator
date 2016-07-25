@@ -120,23 +120,20 @@
         android:splitMotionEvents="false"
         android:layout_weight="1">
 
-        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            android:orientation="vertical"
+        <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_weight="1"
             android:id="@+id/linearLayout"
             android:gravity="bottom|end"
-            android:layout_weight="1"
             android:splitMotionEvents="false"
-            android:layout_marginRight="2dp">
+            android:layout_marginRight="1dp"
+            android:stretchColumns="*">
 
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:splitMotionEvents="false"
-                android:layout_margin="0dp" >
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
 
                 <Button
                     android:layout_width="match_parent"
@@ -187,15 +184,12 @@
                     android:textSize="13sp"
                     android:layout_marginBottom="0dp"
                     android:layout_marginLeft="1dp" />
-            </LinearLayout>
+            </TableRow>
 
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:splitMotionEvents="false"
-                android:layout_marginBottom="1dp">
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
 
                 <Button
                     android:layout_width="match_parent"
@@ -255,15 +249,12 @@
                     android:layout_marginLeft="1dp"
                     android:layout_marginTop="1dp"
                     android:layout_marginBottom="0dp" />
-            </LinearLayout>
+            </TableRow>
 
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:splitMotionEvents="false"
-                android:layout_margin="0dp" >
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
 
                 <Button
                     android:layout_width="match_parent"
@@ -276,22 +267,7 @@
                     android:textColor="@color/colorTextSecondary"
                     android:textSize="13sp"
                     android:layout_marginLeft="0dp"
-                    android:layout_marginTop="0dp"
-                    android:layout_marginRight="0dp"
-                    android:layout_marginBottom="0dp" />
-
-                <Button
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="√x"
-                    android:textAllCaps="false"
-                    android:id="@+id/sqrtButton"
-                    android:layout_weight="1"
-                    android:background="@drawable/blue_numpad_transition"
-                    android:textColor="@color/colorTextSecondary"
-                    android:textSize="13sp"
-                    android:layout_marginLeft="1dp"
-                    android:layout_marginTop="0dp"
+                    android:layout_marginTop="1dp"
                     android:layout_marginRight="0dp"
                     android:layout_marginBottom="0dp" />
 
@@ -306,7 +282,22 @@
                     android:textColor="@color/colorTextSecondary"
                     android:textSize="13sp"
                     android:layout_marginLeft="1dp"
-                    android:layout_marginTop="0dp"
+                    android:layout_marginTop="1dp"
+                    android:layout_marginRight="0dp"
+                    android:layout_marginBottom="0dp" />
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="√x"
+                    android:textAllCaps="false"
+                    android:id="@+id/sqrtButton"
+                    android:layout_weight="1"
+                    android:background="@drawable/blue_numpad_transition"
+                    android:textColor="@color/colorTextSecondary"
+                    android:textSize="13sp"
+                    android:layout_marginLeft="1dp"
+                    android:layout_marginTop="1dp"
                     android:layout_marginRight="0dp"
                     android:layout_marginBottom="0dp" />
 
@@ -322,17 +313,14 @@
                     android:textSize="13sp"
                     android:layout_marginRight="0dp"
                     android:layout_marginLeft="1dp"
-                    android:layout_marginTop="0dp"
+                    android:layout_marginTop="1dp"
                     android:layout_marginBottom="0dp" />
-            </LinearLayout>
+            </TableRow>
 
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:splitMotionEvents="false"
-                android:layout_margin="0dp" >
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
 
                 <Button
                     android:layout_width="match_parent"
@@ -393,13 +381,12 @@
                     android:layout_marginLeft="1dp"
                     android:layout_marginTop="1dp"
                     android:layout_marginBottom="0dp" />
-            </LinearLayout>
 
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:splitMotionEvents="false"
+            </TableRow>
+
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_weight="1">
 
                 <Button
@@ -447,16 +434,17 @@
                     android:layout_marginRight="0dp"
                     android:layout_marginBottom="0dp" />
 
-            </LinearLayout>
-        </LinearLayout>
+            </TableRow>
+        </TableLayout>
 
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1"
             android:splitMotionEvents="false"
-            android:id="@+id/fourByfour">
+            android:layout_weight="1"
+            android:id="@+id/fourByfour"
+            android:baselineAligned="false">
 
             <LinearLayout
                 android:orientation="vertical"

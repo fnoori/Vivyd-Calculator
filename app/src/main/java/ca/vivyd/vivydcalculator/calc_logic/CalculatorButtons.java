@@ -117,7 +117,6 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
     public static int closeBracket;
     private boolean isAnswer;
     private boolean isError;
-    private boolean isEqnViewERR = false;
     private HistoryData historyData;
     private CustomOperators customOperators;
     private static CalculatorUtilities calculatorUtilities;
@@ -662,9 +661,8 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
     public void deleteButtonLogic(){
         if(answerView.getText().length() > 0){
 
-            if (answerView.getText().length() == 1 && isEqnViewERR){
+            if (answerView.getText().length() == 1 && checkEqnView()){
                 equationView.setText("");
-                isEqnViewERR = false;
             }
 
             int indexFrom = answerView.getSelectionStart()-1;
@@ -704,10 +702,8 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
     }
 
     public void clearButtonLogic(){
-        isEqnViewERR = equationView.getText().toString().equals(ILLEGAL_ARGUMENT_MSG) || equationView.getText().toString().equals(EMPTY_STACK_MSG)
-                || equationView.getText().toString().equals(ARITH_MSG);
 
-        if(answerView.getText().length() < 1 || isEqnViewERR){equationView.setText(BLANK_STRING);}
+        if(answerView.getText().length() < 1 || checkEqnView()){equationView.setText(BLANK_STRING);}
 
         answerView.setText(BLANK_STRING);
         expressionEvalString = BLANK_STRING;
@@ -811,16 +807,14 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
     public void errorAnim(String errorMsg) {
         int durationERR = 750;
         final int durationRel = 600;
-        final int startColor = Themer.colorArray.get(Themer.COLOR_ACCENT);
-        final int endColor = Themer.colorArray.get(Themer.COLOR_COMP);
-        final int colorText = Themer.colorArray.get(Themer.COLOR_TEXT_SCREEN);
+        final int start_colorAccent = Themer.colorArray.get(Themer.COLOR_ACCENT);
+        final int end_colorComp = Themer.colorArray.get(Themer.COLOR_COMP);
+        final int colorTextScreen = Themer.colorArray.get(Themer.COLOR_TEXT_SCREEN);
         final String currEqn = equationView.getText().toString();
 
-        isEqnViewERR = currEqn.equals(ILLEGAL_ARGUMENT_MSG) || currEqn.equals(EMPTY_STACK_MSG)
-                || currEqn.equals(ARITH_MSG) || currEqn.equals("");
 
         // Change Background color
-        ValueAnimator colorAnim = ValueAnimator.ofObject(new ArgbEvaluator(), startColor, endColor);
+        ValueAnimator colorAnim = ValueAnimator.ofObject(new ArgbEvaluator(), start_colorAccent, end_colorComp);
         colorAnim.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
@@ -834,8 +828,8 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
         colorAnim.setRepeatCount(1);
         colorAnim.start();
 
-        // change eqnView error alert, reverse only if eqnView was not empty
-        ValueAnimator textAnim = ValueAnimator.ofObject(new ArgbEvaluator(), startColor, colorText);
+        // change eqnView to error alert, reverse only if eqnView was not empty and did not have error msg
+        ValueAnimator textAnim = ValueAnimator.ofObject(new ArgbEvaluator(), start_colorAccent, colorTextScreen);
         textAnim.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
@@ -844,29 +838,22 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
         });
         textAnim.setDuration(durationERR);
         textAnim.setInterpolator(new DecelerateInterpolator());
-        if (!currEqn.equals("") && !isEqnViewERR) {
+        if (!checkEqnView(currEqn)) {
             textAnim.setRepeatMode(ValueAnimator.REVERSE);
             textAnim.setRepeatCount(1);
         }
         textAnim.start();
-
         equationView.setText(errorMsg);
-        final Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                if (!currEqn.equals("") && !isEqnViewERR){
-                    equationView.setTextColor(Color.TRANSPARENT);
-                    equationView.setText(currEqn);
-                }
-            }
-        }, 2*durationERR);
 
-        if (!currEqn.equals("") && !isEqnViewERR) {
+        final Handler handler = new Handler();
+
+        // If the previous stored element in eqnView was an error or was empty, the new error msg persists
+        // Otherwise, it returns to the stored equation
+        if (!checkEqnView(currEqn)) {
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    ValueAnimator textRelease = ValueAnimator.ofObject(new ArgbEvaluator(), startColor, colorText);
+                    ValueAnimator textRelease = ValueAnimator.ofObject(new ArgbEvaluator(), start_colorAccent, colorTextScreen);
                     textRelease.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                         @Override
                         public void onAnimationUpdate(ValueAnimator animation) {
@@ -875,13 +862,11 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
                     });
                     textRelease.setDuration(durationRel);
                     textRelease.setInterpolator(new LinearInterpolator());
+                    equationView.setText(currEqn);
                     textRelease.start();
                 }
             }, durationERR * 2);
         }
-
-        isEqnViewERR = currEqn.equals(ILLEGAL_ARGUMENT_MSG) || currEqn.equals(EMPTY_STACK_MSG)
-                || currEqn.equals(ARITH_MSG) || currEqn.equals("");
 
         //isError = true;
         //resetBrace();
@@ -946,7 +931,7 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
         }
     }
 
-    private void resetBrace() {
+    public void resetBrace() {
         leftBracketCounter.setText("0");
         rightBracketCounter.setText("0");
         setBraceColor();
@@ -961,5 +946,18 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
             trigType = CalculatorUtilities.DEG_RAD[1];
             DEG_RAND_STATE = RADIAN;
         }
+    }
+
+
+    // RETURNS: Returns true if string in EqnView is not a number/eqn
+    public boolean checkEqnView(){
+        String currEqn = equationView.getText().toString();
+        return  currEqn.equals(ILLEGAL_ARGUMENT_MSG) || currEqn.equals(EMPTY_STACK_MSG)
+                    || currEqn.equals(ARITH_MSG) || currEqn.equals("");
+    }
+    // REQUIRES: Pass in the String from EqnView
+    public boolean checkEqnView(String currEqn){
+        return  currEqn.equals(ILLEGAL_ARGUMENT_MSG) || currEqn.equals(EMPTY_STACK_MSG)
+                || currEqn.equals(ARITH_MSG) || currEqn.equals("");
     }
 }
