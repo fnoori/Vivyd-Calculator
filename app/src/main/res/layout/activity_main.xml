@@ -13,8 +13,7 @@
         android:orientation="horizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="3dp"
-        android:layout_marginTop="2dp">
+        android:layout_marginBottom="2dp">
 
         <com.google.android.gms.ads.AdView
             android:id="@+id/adView"
@@ -46,7 +45,9 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@color/colorTextAccentLight"
+        android:id="@+id/display">
 
         <EditText
             android:layout_width="match_parent"
@@ -57,28 +58,27 @@
             android:textSize="25sp"
             android:textColor="#EF5350"
             android:paddingTop="20dp"
-            android:background="@color/colorTextAccentLight"
             android:gravity="end"
             android:paddingStart="25dp"
             android:paddingLeft="25dp"
             android:paddingRight="35dp"
             android:paddingEnd="25dp"
             android:fadeScrollbars="true"
-            />
+            android:autoText="true"
+            android:background="@android:color/transparent" />
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="97dp">
 
             <EditText
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:id="@+id/ansView"
                 android:textIsSelectable="true"
                 android:inputType="none"
                 android:cursorVisible="true"
                 android:textSize="45sp"
-                android:background="@color/colorTextAccentLight"
                 android:textColor="#EF5350"
                 android:paddingStart="10dp"
                 android:paddingLeft="10dp"
@@ -88,7 +88,8 @@
                 android:layout_alignParentBottom="true"
                 android:textCursorDrawable="@null"
                 android:autoText="false"
-                />
+                android:background="@android:color/transparent"
+                android:layout_alignParentEnd="true" />
 
             <Button
                 android:layout_width="70dp"

@@ -1,23 +1,19 @@
 package ca.vivyd.vivydcalculator.calc_logic;
 
 import android.animation.ArgbEvaluator;
-import android.animation.LayoutTransition;
 import android.animation.ValueAnimator;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.graphics.Rect;
 import android.graphics.drawable.TransitionDrawable;
 import android.os.Handler;
-import android.support.v4.view.animation.LinearOutSlowInInterpolator;
-import android.text.method.KeyListener;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.animation.AccelerateInterpolator;
-import android.view.animation.AnticipateOvershootInterpolator;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.LinearInterpolator;
 import android.widget.Button;
@@ -30,8 +26,6 @@ import net.objecthunter.exp4j.Expression;
 import net.objecthunter.exp4j.ExpressionBuilder;
 import net.objecthunter.exp4j.function.Function;
 import net.objecthunter.exp4j.operator.Operator;
-
-import org.apache.commons.math3.geometry.euclidean.threed.Line;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
@@ -90,6 +84,8 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
 
 
     private Context context;
+    private Activity curr_activity;
+    private LinearLayout display;
     private EditText answerView;
     private TextView equationView;
     private TextView rightBracketCounter;
@@ -128,11 +124,13 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
     //private ALL_BUTTONS prevInputEnum;
     private String previousInputType;
 
-    public CalculatorButtons(Context context, EditText answerView,
+    public CalculatorButtons(Context context, LinearLayout display, EditText answerView,
                              TextView equationView, ArrayList<Button> commonButtons,
                              ArrayList<Button> commonOperands, TextView leftBraceCounter,
                              TextView rightBraceCounter, Button degRandButton){
         this.context = context;
+        this.curr_activity = (Activity) context;
+        this.display = display;
         this.answerView = answerView;
         this.equationView = equationView;
         this.leftBracketCounter = leftBraceCounter;
@@ -805,7 +803,7 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
     }
 
     public void errorAnim(String errorMsg) {
-        int durationERR = 750;
+        int durationERR = 550;
         final int durationRel = 600;
         final int start_colorAccent = Themer.colorArray.get(Themer.COLOR_ACCENT);
         final int end_colorComp = Themer.colorArray.get(Themer.COLOR_COMP);
@@ -818,8 +816,7 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
         colorAnim.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
-                answerView.setBackgroundColor((int) animation.getAnimatedValue());
-                equationView.setBackgroundColor((int) animation.getAnimatedValue());
+                display.setBackgroundColor((int) animation.getAnimatedValue());
             }
         });
         colorAnim.setDuration(durationERR);
@@ -827,6 +824,10 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
         colorAnim.setRepeatMode(ValueAnimator.REVERSE);
         colorAnim.setRepeatCount(1);
         colorAnim.start();
+
+        // Shake the equation in ansView that caused the Error
+        Animation shake = AnimationUtils.loadAnimation(context, R.anim.shakey_shake);
+        answerView.startAnimation(shake);
 
         // change eqnView to error alert, reverse only if eqnView was not empty and did not have error msg
         ValueAnimator textAnim = ValueAnimator.ofObject(new ArgbEvaluator(), start_colorAccent, colorTextScreen);

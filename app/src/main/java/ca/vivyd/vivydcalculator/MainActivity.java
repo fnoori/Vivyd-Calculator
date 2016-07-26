@@ -44,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
     public static String CONTACT_EMAIL = "solutions.teamvivyd@gmail.com";
 
     private Context context = this;
+    private LinearLayout display;
     private EditText answerView;
     private TextView leftBraceCounter;
     private TextView rightBraceCounter;
@@ -92,6 +93,7 @@ public class MainActivity extends AppCompatActivity {
         mAdView.loadAd(request);
 
         answerView = (EditText) findViewById(R.id.ansView);
+        display = (LinearLayout) findViewById(R.id.display);
         disableSoftKeyboard(answerView);
         answerView.setLongClickable(false);
         answerView.setTextIsSelectable(false);
@@ -148,7 +150,7 @@ public class MainActivity extends AppCompatActivity {
             add(clearButton); add(deleteButton); add(equalButton); add(menuButton);
         }};
 
-        final CalculatorButtons calcButtons = new CalculatorButtons(context, answerView,
+        final CalculatorButtons calcButtons = new CalculatorButtons(context, display, answerView,
                 equationView, commonButtons, commonOperands, leftBraceCounter, rightBraceCounter,
                 degRadButton);
 
@@ -395,8 +397,6 @@ public class MainActivity extends AppCompatActivity {
         assert wholeView != null;
         TextView eqnView = (TextView) findViewById(R.id.eqnView);
         assert eqnView != null;
-        EditText ansView = (EditText) findViewById(R.id.ansView);
-        assert ansView != null;
         Button degRandButton = (Button) findViewById(R.id.degRandButton);
         assert degRandButton != null;
         Button var1Button = (Button) findViewById(R.id.var1Button);
@@ -409,10 +409,9 @@ public class MainActivity extends AppCompatActivity {
 
 
         wholeView.setBackgroundColor(Themer.colorArray.get(Themer.COLOR_BACKGROUND));
-        eqnView.setBackgroundColor(colorAccent);
+        display.setBackgroundColor(colorAccent);
         eqnView.setTextColor(colorTextScreen);
-        ansView.setBackgroundColor(colorAccent);
-        ansView.setTextColor(colorTextScreen);
+        answerView.setTextColor(colorTextScreen);
         //degRandButton.setBackgroundColor(colorAccent);
         helpButton.setBackgroundColor(colorComp);
         if (var1Button != null) {
@@ -438,7 +437,6 @@ public class MainActivity extends AppCompatActivity {
             numLeftBrace.setTextColor(colorComp);
             numRightBrace.setTextColor(colorComp);
         }
-
 
         // If possible, need to move this to Themer.setButtAnimations() where the rest of the drawables
         // are set
