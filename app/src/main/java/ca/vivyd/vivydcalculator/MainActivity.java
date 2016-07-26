@@ -9,6 +9,7 @@ import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.InputType;
@@ -66,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
 
         AdView mAdView = (AdView) findViewById(R.id.adView);
         assert mAdView != null;
-        /**
+/**
          * Real ad.
          * Uncomment following line for real ads, but make sure to comment out subsequent test ad
          * lines.
@@ -149,16 +150,13 @@ public class MainActivity extends AppCompatActivity {
 
         final CalculatorButtons calcButtons = new CalculatorButtons(context, display, answerView,
                 equationView, commonButtons, commonOperands, leftBraceCounter, rightBraceCounter,
-                degRadButton, startTime);
+                degRadButton);
 
         // For popupMenu
         if (getScreenOrientation() == Configuration.ORIENTATION_PORTRAIT) {
             morButton = (Button) findViewById(R.id.morButton);
             moreButtonListener(morButton, calcButtons);
         }
-
-
-
                         /*
                 .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)        // All emulators
                 // Remember to add a test device ID for each device that should request test ads.
@@ -246,6 +244,10 @@ public class MainActivity extends AppCompatActivity {
                 Log.i("TrigStateChange", "setTrig: " + CalculatorButtons.DEGREE);
             }
         }
+
+        long endOfOnStartMainActivity = System.currentTimeMillis();
+        long total = endOfOnStartMainActivity - startTime;
+        Log.d("TOTAL_TIME_UPDATED", total+"");
     }
 
 
