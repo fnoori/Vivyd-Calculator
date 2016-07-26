@@ -65,7 +65,8 @@
             android:paddingEnd="25dp"
             android:fadeScrollbars="true"
             android:autoText="true"
-            android:background="@android:color/transparent" />
+            android:background="@android:color/transparent"
+            android:textAlignment="textStart" />
 
         <RelativeLayout
             android:layout_width="match_parent"

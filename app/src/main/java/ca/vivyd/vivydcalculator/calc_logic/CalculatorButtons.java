@@ -748,10 +748,15 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
 
                     NumberFormat numFormat = new DecimalFormat("##.##########");
                     solution = String.valueOf(numFormat.format(calc.evaluate()));
+                    Animation sweep = AnimationUtils.loadAnimation(context, R.anim.sweepity_sweep);
+                    equationView.startAnimation(sweep);
                     equationView.setText(forEquationView);
                     if(solution.contains(".")){dotCounter = 1;}
                     solution = calculatorUtilities.convertToScientific(solution);
 
+
+                    Animation sweep_fast = AnimationUtils.loadAnimation(context, R.anim.sweepity_sweep_fast);
+                    answerView.startAnimation(sweep_fast);
                     answerView.setText(calculatorUtilities.replaceForAnsViewDisplay(solution));
                     answerView.setSelection(answerView.getText().length());
 
