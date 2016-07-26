@@ -696,9 +696,7 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
     }
 
     public void clearButtonLogic(){
-
         if(answerView.getText().length() < 1 || checkEqnView()){equationView.setText(BLANK_STRING);}
-
         answerView.setText(BLANK_STRING);
         expressionEvalString = BLANK_STRING;
         expressionDisplayString = BLANK_STRING;
@@ -714,12 +712,8 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
 
 
     public void equalButtonLogic(){
-        Log.d("EQUATION", expressionToEvaluate);
-
         if(answerView.getText().length() > 0){
             try{
-                Log.d("OPEN_BRACKET_BEF", openBracket+"");
-                Log.d("CLOSE_BRACKET_BEF", closeBracket+"");
                 if(calculatorUtilities.isBracketCorrect(openBracket, closeBracket)){
                     String forEquationView = calculatorUtilities.repalaceForEquViewDisplay(expressionToEvaluate);
 
@@ -769,10 +763,6 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
                             closeBracket, rightBracketCounter, leftBracketCounter, previousInput);
                     isAnswer = true;
                     sharedPrefsLogic.generalPurposeDataInput("ANS", solution);
-
-                    Log.d("OPEN_BRACKET", openBracket+"");
-                    Log.d("CLOSE_BRACKET", closeBracket+"");
-
                 }else{
                     if(closeBracket > openBracket){
                         do{
@@ -785,8 +775,6 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
                             expressionToEvaluate = expressionToEvaluate + ")";
                         }while(closeBracket < openBracket);
                     }
-                    Log.d("OPEN_BRACKET", openBracket+"");
-                    Log.d("CLOSE_BRACKET", closeBracket+"");
                     equalButtonLogic();
                 }
 
@@ -878,13 +866,20 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
         String prevInput;
         int cursorLocation = 0;
 
+        Log.d("TYPE", type);
+        Log.d("IS_ANSWER", isAnswer+"");
+
         if(isAnswer || isError){
             if(type.equals(CalculatorUtilities.ALL_BUTTS[4]) ||
-                    (!type.equals(CalculatorUtilities.ALL_BUTTS[0]) ||
-                            !type.equals(CalculatorUtilities.ALL_BUTTS[1]) ||
-                            !type.equals(CalculatorUtilities.ALL_BUTTS[2]) ||
-                            !type.equals(CalculatorUtilities.ALL_BUTTS[3]))
-                    ){answerView.setText(BLANK_STRING);}
+                    type.equals(CalculatorUtilities.ALL_BUTTS[8]) ||
+                    type.equals(CalculatorUtilities.ALL_BUTTS[9]) ||
+                    type.equals(CalculatorUtilities.ALL_BUTTS[10]) ||
+                    type.equals(CalculatorUtilities.ALL_BUTTS[11]) ||
+                    type.equals(CalculatorUtilities.ALL_BUTTS[12]) ||
+                    type.equals(CalculatorUtilities.ALL_BUTTS[13]) ||
+                    type.equals(CalculatorUtilities.ALL_BUTTS[15])){
+                answerView.setText(BLANK_STRING);
+            }
             openBracket = 0;
             closeBracket = 0;
             isAnswer = false;
