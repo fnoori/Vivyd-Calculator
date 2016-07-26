@@ -9,6 +9,7 @@ import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.SystemClock;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -64,7 +65,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-        AdView mAdView = (AdView) findViewById(R.id.adView);
+        long startTime = System.currentTimeMillis();
+        final AdView mAdView = (AdView) findViewById(R.id.adView);
         assert mAdView != null;
 /**
          * Real ad.
@@ -77,18 +79,24 @@ public class MainActivity extends AppCompatActivity {
          * Test Ad.
          * Uncomment following line for test ads, but make sure to comment out previous real ad line
          */
-        AdRequest request = new AdRequest.Builder()
-                .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)        // All emulators
-                // Remember to add a test device ID for each device that should request test ads.
-                // Device IDs are written to the system log by the Mobile Ads SDK, so you can find
-                // your device's ID by running your app and checking logcat.
-                .addTestDevice("AC98C820A50B4AD8A2106EDE96FB87D4")  // An example device ID
-                .addTestDevice("BD18BDB8D3C29637DDA85D96148E76B2")  // My moto G Decice Id, found in logcat
-                .addTestDevice("F3F9F302D12D212C9142645902C94D5C")  // Farzam moto E
-                .build();
 
-        mAdView.loadAd(request);
-        long startTime = System.currentTimeMillis();
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                AdRequest request = new AdRequest.Builder()
+                        .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)        // All emulators
+                        // Remember to add a test device ID for each device that should request test ads.
+                        // Device IDs are written to the system log by the Mobile Ads SDK, so you can find
+                        // your device's ID by running your app and checking logcat.
+                        .addTestDevice("AC98C820A50B4AD8A2106EDE96FB87D4")  // An example device ID
+                        .addTestDevice("BD18BDB8D3C29637DDA85D96148E76B2")  // My moto G Decice Id, found in logcat
+                        .addTestDevice("F3F9F302D12D212C9142645902C94D5C")  // Farzam moto E
+                        .build();
+
+                mAdView.loadAd(request);
+            }
+        }, 2000);
 
         answerView = (EditText) findViewById(R.id.ansView);
         display = (LinearLayout) findViewById(R.id.display);
