@@ -63,7 +63,6 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().hide();
         setContentView(R.layout.activity_main);
 
-        long startTime = System.currentTimeMillis();
 
         AdView mAdView = (AdView) findViewById(R.id.adView);
         assert mAdView != null;
@@ -89,6 +88,7 @@ public class MainActivity extends AppCompatActivity {
                 .build();
 
         mAdView.loadAd(request);
+        long startTime = System.currentTimeMillis();
 
         answerView = (EditText) findViewById(R.id.ansView);
         display = (LinearLayout) findViewById(R.id.display);
@@ -247,7 +247,9 @@ public class MainActivity extends AppCompatActivity {
 
         long endOfOnStartMainActivity = System.currentTimeMillis();
         long total = endOfOnStartMainActivity - startTime;
-        Log.d("TOTAL_TIME_UPDATED", total+"");
+        //Log.d("TIME_BEFORE_AD_3", total+"");
+        Log.d("TIME_AFTER_AD_3", total+"");
+
     }
 
 
