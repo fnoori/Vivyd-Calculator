@@ -38,9 +38,6 @@ import ca.vivyd.vivydcalculator.themes.Themer;
 
 
 public class MainActivity extends AppCompatActivity {
-    public static int startTime = 0;
-    public static int afterInitAllButtonsTime = 0;
-
     public static String CONTACT_EMAIL = "solutions.teamvivyd@gmail.com";
 
     private Context context = this;
@@ -65,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().hide();
         setContentView(R.layout.activity_main);
 
-        startTime = (int) System.currentTimeMillis();
+        long startTime = System.currentTimeMillis();
 
         AdView mAdView = (AdView) findViewById(R.id.adView);
         assert mAdView != null;
@@ -152,7 +149,7 @@ public class MainActivity extends AppCompatActivity {
 
         final CalculatorButtons calcButtons = new CalculatorButtons(context, display, answerView,
                 equationView, commonButtons, commonOperands, leftBraceCounter, rightBraceCounter,
-                degRadButton);
+                degRadButton, startTime);
 
         // For popupMenu
         if (getScreenOrientation() == Configuration.ORIENTATION_PORTRAIT) {

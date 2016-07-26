@@ -127,7 +127,7 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
     public CalculatorButtons(Context context, LinearLayout display, EditText answerView,
                              TextView equationView, ArrayList<Button> commonButtons,
                              ArrayList<Button> commonOperands, TextView leftBraceCounter,
-                             TextView rightBraceCounter, Button degRandButton){
+                             TextView rightBraceCounter, Button degRandButton, long startTime){
         this.context = context;
         this.curr_activity = (Activity) context;
         this.display = display;
@@ -183,9 +183,9 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
         degRandButton.setOnClickListener(this);
         equationView.setOnLongClickListener(this);
 
-        MainActivity.afterInitAllButtonsTime = (int) System.currentTimeMillis();
-        int totalTime = MainActivity.afterInitAllButtonsTime - MainActivity.startTime;
-        Toast.makeText(context, "Total time to init all compenents: " + totalTime, Toast.LENGTH_LONG).show();
+        long finishTime = System.currentTimeMillis();
+        long totalTime = finishTime - startTime;
+        Log.d("TOTAL_TIME", totalTime+"");
     }
 
     @Override
