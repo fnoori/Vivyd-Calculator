@@ -23,6 +23,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
@@ -386,8 +387,11 @@ public class MainActivity extends AppCompatActivity {
         int colorComp = Themer.colorArray.get(Themer.COLOR_COMP);
         int colorBG = Themer.colorArray.get(Themer.COLOR_BACKGROUND);
 
-
-        LinearLayout wholeView = (LinearLayout) findViewById(R.id.wholeView);
+        View wholeView;
+        if (getScreenOrientation() == Configuration.ORIENTATION_LANDSCAPE)
+            wholeView = (RelativeLayout) findViewById(R.id.wholeViewLAND);
+        else
+            wholeView = (LinearLayout) findViewById(R.id.wholeView);
         assert wholeView != null;
         TextView eqnView = (TextView) findViewById(R.id.eqnView);
         assert eqnView != null;
@@ -469,7 +473,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         else {
-            LinearLayout adLayout = (LinearLayout)findViewById(R.id.adLayout);
+            RelativeLayout adLayout = (RelativeLayout)findViewById(R.id.adLayout);
             assert adLayout != null;
             adLayout.setBackgroundColor(colorAccent);
             ArrayList<Button> advancedOperands = setScienceButts();
