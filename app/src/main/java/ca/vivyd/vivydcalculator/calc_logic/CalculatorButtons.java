@@ -6,12 +6,17 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.drawable.TransitionDrawable;
 import android.os.Handler;
+import android.util.DisplayMetrics;
 import android.util.Log;
+import android.util.TypedValue;
+import android.view.Display;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.DecelerateInterpolator;
@@ -27,12 +32,16 @@ import net.objecthunter.exp4j.ExpressionBuilder;
 import net.objecthunter.exp4j.function.Function;
 import net.objecthunter.exp4j.operator.Operator;
 
+import org.apache.commons.math3.geometry.Point;
+import org.apache.commons.math3.geometry.Space;
+
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.EmptyStackException;
 import java.util.List;
 
+import ca.vivyd.vivydcalculator.Exceptions.BadBracketsException;
 import ca.vivyd.vivydcalculator.MainActivity;
 import ca.vivyd.vivydcalculator.R;
 import ca.vivyd.vivydcalculator.menu.MenuActivity;
@@ -69,6 +78,8 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
     private static final String EMPTY_STACK_MSG =  "ERROR";
     private static final String ILLEGAL_ARGUMENT_MSG = "Incorrect Parameter";
     private static final String ARITH_MSG = "Can't divide by 0";
+    private static final String BAD_BRAC_MSG = "Incorrect Brackets";
+
 
     public static String DEG_RAND_STATE;
     private static String ERROR_MSG = "ERROR";
@@ -467,6 +478,7 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
                 transition.reverseTransition(endTran);
                 prevMotionEvent = "ACTION_UP";
                 //Log.i("ello", prevMotionEvent + " : " + num + " transcomplete = " + transComplete);
+                resizeAnsView(type);
                 break;
 
         }
@@ -712,9 +724,9 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
 
 
     public void equalButtonLogic(){
-        if(answerView.getText().length() > 0){
-            try{
-                if(calculatorUtilities.isBracketCorrect(openBracket, closeBracket)){
+        if(answerView.getText().length() > 0) {
+            try {
+                if (calculatorUtilities.isBracketCorrect(openBracket, closeBracket)) {
                     String forEquationView = calculatorUtilities.repalaceForEquViewDisplay(expressionToEvaluate);
 
                     List<Operator> operatorList = new ArrayList<>();
@@ -724,12 +736,14 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
                     operatorList.add(customOperators.getTenToPowerOfOperator());
 
                     List<Function> functionList = new ArrayList<>();
-                    if(trigType.equals(CalculatorUtilities.DEG_RAD[0])){
+                    if (trigType.equals(CalculatorUtilities.DEG_RAD[0])) {
                         functionList.add(customOperators.getSinDegrees());
                         functionList.add(customOperators.getCosDegrees());
                         functionList.add(customOperators.getTanDegrees());
                         expressionToEvaluate = calculatorUtilities.replaceForDegrees(expressionToEvaluate);
-                    }else{functionList.clear();}
+                    } else {
+                        functionList.clear();
+                    }
 
                     Expression calc = new ExpressionBuilder(expressionToEvaluate)
                             .operator(operatorList)
@@ -741,7 +755,9 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
                     Animation sweep = AnimationUtils.loadAnimation(context, R.anim.sweepity_sweep);
                     equationView.startAnimation(sweep);
                     equationView.setText(forEquationView);
-                    if(solution.contains(".")){dotCounter = 1;}
+                    if (solution.contains(".")) {
+                        dotCounter = 1;
+                    }
                     solution = calculatorUtilities.convertToScientific(solution);
 
 
@@ -754,7 +770,7 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
                     historyData.insertData(expressionToEvaluate, solution);
                     ArrayList<String> tmp_equation_list = historyData.getData(DatabaseTable.FeedEntry.EQUATION);
                     ArrayList<String> tmp_solution_list = historyData.getData(DatabaseTable.FeedEntry.SOLUTION);
-                    for(int i = 0; i < tmp_equation_list.size(); i++){
+                    for (int i = 0; i < tmp_equation_list.size(); i++) {
                         Log.d("EQUATION_HISTORY", tmp_equation_list.get(i));
                         Log.d("SOLUTION_HISTORY", tmp_solution_list.get(i));
                     }
@@ -763,29 +779,34 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
                             closeBracket, rightBracketCounter, leftBracketCounter, previousInput);
                     isAnswer = true;
                     sharedPrefsLogic.generalPurposeDataInput("ANS", solution);
-                }else{
-                    if(closeBracket > openBracket){
-                        do{
+                } else {
+                    if (closeBracket > openBracket) {
+                        do {
                             openBracket++;
                             expressionToEvaluate = "(" + expressionToEvaluate;
-                        }while(openBracket < closeBracket);
-                    }else{
-                        do{
+                        } while (openBracket < closeBracket);
+                    } else {
+                        do {
                             closeBracket++;
                             expressionToEvaluate = expressionToEvaluate + ")";
-                        }while(closeBracket < openBracket);
+                        } while (closeBracket < openBracket);
                     }
                     equalButtonLogic();
+                    if (closeBracket != openBracket)
+                        throw new BadBracketsException();
                 }
 
-            }catch(IllegalArgumentException e){
+            } catch (IllegalArgumentException e) {
                 errorAnim(ILLEGAL_ARGUMENT_MSG);
                 e.printStackTrace();
-            }catch (EmptyStackException e){
+            } catch (EmptyStackException e) {
                 errorAnim(EMPTY_STACK_MSG);
                 e.printStackTrace();
-            }catch (ArithmeticException e){
+            } catch (ArithmeticException e) {
                 errorAnim(ARITH_MSG);
+                e.printStackTrace();
+            } catch (BadBracketsException e) {
+                errorAnim(BAD_BRAC_MSG);
                 e.printStackTrace();
             }
         }
@@ -952,5 +973,45 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
     public boolean checkEqnView(String currEqn){
         return  currEqn.equals(ILLEGAL_ARGUMENT_MSG) || currEqn.equals(EMPTY_STACK_MSG)
                 || currEqn.equals(ARITH_MSG) || currEqn.equals("");
+    }
+
+
+    public void resizeAnsView(String type) {
+
+        android.graphics.Point size = new android.graphics.Point();
+        curr_activity.getWindowManager().getDefaultDisplay().getSize(size);
+        int screen_width = size.x;
+        Paint paint = answerView.getPaint();
+
+        float ansWidth_string = paint.measureText(answerView.getText().toString());
+        float ansSize = MainActivity.pixelsToSp(context, answerView.getTextSize());
+        float scale = context.getResources().getDisplayMetrics().density;
+        int pixelCushion = (int) (80*scale + 0.5f);
+
+        Log.i("RESIZE", " width = " + screen_width);
+        Log.i("RESIZE", " ansView width = " + ansWidth_string);
+        Log.i("RESIZE", " curr size = " + ansSize);
+
+
+
+        if (ansWidth_string >= (display.getWidth() - pixelCushion) && ansSize >= 34 && !type.equals("del")){
+            //ansSize = ansWidth/ratio;
+            answerView.setTextSize(TypedValue.COMPLEX_UNIT_SP, ansSize - 2);
+            //Animation scale_in = AnimationUtils.loadAnimation(context, R.anim.text_scale_in);
+            //answerView.startAnimation(scale_in);
+            Log.i("RESIZE", " new size = " + (ansSize));
+        } else if (type.equals("del") && ansSize < MainActivity.defaultTxtSize && ansWidth_string < display.getWidth()) {
+            answerView.setTextSize(TypedValue.COMPLEX_UNIT_SP, ansSize + 2);
+        }
+        else if (type.equals("clr") || (isAnswer && ansWidth_string < display.getWidth() - pixelCushion)){
+            // Don't set it at default, set it at what fits.
+            answerView.setTextSize(TypedValue.COMPLEX_UNIT_SP, MainActivity.defaultTxtSize);
+        }
+        else if (type.equals("eql")){
+            while (ansWidth_string > display.getWidth()) {
+                answerView.setTextSize(TypedValue.COMPLEX_UNIT_SP, ansSize - 2);
+                ansWidth_string = paint.measureText(answerView.getText().toString());
+            }
+        }
     }
 }

@@ -55,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
     static int popWidth = 0;
 
     private static int notExited = 0;
+    public static float defaultTxtSize;
 
     private Themer themer;
 
@@ -99,6 +100,8 @@ public class MainActivity extends AppCompatActivity {
         }, 2000);
 
         answerView = (EditText) findViewById(R.id.ansView);
+        assert answerView != null;
+        defaultTxtSize = pixelsToSp(MainActivity.this, answerView.getTextSize());
         display = (LinearLayout) findViewById(R.id.display);
         disableSoftKeyboard(answerView);
         answerView.setLongClickable(false);
@@ -502,5 +505,10 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         return orientation;
+    }
+
+    public static float pixelsToSp(Context context, float px){
+        float scaledDensity = context.getResources().getDisplayMetrics().scaledDensity;
+        return px/scaledDensity;
     }
 }
