@@ -512,9 +512,6 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         else {
-            RelativeLayout adLayout = (RelativeLayout)findViewById(R.id.adLayout);
-            assert adLayout != null;
-            adLayout.setBackgroundColor(colorAccent);
             ArrayList<Button> advancedOperands = setScienceButts();
             themer.setSciButtsAnim(advancedOperands);
         }
