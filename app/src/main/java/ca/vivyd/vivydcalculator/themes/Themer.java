@@ -39,6 +39,7 @@ public class Themer {
     public final static int WTRM_THEME = 6;
     public final static int RVEL_THEME = 7;
     public final static int PAP_THEME = 8;
+    public final static int BLK_THEME = 9;
 
 
     // Basic themes
@@ -98,6 +99,15 @@ public class Themer {
     public static int PAP_TEXT;
     public static int PAP_TEXT_SCREEN;
     public static int PAP_OPPTRAY;
+
+    // Simple Black Theme
+    public static int BLK_ACCENT;
+    public static int BLK_COMP;
+    public static int BLK_BACKGROUND;
+    public static int BLK_NUMPAD;
+    public static int BLK_TEXT;
+    public static int BLK_TEXT_SCREEN;
+    public static int BLK_OPPTRAY;
 
     public Themer(Context inContext,
                   ArrayList<Button> inCommonButtons,
@@ -168,7 +178,7 @@ public class Themer {
         RVEL_TEXT_SCREEN     = ContextCompat.getColor(context, R.color.RVEL_text_screen);
         RVEL_OPPTRAY         = ContextCompat.getColor(context, R.color.RVEL_oppTray);
 
-        //Initialize Papaya Theme
+        //Initialize Blueberry Theme
         PAP_ACCENT          = ContextCompat.getColor(context, R.color.PAP_colorAccent);
         PAP_COMP            = ContextCompat.getColor(context, R.color.PAP_colorComp);
         PAP_BACKGROUND      = ContextCompat.getColor(context, R.color.PAP_background);
@@ -176,6 +186,15 @@ public class Themer {
         PAP_TEXT            = ContextCompat.getColor(context, R.color.PAP_text);
         PAP_TEXT_SCREEN     = ContextCompat.getColor(context, R.color.PAP_text_screen);
         PAP_OPPTRAY         = ContextCompat.getColor(context, R.color.PAP_oppTray);
+
+        //Initialize Simple Black Theme
+        BLK_ACCENT          = ContextCompat.getColor(context, R.color.BLK_colorAccent);
+        BLK_COMP            = ContextCompat.getColor(context, R.color.BLK_colorComp);
+        BLK_BACKGROUND      = ContextCompat.getColor(context, R.color.BLK_background);
+        BLK_NUMPAD          = ContextCompat.getColor(context, R.color.BLK_numpad);
+        BLK_TEXT            = ContextCompat.getColor(context, R.color.BLK_text);
+        BLK_TEXT_SCREEN     = ContextCompat.getColor(context, R.color.BLK_text_screen);
+        BLK_OPPTRAY         = ContextCompat.getColor(context, R.color.BLK_oppTray);
 
     }
 
@@ -429,6 +448,37 @@ public class Themer {
                     curr.setTextColor(colorArray.get(COLOR_TEXT));
                 }
                 break;
+
+            case (BLK_THEME):
+                colorArray.add(COLOR_ACCENT, BLK_ACCENT);
+                colorArray.add(COLOR_COMP, BLK_COMP);
+                colorArray.add(COLOR_BACKGROUND, BLK_BACKGROUND);
+                colorArray.add(COLOR_NUMPAD, BLK_NUMPAD);
+                colorArray.add(COLOR_TEXT, BLK_TEXT);
+                colorArray.add(COLOR_TEXT_SCREEN, BLK_TEXT_SCREEN);
+                colorArray.add(COLOR_OPPTRAY, BLK_OPPTRAY);
+                for (Button curr: commonButtons) {
+                    if (curr.getId() != R.id.sevenButton && curr.getId() != R.id.eightButton
+                            && curr.getId() != R.id.nineButton)
+                        curr.setBackgroundResource(R.drawable.blk_numpad_transition);
+                    else
+                        curr.setBackgroundResource(R.drawable.blk_numpad_transition_top);
+                    curr.setTextColor(colorArray.get(COLOR_TEXT));
+                }
+                for (Button curr: commonOperands) {
+                    if (curr.getId() == R.id.openBrace || curr.getId() == R.id.closeBrace
+                            || curr.getId() == R.id.prcntButton || curr.getId() == R.id.delButton
+                            || curr.getId() == R.id.clrButton)
+                        curr.setBackgroundResource(R.drawable.blk_numpad_transition_noshad);
+                    else if(curr.getId() == R.id.divButton || curr.getId() == R.id.multButton
+                            || curr.getId() == R.id.minusButton || curr.getId() == R.id.addButton
+                            || curr.getId() == R.id.eqlButton)
+                        curr.setBackgroundResource(R.drawable.blk_main_transition);
+                    else if(curr.getId() == R.id.menuButton)
+                        curr.setBackgroundResource(R.drawable.blk_main_transition_top);
+                    curr.setTextColor(colorArray.get(COLOR_TEXT));
+                }
+                break;
         }
 
         float[] hsv = new float[3];
@@ -471,6 +521,11 @@ public class Themer {
 
                 case (PAP_THEME):
                     curr.setBackgroundResource(R.drawable.pap_numpad_transition);
+                    break;
+
+
+                case (BLK_THEME):
+                    curr.setBackgroundResource(R.drawable.blk_numpad_transition);
                     break;
 
             }

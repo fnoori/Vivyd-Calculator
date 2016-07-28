@@ -518,6 +518,9 @@ public class MainActivity extends AppCompatActivity {
                 case Themer.PAP_THEME:
                     morButton.setBackgroundResource(R.drawable.pap_numpad_transition);
                     break;
+                case Themer.BLK_THEME:
+                    morButton.setBackgroundResource(R.drawable.blk_numpad_transition);
+                    break;
             }
         }
         else {

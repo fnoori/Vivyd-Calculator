@@ -19,11 +19,47 @@
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
+                android:text="CLASSIC BLUE"
+                android:id="@+id/blueButton"
+                android:background="@color/BLUE_colorAccent"
+                android:textColor="#ffffff"
+                android:layout_weight="1" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:text="CLASSIC PINK"
+                android:id="@+id/pinkButton"
+                android:background="@color/PINK_colorAccent"
+                android:textColor="#ffffff"
+                android:layout_weight="1" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:text="Simple Black"
+                android:id="@+id/blkButton"
+                android:background="@color/BLK_colorAccent"
+                android:layout_weight="1"
+                android:textColor="@color/BLK_text_screen" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
                 android:text="WatermelÓn"
                 android:id="@+id/wtrmButton"
                 android:background="#366149"
                 android:layout_weight="1"
                 android:textColor="@color/WTRM_colorAccent" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:text="sundae"
+                android:id="@+id/sundaeButton"
+                android:background="#FFF9C4"
+                android:layout_weight="1"
+                android:textColor="#EF5350" />
 
             <Button
                 android:layout_width="match_parent"
@@ -37,11 +73,11 @@
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
-                android:text="sundae"
-                android:id="@+id/sundaeButton"
-                android:background="#FFF9C4"
-                android:layout_weight="1"
-                android:textColor="#EF5350" />
+                android:text="Mango"
+                android:id="@+id/mangButton"
+                android:background="#E65100"
+                android:textColor="#ffffff"
+                android:layout_weight="1" />
 
             <Button
                 android:layout_width="match_parent"
@@ -59,33 +95,6 @@
                 android:id="@+id/rvelButton"
                 android:background="@color/RVEL_colorAccent"
                 android:textColor="@color/RVEL_text"
-                android:layout_weight="1" />
-
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:text="Mango"
-                android:id="@+id/mangButton"
-                android:background="#E65100"
-                android:textColor="#ffffff"
-                android:layout_weight="1" />
-
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:text="CLASSIC BLUE"
-                android:id="@+id/blueButton"
-                android:background="@color/BLUE_colorAccent"
-                android:textColor="#ffffff"
-                android:layout_weight="1" />
-
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:text="CLASSIC PINK"
-                android:id="@+id/pinkButton"
-                android:background="@color/PINK_colorAccent"
-                android:textColor="#ffffff"
                 android:layout_weight="1" />
 
         </LinearLayout>

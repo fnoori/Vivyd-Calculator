@@ -48,6 +48,8 @@ public class ThemesFragment extends Fragment implements View.OnClickListener {
         rvelButton.setOnClickListener(this);
         Button papButton = (Button) thmView.findViewById(R.id.papButton);
         papButton.setOnClickListener(this);
+        Button blkButton = (Button) thmView.findViewById(R.id.blkButton);
+        blkButton.setOnClickListener(this);
 
         return thmView;
     }
@@ -79,6 +81,9 @@ public class ThemesFragment extends Fragment implements View.OnClickListener {
                 break;
             case R.id.papButton:
                 Themer.CURRENT_THEME = Themer.PAP_THEME;
+                break;
+            case R.id.blkButton:
+                Themer.CURRENT_THEME = Themer.BLK_THEME;
                 break;
         }
         getActivity().finish();
