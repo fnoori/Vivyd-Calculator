@@ -17,8 +17,10 @@ import android.view.Display;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.animation.AccelerateInterpolator;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.view.animation.BounceInterpolator;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.LinearInterpolator;
 import android.widget.Button;
@@ -986,19 +988,31 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
         float ansWidth_string = paint.measureText(answerView.getText().toString());
         float ansSize = MainActivity.pixelsToSp(context, answerView.getTextSize());
         float scale = context.getResources().getDisplayMetrics().density;
-        int pixelCushion = (int) (80*scale + 0.5f);
+        int pixelCushion = (int) (65*scale + 0.5f);
 
         Log.i("RESIZE", " width = " + screen_width);
         Log.i("RESIZE", " ansView width = " + ansWidth_string);
         Log.i("RESIZE", " curr size = " + ansSize);
 
-
-
         if (ansWidth_string >= (display.getWidth() - pixelCushion) && ansSize >= 34 && !type.equals("del")){
-            //ansSize = ansWidth/ratio;
-            answerView.setTextSize(TypedValue.COMPLEX_UNIT_SP, ansSize - 2);
-            //Animation scale_in = AnimationUtils.loadAnimation(context, R.anim.text_scale_in);
-            //answerView.startAnimation(scale_in);
+            /**
+             *  Animate the size reduction DISABLED BEACUSE it causes jittering
+              */
+            /*
+            ValueAnimator textScale_in = ValueAnimator.ofFloat(ansSize, ansSize-2);
+            textScale_in.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                @Override
+                public void onAnimationUpdate(ValueAnimator animation) {
+                    answerView.setTextSize(TypedValue.COMPLEX_UNIT_SP, (float) animation.getAnimatedValue());
+                }
+            });
+            textScale_in.setDuration(200);
+            //textScale_in.setInterpolator(new LinearInterpolator());
+            textScale_in.start();
+            */
+
+            answerView.setTextSize(TypedValue.COMPLEX_UNIT_SP, ansSize-2);
+
             Log.i("RESIZE", " new size = " + (ansSize));
         } else if (type.equals("del") && ansSize < MainActivity.defaultTxtSize && ansWidth_string < display.getWidth()) {
             answerView.setTextSize(TypedValue.COMPLEX_UNIT_SP, ansSize + 2);

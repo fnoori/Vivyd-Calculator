@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -108,6 +109,7 @@ public class MainActivity extends AppCompatActivity {
         answerView.setTextIsSelectable(false);
         answerView.setCursorVisible(true);
         answerView.setSingleLine();
+       // Typeface font = Typeface.createFromAsset(getAssets(), "")
 
         EditText equationView = (EditText) findViewById(R.id.eqnView);
         assert equationView != null;

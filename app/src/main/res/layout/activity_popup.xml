@@ -30,7 +30,8 @@
             android:layout_marginTop="0dp"
             android:layout_marginRight="0dp"
             android:layout_marginBottom="0dp"
-            android:stateListAnimator="@null" />
+            android:stateListAnimator="@null"
+            android:fontFamily="sans-serif-light" />
 
         <Button
             android:layout_width="match_parent"
@@ -46,7 +47,8 @@
             android:layout_marginTop="0dp"
             android:layout_marginRight="0dp"
             android:layout_marginBottom="0dp"
-            android:stateListAnimator="@null" />
+            android:stateListAnimator="@null"
+            android:fontFamily="sans-serif-light" />
 
         <Button
             android:layout_width="match_parent"
@@ -62,7 +64,8 @@
             android:layout_marginTop="0dp"
             android:layout_marginRight="0dp"
             android:layout_marginBottom="0dp"
-            android:stateListAnimator="@null" />
+            android:stateListAnimator="@null"
+            android:fontFamily="sans-serif-light" />
 
         <Button
             android:layout_width="match_parent"
@@ -78,7 +81,8 @@
             android:layout_marginBottom="0dp"
             android:layout_marginRight="0dp"
             android:layout_marginTop="0dp"
-            android:stateListAnimator="@null" />
+            android:stateListAnimator="@null"
+            android:fontFamily="sans-serif-light" />
 
     </LinearLayout>
 
@@ -104,7 +108,8 @@
             android:layout_marginTop="0dp"
             android:layout_marginRight="0dp"
             android:layout_marginBottom="0dp"
-            android:stateListAnimator="@null" />
+            android:stateListAnimator="@null"
+            android:fontFamily="sans-serif-light" />
 
         <Button
             android:layout_width="match_parent"
@@ -120,7 +125,8 @@
             android:layout_marginTop="0dp"
             android:layout_marginRight="0dp"
             android:layout_marginBottom="0dp"
-            android:stateListAnimator="@null" />
+            android:stateListAnimator="@null"
+            android:fontFamily="sans-serif-light" />
 
         <Button
             android:layout_width="match_parent"
@@ -136,7 +142,8 @@
             android:layout_marginTop="0dp"
             android:layout_marginRight="0dp"
             android:layout_marginBottom="0dp"
-            android:stateListAnimator="@null" />
+            android:stateListAnimator="@null"
+            android:fontFamily="sans-serif-light" />
 
         <Button
             android:layout_width="match_parent"
@@ -152,7 +159,8 @@
             android:layout_marginLeft="0dp"
             android:layout_marginTop="0dp"
             android:layout_marginBottom="0dp"
-            android:stateListAnimator="@null" />
+            android:stateListAnimator="@null"
+            android:fontFamily="sans-serif-light" />
     </LinearLayout>
 
     <LinearLayout
@@ -177,7 +185,8 @@
             android:layout_marginTop="0dp"
             android:layout_marginRight="0dp"
             android:layout_marginBottom="0dp"
-            android:stateListAnimator="@null" />
+            android:stateListAnimator="@null"
+            android:fontFamily="sans-serif-light" />
 
         <Button
             android:layout_width="match_parent"
@@ -193,7 +202,8 @@
             android:layout_marginTop="0dp"
             android:layout_marginRight="0dp"
             android:layout_marginBottom="0dp"
-            android:stateListAnimator="@null" />
+            android:stateListAnimator="@null"
+            android:fontFamily="sans-serif-light" />
 
         <Button
             android:layout_width="match_parent"
@@ -209,7 +219,8 @@
             android:layout_marginTop="0dp"
             android:layout_marginRight="0dp"
             android:layout_marginBottom="0dp"
-            android:stateListAnimator="@null" />
+            android:stateListAnimator="@null"
+            android:fontFamily="sans-serif-light" />
 
         <Button
             android:layout_width="match_parent"
@@ -225,7 +236,8 @@
             android:layout_marginLeft="0dp"
             android:layout_marginTop="0dp"
             android:layout_marginBottom="0dp"
-            android:stateListAnimator="@null" />
+            android:stateListAnimator="@null"
+            android:fontFamily="sans-serif-light" />
 
     </LinearLayout>
 
@@ -251,7 +263,8 @@
             android:layout_marginTop="0dp"
             android:layout_marginRight="0dp"
             android:layout_marginBottom="0dp"
-            android:stateListAnimator="@null" />
+            android:stateListAnimator="@null"
+            android:fontFamily="sans-serif-light"/>
 
         <Button
             android:layout_width="match_parent"
@@ -267,7 +280,8 @@
             android:layout_marginTop="0dp"
             android:layout_marginRight="0dp"
             android:layout_marginBottom="0dp"
-            android:stateListAnimator="@null" />
+            android:stateListAnimator="@null"
+            android:fontFamily="sans-serif-light" />
 
         <Button
             android:layout_width="match_parent"
@@ -283,7 +297,8 @@
             android:layout_marginTop="0dp"
             android:layout_marginRight="0dp"
             android:layout_marginBottom="0dp"
-            android:stateListAnimator="@null" />
+            android:stateListAnimator="@null"
+            android:fontFamily="sans-serif-light" />
 
         <Button
             android:layout_width="match_parent"
@@ -299,7 +314,8 @@
             android:layout_marginLeft="0dp"
             android:layout_marginTop="0dp"
             android:layout_marginBottom="0dp"
-            android:stateListAnimator="@null" />
+            android:stateListAnimator="@null"
+            android:fontFamily="sans-serif-light" />
 
     </LinearLayout>
 
@@ -355,7 +371,8 @@
             android:layout_marginTop="0dp"
             android:layout_marginRight="0dp"
             android:layout_marginBottom="0dp"
-            android:stateListAnimator="@null" />
+            android:stateListAnimator="@null"
+            android:fontFamily="sans-serif-light" />
 
         <Button
             android:layout_width="match_parent"
@@ -372,7 +389,8 @@
             android:layout_marginTop="0dp"
             android:layout_marginRight="0dp"
             android:layout_marginBottom="0dp"
-            android:stateListAnimator="@null" />
+            android:stateListAnimator="@null"
+            android:fontFamily="sans-serif-light" />
 
         <Button
             android:layout_width="match_parent"
@@ -390,7 +408,8 @@
             android:layout_marginRight="0dp"
             android:layout_marginBottom="0dp"
             android:stateListAnimator="@null"
-            android:padding="5dp" />
+            android:padding="5dp"
+            android:fontFamily="sans-serif-light" />
 
     </LinearLayout>
 
