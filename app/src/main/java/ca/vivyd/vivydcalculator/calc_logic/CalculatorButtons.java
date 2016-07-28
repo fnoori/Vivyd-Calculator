@@ -773,6 +773,10 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
                     answerView.setText(calculatorUtilities.replaceForAnsViewDisplay(solution));
                     answerView.setSelection(answerView.getText().length());
 
+                    //Hopefully this does not cause bugs
+                    openBracket = 0;
+                    closeBracket = 0;
+
                     //** There are some bugs on how the history is stored, will fix
                     historyData.insertData(expressionToEvaluate, solution);
                     ArrayList<String> tmp_equation_list = historyData.getData(DatabaseTable.FeedEntry.EQUATION);

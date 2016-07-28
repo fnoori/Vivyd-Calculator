@@ -252,6 +252,8 @@ public class MainActivity extends AppCompatActivity {
          */
         if (notExited == 1){
             calcButtons.countNumberOfBrackets(answerView.getText().toString());
+            Log.i("BUG", "Open Bracket inserted: " + prefs.getInt("openBracket", 0));
+            Log.i("BUG", "Closed Bracket inserted: " + prefs.getInt("closeBracket", 0));
             CalculatorButtons.openBracket = prefs.getInt("openBracket", 0);
             CalculatorButtons.closeBracket = prefs.getInt("closeBracket", 0);
             leftBraceCounter.setText(String.valueOf(CalculatorButtons.openBracket));
@@ -311,6 +313,8 @@ public class MainActivity extends AppCompatActivity {
         super.onStop();
         SharedPreferences prefs = getSharedPreferences("CalcData", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
+        Log.i("BUG", "Open Bracket saved: " + CalculatorButtons.openBracket);
+        Log.i("BUG", "Closed Bracket saved: " + CalculatorButtons.closeBracket);
         editor.putInt("Theme", Themer.CURRENT_THEME);
         editor.putInt("openBracket", CalculatorButtons.openBracket);
         editor.putInt("closeBracket", CalculatorButtons.closeBracket);
