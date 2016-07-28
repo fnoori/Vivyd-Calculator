@@ -53,12 +53,15 @@ public class MainActivity extends AppCompatActivity {
     private TextView leftBraceCounter;
     private TextView rightBraceCounter;
     private Button morButton;
+    private ImageView imageMor;
+
 
     // Indicates that only orientation has been changed, and the app has not exited
     private static int notExited = 0;
 
     public static float defaultTxtSize;
     public static float ansSize;
+    public static int screenOrientation;
 
     private Themer themer;
 
@@ -104,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }, 2000);
 
-        int screenOrientation = getScreenOrientation();
+        screenOrientation = getScreenOrientation();
         answerView = (EditText) findViewById(R.id.ansView);
         assert answerView != null;
         answerView.setLongClickable(false);
@@ -168,7 +171,7 @@ public class MainActivity extends AppCompatActivity {
 
         final CalculatorButtons calcButtons = new CalculatorButtons(context, display, answerView,
                 equationView, commonButtons, commonOperands, leftBraceCounter, rightBraceCounter,
-                degRadButton, screenOrientation);
+                degRadButton);
 
         // For popupMenu
         if (getScreenOrientation() == Configuration.ORIENTATION_PORTRAIT) {
@@ -226,10 +229,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
+
         // For themes. This must come after any button initializations.
         SharedPreferences prefs = getSharedPreferences("CalcData", Context.MODE_PRIVATE);
-        themer = new Themer(this, commonButtons, commonOperands);
         Themer.CURRENT_THEME = prefs.getInt("Theme", Themer.WTRM_THEME);
+        themer = new Themer(this, commonButtons, commonOperands, morButton);
         setTheme(themer);
 
 
@@ -449,8 +454,6 @@ public class MainActivity extends AppCompatActivity {
         assert numLeftBrace != null;
         TextView numRightBrace = (TextView) findViewById(R.id.numRightBrace);
         assert numRightBrace != null;
-
-
         // Warning says that wholeView is always true, but in an odd case it tried to set backgroundcolor
         // to a null reference.
         if (wholeView != null)
@@ -459,7 +462,6 @@ public class MainActivity extends AppCompatActivity {
         display.setBackgroundColor(colorAccent);
         eqnView.setTextColor(colorTextScreen);
         answerView.setTextColor(colorTextScreen);
-        //degRandButton.setBackgroundColor(colorAccent);
         helpButton.setBackgroundColor(colorComp);
         if (var1Button != null) {
             final Button var2Button = (Button) findViewById(R.id.var2Button);
@@ -485,45 +487,11 @@ public class MainActivity extends AppCompatActivity {
             numRightBrace.setTextColor(colorComp);
         }
 
-        // If possible, need to move this to Themer.setButtAnimations() where the rest of the drawables
-        // are set
-        if (getScreenOrientation() == Configuration.ORIENTATION_PORTRAIT) {
-            ImageView imageMor = (ImageView) findViewById(R.id.imageMor);
+        if (screenOrientation == Configuration.ORIENTATION_PORTRAIT) {
+            imageMor = (ImageView) findViewById(R.id.imageMor);
             assert imageMor != null;
             imageMor.setColorFilter(colorAccent);
-
-           // morButton.setTextColor(colorAccent);
-            switch (Themer.CURRENT_THEME){
-                case Themer.BLUE_THEME:
-                    morButton.setBackgroundResource(R.drawable.blue_numpad_transition);
-                    break;
-                case Themer.PINK_THEME:
-                    morButton.setBackgroundResource(R.drawable.pink_numpad_transition);
-                    break;
-                case Themer.MANGO_THEME:
-                    morButton.setBackgroundResource(R.drawable.mango_numpad_transition);
-                    break;
-                case Themer.CHOC_THEME:
-                    morButton.setBackgroundResource(R.drawable.choc_numpad_transition);
-                    break;
-                case Themer.SUND_THEME:
-                    morButton.setBackgroundResource(R.drawable.sund_numpad_transition);
-                    break;
-                case Themer.WTRM_THEME:
-                    morButton.setBackgroundResource(R.drawable.wtrm_numpad_transition);
-                    break;
-                case Themer.RVEL_THEME:
-                    morButton.setBackgroundResource(R.drawable.rvel_numpad_transition);
-                    break;
-                case Themer.PAP_THEME:
-                    morButton.setBackgroundResource(R.drawable.pap_numpad_transition);
-                    break;
-                case Themer.BLK_THEME:
-                    morButton.setBackgroundResource(R.drawable.blk_numpad_transition);
-                    break;
-            }
-        }
-        else {
+        } else {
             ArrayList<Button> advancedOperands = setScienceButts();
             themer.setSciButtsAnim(advancedOperands);
         }
