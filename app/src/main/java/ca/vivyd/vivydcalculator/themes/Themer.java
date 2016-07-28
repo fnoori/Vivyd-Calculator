@@ -1,12 +1,15 @@
 package ca.vivyd.vivydcalculator.themes;
 
 import android.content.Context;
+import android.content.res.Configuration;
 import android.graphics.Color;
 import android.support.v4.content.ContextCompat;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import java.util.ArrayList;
 
+import ca.vivyd.vivydcalculator.MainActivity;
 import ca.vivyd.vivydcalculator.R;
 
 /**
@@ -15,6 +18,7 @@ import ca.vivyd.vivydcalculator.R;
 public class Themer {
 
     private static Context context;
+    private Button morButton;
     private ArrayList<Button> commonButtons;
     private ArrayList<Button> commonOperands;
 
@@ -111,11 +115,13 @@ public class Themer {
 
     public Themer(Context inContext,
                   ArrayList<Button> inCommonButtons,
-                  ArrayList<Button> inCommonOperands) {
+                  ArrayList<Button> inCommonOperands,
+                  Button morButton) {
 
         context = inContext;
         this.commonButtons = inCommonButtons;
         this.commonOperands = inCommonOperands;
+        this.morButton = morButton;
 
         colorArray = new ArrayList<>();
         colorArray.add(COLOR_ACCENT, BLUE_ACCENT);
@@ -230,6 +236,8 @@ public class Themer {
                         curr.setBackgroundResource(R.drawable.basic_main_transition_top);
                     curr.setTextColor(colorArray.get(COLOR_TEXT));
                 }
+                if(MainActivity.screenOrientation == Configuration.ORIENTATION_PORTRAIT)
+                    morButton.setBackgroundResource(R.drawable.blue_numpad_transition);
                 break;
 
             case (PINK_THEME):
@@ -261,6 +269,8 @@ public class Themer {
                         curr.setBackgroundResource(R.drawable.basic_main_transition_top);
                     curr.setTextColor(colorArray.get(COLOR_TEXT));
                 }
+                if(MainActivity.screenOrientation == Configuration.ORIENTATION_PORTRAIT)
+                    morButton.setBackgroundResource(R.drawable.pink_numpad_transition);
                 break;
 
             case (MANGO_THEME):
@@ -292,6 +302,8 @@ public class Themer {
                         curr.setBackgroundResource(R.drawable.basic_main_transition_top);
                     curr.setTextColor(colorArray.get(COLOR_TEXT));
                 }
+                if(MainActivity.screenOrientation == Configuration.ORIENTATION_PORTRAIT)
+                    morButton.setBackgroundResource(R.drawable.mango_numpad_transition);
                 break;
 
             case (CHOC_THEME):
@@ -323,6 +335,8 @@ public class Themer {
                         curr.setBackgroundResource(R.drawable.choc_main_transition_top);
                     curr.setTextColor(colorArray.get(COLOR_TEXT));
                 }
+                if(MainActivity.screenOrientation == Configuration.ORIENTATION_PORTRAIT)
+                    morButton.setBackgroundResource(R.drawable.choc_numpad_transition);
                 break;
 
             case (SUND_THEME):
@@ -354,6 +368,8 @@ public class Themer {
                         curr.setBackgroundResource(R.drawable.sund_main_transition_top);
                     curr.setTextColor(colorArray.get(COLOR_TEXT));
                 }
+                if(MainActivity.screenOrientation == Configuration.ORIENTATION_PORTRAIT)
+                    morButton.setBackgroundResource(R.drawable.sund_numpad_transition);
                 break;
 
             case (WTRM_THEME):
@@ -385,6 +401,8 @@ public class Themer {
                         curr.setBackgroundResource(R.drawable.wtrm_main_transition_top);
                     curr.setTextColor(colorArray.get(COLOR_TEXT));
                 }
+                if(MainActivity.screenOrientation == Configuration.ORIENTATION_PORTRAIT)
+                    morButton.setBackgroundResource(R.drawable.wtrm_numpad_transition);
                 break;
 
             case (RVEL_THEME):
@@ -416,6 +434,8 @@ public class Themer {
                         curr.setBackgroundResource(R.drawable.rvel_main_transition_top);
                     curr.setTextColor(colorArray.get(COLOR_TEXT));
                 }
+                if(MainActivity.screenOrientation == Configuration.ORIENTATION_PORTRAIT)
+                    morButton.setBackgroundResource(R.drawable.rvel_numpad_transition);
                 break;
 
             case (PAP_THEME):
@@ -447,6 +467,8 @@ public class Themer {
                         curr.setBackgroundResource(R.drawable.pap_main_transition_top);
                     curr.setTextColor(colorArray.get(COLOR_TEXT));
                 }
+                if(MainActivity.screenOrientation == Configuration.ORIENTATION_PORTRAIT)
+                    morButton.setBackgroundResource(R.drawable.pap_numpad_transition);
                 break;
 
             case (BLK_THEME):
@@ -478,6 +500,8 @@ public class Themer {
                         curr.setBackgroundResource(R.drawable.blk_main_transition_top);
                     curr.setTextColor(colorArray.get(COLOR_TEXT));
                 }
+                if(MainActivity.screenOrientation == Configuration.ORIENTATION_PORTRAIT)
+                    morButton.setBackgroundResource(R.drawable.blk_numpad_transition);
                 break;
         }
 

@@ -86,7 +86,6 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
 
     public static String DEG_RAND_STATE;
     private static String ERROR_MSG = "ERROR";
-    private static int screenOrientation;
     private int overage;
 
     /*
@@ -143,7 +142,7 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
     public CalculatorButtons(Context context, LinearLayout display, EditText answerView,
                              TextView equationView, ArrayList<Button> commonButtons,
                              ArrayList<Button> commonOperands, TextView leftBraceCounter,
-                             TextView rightBraceCounter, Button degRandButton, int screenOrientation){
+                             TextView rightBraceCounter, Button degRandButton){
         this.context = context;
         this.curr_activity = (Activity) context;
         this.display = display;
@@ -152,7 +151,6 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
         this.leftBracketCounter = leftBraceCounter;
         this.rightBracketCounter = rightBraceCounter;
         this.degRandButton = degRandButton;
-        this.screenOrientation = screenOrientation;
 
         expressionDisplayString = null;
         expressionEvalString = null;
@@ -484,7 +482,7 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
                 transition.reverseTransition(endTran);
                 prevMotionEvent = "ACTION_UP";
                 //Log.i("ello", prevMotionEvent + " : " + num + " transcomplete = " + transComplete);
-                if (screenOrientation == Configuration.ORIENTATION_PORTRAIT)
+                if (MainActivity.screenOrientation == Configuration.ORIENTATION_PORTRAIT)
                     resizeAnsView(type);
                 break;
 
@@ -989,9 +987,6 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
 
     public void resizeAnsView(String type) {
 
-        android.graphics.Point size = new android.graphics.Point();
-        curr_activity.getWindowManager().getDefaultDisplay().getSize(size);
-        int screen_width = size.x;
         Paint paint = answerView.getPaint();
         float ansWidth_string = paint.measureText(answerView.getText().toString());
         MainActivity.ansSize = MainActivity.pixelsToSp(context, answerView.getTextSize());

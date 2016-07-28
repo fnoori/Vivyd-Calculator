@@ -53,7 +53,6 @@ public class MainActivity extends AppCompatActivity {
     private TextView leftBraceCounter;
     private TextView rightBraceCounter;
     private Button morButton;
-    private ImageView imageMor;
 
 
     // Indicates that only orientation has been changed, and the app has not exited
@@ -127,68 +126,18 @@ public class MainActivity extends AppCompatActivity {
         leftBraceCounter = (TextView) findViewById(R.id.numLeftBrace);
         rightBraceCounter = (TextView) findViewById(R.id.numRightBrace);
 
-        /* START COMMON BUTTONS */
-        final Button zeroButton = (Button) findViewById(R.id.zeroButton);
-        final Button oneButton = (Button) findViewById(R.id.oneButton);
-        final Button twoButton = (Button) findViewById(R.id.twoButton);
-        final Button threeButton = (Button) findViewById(R.id.threeButton);
-        final Button fourButton = (Button) findViewById(R.id.fourButton);
-        final Button fiveButton = (Button) findViewById(R.id.fiveButton);
-        final Button sixButton = (Button) findViewById(R.id.sixButton);
-        final Button sevenButton = (Button) findViewById(R.id.sevenButton);
-        final Button eightButton = (Button) findViewById(R.id.eightButton);
-        final Button nineButton = (Button) findViewById(R.id.nineButton);
-        final Button periodButton = (Button) findViewById(R.id.dotButton);
-        /* END OF COMMON BUTTONS */
-
-        /* START OF COMMON OPERATOR BUTTONS */
-        final Button addButton = (Button) findViewById(R.id.addButton);
-        final Button minusButton = (Button) findViewById(R.id.minusButton);
-        final Button multiplyButton = (Button) findViewById(R.id.multButton);
-        final Button divideButton = (Button) findViewById(R.id.divButton);
-        final Button openBracketButton = (Button) findViewById(R.id.openBrace);
-        final Button closeBracketButton = (Button) findViewById(R.id.closeBrace);
-        final Button percentageButton = (Button) findViewById(R.id.prcntButton);
         final Button degRadButton = (Button) findViewById(R.id.degRandButton);
-        /* END OF COMMON OPERATOR BUTTONS */
-
-        final Button deleteButton = (Button) findViewById(R.id.delButton);
-        final Button clearButton = (Button) findViewById(R.id.clrButton);
-        final Button equalButton = (Button) findViewById(R.id.eqlButton);
-        final Button menuButton = (Button) findViewById(R.id.menuButton);
-
-        ArrayList<Button> commonButtons = new ArrayList<Button>() {{
-            add(zeroButton); add(oneButton); add(twoButton); add(threeButton);
-            add(fourButton); add(fiveButton); add(sixButton); add(sevenButton);
-            add(eightButton); add(nineButton); add(periodButton);
-        }};
-
-        ArrayList<Button> commonOperands = new ArrayList<Button>(){{
-            add(addButton); add(minusButton); add(multiplyButton); add(divideButton);
-            add(openBracketButton); add(closeBracketButton); add(percentageButton);
-            add(clearButton); add(deleteButton); add(equalButton); add(menuButton);
-        }};
-
+        ArrayList<Button> commonButtons = setCommonButts();
+        ArrayList<Button> commonOperands = setCommonOpps();
         final CalculatorButtons calcButtons = new CalculatorButtons(context, display, answerView,
                 equationView, commonButtons, commonOperands, leftBraceCounter, rightBraceCounter,
                 degRadButton);
 
         // For popupMenu
-        if (getScreenOrientation() == Configuration.ORIENTATION_PORTRAIT) {
+        if (screenOrientation == Configuration.ORIENTATION_PORTRAIT) {
             morButton = (Button) findViewById(R.id.morButton);
             moreButtonListener(morButton, calcButtons);
         }
-                        /*
-                .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)        // All emulators
-                // Remember to add a test device ID for each device that should request test ads.
-                // Device IDs are written to the system log by the Mobile Ads SDK, so you can find
-                // your device's ID by running your app and checking logcat.
-                .addTestDevice("AC98C820A50B4AD8A2106EDE96FB87D4")  // An example device ID
-                .addTestDevice("BD18BDB8D3C29637DDA85D96148E76B2")  // My moto G Decice Id, found in logcat
-                .addTestDevice("F3F9F302D12D212C9142645902C94D5C")  // Farzam moto E
-                .build();
-        // To use a real ad, which is discouraged by google when developing, use this:
-        // AdRequest adRequest = new AdRequest.Builder().build();*/
 
         ImageButton inspButton = (ImageButton) findViewById(R.id.inspireButton);
         assert inspButton != null;
@@ -230,7 +179,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-
         // For themes. This must come after any button initializations.
         SharedPreferences prefs = getSharedPreferences("CalcData", Context.MODE_PRIVATE);
         Themer.CURRENT_THEME = prefs.getInt("Theme", Themer.WTRM_THEME);
@@ -238,13 +186,11 @@ public class MainActivity extends AppCompatActivity {
         setTheme(themer);
 
 
-
-
         /** If the current orientation is landscape, initialize advanced buttons
          *  Must come after initialization of themer or could crash in odd case where app launches
          *  in landscape
          */
-        if (getScreenOrientation() == Configuration.ORIENTATION_LANDSCAPE) {
+        if (screenOrientation == Configuration.ORIENTATION_LANDSCAPE) {
             ArrayList<Button> scienceButts = setScienceButts();
             calcButtons.addAdvanceOperands(scienceButts);
             notExited = 1;
@@ -257,20 +203,15 @@ public class MainActivity extends AppCompatActivity {
          */
         if (notExited == 1){
             calcButtons.countNumberOfBrackets(answerView.getText().toString());
-            Log.i("BUG", "Open Bracket inserted: " + prefs.getInt("openBracket", 0));
-            Log.i("BUG", "Closed Bracket inserted: " + prefs.getInt("closeBracket", 0));
             CalculatorButtons.openBracket = prefs.getInt("openBracket", 0);
             CalculatorButtons.closeBracket = prefs.getInt("closeBracket", 0);
             leftBraceCounter.setText(String.valueOf(CalculatorButtons.openBracket));
             rightBraceCounter.setText(String.valueOf(CalculatorButtons.closeBracket));
-            Log.i("TrigStateChange", "Checking..." + prefs.getString("deg_rad_state", CalculatorButtons.RADIAN));
             if (prefs.getString("deg_rad_state", CalculatorButtons.RADIAN).equals(CalculatorButtons.RADIAN)){
                 CalculatorButtons.setRad(degRadButton);
-                Log.i("TrigStateChange", "setRad: " + CalculatorButtons.RADIAN);
             }
             else if (prefs.getString("deg_rad_state", CalculatorButtons.RADIAN).equals(CalculatorButtons.DEGREE)){
                 CalculatorButtons.setDeg(degRadButton);
-                Log.i("TrigStateChange", "setTrig: " + CalculatorButtons.DEGREE);
             }
         }
 
@@ -297,10 +238,6 @@ public class MainActivity extends AppCompatActivity {
     public void onResume(){
         super.onResume();
 
-        //Close popupTray if it's still open
-
-
-
         disableSoftKeyboard(answerView);
         FrameLayout numArea = (FrameLayout) findViewById(R.id.num_area);
         if (numArea != null)
@@ -318,13 +255,10 @@ public class MainActivity extends AppCompatActivity {
         super.onStop();
         SharedPreferences prefs = getSharedPreferences("CalcData", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
-        Log.i("BUG", "Open Bracket saved: " + CalculatorButtons.openBracket);
-        Log.i("BUG", "Closed Bracket saved: " + CalculatorButtons.closeBracket);
         editor.putInt("Theme", Themer.CURRENT_THEME);
         editor.putInt("openBracket", CalculatorButtons.openBracket);
         editor.putInt("closeBracket", CalculatorButtons.closeBracket);
         editor.putString("deg_rad_state", CalculatorButtons.DEG_RAND_STATE);
-        Log.i("TrigStateChange", " into sharedprefs, i.e the DEG_RAND_STATE: " + CalculatorButtons.DEG_RAND_STATE);
         editor.apply();
     }
 
@@ -378,6 +312,47 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    private ArrayList<Button> setCommonButts() {
+        final Button zeroButton = (Button) findViewById(R.id.zeroButton);
+        final Button oneButton = (Button) findViewById(R.id.oneButton);
+        final Button twoButton = (Button) findViewById(R.id.twoButton);
+        final Button threeButton = (Button) findViewById(R.id.threeButton);
+        final Button fourButton = (Button) findViewById(R.id.fourButton);
+        final Button fiveButton = (Button) findViewById(R.id.fiveButton);
+        final Button sixButton = (Button) findViewById(R.id.sixButton);
+        final Button sevenButton = (Button) findViewById(R.id.sevenButton);
+        final Button eightButton = (Button) findViewById(R.id.eightButton);
+        final Button nineButton = (Button) findViewById(R.id.nineButton);
+        final Button periodButton = (Button) findViewById(R.id.dotButton);
+
+        return new ArrayList<Button>() {{
+            add(zeroButton); add(oneButton); add(twoButton); add(threeButton);
+            add(fourButton); add(fiveButton); add(sixButton); add(sevenButton);
+            add(eightButton); add(nineButton); add(periodButton);
+        }};
+    }
+
+    private ArrayList<Button> setCommonOpps() {
+        final Button addButton = (Button) findViewById(R.id.addButton);
+        final Button minusButton = (Button) findViewById(R.id.minusButton);
+        final Button multiplyButton = (Button) findViewById(R.id.multButton);
+        final Button divideButton = (Button) findViewById(R.id.divButton);
+        final Button openBracketButton = (Button) findViewById(R.id.openBrace);
+        final Button closeBracketButton = (Button) findViewById(R.id.closeBrace);
+        final Button percentageButton = (Button) findViewById(R.id.prcntButton);
+
+        final Button deleteButton = (Button) findViewById(R.id.delButton);
+        final Button clearButton = (Button) findViewById(R.id.clrButton);
+        final Button equalButton = (Button) findViewById(R.id.eqlButton);
+        final Button menuButton = (Button) findViewById(R.id.menuButton);
+
+        return new ArrayList<Button>(){{
+            add(addButton); add(minusButton); add(multiplyButton); add(divideButton);
+            add(openBracketButton); add(closeBracketButton); add(percentageButton);
+            add(clearButton); add(deleteButton); add(equalButton); add(menuButton);
+        }};
+    }
+
     private ArrayList<Button> setScienceButts() {
         final Button tanButton = (Button) findViewById(R.id.tangentButton);
         final Button sinButton = (Button) findViewById(R.id.sineButton);
@@ -397,7 +372,6 @@ public class MainActivity extends AppCompatActivity {
         final Button ansButton = (Button) findViewById(R.id.ansButton);
 
         // Variable buttons
-
         final Button var1Button = (Button) findViewById(R.id.var1Button);
         final Button var2Button = (Button) findViewById(R.id.var2Button);
         final Button var3Button = (Button) findViewById(R.id.var3Button);
@@ -408,7 +382,7 @@ public class MainActivity extends AppCompatActivity {
         assert var3Button != null;
         var3Button.setTextColor(Themer.colorArray.get(Themer.COLOR_ACCENT));
 
-        ArrayList<Button> advancedOperands = new ArrayList<Button>(){{
+        return new ArrayList<Button>(){{
             add(tanButton); add(sinButton); add(cosButton);
             add(logButton); add(lnButton); add(piButton);
             add(eButton); add(squareRootButton);  add(powerButton);
@@ -417,8 +391,6 @@ public class MainActivity extends AppCompatActivity {
             add(var1Button); add(var2Button); add(var3Button);
             add(ansButton);
         }};
-
-        return advancedOperands;
     }
 
     public void disableSoftKeyboard(final EditText v) {
@@ -427,8 +399,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void setTheme(Themer lemur) {
-
         lemur.setButtAnimation();
+
         int colorAccent = Themer.colorArray.get(Themer.COLOR_ACCENT);
         int colorTextScreen = Themer.colorArray.get(Themer.COLOR_TEXT_SCREEN);
         int colorOppTray = Themer.colorArray.get(Themer.COLOR_OPPTRAY);
@@ -438,7 +410,7 @@ public class MainActivity extends AppCompatActivity {
         int colorBG = Themer.colorArray.get(Themer.COLOR_BACKGROUND);
 
         View wholeView;
-        if (getScreenOrientation() == Configuration.ORIENTATION_LANDSCAPE)
+        if (screenOrientation == Configuration.ORIENTATION_LANDSCAPE)
             wholeView = (RelativeLayout) findViewById(R.id.wholeViewLAND);
         else
             wholeView = (LinearLayout) findViewById(R.id.wholeView);
@@ -471,7 +443,7 @@ public class MainActivity extends AppCompatActivity {
             var2Button.setTextColor(colorAccent);
             assert var3Button != null;
             var3Button.setTextColor(colorAccent);
-            if (getScreenOrientation() == Configuration.ORIENTATION_PORTRAIT) {
+            if (screenOrientation == Configuration.ORIENTATION_PORTRAIT) {
                 Button bakButton = (Button) findViewById(R.id.bakButton);
                 assert bakButton != null;
                 bakButton.setBackgroundColor(colorAccent);
@@ -488,7 +460,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         if (screenOrientation == Configuration.ORIENTATION_PORTRAIT) {
-            imageMor = (ImageView) findViewById(R.id.imageMor);
+            ImageView imageMor = (ImageView) findViewById(R.id.imageMor);
             assert imageMor != null;
             imageMor.setColorFilter(colorAccent);
         } else {
@@ -499,16 +471,16 @@ public class MainActivity extends AppCompatActivity {
 
     public int getScreenOrientation()
     {
+        android.graphics.Point size = new android.graphics.Point();
         Display getOrient = getWindowManager().getDefaultDisplay();
-        int orientation = Configuration.ORIENTATION_UNDEFINED;
-        if(getOrient.getWidth()==getOrient.getHeight()){
-            orientation = Configuration.ORIENTATION_SQUARE;
-        } else{
-            if(getOrient.getWidth() < getOrient.getHeight()){
-                orientation = Configuration.ORIENTATION_PORTRAIT;
-            }else {
-                orientation = Configuration.ORIENTATION_LANDSCAPE;
-            }
+        getOrient.getSize(size);
+        int width = size.x;
+        int height = size.y;
+        int orientation;
+        if(width < height){
+            orientation = Configuration.ORIENTATION_PORTRAIT;
+        }else {
+            orientation = Configuration.ORIENTATION_LANDSCAPE;
         }
         return orientation;
     }
