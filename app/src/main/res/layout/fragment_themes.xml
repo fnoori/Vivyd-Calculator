@@ -15,22 +15,50 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
+
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
-                android:text="BLUE"
-                android:id="@+id/blueButton"
-                android:background="@color/BLUE_colorAccent"
-                android:textColor="#ffffff"
+                android:text="WatermelÓn"
+                android:id="@+id/wtrmButton"
+                android:background="#366149"
+                android:layout_weight="1"
+                android:textColor="@color/WTRM_colorAccent" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:text="Blueberry"
+                android:id="@+id/papButton"
+                android:background="@color/PAP_numpad"
+                android:layout_weight="1"
+                android:textColor="@color/PAP_text_screen" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:text="sundae"
+                android:id="@+id/sundaeButton"
+                android:background="#FFF9C4"
+                android:layout_weight="1"
+                android:textColor="#EF5350" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:text="Chocolate"
+                android:id="@+id/chocButton"
+                android:background="@color/CHOC_numpad"
+                android:textColor="@color/CHOC_text"
                 android:layout_weight="1" />
 
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
-                android:text="PINK"
-                android:id="@+id/pinkButton"
-                android:background="@color/PINK_colorAccent"
-                android:textColor="#ffffff"
+                android:text="Red Velvet"
+                android:id="@+id/rvelButton"
+                android:background="@color/RVEL_colorAccent"
+                android:textColor="@color/RVEL_text"
                 android:layout_weight="1" />
 
             <Button
@@ -45,38 +73,20 @@
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
-                android:text="Chocolate"
-                android:id="@+id/chocButton"
-                android:background="@color/CHOC_numpad"
-                android:textColor="@color/CHOC_text"
+                android:text="CLASSIC BLUE"
+                android:id="@+id/blueButton"
+                android:background="@color/BLUE_colorAccent"
+                android:textColor="#ffffff"
                 android:layout_weight="1" />
 
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
-                android:text="sundae"
-                android:id="@+id/sundaeButton"
-                android:background="#FFF9C4"
-                android:layout_weight="1"
-                android:textColor="#EF5350" />
-
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:text="Red Velvet"
-                android:id="@+id/rvelButton"
-                android:background="@color/RVEL_colorAccent"
-                android:textColor="@color/RVEL_text"
+                android:text="CLASSIC PINK"
+                android:id="@+id/pinkButton"
+                android:background="@color/PINK_colorAccent"
+                android:textColor="#ffffff"
                 android:layout_weight="1" />
-
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:text="WatermelÓn"
-                android:id="@+id/wtrmButton"
-                android:background="@color/WTRM_numpad"
-                android:layout_weight="1"
-                android:textColor="@color/WTRM_colorAccent" />
 
         </LinearLayout>
     </ScrollView>

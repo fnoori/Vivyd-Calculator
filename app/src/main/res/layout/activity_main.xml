@@ -106,13 +106,12 @@
                 android:elegantTextHeight="false"
                 android:stateListAnimator="@null"
                 android:background="#00ffffff"
-                android:fontFamily="sans-serif"
                 android:textAlignment="gravity"
                 android:gravity="bottom|center_horizontal"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:paddingBottom="5dp" />
+                android:paddingBottom="7dp" />
         </RelativeLayout>
 
     </LinearLayout>

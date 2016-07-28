@@ -229,7 +229,7 @@ public class MainActivity extends AppCompatActivity {
         // For themes. This must come after any button initializations.
         SharedPreferences prefs = getSharedPreferences("CalcData", Context.MODE_PRIVATE);
         themer = new Themer(this, commonButtons, commonOperands);
-        Themer.CURRENT_THEME = prefs.getInt("Theme", 1);
+        Themer.CURRENT_THEME = prefs.getInt("Theme", Themer.WTRM_THEME);
         setTheme(themer);
 
 
@@ -514,6 +514,9 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 case Themer.RVEL_THEME:
                     morButton.setBackgroundResource(R.drawable.rvel_numpad_transition);
+                    break;
+                case Themer.PAP_THEME:
+                    morButton.setBackgroundResource(R.drawable.pap_numpad_transition);
                     break;
             }
         }

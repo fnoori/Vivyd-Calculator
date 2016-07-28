@@ -998,9 +998,10 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
         float scale = context.getResources().getDisplayMetrics().density;
         int pixelCushion = (int) (65*scale + 0.5f);
 
-        if (ansWidth_string >= (display.getWidth() - pixelCushion) && MainActivity.ansSize >= 34 && !type.equals("del")){
+        if (ansWidth_string >= (display.getWidth() - pixelCushion) && MainActivity.ansSize >= 34
+                && !type.equals("del")){
             /**
-             *  Animate the size reduction DISABLED BECAUSE it causes jittering/jank
+             *  Animate the size reduction DISABLED BECAUSE it causes jittering/jank on low end devices
              */
             /*
             ValueAnimator textScale_in = ValueAnimator.ofFloat(ansSize, ansSize-2);
@@ -1016,20 +1017,26 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
             */
             MainActivity.ansSize -= 2;
             answerView.setTextSize(TypedValue.COMPLEX_UNIT_SP, MainActivity.ansSize);
-            Log.i("RESIZE", " new size = " + (MainActivity.ansSize));
-        } else if (type.equals("del") && MainActivity.ansSize < MainActivity.defaultTxtSize && ansWidth_string < display.getWidth()) {
-            MainActivity.ansSize += 2;
-            answerView.setTextSize(TypedValue.COMPLEX_UNIT_SP, MainActivity.ansSize);
-        }
-        else if (type.equals("clr") || (isAnswer && ansWidth_string < display.getWidth() - pixelCushion)){
-            Log.i("RESIZE", " Trying to set as defualt, defualt val is = " + (MainActivity.defaultTxtSize));
+        }else if (ansWidth_string >= (display.getWidth() - pixelCushion) && MainActivity.ansSize < 34
+                && !type.equals("del")) {
+            overage++;
+        }else if (type.equals("del") && MainActivity.ansSize < MainActivity.defaultTxtSize
+                    && ansWidth_string < display.getWidth() && overage == 0) {
+                MainActivity.ansSize += 2;
+                answerView.setTextSize(TypedValue.COMPLEX_UNIT_SP, MainActivity.ansSize);
+        }else if (ansWidth_string >= (display.getWidth() - pixelCushion) && MainActivity.ansSize < 34
+                && type.equals("del")) {
+            overage--;
+        }else if (type.equals("clr") || (isAnswer && ansWidth_string < display.getWidth() - pixelCushion)){
             answerView.setTextSize(TypedValue.COMPLEX_UNIT_SP, MainActivity.defaultTxtSize);
+            overage = 0;
         }
         else if (type.equals("eql")){
             while (ansWidth_string > display.getWidth()) {
                 MainActivity.ansSize -= 2;
                 answerView.setTextSize(TypedValue.COMPLEX_UNIT_SP, MainActivity.ansSize);
                 ansWidth_string = paint.measureText(answerView.getText().toString());
+                overage = 0;
             }
         }
     }

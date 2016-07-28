@@ -38,6 +38,8 @@ public class Themer {
     public final static int SUND_THEME = 5;
     public final static int WTRM_THEME = 6;
     public final static int RVEL_THEME = 7;
+    public final static int PAP_THEME = 8;
+
 
     // Basic themes
     public static int BLUE_ACCENT;
@@ -87,6 +89,15 @@ public class Themer {
     public static int RVEL_TEXT;
     public static int RVEL_TEXT_SCREEN;
     public static int RVEL_OPPTRAY;
+
+    // Papaya Theme
+    public static int PAP_ACCENT;
+    public static int PAP_COMP;
+    public static int PAP_BACKGROUND;
+    public static int PAP_NUMPAD;
+    public static int PAP_TEXT;
+    public static int PAP_TEXT_SCREEN;
+    public static int PAP_OPPTRAY;
 
     public Themer(Context inContext,
                   ArrayList<Button> inCommonButtons,
@@ -156,6 +167,15 @@ public class Themer {
         RVEL_TEXT            = ContextCompat.getColor(context, R.color.RVEL_text);
         RVEL_TEXT_SCREEN     = ContextCompat.getColor(context, R.color.RVEL_text_screen);
         RVEL_OPPTRAY         = ContextCompat.getColor(context, R.color.RVEL_oppTray);
+
+        //Initialize Papaya Theme
+        PAP_ACCENT          = ContextCompat.getColor(context, R.color.PAP_colorAccent);
+        PAP_COMP            = ContextCompat.getColor(context, R.color.PAP_colorComp);
+        PAP_BACKGROUND      = ContextCompat.getColor(context, R.color.PAP_background);
+        PAP_NUMPAD          = ContextCompat.getColor(context, R.color.PAP_numpad);
+        PAP_TEXT            = ContextCompat.getColor(context, R.color.PAP_text);
+        PAP_TEXT_SCREEN     = ContextCompat.getColor(context, R.color.PAP_text_screen);
+        PAP_OPPTRAY         = ContextCompat.getColor(context, R.color.PAP_oppTray);
 
     }
 
@@ -378,6 +398,37 @@ public class Themer {
                     curr.setTextColor(colorArray.get(COLOR_TEXT));
                 }
                 break;
+
+            case (PAP_THEME):
+                colorArray.add(COLOR_ACCENT, PAP_ACCENT);
+                colorArray.add(COLOR_COMP, PAP_COMP);
+                colorArray.add(COLOR_BACKGROUND, PAP_BACKGROUND);
+                colorArray.add(COLOR_NUMPAD, PAP_NUMPAD);
+                colorArray.add(COLOR_TEXT, PAP_TEXT);
+                colorArray.add(COLOR_TEXT_SCREEN, PAP_TEXT_SCREEN);
+                colorArray.add(COLOR_OPPTRAY, PAP_OPPTRAY);
+                for (Button curr: commonButtons) {
+                    if (curr.getId() != R.id.sevenButton && curr.getId() != R.id.eightButton
+                            && curr.getId() != R.id.nineButton)
+                        curr.setBackgroundResource(R.drawable.pap_numpad_transition);
+                    else
+                        curr.setBackgroundResource(R.drawable.pap_numpad_transition_top);
+                    curr.setTextColor(colorArray.get(COLOR_TEXT));
+                }
+                for (Button curr: commonOperands) {
+                    if (curr.getId() == R.id.openBrace || curr.getId() == R.id.closeBrace
+                            || curr.getId() == R.id.prcntButton || curr.getId() == R.id.delButton
+                            || curr.getId() == R.id.clrButton)
+                        curr.setBackgroundResource(R.drawable.pap_numpad_transition_noshad);
+                    else if(curr.getId() == R.id.divButton || curr.getId() == R.id.multButton
+                            || curr.getId() == R.id.minusButton || curr.getId() == R.id.addButton
+                            || curr.getId() == R.id.eqlButton)
+                        curr.setBackgroundResource(R.drawable.pap_main_transition);
+                    else if(curr.getId() == R.id.menuButton)
+                        curr.setBackgroundResource(R.drawable.pap_main_transition_top);
+                    curr.setTextColor(colorArray.get(COLOR_TEXT));
+                }
+                break;
         }
 
         float[] hsv = new float[3];
@@ -416,6 +467,10 @@ public class Themer {
 
                 case (RVEL_THEME):
                     curr.setBackgroundResource(R.drawable.rvel_numpad_transition);
+                    break;
+
+                case (PAP_THEME):
+                    curr.setBackgroundResource(R.drawable.pap_numpad_transition);
                     break;
 
             }

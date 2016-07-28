@@ -30,17 +30,17 @@
     <color name="BASIC_oppTray">#4f4646</color>
 
     <!-- Chocolate theme -->
-    <color name="CHOC_colorAccent">#bea49b</color>
-    <color name="CHOC_colorComp">#fcf8e8</color>
+    <color name="CHOC_colorAccent">#c2a395</color>
+    <color name="CHOC_colorComp">#f1ac5c</color>
     <color name="CHOC_background">#2f1e1b</color>
     <color name="CHOC_numpad">#3E2723</color>
     <color name="CHOC_text">#FFFFFF</color>
-    <color name="CHOC_text_screen">#473c39</color>
-    <color name="CHOC_oppTray">#8D6E63</color>
+    <color name="CHOC_text_screen">#433a46</color>
+    <color name="CHOC_oppTray">#77584d</color>
 
     <!-- Sundae theme -->
     <color name="SUND_colorAccent">#fff7b2</color>
-    <color name="SUND_colorComp">#6df9d8</color>
+    <color name="SUND_colorComp">#5deef9</color>
     <color name="SUND_background">#34211e</color>
     <color name="SUND_numpad">#3E2723</color>
     <color name="SUND_text_screen">#cb5754</color>
@@ -49,7 +49,7 @@
 
     <!-- Watermelon theme -->
     <color name="WTRM_colorAccent">#EF5350</color>
-    <color name="WTRM_colorComp">#C4F071</color>
+    <color name="WTRM_colorComp">#0dcf95</color>
     <color name="WTRM_background">#204531</color>
     <color name="WTRM_numpad">#28503a</color>
     <color name="WTRM_text_screen">#ffffff</color>
@@ -64,5 +64,14 @@
     <color name="RVEL_text_screen">#FFFFFF</color>
     <color name="RVEL_text">#ebd7d2</color>
     <color name="RVEL_oppTray">#663d40</color>
+
+    <!-- BlueBerry theme (ignore the pap please) -->
+    <color name="PAP_colorAccent">#538fc3</color>
+    <color name="PAP_colorComp">#ff9e3e</color>
+    <color name="PAP_background">#181e29</color>
+    <color name="PAP_numpad">#1d2736</color>
+    <color name="PAP_text_screen">#ffffff</color>
+    <color name="PAP_text">#ebd7d2</color>
+    <color name="PAP_oppTray">#244e82</color>
 
 </resources>
