@@ -18,6 +18,7 @@ import android.text.InputType;
 import android.transition.Slide;
 import android.transition.TransitionManager;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.Display;
 import android.view.View;
 import android.widget.Button;
@@ -51,15 +52,13 @@ public class MainActivity extends AppCompatActivity {
     private EditText answerView;
     private TextView leftBraceCounter;
     private TextView rightBraceCounter;
-
-    // The following stuff is code related to the popupwindow feature
     private Button morButton;
-    private Button menuButton;
-    static int popHeight = 0;
-    static int popWidth = 0;
 
+    // Indicates that only orientation has been changed, and the app has not exited
     private static int notExited = 0;
+
     public static float defaultTxtSize;
+    public static float ansSize;
 
     private Themer themer;
 
@@ -105,18 +104,22 @@ public class MainActivity extends AppCompatActivity {
             }
         }, 2000);
 
+        int screenOrientation = getScreenOrientation();
         answerView = (EditText) findViewById(R.id.ansView);
         assert answerView != null;
-        defaultTxtSize = pixelsToSp(MainActivity.this, answerView.getTextSize());
-        display = (LinearLayout) findViewById(R.id.display);
-        disableSoftKeyboard(answerView);
         answerView.setLongClickable(false);
         answerView.setTextIsSelectable(false);
         answerView.setCursorVisible(true);
         answerView.setSingleLine();
+        disableSoftKeyboard(answerView);
+        if (notExited == 0)
+            defaultTxtSize = pixelsToSp(MainActivity.this, answerView.getTextSize());
+        else if (screenOrientation == Configuration.ORIENTATION_PORTRAIT)
+            answerView.setTextSize(TypedValue.COMPLEX_UNIT_SP, ansSize);
+        display = (LinearLayout) findViewById(R.id.display);
+
        // Typeface font = Typeface.createFromAsset(getAssets(), "")
 
-        int screenOrientation = getScreenOrientation();
         EditText equationView = (EditText) findViewById(R.id.eqnView);
         assert equationView != null;
         disableSoftKeyboard(equationView);

@@ -84,10 +84,10 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
     private static final String ARITH_MSG = "Can't divide by 0";
     private static final String BAD_BRAC_MSG = "Incorrect Brackets";
 
-    private static int screenOrientation;
-
     public static String DEG_RAND_STATE;
     private static String ERROR_MSG = "ERROR";
+    private static int screenOrientation;
+    private int overage;
 
     /*
     public enum ALL_BUTTONS {
@@ -989,20 +989,19 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
         curr_activity.getWindowManager().getDefaultDisplay().getSize(size);
         int screen_width = size.x;
         Paint paint = answerView.getPaint();
-
         float ansWidth_string = paint.measureText(answerView.getText().toString());
-        float ansSize = MainActivity.pixelsToSp(context, answerView.getTextSize());
+        MainActivity.ansSize = MainActivity.pixelsToSp(context, answerView.getTextSize());
         float scale = context.getResources().getDisplayMetrics().density;
         int pixelCushion = (int) (65*scale + 0.5f);
 
         Log.i("RESIZE", " width = " + screen_width);
         Log.i("RESIZE", " ansView width = " + ansWidth_string);
-        Log.i("RESIZE", " curr size = " + ansSize);
+        Log.i("RESIZE", " curr size = " + MainActivity.ansSize);
 
-        if (ansWidth_string >= (display.getWidth() - pixelCushion) && ansSize >= 34 && !type.equals("del")){
+        if (ansWidth_string >= (display.getWidth() - pixelCushion) && MainActivity.ansSize >= 34 && !type.equals("del")){
             /**
-             *  Animate the size reduction DISABLED BEACUSE it causes jittering
-              */
+             *  Animate the size reduction DISABLED BECAUSE it causes jittering/jank
+             */
             /*
             ValueAnimator textScale_in = ValueAnimator.ofFloat(ansSize, ansSize-2);
             textScale_in.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
@@ -1015,12 +1014,14 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
             //textScale_in.setInterpolator(new LinearInterpolator());
             textScale_in.start();
             */
-
-            answerView.setTextSize(TypedValue.COMPLEX_UNIT_SP, ansSize-2);
-
-            Log.i("RESIZE", " new size = " + (ansSize));
-        } else if (type.equals("del") && ansSize < MainActivity.defaultTxtSize && ansWidth_string < display.getWidth()) {
-            answerView.setTextSize(TypedValue.COMPLEX_UNIT_SP, ansSize + 2);
+            MainActivity.ansSize -= 2;
+            answerView.setTextSize(TypedValue.COMPLEX_UNIT_SP, MainActivity.ansSize);
+            Log.i("RESIZE", " new size = " + (MainActivity.ansSize));
+        } else if(MainActivity.ansSize >= 34 && !type.equals("del")) {
+            overage++;
+        }else if (type.equals("del") && MainActivity.ansSize < MainActivity.defaultTxtSize && ansWidth_string < display.getWidth()) {
+            MainActivity.ansSize += 2;
+            answerView.setTextSize(TypedValue.COMPLEX_UNIT_SP, MainActivity.ansSize);
         }
         else if (type.equals("clr") || (isAnswer && ansWidth_string < display.getWidth() - pixelCushion)){
             // Don't set it at default, set it at what fits.
@@ -1028,7 +1029,8 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
         }
         else if (type.equals("eql")){
             while (ansWidth_string > display.getWidth()) {
-                answerView.setTextSize(TypedValue.COMPLEX_UNIT_SP, ansSize - 2);
+                MainActivity.ansSize -= 2;
+                answerView.setTextSize(TypedValue.COMPLEX_UNIT_SP, MainActivity.ansSize);
                 ansWidth_string = paint.measureText(answerView.getText().toString());
             }
         }
