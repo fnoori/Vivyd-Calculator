@@ -270,8 +270,10 @@ public class MainActivity extends AppCompatActivity {
         if (notExited == 0) {
             defaultTxtSize = pixelsToSp(MainActivity.this, answerView.getTextSize());
         }
-        else if (screenOrientation == Configuration.ORIENTATION_PORTRAIT)
+        else if (screenOrientation == Configuration.ORIENTATION_PORTRAIT &&
+                ansSize != 0) {
             answerView.setTextSize(TypedValue.COMPLEX_UNIT_SP, ansSize);
+        }
 
         long endOfOnStartMainActivity = System.currentTimeMillis();
         long total = endOfOnStartMainActivity - startTime;
