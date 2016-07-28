@@ -81,7 +81,7 @@
                 android:textIsSelectable="true"
                 android:inputType="none"
                 android:cursorVisible="true"
-                android:textSize="45sp"
+                android:textSize="50sp"
                 android:textColor="#EF5350"
                 android:paddingStart="10dp"
                 android:paddingLeft="10dp"
@@ -452,13 +452,14 @@
                                 android:stateListAnimator="@null" />
 
                             <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
+                                android:layout_width="40dp"
+                                android:layout_height="wrap_content"
                                 android:id="@+id/imageMor"
                                 android:src="@drawable/ic_expand_less_black_24dp"
                                 android:tint="@color/BLUE_colorAccent"
                                 android:scaleType="centerInside"
-                                android:contentDescription="upArrow" />
+                                android:contentDescription="upArrow"
+                                android:layout_gravity="center" />
                         </FrameLayout>
 
                         <Button

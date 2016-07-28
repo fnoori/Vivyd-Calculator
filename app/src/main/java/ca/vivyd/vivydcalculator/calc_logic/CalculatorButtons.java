@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.drawable.TransitionDrawable;
@@ -34,6 +35,7 @@ import net.objecthunter.exp4j.ExpressionBuilder;
 import net.objecthunter.exp4j.function.Function;
 import net.objecthunter.exp4j.operator.Operator;
 
+import org.apache.commons.lang3.StringEscapeUtils;
 import org.apache.commons.math3.geometry.Point;
 import org.apache.commons.math3.geometry.Space;
 
@@ -82,6 +84,7 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
     private static final String ARITH_MSG = "Can't divide by 0";
     private static final String BAD_BRAC_MSG = "Incorrect Brackets";
 
+    private static int screenOrientation;
 
     public static String DEG_RAND_STATE;
     private static String ERROR_MSG = "ERROR";
@@ -140,7 +143,7 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
     public CalculatorButtons(Context context, LinearLayout display, EditText answerView,
                              TextView equationView, ArrayList<Button> commonButtons,
                              ArrayList<Button> commonOperands, TextView leftBraceCounter,
-                             TextView rightBraceCounter, Button degRandButton){
+                             TextView rightBraceCounter, Button degRandButton, int screenOrientation){
         this.context = context;
         this.curr_activity = (Activity) context;
         this.display = display;
@@ -149,6 +152,7 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
         this.leftBracketCounter = leftBraceCounter;
         this.rightBracketCounter = rightBraceCounter;
         this.degRandButton = degRandButton;
+        this.screenOrientation = screenOrientation;
 
         expressionDisplayString = null;
         expressionEvalString = null;
@@ -480,7 +484,8 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
                 transition.reverseTransition(endTran);
                 prevMotionEvent = "ACTION_UP";
                 //Log.i("ello", prevMotionEvent + " : " + num + " transcomplete = " + transComplete);
-                resizeAnsView(type);
+                if (screenOrientation == Configuration.ORIENTATION_PORTRAIT)
+                    resizeAnsView(type);
                 break;
 
         }

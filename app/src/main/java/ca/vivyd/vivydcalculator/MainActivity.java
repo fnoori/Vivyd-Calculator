@@ -29,6 +29,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
@@ -41,6 +42,8 @@ import ca.vivyd.vivydcalculator.themes.Themer;
 
 
 public class MainActivity extends AppCompatActivity {
+
+
     public static String CONTACT_EMAIL = "solutions.teamvivyd@gmail.com";
 
     private Context context = this;
@@ -62,6 +65,8 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        long oldTime = System.currentTimeMillis();
+
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
         setContentView(R.layout.activity_main);
@@ -111,6 +116,7 @@ public class MainActivity extends AppCompatActivity {
         answerView.setSingleLine();
        // Typeface font = Typeface.createFromAsset(getAssets(), "")
 
+        int screenOrientation = getScreenOrientation();
         EditText equationView = (EditText) findViewById(R.id.eqnView);
         assert equationView != null;
         disableSoftKeyboard(equationView);
@@ -163,7 +169,7 @@ public class MainActivity extends AppCompatActivity {
 
         final CalculatorButtons calcButtons = new CalculatorButtons(context, display, answerView,
                 equationView, commonButtons, commonOperands, leftBraceCounter, rightBraceCounter,
-                degRadButton);
+                degRadButton, screenOrientation);
 
         // For popupMenu
         if (getScreenOrientation() == Configuration.ORIENTATION_PORTRAIT) {
@@ -227,6 +233,8 @@ public class MainActivity extends AppCompatActivity {
         Themer.CURRENT_THEME = prefs.getInt("Theme", 1);
         setTheme(themer);
 
+
+
         /** If the current orientation is landscape, initialize advanced buttons
          *  Must come after initialization of themer or could crash in odd case where app launches
          *  in landscape
@@ -263,16 +271,24 @@ public class MainActivity extends AppCompatActivity {
         //Log.d("TIME_BEFORE_AD_3", total+"");
         Log.d("TIME_AFTER_AD_3", total+"");
 
+        long totTime = System.currentTimeMillis() - oldTime;
+        Toast.makeText(this, "onCreate took this long: " + totTime, Toast.LENGTH_LONG).show();
+
     }
 
 
     @Override
     public void onResume(){
         super.onResume();
+
+        //Close popupTray if it's still open
+
+
+
         disableSoftKeyboard(answerView);
-        LinearLayout popSpace = (LinearLayout) findViewById(R.id.popSpace);
-        assert popSpace != null;
-        popSpace.removeView(findViewById(R.id.popMenu));
+        FrameLayout numArea = (FrameLayout) findViewById(R.id.num_area);
+        if (numArea != null)
+            numArea.removeView(findViewById(R.id.popMenu));
         setTheme(themer);
 
         if (answerView.getText().toString().matches("")){
@@ -422,7 +438,11 @@ public class MainActivity extends AppCompatActivity {
         assert numRightBrace != null;
 
 
-        wholeView.setBackgroundColor(Themer.colorArray.get(Themer.COLOR_BACKGROUND));
+        // Warning says that wholeView is always true, but in an odd case it tried to set backgroundcolor
+        // to a null reference.
+        if (wholeView != null)
+            wholeView.setBackgroundColor(Themer.colorArray.get(Themer.COLOR_BACKGROUND));
+
         display.setBackgroundColor(colorAccent);
         eqnView.setTextColor(colorTextScreen);
         answerView.setTextColor(colorTextScreen);
