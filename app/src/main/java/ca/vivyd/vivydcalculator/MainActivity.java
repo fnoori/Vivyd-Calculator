@@ -112,10 +112,6 @@ public class MainActivity extends AppCompatActivity {
         answerView.setCursorVisible(true);
         answerView.setSingleLine();
         disableSoftKeyboard(answerView);
-        if (notExited == 0)
-            defaultTxtSize = pixelsToSp(MainActivity.this, answerView.getTextSize());
-        else if (screenOrientation == Configuration.ORIENTATION_PORTRAIT)
-            answerView.setTextSize(TypedValue.COMPLEX_UNIT_SP, ansSize);
         display = (LinearLayout) findViewById(R.id.display);
 
        // Typeface font = Typeface.createFromAsset(getAssets(), "")
@@ -238,6 +234,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+
         /** If the current orientation is landscape, initialize advanced buttons
          *  Must come after initialization of themer or could crash in odd case where app launches
          *  in landscape
@@ -247,6 +244,7 @@ public class MainActivity extends AppCompatActivity {
             calcButtons.addAdvanceOperands(scienceButts);
             notExited = 1;
         }
+
 
         /**
          *  Values that should persist when the app switches to landscape mode should be placed
@@ -268,6 +266,12 @@ public class MainActivity extends AppCompatActivity {
                 Log.i("TrigStateChange", "setTrig: " + CalculatorButtons.DEGREE);
             }
         }
+
+        if (notExited == 0) {
+            defaultTxtSize = pixelsToSp(MainActivity.this, answerView.getTextSize());
+        }
+        else if (screenOrientation == Configuration.ORIENTATION_PORTRAIT)
+            answerView.setTextSize(TypedValue.COMPLEX_UNIT_SP, ansSize);
 
         long endOfOnStartMainActivity = System.currentTimeMillis();
         long total = endOfOnStartMainActivity - startTime;

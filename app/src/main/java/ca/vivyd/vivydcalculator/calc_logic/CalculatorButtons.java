@@ -994,10 +994,6 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
         float scale = context.getResources().getDisplayMetrics().density;
         int pixelCushion = (int) (65*scale + 0.5f);
 
-        Log.i("RESIZE", " width = " + screen_width);
-        Log.i("RESIZE", " ansView width = " + ansWidth_string);
-        Log.i("RESIZE", " curr size = " + MainActivity.ansSize);
-
         if (ansWidth_string >= (display.getWidth() - pixelCushion) && MainActivity.ansSize >= 34 && !type.equals("del")){
             /**
              *  Animate the size reduction DISABLED BECAUSE it causes jittering/jank
@@ -1017,14 +1013,12 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
             MainActivity.ansSize -= 2;
             answerView.setTextSize(TypedValue.COMPLEX_UNIT_SP, MainActivity.ansSize);
             Log.i("RESIZE", " new size = " + (MainActivity.ansSize));
-        } else if(MainActivity.ansSize >= 34 && !type.equals("del")) {
-            overage++;
-        }else if (type.equals("del") && MainActivity.ansSize < MainActivity.defaultTxtSize && ansWidth_string < display.getWidth()) {
+        } else if (type.equals("del") && MainActivity.ansSize < MainActivity.defaultTxtSize && ansWidth_string < display.getWidth()) {
             MainActivity.ansSize += 2;
             answerView.setTextSize(TypedValue.COMPLEX_UNIT_SP, MainActivity.ansSize);
         }
         else if (type.equals("clr") || (isAnswer && ansWidth_string < display.getWidth() - pixelCushion)){
-            // Don't set it at default, set it at what fits.
+            Log.i("RESIZE", " Trying to set as defualt, defualt val is = " + (MainActivity.defaultTxtSize));
             answerView.setTextSize(TypedValue.COMPLEX_UNIT_SP, MainActivity.defaultTxtSize);
         }
         else if (type.equals("eql")){
