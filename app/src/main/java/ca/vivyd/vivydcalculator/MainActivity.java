@@ -71,11 +71,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         long oldTime = System.currentTimeMillis();
-
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
         setContentView(R.layout.activity_main);
-
 
         long startTime = System.currentTimeMillis();
         final AdView mAdView = (AdView) findViewById(R.id.adView);
