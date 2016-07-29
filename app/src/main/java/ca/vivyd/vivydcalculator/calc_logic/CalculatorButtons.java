@@ -111,6 +111,8 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
     private Button degRandButton;
     private String expressionEvalString;
     private String expressionDisplayString;
+    private List<Operator> operatorList;
+    private List<Function> functionList;
 
 
     // Playing with this, to see if performance improves
@@ -197,6 +199,17 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
         }
         degRandButton.setOnClickListener(this);
         equationView.setOnLongClickListener(this);
+
+        operatorList = new ArrayList<>();
+        operatorList.add(customOperators.getFactorialOperator());
+        operatorList.add(customOperators.getNrt());
+        operatorList.add(customOperators.getPercentageOperator());
+        operatorList.add(customOperators.getTenToPowerOfOperator());
+
+        functionList = new ArrayList<>();
+        functionList.add(customOperators.getSinDegrees());
+        functionList.add(customOperators.getCosDegrees());
+        functionList.add(customOperators.getTanDegrees());
     }
 
     @Override
@@ -739,25 +752,10 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
             try {
                 if (calculatorUtilities.isBracketCorrect(openBracket, closeBracket)) {
                     String forEquationView = calculatorUtilities.repalaceForEquViewDisplay(expressionToEvaluate);
-
-                    List<Operator> operatorList = new ArrayList<>();
-                    operatorList.add(customOperators.getFactorialOperator());
-                    operatorList.add(customOperators.getNrt());
-                    operatorList.add(customOperators.getPercentageOperator());
-                    operatorList.add(customOperators.getTenToPowerOfOperator());
-
-                    List<Function> functionList = new ArrayList<>();
-                    if (trigType.equals(CalculatorUtilities.DEG_RAD[0])) {
-                        functionList.add(customOperators.getSinDegrees());
-                        functionList.add(customOperators.getCosDegrees());
-                        functionList.add(customOperators.getTanDegrees());
+                    if(trigType.equals(CalculatorUtilities.DEG_RAD[0])){
                         expressionToEvaluate = calculatorUtilities.replaceForDegrees(expressionToEvaluate);
-                    } else {
-                        functionList.clear();
                     }
-
-                    Expression calc = new ExpressionBuilder(expressionToEvaluate)
-                            .operator(operatorList)
+                    Expression calc = new ExpressionBuilder(expressionToEvaluate).operator(operatorList)
                             .functions(functionList)
                             .build();
 
@@ -766,11 +764,8 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
                     Animation sweep = AnimationUtils.loadAnimation(context, R.anim.sweepity_sweep);
                     equationView.startAnimation(sweep);
                     equationView.setText(forEquationView);
-                    if (solution.contains(".")) {
-                        dotCounter = 1;
-                    }
+                    if (solution.contains(".")) {dotCounter = 1;}
                     solution = calculatorUtilities.convertToScientific(solution, display);
-
 
                     Animation sweep_fast = AnimationUtils.loadAnimation(context, R.anim.sweepity_sweep_fast);
                     answerView.startAnimation(sweep_fast);
@@ -810,7 +805,6 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
                     answerView.setSelection(answerView.getText().toString().length());
                     equalButtonLogic();
                 }
-
             } catch (IllegalArgumentException e) {
                 errorAnim(ILLEGAL_ARGUMENT_MSG);
                 e.printStackTrace();
@@ -898,10 +892,6 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
     public void addToExpressionToBeEvaluated(String valueToAppend, String type, boolean isExceptionToRule){
         String prevInput;
         int cursorLocation = 0;
-
-        Log.d("NUM_OPEN_BRACKET_INPUT", openBracket+"");
-        Log.d("NUM_CLOSE_BRACKET_INPUT", closeBracket+"");
-
         if(isAnswer || isError){
             if(type.equals(CalculatorUtilities.ALL_BUTTS[4]) ||
                     type.equals(CalculatorUtilities.ALL_BUTTS[8]) ||
@@ -956,24 +946,6 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
             rightBracketCounter.setTextColor(Themer.colorArray.get(Themer.COLOR_NUMPAD_DARK));
         }
     }
-
-    public void resetBrace() {
-        leftBracketCounter.setText("0");
-        rightBracketCounter.setText("0");
-        setBraceColor();
-    }
-
-    public void changeTrigType(){
-        if(trigType.equals(CalculatorUtilities.DEG_RAD[1])){
-            trigType = CalculatorUtilities.DEG_RAD[0];
-            DEG_RAND_STATE = DEGREE;
-        }
-        else if(trigType.equals(CalculatorUtilities.DEG_RAD[0])){
-            trigType = CalculatorUtilities.DEG_RAD[1];
-            DEG_RAND_STATE = RADIAN;
-        }
-    }
-
 
     // RETURNS: Returns true if string in EqnView is not a number/eqn
     public boolean checkEqnView(){
