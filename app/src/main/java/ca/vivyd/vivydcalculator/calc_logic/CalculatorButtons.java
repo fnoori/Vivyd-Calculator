@@ -36,6 +36,7 @@ import net.objecthunter.exp4j.function.Function;
 import net.objecthunter.exp4j.operator.Operator;
 
 import org.apache.commons.lang3.StringEscapeUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.math3.geometry.Point;
 import org.apache.commons.math3.geometry.Space;
 
@@ -910,9 +911,11 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
         }
         checkBrackets(type);
         prevInput = calculatorUtilities.getPreviousInput(expressionToEvaluate);
-        if(calculatorUtilities.checkIfMoreOperandIsPossible(prevInput, type, previousInputType, isExceptionToRule)){return;}
 
         cursorLocation = answerView.getSelectionStart();
+        if(calculatorUtilities.checkIfMoreOperandIsPossible(prevInput, type, previousInputType, isExceptionToRule)){
+            return;
+        }
         expressionToEvaluate = calculatorUtilities.replaceForAnsViewDisplay(
                 answerView.getText().insert(cursorLocation, valueToAppend).toString());
 
