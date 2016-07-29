@@ -39,6 +39,7 @@ import com.google.android.gms.ads.MobileAds;
 import java.util.ArrayList;
 
 import ca.vivyd.vivydcalculator.calc_logic.CalculatorButtons;
+import ca.vivyd.vivydcalculator.menu.ThemesFragment;
 import ca.vivyd.vivydcalculator.themes.Themer;
 
 
@@ -60,7 +61,10 @@ public class MainActivity extends AppCompatActivity {
 
     public static float defaultTxtSize;
     public static float ansSize;
+    public final static float minText_size = 34;
     public static int screenOrientation;
+    public static float scale;
+    public static float pixelCushion;
 
     private Themer themer;
 
@@ -92,6 +96,8 @@ public class MainActivity extends AppCompatActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
+                Log.i("PERFORMANCE", "Ad is occuring here");
+                Toast.makeText(MainActivity.this, "ad is occuring", Toast.LENGTH_LONG).show();
                 AdRequest request = new AdRequest.Builder()
                         .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)        // All emulators
                         // Remember to add a test device ID for each device that should request test ads.
@@ -115,8 +121,8 @@ public class MainActivity extends AppCompatActivity {
         answerView.setSingleLine();
         disableSoftKeyboard(answerView);
         display = (LinearLayout) findViewById(R.id.display);
-
-       // Typeface font = Typeface.createFromAsset(getAssets(), "")
+        scale = this.getResources().getDisplayMetrics().density;
+        pixelCushion = (int) (65*MainActivity.scale + 0.5f);
 
         EditText equationView = (EditText) findViewById(R.id.eqnView);
         assert equationView != null;
@@ -139,45 +145,46 @@ public class MainActivity extends AppCompatActivity {
             moreButtonListener(morButton, calcButtons);
         }
 
-        ImageButton inspButton = (ImageButton) findViewById(R.id.inspireButton);
-        assert inspButton != null;
-        inspButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AlertDialog.Builder inspBuilder = new AlertDialog.Builder(context);
-                inspBuilder.setMessage("Thank you for your support!\n\nWe need your feedback to get rid of all these bugs. " +
-                        "Email us and share your suggestions, issues, and/or life problems.");
-                inspBuilder.setCancelable(true);
+        if (screenOrientation == Configuration.ORIENTATION_LANDSCAPE) {
+            ImageButton inspButton = (ImageButton) findViewById(R.id.inspireButton);
+            assert inspButton != null;
+            inspButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    AlertDialog.Builder inspBuilder = new AlertDialog.Builder(context);
+                    inspBuilder.setMessage("Thank you for your support!\n\nWe need your feedback to get rid of all these bugs. " +
+                            "Email us and share your suggestions, issues, and/or life problems.");
+                    inspBuilder.setCancelable(true);
 
-                inspBuilder.setPositiveButton(
-                        "Email",
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                Intent i = new Intent(Intent.ACTION_SENDTO, Uri.fromParts("mailto", MainActivity.CONTACT_EMAIL, null));
-                                //i.setType("message/rfc822");
-                                i.putExtra(Intent.EXTRA_SUBJECT, "User Feedback");
-                                try {
-                                    startActivity(Intent.createChooser(i, "Send feedback..."));
-                                } catch (android.content.ActivityNotFoundException ex) {
-                                    // Toast.makeText(OptFragment.this, "You don't have an email client!", Toast.LENGTH_LONG).show();
+                    inspBuilder.setPositiveButton(
+                            "Email",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    Intent i = new Intent(Intent.ACTION_SENDTO, Uri.fromParts("mailto", MainActivity.CONTACT_EMAIL, null));
+                                    //i.setType("message/rfc822");
+                                    i.putExtra(Intent.EXTRA_SUBJECT, "User Feedback");
+                                    try {
+                                        startActivity(Intent.createChooser(i, "Send feedback..."));
+                                    } catch (android.content.ActivityNotFoundException ex) {
+                                        // Toast.makeText(OptFragment.this, "You don't have an email client!", Toast.LENGTH_LONG).show();
+                                    }
+                                    dialog.cancel();
                                 }
-                                dialog.cancel();
-                            }
-                        });
+                            });
 
-                inspBuilder.setNegativeButton(
-                        "cancel",
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                dialog.cancel();
-                            }
-                        });
+                    inspBuilder.setNegativeButton(
+                            "cancel",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    dialog.cancel();
+                                }
+                            });
 
-                AlertDialog alert = inspBuilder.create();
-                alert.show();
-            }
-        });
-
+                    AlertDialog alert = inspBuilder.create();
+                    alert.show();
+                }
+            });
+        }
 
         // For themes. This must come after any button initializations.
         SharedPreferences prefs = getSharedPreferences("CalcData", Context.MODE_PRIVATE);
@@ -229,25 +236,35 @@ public class MainActivity extends AppCompatActivity {
         Log.d("TIME_AFTER_AD_3", total+"");
 
         long totTime = System.currentTimeMillis() - oldTime;
-        Toast.makeText(this, "onCreate took this long: " + totTime, Toast.LENGTH_LONG).show();
+        Log.i("PERFORMANCE", " onCreate took this long: " + totTime);
+        //Toast.makeText(this, "onCreate took this long: " + totTime, Toast.LENGTH_LONG).show();
 
     }
 
 
     @Override
     public void onResume(){
+        long oldTime = System.currentTimeMillis();
+
         super.onResume();
 
         disableSoftKeyboard(answerView);
         FrameLayout numArea = (FrameLayout) findViewById(R.id.num_area);
         if (numArea != null)
             numArea.removeView(findViewById(R.id.popMenu));
-        setTheme(themer);
+        if (ThemesFragment.theme_isChanged == 1) {
+            setTheme(themer);
+            ThemesFragment.theme_isChanged = 0;
+        }
 
         if (answerView.getText().toString().matches("")){
             leftBraceCounter.setText("0");
             rightBraceCounter.setText("0");
         }
+
+        long endTime = System.currentTimeMillis() - oldTime;
+        //Toast.makeText(this, "onResume took this long: " + endTime, Toast.LENGTH_LONG).show();
+        Log.i("PERFORMANCE", " onResume took this long: " + endTime);
     }
 
     @Override
@@ -420,8 +437,6 @@ public class MainActivity extends AppCompatActivity {
         Button degRandButton = (Button) findViewById(R.id.degRandButton);
         assert degRandButton != null;
         Button var1Button = (Button) findViewById(R.id.var1Button);
-        ImageButton helpButton = (ImageButton) findViewById(R.id.inspireButton);
-        assert helpButton != null;
         TextView numLeftBrace = (TextView) findViewById(R.id.numLeftBrace);
         assert numLeftBrace != null;
         TextView numRightBrace = (TextView) findViewById(R.id.numRightBrace);
@@ -434,7 +449,6 @@ public class MainActivity extends AppCompatActivity {
         display.setBackgroundColor(colorAccent);
         eqnView.setTextColor(colorTextScreen);
         answerView.setTextColor(colorTextScreen);
-        helpButton.setBackgroundColor(colorComp);
         if (var1Button != null) {
             final Button var2Button = (Button) findViewById(R.id.var2Button);
             final Button var3Button = (Button) findViewById(R.id.var3Button);
@@ -463,9 +477,13 @@ public class MainActivity extends AppCompatActivity {
             ImageView imageMor = (ImageView) findViewById(R.id.imageMor);
             assert imageMor != null;
             imageMor.setColorFilter(colorAccent);
-        } else {
+        } else if (screenOrientation == Configuration.ORIENTATION_LANDSCAPE){
             ArrayList<Button> advancedOperands = setScienceButts();
             themer.setSciButtsAnim(advancedOperands);
+            ImageButton helpButton = (ImageButton) findViewById(R.id.inspireButton);
+            assert helpButton != null;
+            helpButton.setBackgroundColor(colorComp);
+
         }
     }
 

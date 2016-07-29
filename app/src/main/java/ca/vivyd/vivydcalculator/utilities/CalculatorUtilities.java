@@ -3,7 +3,11 @@ package ca.vivyd.vivydcalculator.utilities;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Paint;
 import android.util.Log;
+import android.util.TypedValue;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import org.apache.commons.lang3.StringUtils;
@@ -12,6 +16,7 @@ import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.prefs.PreferenceChangeEvent;
 
+import ca.vivyd.vivydcalculator.MainActivity;
 import ca.vivyd.vivydcalculator.calc_logic.CalculatorButtons;
 import ca.vivyd.vivydcalculator.calc_logic.CustomOperators;
 
@@ -115,11 +120,16 @@ public class CalculatorUtilities {
         return (incoming.length() > 0) && StringUtils.isNumeric(String.valueOf(incoming.charAt(incoming.length() - 1)));
     }
 
-    public String convertToScientific(String incoming){
+    public String convertToScientific(String incoming, LinearLayout display){
         double value = Double.parseDouble(incoming);
         NumberFormat formatter = new DecimalFormat();
 
-        if(incoming.length() > 15) {
+        Paint paint = new Paint();
+        paint.setTextSize(MainActivity.defaultTxtSize*MainActivity.scale);
+        float string_pxLen = paint.measureText(incoming);
+
+        Log.d("SCITIME", "string_pxLen =" + string_pxLen);
+        if(string_pxLen > display.getWidth() - MainActivity.pixelCushion) {
             formatter = new DecimalFormat("0.####E0");
             return formatter.format(value);
         }else{

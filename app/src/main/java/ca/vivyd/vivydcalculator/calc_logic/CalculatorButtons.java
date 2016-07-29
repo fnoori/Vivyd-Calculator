@@ -262,6 +262,7 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
                     answerView.setSelection(answerView.getText().length());
                     //openBracket = 0;
                     //closeBracket = 0;
+                    resizeAnsView("eqnView");
 
                     expressionToEvaluate = calculatorUtilities.replaceForCalculations(answerView.getText().toString());
                     isAnswer = false;
@@ -763,7 +764,7 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
                     if (solution.contains(".")) {
                         dotCounter = 1;
                     }
-                    solution = calculatorUtilities.convertToScientific(solution);
+                    solution = calculatorUtilities.convertToScientific(solution, display);
 
 
                     Animation sweep_fast = AnimationUtils.loadAnimation(context, R.anim.sweepity_sweep_fast);
@@ -990,13 +991,25 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
         Paint paint = answerView.getPaint();
         float ansWidth_string = paint.measureText(answerView.getText().toString());
         MainActivity.ansSize = MainActivity.pixelsToSp(context, answerView.getTextSize());
-        float scale = context.getResources().getDisplayMetrics().density;
-        int pixelCushion = (int) (65*scale + 0.5f);
 
-        if (ansWidth_string >= (display.getWidth() - pixelCushion) && MainActivity.ansSize >= 34
+        if (type.equals("eql") || type.equals("eqnView")){
+            MainActivity.ansSize = MainActivity.defaultTxtSize;
+            answerView.setTextSize(TypedValue.COMPLEX_UNIT_SP, MainActivity.ansSize);
+            Log.d("RESIZE", " ansWidth_string at eql_resize: " + ansWidth_string);
+            while (ansWidth_string > display.getWidth() - MainActivity.pixelCushion
+                    && MainActivity.ansSize > MainActivity.minText_size) {
+                MainActivity.ansSize -= 2;
+                answerView.setTextSize(TypedValue.COMPLEX_UNIT_SP, MainActivity.ansSize);
+                ansWidth_string = paint.measureText(answerView.getText().toString());
+                overage = 0;
+                Log.d("RESIZE", " eql button resize is occuring");
+                Log.d("RESIZE", " new ansWidth_string: " + ansWidth_string);
+            }
+        }else if (ansWidth_string >= (display.getWidth() - MainActivity.pixelCushion)
+                && MainActivity.ansSize >= MainActivity.minText_size
                 && !type.equals("del")){
             /**
-             *  Animate the size reduction DISABLED BECAUSE it causes jittering/jank on low end devices
+             *  Animate the size reduction DISABLED BECAUSE it causes jittering/jank on low end devices (Moto G)
              */
             /*
             ValueAnimator textScale_in = ValueAnimator.ofFloat(ansSize, ansSize-2);
@@ -1012,27 +1025,21 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
             */
             MainActivity.ansSize -= 2;
             answerView.setTextSize(TypedValue.COMPLEX_UNIT_SP, MainActivity.ansSize);
-        }else if (ansWidth_string >= (display.getWidth() - pixelCushion) && MainActivity.ansSize < 34
+        }else if (ansWidth_string >= (display.getWidth() - MainActivity.pixelCushion)
+                && MainActivity.ansSize < MainActivity.minText_size
                 && !type.equals("del")) {
             overage++;
         }else if (type.equals("del") && MainActivity.ansSize < MainActivity.defaultTxtSize
                     && ansWidth_string < display.getWidth() && overage == 0) {
                 MainActivity.ansSize += 2;
                 answerView.setTextSize(TypedValue.COMPLEX_UNIT_SP, MainActivity.ansSize);
-        }else if (ansWidth_string >= (display.getWidth() - pixelCushion) && MainActivity.ansSize < 34
+        }else if (ansWidth_string >= (display.getWidth() - MainActivity.pixelCushion)
+                && MainActivity.ansSize < MainActivity.minText_size
                 && type.equals("del")) {
             overage--;
-        }else if (type.equals("clr") || (isAnswer && ansWidth_string < display.getWidth() - pixelCushion)){
+        }else if (type.equals("clr") || (isAnswer && ansWidth_string < display.getWidth() - MainActivity.pixelCushion)){
             answerView.setTextSize(TypedValue.COMPLEX_UNIT_SP, MainActivity.defaultTxtSize);
             overage = 0;
-        }
-        else if (type.equals("eql")){
-            while (ansWidth_string > display.getWidth()) {
-                MainActivity.ansSize -= 2;
-                answerView.setTextSize(TypedValue.COMPLEX_UNIT_SP, MainActivity.ansSize);
-                ansWidth_string = paint.measureText(answerView.getText().toString());
-                overage = 0;
-            }
         }
     }
 }

@@ -16,6 +16,8 @@ import ca.vivyd.vivydcalculator.themes.Themer;
  */
 public class ThemesFragment extends Fragment implements View.OnClickListener {
 
+    public static int theme_isChanged = 0;
+
     public ThemesFragment(){
 
     }
@@ -86,6 +88,7 @@ public class ThemesFragment extends Fragment implements View.OnClickListener {
                 Themer.CURRENT_THEME = Themer.BLK_THEME;
                 break;
         }
+        theme_isChanged  = 1;
         getActivity().finish();
         getActivity().overridePendingTransition(R.anim.right_out, R.anim.left_in);
     }

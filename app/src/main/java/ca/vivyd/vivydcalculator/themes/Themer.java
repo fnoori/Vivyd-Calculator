@@ -13,7 +13,7 @@ import ca.vivyd.vivydcalculator.MainActivity;
 import ca.vivyd.vivydcalculator.R;
 
 /**
- * Created by Amair on 6/20/2016.
+ * Created by AmairJ on 6/20/2016.
  */
 public class Themer {
 
