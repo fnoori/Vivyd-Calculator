@@ -18,12 +18,20 @@
 
             <Button
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
+                android:layout_height="64dp"
                 android:text="Original Black"
                 android:id="@+id/blkButton"
                 android:background="@color/BLK_colorAccent"
-                android:layout_weight="1"
                 android:textColor="@color/BLK_text_screen" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:text="WatermelÓn"
+                android:id="@+id/wtrmButton"
+                android:background="@color/WTRM_numpad"
+                android:layout_weight="1"
+                android:textColor="@color/WTRM_colorAccent" />
 
             <Button
                 android:layout_width="match_parent"
@@ -37,11 +45,11 @@
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
-                android:text="WatermelÓn"
-                android:id="@+id/wtrmButton"
-                android:background="#30975e"
-                android:layout_weight="1"
-                android:textColor="#f71348" />
+                android:text="PEPPERMINT"
+                android:id="@+id/pepButton"
+                android:background="@color/PEP_oppTray"
+                android:textColor="#ffffff"
+                android:layout_weight="1" />
 
             <Button
                 android:layout_width="match_parent"

@@ -59,6 +59,8 @@ public class ThemesFragment extends Fragment implements View.OnClickListener {
         papButton.setOnClickListener(this);
         Button blkButton = (Button) thmView.findViewById(R.id.blkButton);
         blkButton.setOnClickListener(this);
+        Button pepButton = (Button) thmView.findViewById(R.id.pepButton);
+        pepButton.setOnClickListener(this);
 
         themeScroll = (ScrollView) thmView.findViewById(R.id.themeScroll);
 
@@ -111,6 +113,9 @@ public class ThemesFragment extends Fragment implements View.OnClickListener {
                 break;
             case R.id.blkButton:
                 Themer.CURRENT_THEME = Themer.BLK_THEME;
+                break;
+            case R.id.pepButton:
+                Themer.CURRENT_THEME = Themer.PEP_THEME;
                 break;
         }
         theme_isChanged  = 1;

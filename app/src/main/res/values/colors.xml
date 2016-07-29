@@ -83,4 +83,14 @@
     <color name="BLK_text">#ebd7d2</color>
     <color name="BLK_oppTray">#1a1919</color>
 
+    <!-- Peppermint theme -->
+    <color name="PEP_colorAccent">#CEFFCE</color>
+    <color name="PEP_colorComp">#8ee2d7</color>
+    <color name="PEP_background">#3b5c45</color>
+    <color name="PEP_numpad">#41654c</color>
+    <color name="PEP_text_screen">#44674e</color>
+    <color name="PEP_text">#ebd7d2</color>
+    <color name="PEP_oppTray">#3ea45e</color>
+
+
 </resources>
