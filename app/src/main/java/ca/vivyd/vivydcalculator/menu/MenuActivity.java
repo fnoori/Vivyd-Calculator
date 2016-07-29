@@ -24,6 +24,7 @@ public class MenuActivity extends AppCompatActivity {
 
         viewPager = (ViewPager) findViewById(R.id.pager);
         tabs = (SlidingTabLayout) findViewById(R.id.tabs);
+        assert tabs != null;
         tabs.setDistributeEvenly(true);
 
 

@@ -188,7 +188,7 @@ public class MainActivity extends AppCompatActivity {
 
         // For themes. This must come after any button initializations.
         SharedPreferences prefs = getSharedPreferences("CalcData", Context.MODE_PRIVATE);
-        Themer.CURRENT_THEME = prefs.getInt("Theme", Themer.WTRM_THEME);
+        Themer.CURRENT_THEME = prefs.getInt("Theme", Themer.MANGO_THEME);
         themer = new Themer(this, commonButtons, commonOperands, morButton);
         setTheme(themer);
 

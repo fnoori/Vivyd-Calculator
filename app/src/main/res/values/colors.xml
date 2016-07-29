@@ -48,7 +48,7 @@
     <color name="SUND_oppTray">#EF5350</color>
 
     <!-- Watermelon theme -->
-    <color name="WTRM_colorAccent">#EF5350</color>
+    <color name="WTRM_colorAccent">#ef5350</color>
     <color name="WTRM_colorComp">#0dcf95</color>
     <color name="WTRM_background">#204531</color>
     <color name="WTRM_numpad">#28503a</color>
@@ -76,8 +76,8 @@
 
     <!-- Simple Black theme -->
     <color name="BLK_colorAccent">#474747</color>
-    <color name="BLK_colorComp">#c95c1d</color>
-    <color name="BLK_background">@color/BLK_numpad</color>
+    <color name="BLK_colorComp">#e4621b</color>
+    <color name="BLK_background">#252525</color>
     <color name="BLK_numpad">#2a2929</color>
     <color name="BLK_text_screen">#ffffff</color>
     <color name="BLK_text">#ebd7d2</color>

@@ -9,7 +9,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/scrollView">
+        android:id="@+id/themeScroll">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -19,25 +19,7 @@
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
-                android:text="CLASSIC BLUE"
-                android:id="@+id/blueButton"
-                android:background="@color/BLUE_colorAccent"
-                android:textColor="#ffffff"
-                android:layout_weight="1" />
-
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:text="CLASSIC PINK"
-                android:id="@+id/pinkButton"
-                android:background="@color/PINK_colorAccent"
-                android:textColor="#ffffff"
-                android:layout_weight="1" />
-
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:text="Simple Black"
+                android:text="Original Black"
                 android:id="@+id/blkButton"
                 android:background="@color/BLK_colorAccent"
                 android:layout_weight="1"
@@ -46,11 +28,20 @@
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
+                android:text="Mango"
+                android:id="@+id/mangButton"
+                android:background="#E65100"
+                android:textColor="#ffffff"
+                android:layout_weight="1" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
                 android:text="WatermelÓn"
                 android:id="@+id/wtrmButton"
-                android:background="#366149"
+                android:background="#30975e"
                 android:layout_weight="1"
-                android:textColor="@color/WTRM_colorAccent" />
+                android:textColor="#f71348" />
 
             <Button
                 android:layout_width="match_parent"
@@ -73,15 +64,6 @@
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
-                android:text="Mango"
-                android:id="@+id/mangButton"
-                android:background="#E65100"
-                android:textColor="#ffffff"
-                android:layout_weight="1" />
-
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
                 android:text="Chocolate"
                 android:id="@+id/chocButton"
                 android:background="@color/CHOC_numpad"
@@ -95,6 +77,24 @@
                 android:id="@+id/rvelButton"
                 android:background="@color/RVEL_colorAccent"
                 android:textColor="@color/RVEL_text"
+                android:layout_weight="1" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:text="CLASSIC BLUE"
+                android:id="@+id/blueButton"
+                android:background="@color/BLUE_colorAccent"
+                android:textColor="#ffffff"
+                android:layout_weight="1" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:text="CLASSIC PINK"
+                android:id="@+id/pinkButton"
+                android:background="@color/PINK_colorAccent"
+                android:textColor="#ffffff"
                 android:layout_weight="1" />
 
         </LinearLayout>

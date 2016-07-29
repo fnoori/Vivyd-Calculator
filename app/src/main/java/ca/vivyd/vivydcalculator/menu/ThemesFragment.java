@@ -1,11 +1,14 @@
 package ca.vivyd.vivydcalculator.menu;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ScrollView;
 
 import ca.vivyd.vivydcalculator.R;
 import ca.vivyd.vivydcalculator.themes.Themer;
@@ -17,6 +20,9 @@ import ca.vivyd.vivydcalculator.themes.Themer;
 public class ThemesFragment extends Fragment implements View.OnClickListener {
 
     public static int theme_isChanged = 0;
+    public static int yPosTheme_changed = 0;
+
+    private ScrollView themeScroll;
 
     public ThemesFragment(){
 
@@ -33,6 +39,7 @@ public class ThemesFragment extends Fragment implements View.OnClickListener {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View thmView = inflater.inflate(R.layout.fragment_themes, container, false);
+
 
         Button pinkButton = (Button) thmView.findViewById(R.id.pinkButton);
         pinkButton.setOnClickListener(this);
@@ -53,9 +60,27 @@ public class ThemesFragment extends Fragment implements View.OnClickListener {
         Button blkButton = (Button) thmView.findViewById(R.id.blkButton);
         blkButton.setOnClickListener(this);
 
+        themeScroll = (ScrollView) thmView.findViewById(R.id.themeScroll);
+
         return thmView;
     }
 
+    @Override
+    public void onPause(){
+        super.onPause();
+        yPosTheme_changed = themeScroll.getScrollY();
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        themeScroll.post(new Runnable() {
+            @Override
+            public void run() {
+                themeScroll.scrollTo(0, yPosTheme_changed);
+            }
+        });
+    }
 
     @Override
     public void onClick(View v){
@@ -92,7 +117,6 @@ public class ThemesFragment extends Fragment implements View.OnClickListener {
         getActivity().finish();
         getActivity().overridePendingTransition(R.anim.right_out, R.anim.left_in);
     }
-
 }
 
 
