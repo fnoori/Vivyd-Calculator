@@ -58,31 +58,24 @@ public class UserDefinedButtons {
                 varName.setText("");
             }
         });
-
         varValueClear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 varValue.setText("");
             }
         });
-
         confirmButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 varName.setSelection(varName.length());
                 varValue.setSelection(varValue.length());
-
-                Log.d("VAR_NAME", varName.getText().toString());
-                Log.d("VAR_VALUE", varValue.getText().toString());
-
                 if(!varName.getText().toString().equals("")){
                     calcButtons.setUserDefinedValues(inButton, varName.getText().toString(), varValue.getText().toString());
                     customButtonIputDialog.dismiss();
                 }else{
-                    Toast.makeText(context, "Please Enter Correct Details", Toast.LENGTH_LONG).show();
+                    calcButtons.setUserDefinedValues(inButton, "+", "");
+                    customButtonIputDialog.dismiss();
                 }
-
             }
         });
 
