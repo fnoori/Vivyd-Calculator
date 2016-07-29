@@ -730,6 +730,11 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
 
 
     public void equalButtonLogic(){
+        String previousExpressionToEvaluate = expressionToEvaluate;
+        Log.d("PREVIOUS_IS", previousExpressionToEvaluate);
+        Log.d("NUM_OPEN_BRACKET", openBracket+"");
+        Log.d("NUM_CLOSE_BRACKET", closeBracket+"");
+
         if(answerView.getText().length() > 0) {
             try {
                 if (calculatorUtilities.isBracketCorrect(openBracket, closeBracket)) {
@@ -801,9 +806,9 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
                             expressionToEvaluate = expressionToEvaluate + ")";
                         } while (closeBracket < openBracket);
                     }
+                    answerView.setText(expressionToEvaluate);
+                    answerView.setSelection(answerView.getText().toString().length());
                     equalButtonLogic();
-                    if (closeBracket != openBracket)
-                        throw new BadBracketsException();
                 }
 
             } catch (IllegalArgumentException e) {
@@ -814,9 +819,6 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
                 e.printStackTrace();
             } catch (ArithmeticException e) {
                 errorAnim(ARITH_MSG);
-                e.printStackTrace();
-            } catch (BadBracketsException e) {
-                errorAnim(BAD_BRAC_MSG);
                 e.printStackTrace();
             }
         }
@@ -897,8 +899,8 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
         String prevInput;
         int cursorLocation = 0;
 
-        Log.d("TYPE", type);
-        Log.d("IS_ANSWER", isAnswer+"");
+        Log.d("NUM_OPEN_BRACKET_INPUT", openBracket+"");
+        Log.d("NUM_CLOSE_BRACKET_INPUT", closeBracket+"");
 
         if(isAnswer || isError){
             if(type.equals(CalculatorUtilities.ALL_BUTTS[4]) ||
