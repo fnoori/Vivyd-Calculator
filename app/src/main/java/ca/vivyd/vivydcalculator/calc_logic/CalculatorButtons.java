@@ -993,6 +993,8 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
         MainActivity.ansSize = MainActivity.pixelsToSp(context, answerView.getTextSize());
 
         if (type.equals("eql") || type.equals("eqnView")){
+            if (type.equals("eql") && checkEqnView(equationView.getText().toString()))
+                return;
             MainActivity.ansSize = MainActivity.defaultTxtSize;
             answerView.setTextSize(TypedValue.COMPLEX_UNIT_SP, MainActivity.ansSize);
             Log.d("RESIZE", " ansWidth_string at eql_resize: " + ansWidth_string);
