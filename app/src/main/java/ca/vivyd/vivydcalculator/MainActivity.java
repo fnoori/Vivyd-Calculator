@@ -83,13 +83,14 @@ public class MainActivity extends AppCompatActivity {
          * Uncomment following line for real ads, but make sure to comment out subsequent test ad
          * lines.
          */
-        // MobileAds.initialize(getApplicationContext(), "ca-app-pub-7966297715259412/8066957483");
-        // AdRequest request = new AdRequest.Builder().build();
+         ///MobileAds.initialize(getApplicationContext(), "ca-app-pub-7966297715259412/8066957483");
+         //AdRequest request = new AdRequest.Builder().build();
+         //mAdView.loadAd(request);
         /**
          * Test Ad.
          * Uncomment following line for test ads, but make sure to comment out previous real ad line
          */
-         Handler handler = new Handler();
+        Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
