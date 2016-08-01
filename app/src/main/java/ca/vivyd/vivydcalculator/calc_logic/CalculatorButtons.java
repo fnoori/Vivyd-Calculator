@@ -11,6 +11,7 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.drawable.TransitionDrawable;
 import android.os.Handler;
+import android.text.Editable;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.TypedValue;
@@ -110,14 +111,13 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
     private Button var2Button;
     private Button var3Button;
     private Button degRandButton;
-    private String expressionEvalString;
-    private String expressionDisplayString;
     private List<Operator> operatorList;
     private List<Function> functionList;
 
-
     // Playing with this, to see if performance improves
     private String expressionToEvaluate;
+    private Expression calculateExpression;
+    private NumberFormat numFormat;
 
     private String solution;
     private String previousInput;
@@ -154,9 +154,9 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
         this.leftBracketCounter = leftBraceCounter;
         this.rightBracketCounter = rightBraceCounter;
         this.degRandButton = degRandButton;
+        calculateExpression = null;
+        numFormat = new DecimalFormat("##.##########");
 
-        expressionDisplayString = null;
-        expressionEvalString = null;
         expressionToEvaluate = null;
         solution = null;
         userDefValue1 = new String[2];
@@ -164,15 +164,13 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
         userDefValue3 = new String[2];
         previousInput = STRING_PLACE_HOLDER;
         if (DEG_RAND_STATE != null) {
-            Log.i("TrigStateChange", "DEG_RAND_STATE in calcButton: " + DEG_RAND_STATE);
             if (DEG_RAND_STATE.equals(DEGREE)) {
                 trigType = CalculatorUtilities.DEG_RAD[0];
             }
-            else
+            else{
                 trigType = CalculatorUtilities.DEG_RAD[1];
-        }
-        else {
-            Log.i("TrigStateChange", "DEG_RAND_STATE was null");
+            }
+        } else {
             DEG_RAND_STATE = RADIAN;
             trigType = CalculatorUtilities.DEG_RAD[0];
         }
@@ -730,8 +728,6 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
     public void clearButtonLogic(){
         if(answerView.getText().length() < 1 || checkEqnView()){equationView.setText(BLANK_STRING);}
         answerView.setText(BLANK_STRING);
-        expressionEvalString = BLANK_STRING;
-        expressionDisplayString = BLANK_STRING;
         expressionToEvaluate = BLANK_STRING;
         dotCounter = 0;
         openBracket = 0;
@@ -744,11 +740,6 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
 
 
     public void equalButtonLogic(){
-        String previousExpressionToEvaluate = expressionToEvaluate;
-        Log.d("PREVIOUS_IS", previousExpressionToEvaluate);
-        Log.d("NUM_OPEN_BRACKET", openBracket+"");
-        Log.d("NUM_CLOSE_BRACKET", closeBracket+"");
-
         if(answerView.getText().length() > 0) {
             try {
                 if (calculatorUtilities.isBracketCorrect(openBracket, closeBracket)) {
@@ -756,12 +747,11 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
                     if(trigType.equals(CalculatorUtilities.DEG_RAD[0])){
                         expressionToEvaluate = calculatorUtilities.replaceForDegrees(expressionToEvaluate);
                     }
-                    Expression calc = new ExpressionBuilder(expressionToEvaluate).operator(operatorList)
+                    calculateExpression = new ExpressionBuilder(expressionToEvaluate).operator(operatorList)
                             .functions(functionList)
                             .build();
 
-                    NumberFormat numFormat = new DecimalFormat("##.##########");
-                    solution = String.valueOf(numFormat.format(calc.evaluate()));
+                    solution = String.valueOf(numFormat.format(calculateExpression.evaluate()));
                     Animation sweep = AnimationUtils.loadAnimation(context, R.anim.sweepity_sweep);
                     equationView.startAnimation(sweep);
                     equationView.setText(forEquationView);
@@ -776,20 +766,12 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
                     //Hopefully this does not cause bugs
                     openBracket = 0;
                     closeBracket = 0;
-
-                    //** There are some bugs on how the history is stored, will fix
-                    historyData.insertData(expressionToEvaluate, solution);
-                    ArrayList<String> tmp_equation_list = historyData.getData(DatabaseTable.FeedEntry.EQUATION);
-                    ArrayList<String> tmp_solution_list = historyData.getData(DatabaseTable.FeedEntry.SOLUTION);
-                    for (int i = 0; i < tmp_equation_list.size(); i++) {
-                        Log.d("EQUATION_HISTORY", tmp_equation_list.get(i));
-                        Log.d("SOLUTION_HISTORY", tmp_solution_list.get(i));
-                    }
-
                     calculatorUtilities.postEqualLogic(isAnswer, customOperators, openBracket,
                             closeBracket, rightBracketCounter, leftBracketCounter, previousInput);
                     isAnswer = true;
                     sharedPrefsLogic.generalPurposeDataInput("ANS", solution);
+
+
                 } else {
                     if (closeBracket > openBracket) {
                         do {

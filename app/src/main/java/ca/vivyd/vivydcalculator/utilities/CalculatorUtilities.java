@@ -137,6 +137,23 @@ public class CalculatorUtilities {
         }
     }
 
+    // This method will be used once we implement history
+    public void historyMethod(){
+
+        //** THERE SHOULD BE *NO* BUGS WITH HISTORY
+                    /*
+                    historyData.insertData(expressionToEvaluate, solution);
+                    ArrayList<String> tmp_equation_list = historyData.getData(DatabaseTable.FeedEntry.EQUATION);
+                    ArrayList<String> tmp_solution_list = historyData.getData(DatabaseTable.FeedEntry.SOLUTION);
+                    for (int i = 0; i < tmp_equation_list.size(); i++) {
+                        Log.d("EQUATION_HISTORY", tmp_equation_list.get(i));
+                        Log.d("SOLUTION_HISTORY", tmp_solution_list.get(i));
+                    }
+                    */
+
+
+    }
+
     public boolean checkIfMoreOperandIsPossible(String prevInput, String currentInputType, String prevInputType,
                                                 boolean isExceptionToRule) {
         return (prevInputType != null) && !((prevInputType.equals(ALL_BUTTS[0]) ||
