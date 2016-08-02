@@ -18,5 +18,9 @@
         <item name="android:textColor">@color/colorTextNumpad</item>
     </style>
 
+    <style name="opp_btn_top">
+
+    </style>
+
 
 </resources>

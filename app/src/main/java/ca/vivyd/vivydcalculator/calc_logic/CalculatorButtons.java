@@ -463,7 +463,7 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
     }
 
     public void animBtnLogic(View v, TransitionDrawable transition, MotionEvent event, String type, int num) {
-        SharedPreferences prefs = context.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        //SharedPreferences prefs = context.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
 
         switch (event.getActionMasked()) {
 
@@ -471,9 +471,7 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
                 transComplete = 0;
                 rect = new Rect(v.getLeft(), v.getTop(), v.getRight(), v.getBottom());
                 transition.startTransition(startTran);
-                System.out.println("prevM" + prevMotionEvent);
                 prevMotionEvent = "ACTION_DOWN";
-                //Log.i("ello", prevMotionEvent + " : " + num + " transcomplete = " + transComplete);
                 break;
 
             case MotionEvent.ACTION_MOVE:
@@ -484,7 +482,6 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
                     }
                 }
                 prevMotionEvent = "ACTION_MOVE";
-                //Log.i("ello", prevMotionEvent + " : " + num + " transcomplete = " + transComplete);
                 break;
 
             case MotionEvent.ACTION_UP:
@@ -494,7 +491,6 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
                 btnFunction(type, num);
                 transition.reverseTransition(endTran);
                 prevMotionEvent = "ACTION_UP";
-                //Log.i("ello", prevMotionEvent + " : " + num + " transcomplete = " + transComplete);
                 if (MainActivity.screenOrientation == Configuration.ORIENTATION_PORTRAIT)
                     resizeAnsView(type);
                 break;
@@ -946,7 +942,7 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
 
 
     public void resizeAnsView(String type) {
-
+        int txtscaleFactor = 3;
         Paint paint = answerView.getPaint();
         float ansWidth_string = paint.measureText(answerView.getText().toString());
         MainActivity.ansSize = MainActivity.pixelsToSp(context, answerView.getTextSize());
@@ -956,15 +952,12 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
                 return;
             MainActivity.ansSize = MainActivity.defaultTxtSize;
             answerView.setTextSize(TypedValue.COMPLEX_UNIT_SP, MainActivity.ansSize);
-            Log.d("RESIZE", " ansWidth_string at eql_resize: " + ansWidth_string);
             while (ansWidth_string > display.getWidth() - MainActivity.pixelCushion
                     && MainActivity.ansSize > MainActivity.minText_size) {
-                MainActivity.ansSize -= 2;
+                MainActivity.ansSize -= txtscaleFactor;
                 answerView.setTextSize(TypedValue.COMPLEX_UNIT_SP, MainActivity.ansSize);
                 ansWidth_string = paint.measureText(answerView.getText().toString());
                 overage = 0;
-                Log.d("RESIZE", " eql button resize is occuring");
-                Log.d("RESIZE", " new ansWidth_string: " + ansWidth_string);
             }
         }else if (ansWidth_string >= (display.getWidth() - MainActivity.pixelCushion)
                 && MainActivity.ansSize >= MainActivity.minText_size
@@ -984,7 +977,7 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
             //textScale_in.setInterpolator(new LinearInterpolator());
             textScale_in.start();
             */
-            MainActivity.ansSize -= 2;
+            MainActivity.ansSize -= txtscaleFactor;
             answerView.setTextSize(TypedValue.COMPLEX_UNIT_SP, MainActivity.ansSize);
         }else if (ansWidth_string >= (display.getWidth() - MainActivity.pixelCushion)
                 && MainActivity.ansSize < MainActivity.minText_size
@@ -992,7 +985,7 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
             overage++;
         }else if (type.equals("del") && MainActivity.ansSize < MainActivity.defaultTxtSize
                     && ansWidth_string < display.getWidth() && overage == 0) {
-                MainActivity.ansSize += 2;
+                MainActivity.ansSize += txtscaleFactor;
                 answerView.setTextSize(TypedValue.COMPLEX_UNIT_SP, MainActivity.ansSize);
         }else if (ansWidth_string >= (display.getWidth() - MainActivity.pixelCushion)
                 && MainActivity.ansSize < MainActivity.minText_size

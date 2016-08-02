@@ -62,7 +62,7 @@
     <color name="RVEL_background">#2e2323</color>
     <color name="RVEL_numpad">#382a2a</color>
     <color name="RVEL_text_screen">#FFFFFF</color>
-    <color name="RVEL_text">#ebd7d2</color>
+    <color name="RVEL_text">#ffffff</color>
     <color name="RVEL_oppTray">#663d40</color>
 
     <!-- BlueBerry theme (ignore the pap please) -->
@@ -71,7 +71,7 @@
     <color name="PAP_background">#181e29</color>
     <color name="PAP_numpad">#1d2736</color>
     <color name="PAP_text_screen">#ffffff</color>
-    <color name="PAP_text">#ebd7d2</color>
+    <color name="PAP_text">#ffffff</color>
     <color name="PAP_oppTray">#244e82</color>
 
     <!-- Simple Black theme -->
@@ -80,7 +80,7 @@
     <color name="BLK_background">#252525</color>
     <color name="BLK_numpad">#2a2929</color>
     <color name="BLK_text_screen">#ffffff</color>
-    <color name="BLK_text">#ebd7d2</color>
+    <color name="BLK_text">#ffffff</color>
     <color name="BLK_oppTray">#1a1919</color>
 
     <!-- Peppermint theme -->
@@ -89,7 +89,7 @@
     <color name="PEP_background">#3b5c45</color>
     <color name="PEP_numpad">#41654c</color>
     <color name="PEP_text_screen">#44674e</color>
-    <color name="PEP_text">#ebd7d2</color>
+    <color name="PEP_text">#ffffff</color>
     <color name="PEP_oppTray">#3ea45e</color>
 
 
