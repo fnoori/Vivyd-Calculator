@@ -34,7 +34,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorTextAccentLight"
-        android:id="@+id/display">
+        android:id="@+id/display"
+        android:layout_marginLeft="2dp">
 
         <EditText
             android:layout_width="match_parent"
@@ -109,7 +110,9 @@
         android:layout_height="match_parent"
         android:baselineAligned="false"
         android:splitMotionEvents="false"
-        android:id="@+id/fourByfour">
+        android:id="@+id/fourByfour"
+        android:layout_marginLeft="3dp"
+        android:layout_marginBottom="2dp">
 
         <LinearLayout
             android:orientation="vertical"
@@ -117,15 +120,13 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:id="@+id/popSpace"
-            android:splitMotionEvents="false"
-            >
+            android:splitMotionEvents="false">
 
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:splitMotionEvents="false"
-                >
+                android:splitMotionEvents="false">
 
                 <FrameLayout
                     android:layout_width="match_parent"
@@ -263,57 +264,73 @@
                     android:measureWithLargestChild="false"
                     android:stretchColumns="*"
                     android:splitMotionEvents="false"
-                    tools:ignore="UselessParent">
-                    <TableRow
-                        android:orientation="horizontal"
+                    tools:ignore="UselessParent"
+                    android:layout_marginLeft="1dp">
+
+                    <FrameLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:splitMotionEvents="false"
                         android:layout_weight="1">
 
-                        <Button
+                        <TableRow
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:text="7"
-                            android:id="@+id/sevenButton"
-                            android:background="@drawable/blue_numpad_transition_top"
-                            android:textSize="35sp"
-                            android:textColor="@color/colorTextNumpad"
-                            android:layout_marginBottom="1dp"
-                            android:stateListAnimator="@null"
-                            android:fontFamily="sans-serif-light" />
+                            android:splitMotionEvents="false">
 
-                        <Button
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:text="8"
-                            android:id="@+id/eightButton"
-                            android:background="@drawable/blue_numpad_transition_top"
-                            android:textSize="35sp"
-                            android:textColor="@color/colorTextNumpad"
-                            android:layout_marginLeft="1dp"
-                            android:layout_marginStart="1dp"
-                            android:layout_marginBottom="1dp"
-                            android:stateListAnimator="@null"
-                            android:fontFamily="sans-serif-light" />
+                            <Button
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:text="7"
+                                android:id="@+id/sevenButton"
+                                android:background="@drawable/blue_numpad_transition"
+                                android:textSize="35sp"
+                                android:textColor="@color/colorTextNumpad"
+                                android:layout_marginBottom="1dp"
+                                android:stateListAnimator="@null"
+                                android:fontFamily="sans-serif-light"
+                                android:layout_weight="1"
+                                android:layout_marginRight="0dp" />
 
-                        <Button
+                            <Button
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:text="8"
+                                android:id="@+id/eightButton"
+                                android:background="@drawable/blue_numpad_transition"
+                                android:textSize="35sp"
+                                android:textColor="@color/colorTextNumpad"
+                                android:layout_marginBottom="1dp"
+                                android:stateListAnimator="@null"
+                                android:fontFamily="sans-serif-light"
+                                android:layout_weight="1"
+                                android:layout_marginLeft="1dp" />
+
+                            <Button
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:text="9"
+                                android:id="@+id/nineButton"
+                                android:background="@drawable/blue_numpad_transition"
+                                android:textSize="35sp"
+                                android:textColor="@color/colorTextNumpad"
+                                android:layout_marginStart="1dp"
+                                android:layout_marginBottom="1dp"
+                                android:backgroundTintMode="src_over"
+                                android:layout_marginRight="0dp"
+                                android:layout_marginEnd="0dp"
+                                android:stateListAnimator="@null"
+                                android:fontFamily="sans-serif-light"
+                                android:layout_weight="1" />
+                            />
+                        </TableRow>
+
+                        <ImageView
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:text="9"
-                            android:id="@+id/nineButton"
-                            android:background="@drawable/blue_numpad_transition_top"
-                            android:textSize="35sp"
-                            android:textColor="@color/colorTextNumpad"
-                            android:layout_marginLeft="1dp"
-                            android:layout_marginStart="1dp"
-                            android:layout_marginBottom="1dp"
-                            android:backgroundTintMode="src_over"
-                            android:layout_marginRight="0dp"
-                            android:layout_marginEnd="0dp"
-                            android:stateListAnimator="@null"
-                            android:fontFamily="sans-serif-light" />
-                    </TableRow>
+                            android:layout_height="25dp"
+                            android:id="@+id/imageView"
+                            android:background="@drawable/a_main_shad_top" />
+                    </FrameLayout>
 
                     <TableRow
                         android:orientation="horizontal"
@@ -575,7 +592,7 @@
                 android:textSize="35sp"
                 android:textColor="@color/colorTextSecondary"
                 android:typeface="serif"
-                android:layout_weight="1"
+                android:layout_weight=".95"
                 android:stateListAnimator="@null"
                 android:fontFamily="sans-serif-light" />
 

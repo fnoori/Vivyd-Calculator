@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
+
 
     <item
-        android:drawable="@drawable/basic_main_unpressed"
+        android:drawable="@drawable/basic_numpad_unpressed"
         />
 
     <item
         android:drawable="@drawable/a_main_shad_top"
     />
-
-
 </layer-list>
