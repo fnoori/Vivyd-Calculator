@@ -21,6 +21,8 @@ import android.util.Log;
 import android.util.TypedValue;
 import android.view.Display;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
@@ -90,11 +92,11 @@ public class MainActivity extends AppCompatActivity {
          * Test Ad.
          * Uncomment following line for test ads, but make sure to comment out previous real ad line
          */
-        //Handler handler = new Handler();
-        //handler.postDelayed(new Runnable() {
-        //    @Override
-        //   public void run() {
-        //        Log.i("PERFORMANCE", "Ad is occuring here");
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+           public void run() {
+                Log.i("PERFORMANCE", "Ad is occuring here");
                 Toast.makeText(MainActivity.this, "ad is occuring", Toast.LENGTH_LONG).show();
                 AdRequest request = new AdRequest.Builder()
                         .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)        // All emulators
@@ -106,9 +108,9 @@ public class MainActivity extends AppCompatActivity {
                         .addTestDevice("F3F9F302D12D212C9142645902C94D5C")  // Farzam moto E
                         .build();
 
-         //       mAdView.loadAd(request);
-         //   }
-        //}, 2000);
+                mAdView.loadAd(request);
+            }
+        }, 2000);
 
         screenOrientation = getScreenOrientation();
         answerView = (EditText) findViewById(R.id.ansView);
@@ -483,6 +485,17 @@ public class MainActivity extends AppCompatActivity {
             helpButton.setBackgroundColor(colorComp);
 
         }
+
+        /**
+         * Only enable on ad-free version, other wise makes the ad look more intrusive
+         */
+        /*
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Window window = getWindow();
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(colorAccent);
+        }
+        */
     }
 
     public int getScreenOrientation()

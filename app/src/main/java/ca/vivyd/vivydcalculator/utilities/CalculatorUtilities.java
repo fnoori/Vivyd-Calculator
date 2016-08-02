@@ -121,8 +121,11 @@ public class CalculatorUtilities {
     }
 
     public String convertToScientific(String incoming, LinearLayout display){
+        NumberFormat formatter;
+        // Round first, to prevent any unnecessary/weird sci notation
         double value = Double.parseDouble(incoming);
-        NumberFormat formatter = new DecimalFormat();
+        NumberFormat formatRound = new DecimalFormat("0.#######");
+        incoming = formatRound.format(value);
 
         Paint paint = new Paint();
         paint.setTextSize(MainActivity.defaultTxtSize*MainActivity.scale);
@@ -130,8 +133,8 @@ public class CalculatorUtilities {
 
         Log.d("SCITIME", "string_pxLen =" + string_pxLen);
         if(string_pxLen > display.getWidth() - MainActivity.pixelCushion) {
-            formatter = new DecimalFormat("0.######E0");
-            return formatter.format(value);
+            formatter = new DecimalFormat("0.#####E0");
+            return formatter.format(Double.parseDouble(incoming));
         }else{
             return incoming;
         }

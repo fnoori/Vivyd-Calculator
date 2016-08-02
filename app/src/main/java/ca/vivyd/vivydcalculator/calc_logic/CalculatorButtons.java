@@ -317,7 +317,7 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
     }
 
     int startTran = 50;
-    int endTran = 600; //300
+    int endTran = 300; //300
     int fast_endTran = 150;
     int transComplete = 0;
     String prevMotionEvent = "";
