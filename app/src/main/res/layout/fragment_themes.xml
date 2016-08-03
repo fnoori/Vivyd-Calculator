@@ -90,6 +90,15 @@
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
+                android:text="Piña colada"
+                android:id="@+id/pinButton"
+                android:background="@color/PIN_colorAccent"
+                android:textColor="@color/PIN_numpad"
+                android:layout_weight="1" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
                 android:text="CLASSIC BLUE"
                 android:id="@+id/blueButton"
                 android:background="@color/BLUE_colorAccent"

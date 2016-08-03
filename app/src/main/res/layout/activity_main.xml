@@ -11,7 +11,7 @@
 
     <LinearLayout
         android:orientation="horizontal"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="1dp"
         android:layout_gravity="center"
@@ -60,7 +60,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="97dp">
+            android:layout_height="110dp">
 
             <EditText
                 android:layout_width="wrap_content"
@@ -75,7 +75,7 @@
                 android:paddingLeft="10dp"
                 android:paddingEnd="25dp"
                 android:paddingRight="25dp"
-                android:gravity="top|end"
+                android:gravity="center|end"
                 android:layout_alignParentBottom="true"
                 android:textCursorDrawable="@null"
                 android:autoText="false"
@@ -83,7 +83,7 @@
                 android:layout_alignParentEnd="true"
                 android:fontFamily="sans-serif-light"
 
-                />
+                android:paddingBottom="25dp" />
 
             <Button
                 android:layout_width="70dp"

@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.graphics.Typeface;
+import android.media.Image;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -296,7 +297,6 @@ public class MainActivity extends AppCompatActivity {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                     Slide mSlide = new Slide();
                     mSlide.setDuration(150);
-                    System.out.println("HOOHA " + popHeight);
                     TransitionManager.beginDelayedTransition(numArea, mSlide);
                 }
                 else {
@@ -313,8 +313,10 @@ public class MainActivity extends AppCompatActivity {
                 //Actual Back button
                 Button bakButton = (Button) findViewById(R.id.bakButton);
                 assert bakButton != null;
+                ImageView bakImg = (ImageView) findViewById(R.id.imageBak) ;
                 bakButton.setBackgroundColor(Themer.colorArray.get(Themer.COLOR_ACCENT));
-                bakButton.setTextColor(Themer.colorArray.get(Themer.COLOR_COMP));
+                assert bakImg != null;
+                bakImg.setColorFilter(Themer.colorArray.get(Themer.COLOR_TEXT_SCREEN));
                 bakButton.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {

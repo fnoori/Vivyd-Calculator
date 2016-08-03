@@ -45,6 +45,7 @@ public class Themer {
     public final static int PAP_THEME = 8;
     public final static int BLK_THEME = 9;
     public final static int PEP_THEME = 10;
+    public final static int PIN_THEME = 11;
 
 
 
@@ -123,6 +124,15 @@ public class Themer {
     public static int PEP_TEXT;
     public static int PEP_TEXT_SCREEN;
     public static int PEP_OPPTRAY;
+    
+    // Simple Black Theme
+    public static int PIN_ACCENT;
+    public static int PIN_COMP;
+    public static int PIN_BACKGROUND;
+    public static int PIN_NUMPAD;
+    public static int PIN_TEXT;
+    public static int PIN_TEXT_SCREEN;
+    public static int PIN_OPPTRAY;
 
     public Themer(Context inContext,
                   ArrayList<Button> inCommonButtons,
@@ -221,6 +231,15 @@ public class Themer {
         PEP_TEXT            = ContextCompat.getColor(context, R.color.PEP_text);
         PEP_TEXT_SCREEN     = ContextCompat.getColor(context, R.color.PEP_text_screen);
         PEP_OPPTRAY         = ContextCompat.getColor(context, R.color.PEP_oppTray);
+
+        //Initialize Simple Black Theme
+        PIN_ACCENT          = ContextCompat.getColor(context, R.color.PIN_colorAccent);
+        PIN_COMP            = ContextCompat.getColor(context, R.color.PIN_colorComp);
+        PIN_BACKGROUND      = ContextCompat.getColor(context, R.color.PIN_background);
+        PIN_NUMPAD          = ContextCompat.getColor(context, R.color.PIN_numpad);
+        PIN_TEXT            = ContextCompat.getColor(context, R.color.PIN_text);
+        PIN_TEXT_SCREEN     = ContextCompat.getColor(context, R.color.PIN_text_screen);
+        PIN_OPPTRAY         = ContextCompat.getColor(context, R.color.PIN_oppTray);
 
     }
 
@@ -516,13 +535,40 @@ public class Themer {
                 if(MainActivity.screenOrientation == Configuration.ORIENTATION_PORTRAIT)
                     morButton.setBackgroundResource(R.drawable.pep_numpad_transition);
                 break;
+            
+            case (PIN_THEME):
+                colorArray.add(COLOR_ACCENT, PIN_ACCENT);
+                colorArray.add(COLOR_COMP, PIN_COMP);
+                colorArray.add(COLOR_BACKGROUND, PIN_BACKGROUND);
+                colorArray.add(COLOR_NUMPAD, PIN_NUMPAD);
+                colorArray.add(COLOR_TEXT, PIN_TEXT);
+                colorArray.add(COLOR_TEXT_SCREEN, PIN_TEXT_SCREEN);
+                colorArray.add(COLOR_OPPTRAY, PIN_OPPTRAY);
+                for (Button curr: commonButtons) {
+                    curr.setBackgroundResource(R.drawable.pin_numpad_transition);
+                    curr.setTextColor(colorArray.get(COLOR_TEXT));
+                }
+                for (Button curr: commonOperands) {
+                    if (curr.getId() == R.id.openBrace || curr.getId() == R.id.closeBrace
+                            || curr.getId() == R.id.prcntButton || curr.getId() == R.id.delButton
+                            || curr.getId() == R.id.clrButton)
+                        curr.setBackgroundResource(R.drawable.pin_numpad_transition_noshad);
+                    else if(curr.getId() == R.id.divButton || curr.getId() == R.id.multButton
+                            || curr.getId() == R.id.minusButton || curr.getId() == R.id.addButton
+                            || curr.getId() == R.id.eqlButton)
+                        curr.setBackgroundResource(R.drawable.pin_main_transition);
+                    else if(curr.getId() == R.id.menuButton)
+                        curr.setBackgroundResource(R.drawable.pin_main_transition_top);
+                    curr.setTextColor(colorArray.get(COLOR_TEXT));
+                }
+                if(MainActivity.screenOrientation == Configuration.ORIENTATION_PORTRAIT)
+                    morButton.setBackgroundResource(R.drawable.pin_numpad_transition);
+                break;
+            
         }
-        
-        
-
         float[] hsv = new float[3];
         Color.colorToHSV(colorArray.get(COLOR_NUMPAD), hsv);
-        hsv[2] = 1.0f - 0.8f*(1.0f - hsv[2]);
+        hsv[2] = 0.2f + 0.55f*(hsv[2]);
         colorArray.add(COLOR_NUMPAD_DARK, Color.HSVToColor(hsv));
 
     }
@@ -568,6 +614,10 @@ public class Themer {
 
                 case (PEP_THEME):
                     curr.setBackgroundResource(R.drawable.pep_numpad_transition);
+                    break;
+
+                case (PIN_THEME):
+                    curr.setBackgroundResource(R.drawable.pin_numpad_transition);
                     break;
 
             }
