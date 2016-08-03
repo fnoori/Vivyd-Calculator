@@ -110,6 +110,14 @@
     <color name="ELEC_text">#ffffff</color>
     <color name="ELEC_oppTray">#f37937</color>
 
+    <!-- Banana theme -->
+    <color name="BAN_colorAccent">#f1e9cb</color>
+    <color name="BAN_colorComp">#0bf191</color>
+    <color name="BAN_background">	@color/BAN_numpad</color>
+    <color name="BAN_numpad">#a7a179</color>
+    <color name="BAN_text_screen">#9b6525</color>
+    <color name="BAN_text">#ffffff</color>
+    <color name="BAN_oppTray">#cdbf58</color>
 
 
 </resources>

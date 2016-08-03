@@ -47,6 +47,7 @@ public class Themer {
     public final static int PEP_THEME = 10;
     public final static int PIN_THEME = 11;
     public final static int ELEC_THEME = 12;
+    public final static int BAN_THEME = 13;
 
 
 
@@ -142,7 +143,16 @@ public class Themer {
     public static int ELEC_NUMPAD;
     public static int ELEC_TEXT;
     public static int ELEC_TEXT_SCREEN;
-    public static int ELEC_OPPTRAY;
+    public static int ELEC_OPPTRAY;  
+    
+    // Electrolyte Theme
+    public static int BAN_ACCENT;
+    public static int BAN_COMP;
+    public static int BAN_BACKGROUND;
+    public static int BAN_NUMPAD;
+    public static int BAN_TEXT;
+    public static int BAN_TEXT_SCREEN;
+    public static int BAN_OPPTRAY;
 
     public Themer(Context inContext,
                   ArrayList<Button> inCommonButtons,
@@ -260,6 +270,15 @@ public class Themer {
         ELEC_TEXT_SCREEN     = ContextCompat.getColor(context, R.color.ELEC_text_screen);
         ELEC_OPPTRAY         = ContextCompat.getColor(context, R.color.ELEC_oppTray);
 
+        //Initialize Banana Theme
+        BAN_ACCENT          = ContextCompat.getColor(context, R.color.BAN_colorAccent);
+        BAN_COMP            = ContextCompat.getColor(context, R.color.BAN_colorComp);
+        BAN_BACKGROUND      = ContextCompat.getColor(context, R.color.BAN_background);
+        BAN_NUMPAD          = ContextCompat.getColor(context, R.color.BAN_numpad);
+        BAN_TEXT            = ContextCompat.getColor(context, R.color.BAN_text);
+        BAN_TEXT_SCREEN     = ContextCompat.getColor(context, R.color.BAN_text_screen);
+        BAN_OPPTRAY         = ContextCompat.getColor(context, R.color.BAN_oppTray);
+        
     }
 
     // Sets drawable backgrounds to buttons
@@ -612,6 +631,35 @@ public class Themer {
                 if(MainActivity.screenOrientation == Configuration.ORIENTATION_PORTRAIT)
                     morButton.setBackgroundResource(R.drawable.elec_numpad_transition);
                 break;
+
+            case (BAN_THEME):
+                colorArray.add(COLOR_ACCENT, BAN_ACCENT);
+                colorArray.add(COLOR_COMP, BAN_COMP);
+                colorArray.add(COLOR_BACKGROUND, BAN_BACKGROUND);
+                colorArray.add(COLOR_NUMPAD, BAN_NUMPAD);
+                colorArray.add(COLOR_TEXT, BAN_TEXT);
+                colorArray.add(COLOR_TEXT_SCREEN, BAN_TEXT_SCREEN);
+                colorArray.add(COLOR_OPPTRAY, BAN_OPPTRAY);
+                for (Button curr: commonButtons) {
+                    curr.setBackgroundResource(R.drawable.ban_numpad_transition);
+                    curr.setTextColor(colorArray.get(COLOR_TEXT));
+                }
+                for (Button curr: commonOperands) {
+                    if (curr.getId() == R.id.openBrace || curr.getId() == R.id.closeBrace
+                            || curr.getId() == R.id.prcntButton || curr.getId() == R.id.delButton
+                            || curr.getId() == R.id.clrButton)
+                        curr.setBackgroundResource(R.drawable.ban_numpad_transition_noshad);
+                    else if(curr.getId() == R.id.divButton || curr.getId() == R.id.multButton
+                            || curr.getId() == R.id.minusButton || curr.getId() == R.id.addButton
+                            || curr.getId() == R.id.eqlButton)
+                        curr.setBackgroundResource(R.drawable.ban_main_transition);
+                    else if(curr.getId() == R.id.menuButton)
+                        curr.setBackgroundResource(R.drawable.ban_main_transition_top);
+                    curr.setTextColor(colorArray.get(COLOR_TEXT));
+                }
+                if(MainActivity.screenOrientation == Configuration.ORIENTATION_PORTRAIT)
+                    morButton.setBackgroundResource(R.drawable.ban_numpad_transition);
+                break;
             
         }
         //float[] hsv = new float[3];
@@ -670,6 +718,10 @@ public class Themer {
 
                 case (ELEC_THEME):
                     curr.setBackgroundResource(R.drawable.elec_numpad_transition);
+                    break;
+
+                case (BAN_THEME):
+                    curr.setBackgroundResource(R.drawable.ban_numpad_transition);
                     break;
 
             }

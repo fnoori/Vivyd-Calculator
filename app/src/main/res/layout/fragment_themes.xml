@@ -31,6 +31,20 @@
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
+                android:text="Tango"
+                android:id="@+id/mangButton"
+                android:background="#E65100"
+                android:textColor="#ffffff"
+                android:layout_weight="1"
+                android:drawableRight="@drawable/mang_icon"
+                android:drawableLeft="@drawable/mang_icon"
+                android:paddingRight="20dp"
+                android:paddingLeft="20dp"
+                />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
                 android:text="WatermelÓn"
                 android:id="@+id/wtrmButton"
                 android:background="@color/WTRM_numpad"
@@ -45,25 +59,15 @@
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
-                android:text="Mango"
-                android:id="@+id/mangButton"
-                android:background="#E65100"
-                android:textColor="#ffffff"
-                android:layout_weight="1" />
-
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:text="PEPPERMINT"
-                android:id="@+id/pepButton"
-                android:background="@color/PEP_oppTray"
-                android:textColor="#ffffff"
+                android:text="Blueberry"
+                android:id="@+id/papButton"
+                android:background="@color/PAP_numpad"
                 android:layout_weight="1"
-                android:drawableRight="@drawable/pep_icon"
-                android:drawableLeft="@drawable/pep_icon"
+                android:textColor="@color/PAP_text_screen"
+                android:drawableRight="@drawable/pap_icon"
+                android:drawableLeft="@drawable/pap_icon"
                 android:paddingRight="20dp"
-                android:paddingLeft="20dp"
-                />
+                android:paddingLeft="20dp"/>
 
             <Button
                 android:layout_width="match_parent"
@@ -81,15 +85,16 @@
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
-                android:text="Blueberry"
-                android:id="@+id/papButton"
-                android:background="@color/PAP_numpad"
+                android:text="PEPPERMINT"
+                android:id="@+id/pepButton"
+                android:background="@color/PEP_oppTray"
+                android:textColor="#ffffff"
                 android:layout_weight="1"
-                android:textColor="@color/PAP_text_screen"
-                android:drawableRight="@drawable/pap_icon"
-                android:drawableLeft="@drawable/pap_icon"
+                android:drawableRight="@drawable/pep_icon"
+                android:drawableLeft="@drawable/pep_icon"
                 android:paddingRight="20dp"
-                android:paddingLeft="20dp"/>
+                android:paddingLeft="20dp"
+                />
 
             <Button
                 android:layout_width="match_parent"
@@ -136,11 +141,28 @@
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
+                android:text="BANANA"
+                android:id="@+id/banButton"
+                android:background="@color/BAN_oppTray"
+                android:textColor="@color/BAN_text_screen"
+                android:layout_weight="1"
+                android:drawableRight="@drawable/ban_icon"
+                android:drawableLeft="@drawable/ban_icon"
+                android:paddingRight="20dp"
+                android:paddingLeft="20dp"/>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
                 android:text="Electrolyte"
                 android:id="@+id/elecButton"
                 android:textColor="@color/ELEC_oppTray"
                 android:layout_weight="1"
-                android:background="@color/ELEC_numpad" />
+                android:background="@color/ELEC_numpad"
+                android:drawableRight="@drawable/elec_icon"
+                android:drawableLeft="@drawable/elec_icon_2"
+                android:paddingRight="20dp"
+                android:paddingLeft="20dp"/>
 
             <Button
                 android:layout_width="match_parent"
