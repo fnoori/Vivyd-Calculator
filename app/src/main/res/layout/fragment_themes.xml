@@ -18,11 +18,15 @@
 
             <Button
                 android:layout_width="match_parent"
-                android:layout_height="64dp"
+                android:layout_height="100dp"
                 android:text="Original Black"
                 android:id="@+id/blkButton"
                 android:background="@color/BLK_colorAccent"
-                android:textColor="@color/BLK_text_screen" />
+                android:textColor="@color/BLK_text_screen"
+                android:drawableRight="@drawable/blk_icon"
+                android:drawableLeft="@drawable/blk_icon"
+                android:paddingRight="20dp"
+                android:paddingLeft="20dp" />
 
             <Button
                 android:layout_width="match_parent"
@@ -31,7 +35,12 @@
                 android:id="@+id/wtrmButton"
                 android:background="@color/WTRM_numpad"
                 android:layout_weight="1"
-                android:textColor="@color/WTRM_colorAccent" />
+                android:textColor="@color/WTRM_colorAccent"
+                android:textAlignment="center"
+                android:drawableRight="@drawable/wtrm_icon"
+                android:drawableLeft="@drawable/wtrm_icon"
+                android:paddingRight="20dp"
+                android:paddingLeft="20dp" />
 
             <Button
                 android:layout_width="match_parent"
@@ -49,7 +58,12 @@
                 android:id="@+id/pepButton"
                 android:background="@color/PEP_oppTray"
                 android:textColor="#ffffff"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:drawableRight="@drawable/pep_icon"
+                android:drawableLeft="@drawable/pep_icon"
+                android:paddingRight="20dp"
+                android:paddingLeft="20dp"
+                />
 
             <Button
                 android:layout_width="match_parent"
@@ -58,7 +72,11 @@
                 android:id="@+id/sundaeButton"
                 android:background="#FFF9C4"
                 android:layout_weight="1"
-                android:textColor="#EF5350" />
+                android:textColor="#EF5350"
+                android:drawableRight="@drawable/sund_icon"
+                android:drawableLeft="@drawable/sund_icon"
+                android:paddingRight="20dp"
+                android:paddingLeft="20dp"/>
 
             <Button
                 android:layout_width="match_parent"
@@ -67,7 +85,11 @@
                 android:id="@+id/papButton"
                 android:background="@color/PAP_numpad"
                 android:layout_weight="1"
-                android:textColor="@color/PAP_text_screen" />
+                android:textColor="@color/PAP_text_screen"
+                android:drawableRight="@drawable/pap_icon"
+                android:drawableLeft="@drawable/pap_icon"
+                android:paddingRight="20dp"
+                android:paddingLeft="20dp"/>
 
             <Button
                 android:layout_width="match_parent"
@@ -76,7 +98,12 @@
                 android:id="@+id/chocButton"
                 android:background="@color/CHOC_numpad"
                 android:textColor="@color/CHOC_text"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:drawableRight="@drawable/choc_icon"
+                android:drawableLeft="@drawable/choc_icon"
+                android:paddingRight="20dp"
+                android:paddingLeft="20dp"
+                />
 
             <Button
                 android:layout_width="match_parent"
@@ -85,7 +112,12 @@
                 android:id="@+id/rvelButton"
                 android:background="@color/RVEL_colorAccent"
                 android:textColor="@color/RVEL_text"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:drawableRight="@drawable/rvel_icon"
+                android:drawableLeft="@drawable/rvel_icon"
+                android:paddingRight="20dp"
+                android:paddingLeft="20dp"
+                />
 
             <Button
                 android:layout_width="match_parent"
@@ -94,7 +126,12 @@
                 android:id="@+id/pinButton"
                 android:background="@color/PIN_colorAccent"
                 android:textColor="@color/PIN_numpad"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:drawableRight="@drawable/pin_icon"
+                android:drawableLeft="@drawable/pin_icon"
+                android:paddingRight="20dp"
+                android:paddingLeft="20dp"
+                />
 
             <Button
                 android:layout_width="match_parent"
@@ -112,7 +149,12 @@
                 android:id="@+id/blueButton"
                 android:background="@color/BLUE_colorAccent"
                 android:textColor="#ffffff"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:drawableRight="@drawable/blue_icon"
+                android:drawableLeft="@drawable/blue_icon"
+                android:paddingRight="20dp"
+                android:paddingLeft="20dp"
+                />
 
             <Button
                 android:layout_width="match_parent"
@@ -121,7 +163,11 @@
                 android:id="@+id/pinkButton"
                 android:background="@color/PINK_colorAccent"
                 android:textColor="#ffffff"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:drawableRight="@drawable/pink_icon"
+                android:drawableLeft="@drawable/pink_icon"
+                android:paddingRight="20dp"
+                android:paddingLeft="20dp"/>
 
         </LinearLayout>
     </ScrollView>
