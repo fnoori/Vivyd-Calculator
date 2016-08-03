@@ -8,8 +8,8 @@ android {
         applicationId "ca.vivyd.vivydcalculator"
         minSdkVersion 16
         targetSdkVersion 23
-        versionCode 7
-        versionName "0.07"
+        versionCode 9
+        versionName "0.09"
     }
     buildTypes {
         release {
