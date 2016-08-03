@@ -99,6 +99,15 @@
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
+                android:text="Electrolyte"
+                android:id="@+id/elecButton"
+                android:textColor="@color/ELEC_oppTray"
+                android:layout_weight="1"
+                android:background="@color/ELEC_numpad" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
                 android:text="CLASSIC BLUE"
                 android:id="@+id/blueButton"
                 android:background="@color/BLUE_colorAccent"

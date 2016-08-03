@@ -112,7 +112,7 @@
         android:splitMotionEvents="false"
         android:id="@+id/fourByfour"
         android:layout_marginLeft="3dp"
-        android:layout_marginBottom="2dp">
+        android:layout_marginBottom="3dp">
 
         <FrameLayout
             android:layout_width="match_parent"

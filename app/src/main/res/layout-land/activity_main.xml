@@ -76,7 +76,7 @@
             android:layout_weight="2.3">
 
             <EditText
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:id="@+id/ansView"
                 android:textIsSelectable="true"
@@ -92,7 +92,8 @@
                 android:paddingStart="10dp"
                 android:paddingEnd="20dp"
                 android:paddingRight="20dp"
-                android:fontFamily="sans-serif-light" />
+                android:fontFamily="sans-serif-light"
+                android:layout_gravity="center|right" />
 
             <Button
                 android:layout_width="59dp"

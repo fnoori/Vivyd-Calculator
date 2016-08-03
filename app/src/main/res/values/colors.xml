@@ -101,5 +101,14 @@
     <color name="PIN_text">#ffffff</color>
     <color name="PIN_oppTray">#e18f3e</color>
 
+    <!-- Electrolyte theme -->
+    <color name="ELEC_colorAccent">#d6d6d6</color>
+    <color name="ELEC_colorComp">#f37937</color>
+    <color name="ELEC_background">#006039</color>
+    <color name="ELEC_numpad">#00683e</color>
+    <color name="ELEC_text_screen">#b8521a</color>
+    <color name="ELEC_text">#ffffff</color>
+    <color name="ELEC_oppTray">#f37937</color>
+
 
 </resources>
