@@ -3,7 +3,7 @@
 
 
     <item
-        android:drawable="@drawable/blk_main_unpressed"
+        android:drawable="@drawable/blk_numpad_unpressed"
         />
 
     <item
