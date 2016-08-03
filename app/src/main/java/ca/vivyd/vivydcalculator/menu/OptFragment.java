@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import ca.vivyd.vivydcalculator.R;
+import ca.vivyd.vivydcalculator.themes.Themer;
 
 
 /**
@@ -29,6 +30,7 @@ public class OptFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View optView = inflater.inflate(R.layout.fragment_options, container, false);
+        optView.setBackgroundColor(Themer.colorArray.get(Themer.COLOR_BACKGROUND));
         return optView;
     }
 }

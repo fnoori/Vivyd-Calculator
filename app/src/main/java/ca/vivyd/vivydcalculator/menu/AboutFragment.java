@@ -11,6 +11,7 @@ import android.widget.ImageButton;
 
 import ca.vivyd.vivydcalculator.MainActivity;
 import ca.vivyd.vivydcalculator.R;
+import ca.vivyd.vivydcalculator.themes.Themer;
 
 
 /**
@@ -33,6 +34,8 @@ public class AboutFragment extends Fragment implements View.OnClickListener {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View abtView = inflater.inflate(R.layout.fragment_about, container, false);
+        abtView.setBackgroundColor(Themer.colorArray.get(Themer.COLOR_BACKGROUND));
+
 
         ImageButton emailButton = (ImageButton) abtView.findViewById(R.id.emailButton);
         emailButton.setOnClickListener(this);

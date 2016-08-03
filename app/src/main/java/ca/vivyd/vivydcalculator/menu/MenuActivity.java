@@ -1,11 +1,17 @@
 package ca.vivyd.vivydcalculator.menu;
 
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+import android.view.Window;
+import android.view.WindowManager;
 
 import ca.vivyd.vivydcalculator.R;
+import ca.vivyd.vivydcalculator.themes.Themer;
 
 
 /**
@@ -21,11 +27,20 @@ public class MenuActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setBackgroundDrawable(
+                new ColorDrawable(Themer.colorArray.get(Themer.COLOR_BACKGROUND)));
 
         viewPager = (ViewPager) findViewById(R.id.pager);
         tabs = (SlidingTabLayout) findViewById(R.id.tabs);
         assert tabs != null;
         tabs.setDistributeEvenly(true);
+        tabs.setSelectedIndicatorColors(Themer.colorArray.get(Themer.COLOR_ACCENT));
+        tabs.setBackgroundColor(Themer.colorArray.get(Themer.COLOR_BACKGROUND));
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Window window = getWindow();
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(Themer.colorArray.get(Themer.COLOR_BACKGROUND));
+        }
 
 
         viewPager.setAdapter(new ViewPager_adapter(getSupportFragmentManager()));

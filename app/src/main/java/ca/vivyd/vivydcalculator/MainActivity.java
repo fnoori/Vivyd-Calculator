@@ -488,16 +488,12 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
-        /**
-         * Only enable on ad-free version, other wise makes the ad look more intrusive
-         */
-        /*
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Window window = getWindow();
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            window.setStatusBarColor(colorAccent);
+            window.setStatusBarColor(colorBG);
         }
-        */
+
     }
 
     public int getScreenOrientation()
