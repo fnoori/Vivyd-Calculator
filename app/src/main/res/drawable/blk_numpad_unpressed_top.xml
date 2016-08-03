@@ -2,11 +2,9 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
 
 
-    <item >
-        <shape android:shape="rectangle"  >
-            <solid android:color="@color/BLK_numpad" />
-        </shape>
-    </item>
+    <item
+        android:drawable="@drawable/blk_main_unpressed"
+        />
 
     <item
         android:drawable="@drawable/a_main_shad_top"

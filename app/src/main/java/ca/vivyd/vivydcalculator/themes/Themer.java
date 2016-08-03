@@ -236,11 +236,7 @@ public class Themer {
                 colorArray.add(COLOR_TEXT_SCREEN, BASIC_TEXT_SCREEN);
                 colorArray.add(COLOR_OPPTRAY, BASIC_OPPTRAY);
                 for (Button curr: commonButtons) {
-                    if (curr.getId() != R.id.sevenButton && curr.getId() != R.id.eightButton
-                            && curr.getId() != R.id.nineButton)
-                        curr.setBackgroundResource(R.drawable.blue_numpad_transition);
-                    else
-                        curr.setBackgroundResource(R.drawable.blue_numpad_transition_top);
+                    curr.setBackgroundResource(R.drawable.blue_numpad_transition);
                     curr.setTextColor(colorArray.get(COLOR_TEXT));
                 }
                 for (Button curr: commonOperands) {
@@ -269,11 +265,7 @@ public class Themer {
                 colorArray.add(COLOR_TEXT_SCREEN, BASIC_TEXT_SCREEN);
                 colorArray.add(COLOR_OPPTRAY, BASIC_OPPTRAY);
                 for (Button curr: commonButtons) {
-                    if (curr.getId() != R.id.sevenButton && curr.getId() != R.id.eightButton
-                            && curr.getId() != R.id.nineButton)
-                        curr.setBackgroundResource(R.drawable.pink_numpad_transition);
-                    else
-                        curr.setBackgroundResource(R.drawable.pink_numpad_transition_top);
+                    curr.setBackgroundResource(R.drawable.pink_numpad_transition);
                     curr.setTextColor(colorArray.get(COLOR_TEXT));
                 }
                 for (Button curr: commonOperands) {
@@ -302,11 +294,7 @@ public class Themer {
                 colorArray.add(COLOR_TEXT_SCREEN, BASIC_TEXT_SCREEN);
                 colorArray.add(COLOR_OPPTRAY, BASIC_OPPTRAY);
                 for (Button curr: commonButtons) {
-                    if (curr.getId() != R.id.sevenButton && curr.getId() != R.id.eightButton
-                            && curr.getId() != R.id.nineButton)
-                        curr.setBackgroundResource(R.drawable.mango_numpad_transition);
-                    else
-                        curr.setBackgroundResource(R.drawable.mango_numpad_transition_top);
+                    curr.setBackgroundResource(R.drawable.mango_numpad_transition);
                     curr.setTextColor(colorArray.get(COLOR_TEXT));
                 }
                 for (Button curr: commonOperands) {
@@ -335,11 +323,7 @@ public class Themer {
                 colorArray.add(COLOR_TEXT_SCREEN, CHOC_TEXT_SCREEN);
                 colorArray.add(COLOR_OPPTRAY, CHOC_OPPTRAY);
                 for (Button curr: commonButtons) {
-                    if (curr.getId() != R.id.sevenButton && curr.getId() != R.id.eightButton
-                            && curr.getId() != R.id.nineButton)
-                        curr.setBackgroundResource(R.drawable.choc_numpad_transition);
-                    else
-                        curr.setBackgroundResource(R.drawable.choc_numpad_transition_top);
+                    curr.setBackgroundResource(R.drawable.choc_numpad_transition);
                     curr.setTextColor(colorArray.get(COLOR_TEXT));
                 }
                 for (Button curr: commonOperands) {
@@ -368,11 +352,7 @@ public class Themer {
                 colorArray.add(COLOR_TEXT_SCREEN, SUND_TEXT_SCREEN);
                 colorArray.add(COLOR_OPPTRAY, SUND_OPPTRAY);
                 for (Button curr: commonButtons) {
-                    if (curr.getId() != R.id.sevenButton && curr.getId() != R.id.eightButton
-                            && curr.getId() != R.id.nineButton)
-                        curr.setBackgroundResource(R.drawable.sund_numpad_transition);
-                    else
-                        curr.setBackgroundResource(R.drawable.sund_numpad_transition_top);
+                    curr.setBackgroundResource(R.drawable.sund_numpad_transition);
                     curr.setTextColor(colorArray.get(COLOR_TEXT));
                 }
                 for (Button curr: commonOperands) {
@@ -401,11 +381,7 @@ public class Themer {
                 colorArray.add(COLOR_TEXT_SCREEN, WTRM_TEXT_SCREEN);
                 colorArray.add(COLOR_OPPTRAY, WTRM_OPPTRAY);
                 for (Button curr: commonButtons) {
-                    if (curr.getId() != R.id.sevenButton && curr.getId() != R.id.eightButton
-                            && curr.getId() != R.id.nineButton)
-                        curr.setBackgroundResource(R.drawable.wtrm_numpad_transition);
-                    else
-                        curr.setBackgroundResource(R.drawable.wtrm_numpad_transition_top);
+                    curr.setBackgroundResource(R.drawable.wtrm_numpad_transition);
                     curr.setTextColor(colorArray.get(COLOR_TEXT));
                 }
                 for (Button curr: commonOperands) {
@@ -434,11 +410,7 @@ public class Themer {
                 colorArray.add(COLOR_TEXT_SCREEN, RVEL_TEXT_SCREEN);
                 colorArray.add(COLOR_OPPTRAY, RVEL_OPPTRAY);
                 for (Button curr: commonButtons) {
-                    if (curr.getId() != R.id.sevenButton && curr.getId() != R.id.eightButton
-                            && curr.getId() != R.id.nineButton)
-                        curr.setBackgroundResource(R.drawable.rvel_numpad_transition);
-                    else
-                        curr.setBackgroundResource(R.drawable.rvel_numpad_transition_top);
+                    curr.setBackgroundResource(R.drawable.rvel_numpad_transition);
                     curr.setTextColor(colorArray.get(COLOR_TEXT));
                 }
                 for (Button curr: commonOperands) {
@@ -467,11 +439,7 @@ public class Themer {
                 colorArray.add(COLOR_TEXT_SCREEN, PAP_TEXT_SCREEN);
                 colorArray.add(COLOR_OPPTRAY, PAP_OPPTRAY);
                 for (Button curr: commonButtons) {
-                    if (curr.getId() != R.id.sevenButton && curr.getId() != R.id.eightButton
-                            && curr.getId() != R.id.nineButton)
-                        curr.setBackgroundResource(R.drawable.pap_numpad_transition);
-                    else
-                        curr.setBackgroundResource(R.drawable.pap_numpad_transition_top);
+                    curr.setBackgroundResource(R.drawable.pap_numpad_transition);
                     curr.setTextColor(colorArray.get(COLOR_TEXT));
                 }
                 for (Button curr: commonOperands) {
@@ -500,11 +468,7 @@ public class Themer {
                 colorArray.add(COLOR_TEXT_SCREEN, BLK_TEXT_SCREEN);
                 colorArray.add(COLOR_OPPTRAY, BLK_OPPTRAY);
                 for (Button curr: commonButtons) {
-                    if (curr.getId() != R.id.sevenButton && curr.getId() != R.id.eightButton
-                            && curr.getId() != R.id.nineButton)
-                        curr.setBackgroundResource(R.drawable.blk_numpad_transition);
-                    else
-                        curr.setBackgroundResource(R.drawable.blk_numpad_transition_top);
+                    curr.setBackgroundResource(R.drawable.blk_numpad_transition);
                     curr.setTextColor(colorArray.get(COLOR_TEXT));
                 }
                 for (Button curr: commonOperands) {
@@ -533,11 +497,7 @@ public class Themer {
                 colorArray.add(COLOR_TEXT_SCREEN, PEP_TEXT_SCREEN);
                 colorArray.add(COLOR_OPPTRAY, PEP_OPPTRAY);
                 for (Button curr: commonButtons) {
-                    if (curr.getId() != R.id.sevenButton && curr.getId() != R.id.eightButton
-                            && curr.getId() != R.id.nineButton)
-                        curr.setBackgroundResource(R.drawable.pep_numpad_transition);
-                    else
-                        curr.setBackgroundResource(R.drawable.pep_numpad_transition_top);
+                    curr.setBackgroundResource(R.drawable.pep_numpad_transition);
                     curr.setTextColor(colorArray.get(COLOR_TEXT));
                 }
                 for (Button curr: commonOperands) {
