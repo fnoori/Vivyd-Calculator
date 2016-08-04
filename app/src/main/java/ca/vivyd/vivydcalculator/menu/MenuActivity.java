@@ -29,6 +29,7 @@ public class MenuActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setBackgroundDrawable(
                 new ColorDrawable(Themer.colorArray.get(Themer.COLOR_BACKGROUND)));
+        getSupportActionBar().setElevation(0);
 
         viewPager = (ViewPager) findViewById(R.id.pager);
         tabs = (SlidingTabLayout) findViewById(R.id.tabs);
@@ -41,7 +42,6 @@ public class MenuActivity extends AppCompatActivity {
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             window.setStatusBarColor(Themer.colorArray.get(Themer.COLOR_BACKGROUND));
         }
-
 
         viewPager.setAdapter(new ViewPager_adapter(getSupportFragmentManager()));
         tabs.setViewPager(viewPager);

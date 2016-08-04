@@ -32,4 +32,10 @@
             android:layout_marginBottom="20dp" />
     </LinearLayout>
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/imageView5"
+        android:src="@drawable/a_main_shad_updown" />
+
 </FrameLayout>

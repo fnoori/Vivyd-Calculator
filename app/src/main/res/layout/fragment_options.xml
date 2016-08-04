@@ -30,4 +30,10 @@
             android:textSize="50sp" />
     </LinearLayout>
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/imageView4"
+        android:src="@drawable/a_main_shad_updown" />
+
 </FrameLayout>
