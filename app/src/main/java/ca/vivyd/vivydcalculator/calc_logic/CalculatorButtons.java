@@ -748,6 +748,8 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
                             .build();
 
                     solution = String.valueOf(numFormat.format(calculateExpression.evaluate()));
+                    if(solution.equals("-0")){solution = "0";}
+
                     Animation sweep = AnimationUtils.loadAnimation(context, R.anim.sweepity_sweep);
                     equationView.startAnimation(sweep);
                     equationView.setText(forEquationView);
