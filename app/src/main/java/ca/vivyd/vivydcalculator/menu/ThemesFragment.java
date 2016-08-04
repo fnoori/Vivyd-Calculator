@@ -110,7 +110,6 @@ public class ThemesFragment extends Fragment implements View.OnClickListener {
             add(pineButton);
         }};
 
-
         // Set Current Theme drawables
         Drawable pLeft = ResourcesCompat.getDrawable(getResources(), R.drawable.poinleft_icon, null);
         Drawable pRight = ResourcesCompat.getDrawable(getResources(), R.drawable.poinright_icon, null);

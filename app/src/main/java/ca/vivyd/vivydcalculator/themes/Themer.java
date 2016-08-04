@@ -55,7 +55,6 @@ public class Themer {
     public final static int PINE_THEME = 18;
 
 
-
     // Basic themes
     public static int BLUE_ACCENT;
     public static int BLUE_COMP;
