@@ -95,29 +95,47 @@
     <!-- Pina Colada theme -->
     <color name="PIN_colorAccent">#F9F8D6</color>
     <color name="PIN_colorComp">#76ffb4</color>
-    <color name="PIN_background">#b03836</color>
-    <color name="PIN_numpad">#c33d3a</color>
+    <color name="PIN_background">#b14744</color>
+    <color name="PIN_numpad">#c44845</color>
     <color name="PIN_text_screen">#e18f3e</color>
     <color name="PIN_text">#ffffff</color>
     <color name="PIN_oppTray">#e18f3e</color>
 
     <!-- Electrolyte theme -->
-    <color name="ELEC_colorAccent">#d6d6d6</color>
-    <color name="ELEC_colorComp">#f37937</color>
-    <color name="ELEC_background">#006039</color>
-    <color name="ELEC_numpad">#00683e</color>
-    <color name="ELEC_text_screen">#b8521a</color>
+    <color name="ELEC_colorAccent">#e87f47</color>
+    <color name="ELEC_colorComp">#363536</color>
+    <color name="ELEC_background">#04462c</color>
+    <color name="ELEC_numpad">#0f5337</color>
+    <color name="ELEC_text_screen">#ffffff</color>
     <color name="ELEC_text">#ffffff</color>
-    <color name="ELEC_oppTray">#f37937</color>
+    <color name="ELEC_oppTray">#902c2f</color>
 
     <!-- Banana theme -->
     <color name="BAN_colorAccent">#f1e9cb</color>
-    <color name="BAN_colorComp">#0bf191</color>
-    <color name="BAN_background">	@color/BAN_numpad</color>
+    <color name="BAN_colorComp">#d8e63c</color>
+    <color name="BAN_background">#95906f</color>
     <color name="BAN_numpad">#a7a179</color>
     <color name="BAN_text_screen">#9b6525</color>
     <color name="BAN_text">#ffffff</color>
     <color name="BAN_oppTray">#cdbf58</color>
+    
+    <!-- Sushi theme -->
+    <color name="SUSH_colorAccent">#fdede1</color>
+    <color name="SUSH_colorComp">#b3d488</color>
+    <color name="SUSH_background">#3f4237</color>
+    <color name="SUSH_numpad">#3f4237</color>
+    <color name="SUSH_text_screen">#fd5555</color>
+    <color name="SUSH_text">#ffffff</color>
+    <color name="SUSH_oppTray">#fd5555</color>
+    
+    <!-- Classy theme -->
+    <color name="CLAS_colorAccent">#ffffff</color>
+    <color name="CLAS_colorComp">#e64e47</color>
+    <color name="CLAS_background">@color/CLAS_numpad</color>
+    <color name="CLAS_numpad">#212020</color>
+    <color name="CLAS_text_screen">#4b251a</color>
+    <color name="CLAS_text">#ffffff</color>
+    <color name="CLAS_oppTray">#4b251a</color>
 
 
 </resources>

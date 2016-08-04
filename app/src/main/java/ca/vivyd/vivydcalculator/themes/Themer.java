@@ -48,6 +48,8 @@ public class Themer {
     public final static int PIN_THEME = 11;
     public final static int ELEC_THEME = 12;
     public final static int BAN_THEME = 13;
+    public final static int SUSH_THEME = 14;
+    public final static int CLAS_THEME = 15;
 
 
 
@@ -145,7 +147,7 @@ public class Themer {
     public static int ELEC_TEXT_SCREEN;
     public static int ELEC_OPPTRAY;  
     
-    // Electrolyte Theme
+    // Banana Theme
     public static int BAN_ACCENT;
     public static int BAN_COMP;
     public static int BAN_BACKGROUND;
@@ -153,6 +155,24 @@ public class Themer {
     public static int BAN_TEXT;
     public static int BAN_TEXT_SCREEN;
     public static int BAN_OPPTRAY;
+    
+    // Sushi Theme
+    public static int SUSH_ACCENT;
+    public static int SUSH_COMP;
+    public static int SUSH_BACKGROUND;
+    public static int SUSH_NUMPAD;
+    public static int SUSH_TEXT;
+    public static int SUSH_TEXT_SCREEN;
+    public static int SUSH_OPPTRAY;
+    
+    // Classy Theme
+    public static int CLAS_ACCENT;
+    public static int CLAS_COMP;
+    public static int CLAS_BACKGROUND;
+    public static int CLAS_NUMPAD;
+    public static int CLAS_TEXT;
+    public static int CLAS_TEXT_SCREEN;
+    public static int CLAS_OPPTRAY;
 
     public Themer(Context inContext,
                   ArrayList<Button> inCommonButtons,
@@ -277,7 +297,25 @@ public class Themer {
         BAN_NUMPAD          = ContextCompat.getColor(context, R.color.BAN_numpad);
         BAN_TEXT            = ContextCompat.getColor(context, R.color.BAN_text);
         BAN_TEXT_SCREEN     = ContextCompat.getColor(context, R.color.BAN_text_screen);
-        BAN_OPPTRAY         = ContextCompat.getColor(context, R.color.BAN_oppTray);
+        BAN_OPPTRAY         = ContextCompat.getColor(context, R.color.BAN_oppTray);    
+        
+        //Initialize Sushi Theme
+        SUSH_ACCENT          = ContextCompat.getColor(context, R.color.SUSH_colorAccent);
+        SUSH_COMP            = ContextCompat.getColor(context, R.color.SUSH_colorComp);
+        SUSH_BACKGROUND      = ContextCompat.getColor(context, R.color.SUSH_background);
+        SUSH_NUMPAD          = ContextCompat.getColor(context, R.color.SUSH_numpad);
+        SUSH_TEXT            = ContextCompat.getColor(context, R.color.SUSH_text);
+        SUSH_TEXT_SCREEN     = ContextCompat.getColor(context, R.color.SUSH_text_screen);
+        SUSH_OPPTRAY         = ContextCompat.getColor(context, R.color.SUSH_oppTray); 
+        
+        //Initialize Classy Theme
+        CLAS_ACCENT          = ContextCompat.getColor(context, R.color.CLAS_colorAccent);
+        CLAS_COMP            = ContextCompat.getColor(context, R.color.CLAS_colorComp);
+        CLAS_BACKGROUND      = ContextCompat.getColor(context, R.color.CLAS_background);
+        CLAS_NUMPAD          = ContextCompat.getColor(context, R.color.CLAS_numpad);
+        CLAS_TEXT            = ContextCompat.getColor(context, R.color.CLAS_text);
+        CLAS_TEXT_SCREEN     = ContextCompat.getColor(context, R.color.CLAS_text_screen);
+        CLAS_OPPTRAY         = ContextCompat.getColor(context, R.color.CLAS_oppTray);
         
     }
 
@@ -661,6 +699,64 @@ public class Themer {
                     morButton.setBackgroundResource(R.drawable.ban_numpad_transition);
                 break;
             
+            case (SUSH_THEME):
+                colorArray.add(COLOR_ACCENT, SUSH_ACCENT);
+                colorArray.add(COLOR_COMP, SUSH_COMP);
+                colorArray.add(COLOR_BACKGROUND, SUSH_BACKGROUND);
+                colorArray.add(COLOR_NUMPAD, SUSH_NUMPAD);
+                colorArray.add(COLOR_TEXT, SUSH_TEXT);
+                colorArray.add(COLOR_TEXT_SCREEN, SUSH_TEXT_SCREEN);
+                colorArray.add(COLOR_OPPTRAY, SUSH_OPPTRAY);
+                for (Button curr: commonButtons) {
+                    curr.setBackgroundResource(R.drawable.sush_numpad_transition);
+                    curr.setTextColor(colorArray.get(COLOR_TEXT));
+                }
+                for (Button curr: commonOperands) {
+                    if (curr.getId() == R.id.openBrace || curr.getId() == R.id.closeBrace
+                            || curr.getId() == R.id.prcntButton || curr.getId() == R.id.delButton
+                            || curr.getId() == R.id.clrButton)
+                        curr.setBackgroundResource(R.drawable.sush_numpad_transition_noshad);
+                    else if(curr.getId() == R.id.divButton || curr.getId() == R.id.multButton
+                            || curr.getId() == R.id.minusButton || curr.getId() == R.id.addButton
+                            || curr.getId() == R.id.eqlButton)
+                        curr.setBackgroundResource(R.drawable.sush_main_transition);
+                    else if(curr.getId() == R.id.menuButton)
+                        curr.setBackgroundResource(R.drawable.sush_main_transition_top);
+                    curr.setTextColor(colorArray.get(COLOR_TEXT));
+                }
+                if(MainActivity.screenOrientation == Configuration.ORIENTATION_PORTRAIT)
+                    morButton.setBackgroundResource(R.drawable.sush_numpad_transition);
+                break;
+
+            case (CLAS_THEME):
+                colorArray.add(COLOR_ACCENT, CLAS_ACCENT);
+                colorArray.add(COLOR_COMP, CLAS_COMP);
+                colorArray.add(COLOR_BACKGROUND, CLAS_BACKGROUND);
+                colorArray.add(COLOR_NUMPAD, CLAS_NUMPAD);
+                colorArray.add(COLOR_TEXT, CLAS_TEXT);
+                colorArray.add(COLOR_TEXT_SCREEN, CLAS_TEXT_SCREEN);
+                colorArray.add(COLOR_OPPTRAY, CLAS_OPPTRAY);
+                for (Button curr: commonButtons) {
+                    curr.setBackgroundResource(R.drawable.clas_numpad_transition);
+                    curr.setTextColor(colorArray.get(COLOR_TEXT));
+                }
+                for (Button curr: commonOperands) {
+                    if (curr.getId() == R.id.openBrace || curr.getId() == R.id.closeBrace
+                            || curr.getId() == R.id.prcntButton || curr.getId() == R.id.delButton
+                            || curr.getId() == R.id.clrButton)
+                        curr.setBackgroundResource(R.drawable.clas_numpad_transition_noshad);
+                    else if(curr.getId() == R.id.divButton || curr.getId() == R.id.multButton
+                            || curr.getId() == R.id.minusButton || curr.getId() == R.id.addButton
+                            || curr.getId() == R.id.eqlButton)
+                        curr.setBackgroundResource(R.drawable.clas_main_transition);
+                    else if(curr.getId() == R.id.menuButton)
+                        curr.setBackgroundResource(R.drawable.clas_main_transition_top);
+                    curr.setTextColor(colorArray.get(COLOR_TEXT));
+                }
+                if(MainActivity.screenOrientation == Configuration.ORIENTATION_PORTRAIT)
+                    morButton.setBackgroundResource(R.drawable.clas_numpad_transition);
+                break;
+            
         }
         //float[] hsv = new float[3];
         //Color.colorToHSV(colorArray.get(COLOR_ACCENT), hsv);
@@ -722,6 +818,14 @@ public class Themer {
 
                 case (BAN_THEME):
                     curr.setBackgroundResource(R.drawable.ban_numpad_transition);
+                    break;
+
+                case (SUSH_THEME):
+                    curr.setBackgroundResource(R.drawable.sush_numpad_transition);
+                    break;
+
+                case (CLAS_THEME):
+                    curr.setBackgroundResource(R.drawable.clas_numpad_transition);
                     break;
 
             }
