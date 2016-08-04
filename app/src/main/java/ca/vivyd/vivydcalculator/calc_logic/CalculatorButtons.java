@@ -780,7 +780,7 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
                             expressionToEvaluate = expressionToEvaluate + ")";
                         } while (closeBracket < openBracket);
                     }
-                    answerView.setText(expressionToEvaluate);
+                    answerView.setText(calculatorUtilities.replaceForAnsViewDisplay(expressionToEvaluate));
                     answerView.setSelection(answerView.getText().toString().length());
                     equalButtonLogic();
                 }
@@ -871,7 +871,7 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
     public void addToExpressionToBeEvaluated(String valueToAppend, String type, boolean isExceptionToRule){
         String prevInput;
         int cursorLocation = 0;
-        if(isAnswer || isError){
+        if((isAnswer || isError) && answerView.getSelectionStart() == answerView.getText().length()){
             if(type.equals(CalculatorUtilities.ALL_BUTTS[4]) ||
                     type.equals(CalculatorUtilities.ALL_BUTTS[8]) ||
                     type.equals(CalculatorUtilities.ALL_BUTTS[9]) ||
