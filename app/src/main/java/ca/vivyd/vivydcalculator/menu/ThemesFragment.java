@@ -145,62 +145,7 @@ public class ThemesFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v){
-        switch (v.getId()) {
-            case R.id.blueButton:
-                Themer.CURRENT_THEME = Themer.BLUE_THEME;
-                break;
-            case R.id.pinkButton:
-                Themer.CURRENT_THEME = Themer.PINK_THEME;
-                break;
-            case R.id.mangButton:
-                Themer.CURRENT_THEME = Themer.MANGO_THEME;
-                break;
-            case R.id.chocButton:
-                Themer.CURRENT_THEME = Themer.CHOC_THEME;
-                break;
-            case R.id.sundaeButton:
-                Themer.CURRENT_THEME = Themer.SUND_THEME;
-                break;
-            case R.id.wtrmButton:
-                Themer.CURRENT_THEME = Themer.WTRM_THEME;
-                break;
-            case R.id.rvelButton:
-                Themer.CURRENT_THEME = Themer.RVEL_THEME;
-                break;
-            case R.id.papButton:
-                Themer.CURRENT_THEME = Themer.PAP_THEME;
-                break;
-            case R.id.blkButton:
-                Themer.CURRENT_THEME = Themer.BLK_THEME;
-                break;
-            case R.id.pepButton:
-                Themer.CURRENT_THEME = Themer.PEP_THEME;
-                break;
-            case R.id.pinButton:
-                Themer.CURRENT_THEME = Themer.PIN_THEME;
-                break;
-            case R.id.elecButton:
-                Themer.CURRENT_THEME = Themer.ELEC_THEME;
-                break; 
-            case R.id.banButton:
-                Themer.CURRENT_THEME = Themer.BAN_THEME;
-                break;
-            case R.id.sushButton:
-                Themer.CURRENT_THEME = Themer.SUSH_THEME;
-                break;
-            case R.id.clasButton:
-                Themer.CURRENT_THEME = Themer.CLAS_THEME;
-                break;
-            case R.id.kiwiButton:
-                Themer.CURRENT_THEME = Themer.KIWI_THEME;
-                break;
-            case R.id.snoButton:
-                Themer.CURRENT_THEME = Themer.SNO_THEME;
-                break;
-            case R.id.pineButton:
-                Themer.CURRENT_THEME = Themer.PINE_THEME;
-                break;
-        }
+        Themer.CURRENT_THEME = (Integer) v.getTag();
         theme_isChanged  = 1;
         getActivity().finish();
         getActivity().overridePendingTransition(R.anim.right_out, R.anim.left_in);
