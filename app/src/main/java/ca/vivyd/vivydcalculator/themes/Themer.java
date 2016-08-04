@@ -51,6 +51,8 @@ public class Themer {
     public final static int SUSH_THEME = 14;
     public final static int CLAS_THEME = 15;
     public final static int KIWI_THEME = 16;
+    public final static int SNO_THEME = 17;
+    public final static int PINE_THEME = 18;
 
 
 
@@ -166,7 +168,7 @@ public class Themer {
     public static int SUSH_TEXT_SCREEN;
     public static int SUSH_OPPTRAY;
     
-    // Classy Theme
+    // Bold/Classy Theme
     public static int CLAS_ACCENT;
     public static int CLAS_COMP;
     public static int CLAS_BACKGROUND;
@@ -175,7 +177,7 @@ public class Themer {
     public static int CLAS_TEXT_SCREEN;
     public static int CLAS_OPPTRAY;
     
-    // Classy Theme
+    // Kiwi Theme
     public static int KIWI_ACCENT;
     public static int KIWI_COMP;
     public static int KIWI_BACKGROUND;
@@ -183,6 +185,24 @@ public class Themer {
     public static int KIWI_TEXT;
     public static int KIWI_TEXT_SCREEN;
     public static int KIWI_OPPTRAY;
+    
+    // Snow Theme
+    public static int SNO_ACCENT;
+    public static int SNO_COMP;
+    public static int SNO_BACKGROUND;
+    public static int SNO_NUMPAD;
+    public static int SNO_TEXT;
+    public static int SNO_TEXT_SCREEN;
+    public static int SNO_OPPTRAY;
+
+    // Pine Theme
+    public static int PINE_ACCENT;
+    public static int PINE_COMP;
+    public static int PINE_BACKGROUND;
+    public static int PINE_NUMPAD;
+    public static int PINE_TEXT;
+    public static int PINE_TEXT_SCREEN;
+    public static int PINE_OPPTRAY;
 
     public Themer(Context inContext,
                   ArrayList<Button> inCommonButtons,
@@ -327,7 +347,7 @@ public class Themer {
         CLAS_TEXT_SCREEN     = ContextCompat.getColor(context, R.color.CLAS_text_screen);
         CLAS_OPPTRAY         = ContextCompat.getColor(context, R.color.CLAS_oppTray);
 
-        //Initialize Classy Theme
+        //Initialize Kiwi Theme
         KIWI_ACCENT          = ContextCompat.getColor(context, R.color.KIWI_colorAccent);
         KIWI_COMP            = ContextCompat.getColor(context, R.color.KIWI_colorComp);
         KIWI_BACKGROUND      = ContextCompat.getColor(context, R.color.KIWI_background);
@@ -335,6 +355,24 @@ public class Themer {
         KIWI_TEXT            = ContextCompat.getColor(context, R.color.KIWI_text);
         KIWI_TEXT_SCREEN     = ContextCompat.getColor(context, R.color.KIWI_text_screen);
         KIWI_OPPTRAY         = ContextCompat.getColor(context, R.color.KIWI_oppTray);
+
+        //Initialize SnoCone Theme
+        SNO_ACCENT          = ContextCompat.getColor(context, R.color.SNO_colorAccent);
+        SNO_COMP            = ContextCompat.getColor(context, R.color.SNO_colorComp);
+        SNO_BACKGROUND      = ContextCompat.getColor(context, R.color.SNO_background);
+        SNO_NUMPAD          = ContextCompat.getColor(context, R.color.SNO_numpad);
+        SNO_TEXT            = ContextCompat.getColor(context, R.color.SNO_text);
+        SNO_TEXT_SCREEN     = ContextCompat.getColor(context, R.color.SNO_text_screen);
+        SNO_OPPTRAY         = ContextCompat.getColor(context, R.color.SNO_oppTray);
+
+        //Initialize Pineapple Theme
+        PINE_ACCENT          = ContextCompat.getColor(context, R.color.PINE_colorAccent);
+        PINE_COMP            = ContextCompat.getColor(context, R.color.PINE_colorComp);
+        PINE_BACKGROUND      = ContextCompat.getColor(context, R.color.PINE_background);
+        PINE_NUMPAD          = ContextCompat.getColor(context, R.color.PINE_numpad);
+        PINE_TEXT            = ContextCompat.getColor(context, R.color.PINE_text);
+        PINE_TEXT_SCREEN     = ContextCompat.getColor(context, R.color.PINE_text_screen);
+        PINE_OPPTRAY         = ContextCompat.getColor(context, R.color.PINE_oppTray);
         
     }
 
@@ -803,6 +841,64 @@ public class Themer {
                 }
                 if(MainActivity.screenOrientation == Configuration.ORIENTATION_PORTRAIT)
                     morButton.setBackgroundResource(R.drawable.kiwi_numpad_transition);
+                break; 
+            
+            case (SNO_THEME):
+                colorArray.add(COLOR_ACCENT, SNO_ACCENT);
+                colorArray.add(COLOR_COMP, SNO_COMP);
+                colorArray.add(COLOR_BACKGROUND, SNO_BACKGROUND);
+                colorArray.add(COLOR_NUMPAD, SNO_NUMPAD);
+                colorArray.add(COLOR_TEXT, SNO_TEXT);
+                colorArray.add(COLOR_TEXT_SCREEN, SNO_TEXT_SCREEN);
+                colorArray.add(COLOR_OPPTRAY, SNO_OPPTRAY);
+                for (Button curr: commonButtons) {
+                    curr.setBackgroundResource(R.drawable.sno_numpad_transition);
+                    curr.setTextColor(colorArray.get(COLOR_TEXT));
+                }
+                for (Button curr: commonOperands) {
+                    if (curr.getId() == R.id.openBrace || curr.getId() == R.id.closeBrace
+                            || curr.getId() == R.id.prcntButton || curr.getId() == R.id.delButton
+                            || curr.getId() == R.id.clrButton)
+                        curr.setBackgroundResource(R.drawable.sno_numpad_transition_noshad);
+                    else if(curr.getId() == R.id.divButton || curr.getId() == R.id.multButton
+                            || curr.getId() == R.id.minusButton || curr.getId() == R.id.addButton
+                            || curr.getId() == R.id.eqlButton)
+                        curr.setBackgroundResource(R.drawable.sno_main_transition);
+                    else if(curr.getId() == R.id.menuButton)
+                        curr.setBackgroundResource(R.drawable.sno_main_transition_top);
+                    curr.setTextColor(colorArray.get(COLOR_TEXT));
+                }
+                if(MainActivity.screenOrientation == Configuration.ORIENTATION_PORTRAIT)
+                    morButton.setBackgroundResource(R.drawable.sno_numpad_transition);
+                break;
+
+            case (PINE_THEME):
+                colorArray.add(COLOR_ACCENT, PINE_ACCENT);
+                colorArray.add(COLOR_COMP, PINE_COMP);
+                colorArray.add(COLOR_BACKGROUND, PINE_BACKGROUND);
+                colorArray.add(COLOR_NUMPAD, PINE_NUMPAD);
+                colorArray.add(COLOR_TEXT, PINE_TEXT);
+                colorArray.add(COLOR_TEXT_SCREEN, PINE_TEXT_SCREEN);
+                colorArray.add(COLOR_OPPTRAY, PINE_OPPTRAY);
+                for (Button curr: commonButtons) {
+                    curr.setBackgroundResource(R.drawable.pine_numpad_transition);
+                    curr.setTextColor(colorArray.get(COLOR_TEXT));
+                }
+                for (Button curr: commonOperands) {
+                    if (curr.getId() == R.id.openBrace || curr.getId() == R.id.closeBrace
+                            || curr.getId() == R.id.prcntButton || curr.getId() == R.id.delButton
+                            || curr.getId() == R.id.clrButton)
+                        curr.setBackgroundResource(R.drawable.pine_numpad_transition_noshad);
+                    else if(curr.getId() == R.id.divButton || curr.getId() == R.id.multButton
+                            || curr.getId() == R.id.minusButton || curr.getId() == R.id.addButton
+                            || curr.getId() == R.id.eqlButton)
+                        curr.setBackgroundResource(R.drawable.pine_main_transition);
+                    else if(curr.getId() == R.id.menuButton)
+                        curr.setBackgroundResource(R.drawable.pine_main_transition_top);
+                    curr.setTextColor(colorArray.get(COLOR_TEXT));
+                }
+                if(MainActivity.screenOrientation == Configuration.ORIENTATION_PORTRAIT)
+                    morButton.setBackgroundResource(R.drawable.pine_numpad_transition);
                 break;
             
         }
@@ -875,8 +971,17 @@ public class Themer {
                 case (CLAS_THEME):
                     curr.setBackgroundResource(R.drawable.clas_numpad_transition);
                     break;
+
                 case (KIWI_THEME):
                     curr.setBackgroundResource(R.drawable.kiwi_numpad_transition);
+                    break;
+
+                case (SNO_THEME):
+                    curr.setBackgroundResource(R.drawable.sno_numpad_transition);
+                    break;
+                
+                case (PINE_THEME):
+                    curr.setBackgroundResource(R.drawable.pine_numpad_transition);
                     break;
 
             }

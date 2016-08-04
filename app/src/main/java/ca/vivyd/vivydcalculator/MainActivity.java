@@ -282,53 +282,54 @@ public class MainActivity extends AppCompatActivity {
 
     // Button listener for "more button"
     public void moreButtonListener(Button moreButton, final CalculatorButtons calcButtons){
-        moreButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final FrameLayout numArea = (FrameLayout) findViewById(R.id.num_area);
-                assert numArea != null;
+        if (moreButton != null) {
+            moreButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    final FrameLayout numArea = (FrameLayout) findViewById(R.id.num_area);
+                    assert numArea != null;
 
-                TableRow bottomRow = (TableRow) findViewById(R.id.bottomRow);
-                assert bottomRow != null;
-                int popHeight =  4*bottomRow.getHeight();
+                    TableRow bottomRow = (TableRow) findViewById(R.id.bottomRow);
+                    assert bottomRow != null;
+                    int popHeight = 4 * bottomRow.getHeight();
 
-                final View popMenu = getLayoutInflater().inflate(R.layout.activity_popup, null);
-                popMenu.setMinimumHeight(popHeight);
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    Slide mSlide = new Slide();
-                    mSlide.setDuration(150);
-                    TransitionManager.beginDelayedTransition(numArea, mSlide);
-                }
-                else {
-                    LayoutTransition transition = new LayoutTransition();
-                    transition.setDuration(100);
-                    numArea.setLayoutTransition(transition);
-                }
-                numArea.addView(popMenu);
-
-                ArrayList<Button> advancedOperands = setScienceButts();
-                themer.setSciButtsAnim(advancedOperands);
-                calcButtons.addAdvanceOperands(advancedOperands);
-
-                //Actual Back button
-                Button bakButton = (Button) findViewById(R.id.bakButton);
-                assert bakButton != null;
-                ImageView bakImg = (ImageView) findViewById(R.id.imageBak) ;
-                bakButton.setBackgroundColor(Themer.colorArray.get(Themer.COLOR_ACCENT));
-                assert bakImg != null;
-                bakImg.setColorFilter(Themer.colorArray.get(Themer.COLOR_TEXT_SCREEN));
-                bakButton.setOnClickListener(new View.OnClickListener() {
-                    public void onClick(View v) {
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                            Slide mSlide = new Slide();
-                            mSlide.setDuration(200);
-                            TransitionManager.beginDelayedTransition(numArea, mSlide);
-                        }
-                        numArea.removeView(popMenu);
+                    final View popMenu = getLayoutInflater().inflate(R.layout.activity_popup, null);
+                    popMenu.setMinimumHeight(popHeight);
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                        Slide mSlide = new Slide();
+                        mSlide.setDuration(150);
+                        TransitionManager.beginDelayedTransition(numArea, mSlide);
+                    } else {
+                        LayoutTransition transition = new LayoutTransition();
+                        transition.setDuration(100);
+                        numArea.setLayoutTransition(transition);
                     }
-                });
-            }
-        });
+                    numArea.addView(popMenu);
+
+                    ArrayList<Button> advancedOperands = setScienceButts();
+                    themer.setSciButtsAnim(advancedOperands);
+                    calcButtons.addAdvanceOperands(advancedOperands);
+
+                    //Actual Back button
+                    Button bakButton = (Button) findViewById(R.id.bakButton);
+                    assert bakButton != null;
+                    ImageView bakImg = (ImageView) findViewById(R.id.imageBak);
+                    bakButton.setBackgroundColor(Themer.colorArray.get(Themer.COLOR_ACCENT));
+                    assert bakImg != null;
+                    bakImg.setColorFilter(Themer.colorArray.get(Themer.COLOR_TEXT_SCREEN));
+                    bakButton.setOnClickListener(new View.OnClickListener() {
+                        public void onClick(View v) {
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                                Slide mSlide = new Slide();
+                                mSlide.setDuration(200);
+                                TransitionManager.beginDelayedTransition(numArea, mSlide);
+                            }
+                            numArea.removeView(popMenu);
+                        }
+                    });
+                }
+            });
+        }
     }
 
     private ArrayList<Button> setCommonButts() {

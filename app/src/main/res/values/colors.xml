@@ -30,13 +30,13 @@
     <color name="BASIC_oppTray">#4f4646</color>
 
     <!-- Chocolate theme -->
-    <color name="CHOC_colorAccent">#c2a395</color>
-    <color name="CHOC_colorComp">#f1ac5c</color>
-    <color name="CHOC_background">#2f1e1b</color>
-    <color name="CHOC_numpad">#3E2723</color>
+    <color name="CHOC_colorAccent">#796140</color>
+    <color name="CHOC_colorComp">#FFFFFF</color>
+    <color name="CHOC_background">@color/CHOC_numpad</color>
+    <color name="CHOC_numpad">#2d241e</color>
     <color name="CHOC_text">#FFFFFF</color>
-    <color name="CHOC_text_screen">#433a46</color>
-    <color name="CHOC_oppTray">#77584d</color>
+    <color name="CHOC_text_screen">#FFFFFF</color>
+    <color name="CHOC_oppTray">#4d3434</color>
 
     <!-- Sundae theme -->
     <color name="SUND_colorAccent">#fff7b2</color>
@@ -145,6 +145,24 @@
     <color name="KIWI_text_screen">#ffffff</color>
     <color name="KIWI_text">#ffffff</color>
     <color name="KIWI_oppTray">#9d7658</color>
+
+    <!-- Sorbet/SnoCone theme -->
+    <color name="SNO_colorAccent">#42ace1</color>
+    <color name="SNO_colorComp">#e64e47</color>
+    <color name="SNO_background">#2a1c1f</color>
+    <color name="SNO_numpad">#342126</color>
+    <color name="SNO_text_screen">#ffffff</color>
+    <color name="SNO_text">#ffffff</color>
+    <color name="SNO_oppTray">#ee2d54</color>
+
+    <!-- Pineapple theme -->
+    <color name="PINE_colorAccent">#dbd693</color>
+    <color name="PINE_colorComp">#a7e3dd</color>
+    <color name="PINE_background">#424137</color>
+    <color name="PINE_numpad">#474539</color>
+    <color name="PINE_text_screen">@color/PINE_numpad</color>
+    <color name="PINE_text">#ffffff</color>
+    <color name="PINE_oppTray">#3e573f</color>
 
 
 </resources>
