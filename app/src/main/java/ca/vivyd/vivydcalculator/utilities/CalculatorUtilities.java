@@ -37,6 +37,24 @@ public class CalculatorUtilities {
         this.context = context;
     }
 
+    public boolean performQuickReplace(String input){
+        switch (input){
+            case "×":
+            case "*":
+                return true;
+            case "÷":
+            case "/":
+                return true;
+            case "−":
+            case "-":
+                return true;
+            case "+":
+                return true;
+            default:
+                return false;
+        }
+    }
+
     public String replaceForCalculations(String incoming){
         return incoming
                 .replace("log(", "log10(").replace("ln(", "log(")
@@ -156,6 +174,22 @@ public class CalculatorUtilities {
 
 
     }
+
+    public String changeSignForShortInput(String expression, String prev, String curr){
+        return expression.replace(prev, curr);
+    }
+
+    /*
+    *  ||
+                prev.equals("-") || prev.equals("−")
+    *
+    * */
+    public boolean operandReplace(String prev, String curr, String currentInputType) {
+        return (prev.equals("*") || prev.equals("×") ||
+                prev.equals("/") || prev.equals("÷") ||
+                prev.equals("-") || prev.equals("−"));
+    }
+
 
     public boolean checkIfMoreOperandIsPossible(String prevInput, String currentInputType, String prevInputType,
                                                 boolean isExceptionToRule) {

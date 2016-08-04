@@ -93,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
          * Test Ad.
          * Uncomment following line for test ads, but make sure to comment out previous real ad line
          */
-        Handler handler = new Handler();
+        /*Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
            public void run() {
@@ -111,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
 
                 mAdView.loadAd(request);
             }
-        }, 2000);
+        }, 2000);*/
 
         screenOrientation = getScreenOrientation();
         answerView = (EditText) findViewById(R.id.ansView);

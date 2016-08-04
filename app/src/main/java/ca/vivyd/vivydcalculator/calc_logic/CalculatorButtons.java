@@ -861,8 +861,11 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
             isAnswer = false;
             isError = false;
         }
+
         checkBrackets(type);
         prevInput = calculatorUtilities.getPreviousInput(expressionToEvaluate);
+        Log.d("PREV_INPUT", prevInput);
+
 
         cursorLocation = answerView.getSelectionStart();
         if(calculatorUtilities.checkIfMoreOperandIsPossible(prevInput, type, previousInputType, isExceptionToRule)){
