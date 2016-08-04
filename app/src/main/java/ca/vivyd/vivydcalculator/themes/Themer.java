@@ -50,6 +50,7 @@ public class Themer {
     public final static int BAN_THEME = 13;
     public final static int SUSH_THEME = 14;
     public final static int CLAS_THEME = 15;
+    public final static int KIWI_THEME = 16;
 
 
 
@@ -173,6 +174,15 @@ public class Themer {
     public static int CLAS_TEXT;
     public static int CLAS_TEXT_SCREEN;
     public static int CLAS_OPPTRAY;
+    
+    // Classy Theme
+    public static int KIWI_ACCENT;
+    public static int KIWI_COMP;
+    public static int KIWI_BACKGROUND;
+    public static int KIWI_NUMPAD;
+    public static int KIWI_TEXT;
+    public static int KIWI_TEXT_SCREEN;
+    public static int KIWI_OPPTRAY;
 
     public Themer(Context inContext,
                   ArrayList<Button> inCommonButtons,
@@ -316,6 +326,15 @@ public class Themer {
         CLAS_TEXT            = ContextCompat.getColor(context, R.color.CLAS_text);
         CLAS_TEXT_SCREEN     = ContextCompat.getColor(context, R.color.CLAS_text_screen);
         CLAS_OPPTRAY         = ContextCompat.getColor(context, R.color.CLAS_oppTray);
+
+        //Initialize Classy Theme
+        KIWI_ACCENT          = ContextCompat.getColor(context, R.color.KIWI_colorAccent);
+        KIWI_COMP            = ContextCompat.getColor(context, R.color.KIWI_colorComp);
+        KIWI_BACKGROUND      = ContextCompat.getColor(context, R.color.KIWI_background);
+        KIWI_NUMPAD          = ContextCompat.getColor(context, R.color.KIWI_numpad);
+        KIWI_TEXT            = ContextCompat.getColor(context, R.color.KIWI_text);
+        KIWI_TEXT_SCREEN     = ContextCompat.getColor(context, R.color.KIWI_text_screen);
+        KIWI_OPPTRAY         = ContextCompat.getColor(context, R.color.KIWI_oppTray);
         
     }
 
@@ -756,6 +775,35 @@ public class Themer {
                 if(MainActivity.screenOrientation == Configuration.ORIENTATION_PORTRAIT)
                     morButton.setBackgroundResource(R.drawable.clas_numpad_transition);
                 break;
+
+            case (KIWI_THEME):
+                colorArray.add(COLOR_ACCENT, KIWI_ACCENT);
+                colorArray.add(COLOR_COMP, KIWI_COMP);
+                colorArray.add(COLOR_BACKGROUND, KIWI_BACKGROUND);
+                colorArray.add(COLOR_NUMPAD, KIWI_NUMPAD);
+                colorArray.add(COLOR_TEXT, KIWI_TEXT);
+                colorArray.add(COLOR_TEXT_SCREEN, KIWI_TEXT_SCREEN);
+                colorArray.add(COLOR_OPPTRAY, KIWI_OPPTRAY);
+                for (Button curr: commonButtons) {
+                    curr.setBackgroundResource(R.drawable.kiwi_numpad_transition);
+                    curr.setTextColor(colorArray.get(COLOR_TEXT));
+                }
+                for (Button curr: commonOperands) {
+                    if (curr.getId() == R.id.openBrace || curr.getId() == R.id.closeBrace
+                            || curr.getId() == R.id.prcntButton || curr.getId() == R.id.delButton
+                            || curr.getId() == R.id.clrButton)
+                        curr.setBackgroundResource(R.drawable.kiwi_numpad_transition_noshad);
+                    else if(curr.getId() == R.id.divButton || curr.getId() == R.id.multButton
+                            || curr.getId() == R.id.minusButton || curr.getId() == R.id.addButton
+                            || curr.getId() == R.id.eqlButton)
+                        curr.setBackgroundResource(R.drawable.kiwi_main_transition);
+                    else if(curr.getId() == R.id.menuButton)
+                        curr.setBackgroundResource(R.drawable.kiwi_main_transition_top);
+                    curr.setTextColor(colorArray.get(COLOR_TEXT));
+                }
+                if(MainActivity.screenOrientation == Configuration.ORIENTATION_PORTRAIT)
+                    morButton.setBackgroundResource(R.drawable.kiwi_numpad_transition);
+                break;
             
         }
         //float[] hsv = new float[3];
@@ -826,6 +874,9 @@ public class Themer {
 
                 case (CLAS_THEME):
                     curr.setBackgroundResource(R.drawable.clas_numpad_transition);
+                    break;
+                case (KIWI_THEME):
+                    curr.setBackgroundResource(R.drawable.kiwi_numpad_transition);
                     break;
 
             }

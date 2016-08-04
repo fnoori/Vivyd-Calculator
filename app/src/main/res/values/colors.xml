@@ -128,7 +128,7 @@
     <color name="SUSH_text">#ffffff</color>
     <color name="SUSH_oppTray">#fd5555</color>
     
-    <!-- Classy theme -->
+    <!-- Bold/Classy theme -->
     <color name="CLAS_colorAccent">#ffffff</color>
     <color name="CLAS_colorComp">#e64e47</color>
     <color name="CLAS_background">@color/CLAS_numpad</color>
@@ -136,6 +136,15 @@
     <color name="CLAS_text_screen">#4b251a</color>
     <color name="CLAS_text">#ffffff</color>
     <color name="CLAS_oppTray">#4b251a</color>
+
+    <!-- Kiwi theme -->
+    <color name="KIWI_colorAccent">#b1d821</color>
+    <color name="KIWI_colorComp">#e64e47</color>
+    <color name="KIWI_background">@color/KIWI_numpad</color>
+    <color name="KIWI_numpad">#534133</color>
+    <color name="KIWI_text_screen">#ffffff</color>
+    <color name="KIWI_text">#ffffff</color>
+    <color name="KIWI_oppTray">#9d7658</color>
 
 
 </resources>

@@ -169,6 +169,19 @@
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="90dp"
+                android:text="KIWI"
+                android:id="@+id/kiwiButton"
+                android:background="@color/KIWI_colorAccent"
+                android:textColor="@color/KIWI_oppTray"
+                android:drawableRight="@drawable/kiwi_icon"
+                android:drawableLeft="@drawable/kiwi_icon"
+                android:paddingRight="20dp"
+                android:paddingLeft="20dp"
+                />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="90dp"
                 android:text="CLASSIC PINK"
                 android:id="@+id/pinkButton"
                 android:background="@color/PINK_colorAccent"
@@ -198,8 +211,8 @@
                 android:id="@+id/clasButton"
                 android:background="@color/CLAS_numpad"
                 android:textColor="@color/CLAS_text"
-                android:drawableRight="@drawable/bold_icon_2"
-                android:drawableLeft="@drawable/bold_icon"
+                android:drawableRight="@drawable/clas_icon_2"
+                android:drawableLeft="@drawable/clas_icon"
                 android:paddingRight="20dp"
                 android:paddingLeft="20dp"
                 />
