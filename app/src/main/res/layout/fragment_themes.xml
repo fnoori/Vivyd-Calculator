@@ -122,8 +122,8 @@
                 android:layout_height="100dp"
                 android:text="SUSHI"
                 android:id="@+id/sushButton"
-                android:textColor="@color/SUSH_colorAccent"
-                android:background="@color/SUSH_oppTray"
+                android:textColor="@color/SUSH_text_screen"
+                android:background="@color/SUSH_colorAccent"
                 android:drawableRight="@drawable/sush_icon"
                 android:drawableLeft="@drawable/sush_icon"
                 android:paddingRight="20dp"
@@ -162,6 +162,19 @@
                 android:textColor="@color/KIWI_oppTray"
                 android:drawableRight="@drawable/kiwi_icon"
                 android:drawableLeft="@drawable/kiwi_icon"
+                android:paddingRight="20dp"
+                android:paddingLeft="20dp"
+                />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:text="STRAWBERRY"
+                android:id="@+id/strwButton"
+                android:background="@color/STRW_colorAccent"
+                android:textColor="@color/STRW_oppTray"
+                android:drawableRight="@drawable/strw_icon"
+                android:drawableLeft="@drawable/strw_icon"
                 android:paddingRight="20dp"
                 android:paddingLeft="20dp"
                 />

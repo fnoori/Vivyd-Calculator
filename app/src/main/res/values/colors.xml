@@ -95,9 +95,9 @@
     <!-- Pina Colada theme -->
     <color name="PIN_colorAccent">#F9F8D6</color>
     <color name="PIN_colorComp">#76ffb4</color>
-    <color name="PIN_background">#b14744</color>
-    <color name="PIN_numpad">#c44845</color>
-    <color name="PIN_text_screen">#e18f3e</color>
+    <color name="PIN_background">#a64340</color>
+    <color name="PIN_numpad">#b14643</color>
+    <color name="PIN_text_screen">#cd7d2f</color>
     <color name="PIN_text">#ffffff</color>
     <color name="PIN_oppTray">#e18f3e</color>
 
@@ -120,13 +120,13 @@
     <color name="BAN_oppTray">#cdbf58</color>
     
     <!-- Sushi theme -->
-    <color name="SUSH_colorAccent">#fdede1</color>
-    <color name="SUSH_colorComp">#b3d488</color>
-    <color name="SUSH_background">#3f4237</color>
-    <color name="SUSH_numpad">#3f4237</color>
-    <color name="SUSH_text_screen">#fd5555</color>
+    <color name="SUSH_colorAccent">#ffffff</color>
+    <color name="SUSH_colorComp">#fcbfbf</color>
+    <color name="SUSH_background">#2e3027</color>
+    <color name="SUSH_numpad">#34372c</color>
+    <color name="SUSH_text_screen">#eb6430</color>
     <color name="SUSH_text">#ffffff</color>
-    <color name="SUSH_oppTray">#fd5555</color>
+    <color name="SUSH_oppTray">#7ab130</color>
     
     <!-- Bold/Classy theme -->
     <color name="CLAS_colorAccent">#ffffff</color>
@@ -164,5 +164,22 @@
     <color name="PINE_text">#ffffff</color>
     <color name="PINE_oppTray">#3e573f</color>
 
+    <!-- Strawberry theme -->
+    <color name="STRW_colorAccent">#83d65f</color>
+    <color name="STRW_colorComp">#fdf26c</color>
+    <color name="STRW_background">#662126</color>
+    <color name="STRW_numpad">#74262b</color>
+    <color name="STRW_text_screen">#395e29 </color>
+    <color name="STRW_text">#ffffff</color>
+    <color name="STRW_oppTray">#db2039</color>
+
+    <!-- B-Day cake theme -->
+    <color name="BDAY_colorAccent">#dbd693</color>
+    <color name="BDAY_colorComp">#a7e3dd</color>
+    <color name="BDAY_background">#424137</color>
+    <color name="BDAY_numpad">#474539</color>
+    <color name="BDAY_text_screen">@color/BDAY_numpad</color>
+    <color name="BDAY_text">#ffffff</color>
+    <color name="BDAY_oppTray">#3e573f</color>
 
 </resources>

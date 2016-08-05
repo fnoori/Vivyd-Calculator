@@ -69,6 +69,7 @@ public class ThemesFragment extends Fragment implements View.OnClickListener {
         final Button kiwiButton = (Button) thmView.findViewById(R.id.kiwiButton);
         final Button snoButton = (Button) thmView.findViewById(R.id.snoButton);
         final Button pineButton = (Button) thmView.findViewById(R.id.pineButton);
+        final Button strwButton = (Button) thmView.findViewById(R.id.strwButton);
 
         blueButton.setTag(Themer.BLUE_THEME);
         pinkButton.setTag(Themer.PINK_THEME);
@@ -88,6 +89,7 @@ public class ThemesFragment extends Fragment implements View.OnClickListener {
         kiwiButton.setTag(Themer.KIWI_THEME);
         snoButton.setTag(Themer.SNO_THEME);
         pineButton.setTag(Themer.PINE_THEME);
+        strwButton.setTag(Themer.STRW_THEME);
 
         buttList = new ArrayList<Button>(){{
             add(blueButton);
@@ -108,6 +110,7 @@ public class ThemesFragment extends Fragment implements View.OnClickListener {
             add(kiwiButton);
             add(snoButton);
             add(pineButton);
+            add(strwButton);
         }};
 
         // Set Current Theme drawables

@@ -53,6 +53,7 @@ public class Themer {
     public final static int KIWI_THEME = 16;
     public final static int SNO_THEME = 17;
     public final static int PINE_THEME = 18;
+    public final static int STRW_THEME = 19;
 
 
     // Basic themes
@@ -201,7 +202,16 @@ public class Themer {
     public static int PINE_NUMPAD;
     public static int PINE_TEXT;
     public static int PINE_TEXT_SCREEN;
-    public static int PINE_OPPTRAY;
+    public static int PINE_OPPTRAY; 
+    
+    // Strawberry Theme
+    public static int STRW_ACCENT;
+    public static int STRW_COMP;
+    public static int STRW_BACKGROUND;
+    public static int STRW_NUMPAD;
+    public static int STRW_TEXT;
+    public static int STRW_TEXT_SCREEN;
+    public static int STRW_OPPTRAY;
 
     public Themer(Context inContext,
                   ArrayList<Button> inCommonButtons,
@@ -372,6 +382,15 @@ public class Themer {
         PINE_TEXT            = ContextCompat.getColor(context, R.color.PINE_text);
         PINE_TEXT_SCREEN     = ContextCompat.getColor(context, R.color.PINE_text_screen);
         PINE_OPPTRAY         = ContextCompat.getColor(context, R.color.PINE_oppTray);
+        
+        //Initialize Strawberry Theme
+        STRW_ACCENT          = ContextCompat.getColor(context, R.color.STRW_colorAccent);
+        STRW_COMP            = ContextCompat.getColor(context, R.color.STRW_colorComp);
+        STRW_BACKGROUND      = ContextCompat.getColor(context, R.color.STRW_background);
+        STRW_NUMPAD          = ContextCompat.getColor(context, R.color.STRW_numpad);
+        STRW_TEXT            = ContextCompat.getColor(context, R.color.STRW_text);
+        STRW_TEXT_SCREEN     = ContextCompat.getColor(context, R.color.STRW_text_screen);
+        STRW_OPPTRAY         = ContextCompat.getColor(context, R.color.STRW_oppTray);
         
     }
 
@@ -898,6 +917,35 @@ public class Themer {
                 }
                 if(MainActivity.screenOrientation == Configuration.ORIENTATION_PORTRAIT)
                     morButton.setBackgroundResource(R.drawable.pine_numpad_transition);
+                break; 
+            
+            case (STRW_THEME):
+                colorArray.add(COLOR_ACCENT, STRW_ACCENT);
+                colorArray.add(COLOR_COMP, STRW_COMP);
+                colorArray.add(COLOR_BACKGROUND, STRW_BACKGROUND);
+                colorArray.add(COLOR_NUMPAD, STRW_NUMPAD);
+                colorArray.add(COLOR_TEXT, STRW_TEXT);
+                colorArray.add(COLOR_TEXT_SCREEN, STRW_TEXT_SCREEN);
+                colorArray.add(COLOR_OPPTRAY, STRW_OPPTRAY);
+                for (Button curr: commonButtons) {
+                    curr.setBackgroundResource(R.drawable.strw_numpad_transition);
+                    curr.setTextColor(colorArray.get(COLOR_TEXT));
+                }
+                for (Button curr: commonOperands) {
+                    if (curr.getId() == R.id.openBrace || curr.getId() == R.id.closeBrace
+                            || curr.getId() == R.id.prcntButton || curr.getId() == R.id.delButton
+                            || curr.getId() == R.id.clrButton)
+                        curr.setBackgroundResource(R.drawable.strw_numpad_transition_noshad);
+                    else if(curr.getId() == R.id.divButton || curr.getId() == R.id.multButton
+                            || curr.getId() == R.id.minusButton || curr.getId() == R.id.addButton
+                            || curr.getId() == R.id.eqlButton)
+                        curr.setBackgroundResource(R.drawable.strw_main_transition);
+                    else if(curr.getId() == R.id.menuButton)
+                        curr.setBackgroundResource(R.drawable.strw_main_transition_top);
+                    curr.setTextColor(colorArray.get(COLOR_TEXT));
+                }
+                if(MainActivity.screenOrientation == Configuration.ORIENTATION_PORTRAIT)
+                    morButton.setBackgroundResource(R.drawable.strw_numpad_transition);
                 break;
             
         }
@@ -981,6 +1029,10 @@ public class Themer {
                 
                 case (PINE_THEME):
                     curr.setBackgroundResource(R.drawable.pine_numpad_transition);
+                    break;
+
+                case (STRW_THEME):
+                    curr.setBackgroundResource(R.drawable.strw_numpad_transition);
                     break;
 
             }
