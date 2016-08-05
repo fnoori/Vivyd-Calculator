@@ -217,11 +217,8 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
             case R.id.degRandButton:
                 if(trigType.equals(CalculatorUtilities.DEG_RAD[1])){
                     setDeg(degRandButton);
-                }else{
-                    setRad(degRandButton);
-                }
+                }else{setRad(degRandButton);}
                 break;
-
             default:
                 break;
         }
@@ -249,7 +246,6 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
             else if(curr == ')'){
                 closeBracket++;}
         }
-
         leftBracketCounter.setText(String.valueOf(openBracket));
         rightBracketCounter.setText(String.valueOf(closeBracket));
     }
@@ -272,10 +268,7 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
                     answerView.setText(BLANK_STRING);
                     answerView.setText(equationView.getText().toString());
                     answerView.setSelection(answerView.getText().length());
-                    //openBracket = 0;
-                    //closeBracket = 0;
                     resizeAnsView("eqnView");
-
                     expressionToEvaluate = calculatorUtilities.replaceForCalculations(answerView.getText().toString());
                     isAnswer = false;
                     setBraceColor();
@@ -463,17 +456,13 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
     }
 
     public void animBtnLogic(View v, TransitionDrawable transition, MotionEvent event, String type, int num) {
-        //SharedPreferences prefs = context.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
-
         switch (event.getActionMasked()) {
-
             case MotionEvent.ACTION_DOWN:
                 transComplete = 0;
                 rect = new Rect(v.getLeft(), v.getTop(), v.getRight(), v.getBottom());
                 transition.startTransition(startTran);
                 prevMotionEvent = "ACTION_DOWN";
                 break;
-
             case MotionEvent.ACTION_MOVE:
                 if (!rect.contains(v.getLeft() + (int) event.getX(), v.getTop() + (int) event.getY())) {
                     if (transComplete != 1) {
@@ -483,7 +472,6 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
                 }
                 prevMotionEvent = "ACTION_MOVE";
                 break;
-
             case MotionEvent.ACTION_UP:
                 if (transComplete == 1){
                     return;
@@ -494,7 +482,6 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
                 if (MainActivity.screenOrientation == Configuration.ORIENTATION_PORTRAIT)
                     resizeAnsView(type);
                 break;
-
         }
     }
 
@@ -628,25 +615,19 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
             case "user1":
                 if(!userDefValue1[0].equals(PLUS_SYMBOL)){
                     addToExpressionToBeEvaluated(userDefValue1[1], CalculatorUtilities.ALL_BUTTS[23], true);
-                }else{
-                    userDefButtons.launchUserInputDialog(this, var1Button);
-                }
+                }else{userDefButtons.launchUserInputDialog(this, var1Button);}
                 dotCounter = 0;
                 break;
             case "user2":
                 if(!userDefValue2[0].equals(PLUS_SYMBOL)){
                     addToExpressionToBeEvaluated(userDefValue2[1], CalculatorUtilities.ALL_BUTTS[23], true);
-                }else{
-                    userDefButtons.launchUserInputDialog(this, var2Button);
-                }
+                }else{userDefButtons.launchUserInputDialog(this, var2Button);}
                 dotCounter = 0;
                 break;
             case "user3":
                 if(!userDefValue3[0].equals(PLUS_SYMBOL)){
                     addToExpressionToBeEvaluated(userDefValue3[1], CalculatorUtilities.ALL_BUTTS[23], true);
-                }else{
-                    userDefButtons.launchUserInputDialog(this, var3Button);
-                }
+                }else{userDefButtons.launchUserInputDialog(this, var3Button);}
                 dotCounter = 0;
                 break;
         }
@@ -660,12 +641,11 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
                 userDefValue1[0] = prefs.getString(VAR1_NAME, PLUS_SYMBOL);
                 userDefValue1[1] = prefs.getString(VAR1_VALUE, PLUS_SYMBOL);
                 curr.setText(userDefValue1[0]);
-
             }
             else if(curr.getId() == R.id.var2Button){
                 var2Button = curr; curr.setOnLongClickListener(this);
                 userDefValue2[0] = prefs.getString(VAR2_NAME, PLUS_SYMBOL);
-                userDefValue2[1] = prefs.getString(VAR3_VALUE, PLUS_SYMBOL);
+                userDefValue2[1] = prefs.getString(VAR2_VALUE, PLUS_SYMBOL);
                 curr.setText(userDefValue2[0]);
             }
             else if(curr.getId() == R.id.var3Button){
@@ -680,11 +660,7 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
 
     public void deleteButtonLogic(){
         if(answerView.getText().length() > 0){
-
-            if (answerView.getText().length() == 1 && checkEqnView()){
-                equationView.setText("");
-            }
-
+            if (answerView.getText().length() == 1 && checkEqnView()){equationView.setText("");}
             int indexFrom = answerView.getSelectionStart()-1;
             int indexTo = answerView.getSelectionStart();
 
@@ -748,6 +724,8 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
                             .build();
 
                     solution = String.valueOf(numFormat.format(calculateExpression.evaluate()));
+                    if(solution.equals("-0")){solution = "0";}
+
                     Animation sweep = AnimationUtils.loadAnimation(context, R.anim.sweepity_sweep);
                     equationView.startAnimation(sweep);
                     equationView.setText(forEquationView);
@@ -766,8 +744,6 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
                             closeBracket, rightBracketCounter, leftBracketCounter, previousInput);
                     isAnswer = true;
                     sharedPrefsLogic.generalPurposeDataInput("ANS", solution);
-
-
                 } else {
                     if (closeBracket > openBracket) {
                         do {
@@ -804,7 +780,6 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
         final int end_colorComp = Themer.colorArray.get(Themer.COLOR_COMP);
         final int colorTextScreen = Themer.colorArray.get(Themer.COLOR_TEXT_SCREEN);
         final String currEqn = equationView.getText().toString();
-
 
         // Change Background color
         ValueAnimator colorAnim = ValueAnimator.ofObject(new ArgbEvaluator(), start_colorAccent, end_colorComp);
@@ -863,7 +838,6 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
                 }
             }, durationERR * 2);
         }
-
         //isError = true;
         //resetBrace();
     }
@@ -887,8 +861,11 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
             isAnswer = false;
             isError = false;
         }
+
         checkBrackets(type);
         prevInput = calculatorUtilities.getPreviousInput(expressionToEvaluate);
+        Log.d("PREV_INPUT", prevInput);
+
 
         cursorLocation = answerView.getSelectionStart();
         if(calculatorUtilities.checkIfMoreOperandIsPossible(prevInput, type, previousInputType, isExceptionToRule)){
@@ -939,7 +916,6 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
         return  currEqn.equals(ILLEGAL_ARGUMENT_MSG) || currEqn.equals(EMPTY_STACK_MSG)
                 || currEqn.equals(ARITH_MSG) || currEqn.equals("");
     }
-
 
     public void resizeAnsView(String type) {
         int txtscaleFactor = 3;
