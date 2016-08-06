@@ -1,6 +1,7 @@
 package ca.vivyd.vivydcalculator.menu;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
@@ -8,6 +9,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
 import android.graphics.drawable.ShapeDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.res.ResourcesCompat;
@@ -52,7 +54,9 @@ public class ThemesFragment extends Fragment implements View.OnClickListener {
         View thmView = inflater.inflate(R.layout.fragment_themes, container, false);
 
         Button revButton = (Button) thmView.findViewById(R.id.revButton);
-        revButton.setBackgroundColor(Themer.colorArray.get(Themer.COLOR_BACKGROUND));
+        revButton.setBackgroundColor(Themer.colorArray.get(Themer.COLOR_ACCENT));
+        revButton.setTextColor(Themer.colorArray.get(Themer.COLOR_TEXT_SCREEN));
+        revButton.setOnClickListener(this);
 
         final Button blueButton = (Button) thmView.findViewById(R.id.blueButton);
         final Button pinkButton = (Button) thmView.findViewById(R.id.pinkButton);
@@ -149,7 +153,7 @@ public class ThemesFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onPause(){
         super.onPause();
-        yPosTheme_changed = themeScroll.getScrollY();
+        //yPosTheme_changed = themeScroll.getScrollY();
     }
 
     @Override
@@ -165,10 +169,21 @@ public class ThemesFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v){
-        Themer.CURRENT_THEME = (Integer) v.getTag();
-        theme_isChanged  = 1;
-        getActivity().finish();
-        getActivity().overridePendingTransition(R.anim.right_out, R.anim.left_in);
+        if (v.getId() == R.id.revButton) {
+            final String vivydName = getContext().getPackageName();
+            try {
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + vivydName)));
+            } catch (android.content.ActivityNotFoundException e) {
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://play.google.com/store/apps/details?id=" + vivydName)));
+            }
+        } else {
+            // Id is theme change
+            Themer.CURRENT_THEME = (Integer) v.getTag();
+            theme_isChanged = 1;
+            yPosTheme_changed = themeScroll.getScrollY();
+            getActivity().finish();
+            getActivity().overridePendingTransition(R.anim.right_out, R.anim.left_in);
+        }
     }
 }
 

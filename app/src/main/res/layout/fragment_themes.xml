@@ -49,15 +49,14 @@
                 <Button
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
-                    android:text="Piña colada"
-                    android:id="@+id/pinButton"
-                    android:background="@color/PIN_colorAccent"
-                    android:textColor="@color/PIN_numpad"
-                    android:drawableRight="@drawable/pin_icon"
-                    android:drawableLeft="@drawable/pin_icon"
+                    android:text="SORBET"
+                    android:id="@+id/snoButton"
+                    android:background="@color/SNO_numpad"
+                    android:textColor="@color/SNO_oppTray"
+                    android:drawableRight="@drawable/sund_icon"
+                    android:drawableLeft="@drawable/cher_icon"
                     android:paddingRight="20dp"
-                    android:paddingLeft="20dp"
-                    />
+                    android:paddingLeft="20dp"/>
 
                 <Button
                     android:layout_width="match_parent"
@@ -74,24 +73,25 @@
                 <Button
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
-                    android:text="SORBET"
-                    android:id="@+id/snoButton"
-                    android:background="@color/SNO_numpad"
-                    android:textColor="@color/SNO_oppTray"
-                    android:drawableRight="@drawable/sund_icon"
-                    android:drawableLeft="@drawable/cher_icon"
-                    android:paddingRight="20dp"
-                    android:paddingLeft="20dp"/>
-
-                <Button
-                    android:layout_width="match_parent"
-                    android:layout_height="100dp"
                     android:text="MOCHA"
                     android:id="@+id/chocButton"
                     android:background="@color/CHOC_numpad"
                     android:textColor="@color/CHOC_text"
                     android:drawableRight="@drawable/moch_icon"
                     android:drawableLeft="@drawable/choc_icon"
+                    android:paddingRight="20dp"
+                    android:paddingLeft="20dp"
+                    />
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:text="Piña colada"
+                    android:id="@+id/pinButton"
+                    android:background="@color/PIN_colorAccent"
+                    android:textColor="@color/PIN_numpad"
+                    android:drawableRight="@drawable/pin_icon"
+                    android:drawableLeft="@drawable/pin_icon"
                     android:paddingRight="20dp"
                     android:paddingLeft="20dp"
                     />
@@ -262,7 +262,7 @@
                 <Button
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
-                    android:text="Tango"
+                    android:text="Orange"
                     android:id="@+id/mangButton"
                     android:background="#E65100"
                     android:textColor="#ffffff"
@@ -341,14 +341,13 @@
 
     <Button
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="50dp"
         android:text="Like our themes? Tell us in a review!"
         android:id="@+id/revButton"
         android:textAlignment="center"
         android:paddingTop="2dp"
         android:paddingBottom="2dp"
         android:background="@color/BASIC_background"
-        android:layout_weight="8"
         android:layout_gravity="center"
         android:gravity="center" />
 </LinearLayout>
