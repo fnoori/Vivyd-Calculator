@@ -54,6 +54,8 @@ public class Themer {
     public final static int SNO_THEME = 17;
     public final static int PINE_THEME = 18;
     public final static int STRW_THEME = 19;
+    public final static int BDAY_THEME = 20;
+    public final static int PECH_THEME = 21;
 
 
     // Basic themes
@@ -212,6 +214,24 @@ public class Themer {
     public static int STRW_TEXT;
     public static int STRW_TEXT_SCREEN;
     public static int STRW_OPPTRAY;
+
+    // B-Day Cake Theme
+    public static int BDAY_ACCENT;
+    public static int BDAY_COMP;
+    public static int BDAY_BACKGROUND;
+    public static int BDAY_NUMPAD;
+    public static int BDAY_TEXT;
+    public static int BDAY_TEXT_SCREEN;
+    public static int BDAY_OPPTRAY;
+
+    // Peach Cake Theme
+    public static int PECH_ACCENT;
+    public static int PECH_COMP;
+    public static int PECH_BACKGROUND;
+    public static int PECH_NUMPAD;
+    public static int PECH_TEXT;
+    public static int PECH_TEXT_SCREEN;
+    public static int PECH_OPPTRAY;
 
     public Themer(Context inContext,
                   ArrayList<Button> inCommonButtons,
@@ -390,7 +410,25 @@ public class Themer {
         STRW_NUMPAD          = ContextCompat.getColor(context, R.color.STRW_numpad);
         STRW_TEXT            = ContextCompat.getColor(context, R.color.STRW_text);
         STRW_TEXT_SCREEN     = ContextCompat.getColor(context, R.color.STRW_text_screen);
-        STRW_OPPTRAY         = ContextCompat.getColor(context, R.color.STRW_oppTray);
+        STRW_OPPTRAY         = ContextCompat.getColor(context, R.color.STRW_oppTray); 
+        
+        //Initialize Birthday Theme
+        BDAY_ACCENT          = ContextCompat.getColor(context, R.color.BDAY_colorAccent);
+        BDAY_COMP            = ContextCompat.getColor(context, R.color.BDAY_colorComp);
+        BDAY_BACKGROUND      = ContextCompat.getColor(context, R.color.BDAY_background);
+        BDAY_NUMPAD          = ContextCompat.getColor(context, R.color.BDAY_numpad);
+        BDAY_TEXT            = ContextCompat.getColor(context, R.color.BDAY_text);
+        BDAY_TEXT_SCREEN     = ContextCompat.getColor(context, R.color.BDAY_text_screen);
+        BDAY_OPPTRAY         = ContextCompat.getColor(context, R.color.BDAY_oppTray);
+
+        //Initialize Peach Theme
+        PECH_ACCENT          = ContextCompat.getColor(context, R.color.PECH_colorAccent);
+        PECH_COMP            = ContextCompat.getColor(context, R.color.PECH_colorComp);
+        PECH_BACKGROUND      = ContextCompat.getColor(context, R.color.PECH_background);
+        PECH_NUMPAD          = ContextCompat.getColor(context, R.color.PECH_numpad);
+        PECH_TEXT            = ContextCompat.getColor(context, R.color.PECH_text);
+        PECH_TEXT_SCREEN     = ContextCompat.getColor(context, R.color.PECH_text_screen);
+        PECH_OPPTRAY         = ContextCompat.getColor(context, R.color.PECH_oppTray);
         
     }
 
@@ -948,6 +986,64 @@ public class Themer {
                     morButton.setBackgroundResource(R.drawable.strw_numpad_transition);
                 break;
             
+            case (BDAY_THEME):
+                colorArray.add(COLOR_ACCENT, BDAY_ACCENT);
+                colorArray.add(COLOR_COMP, BDAY_COMP);
+                colorArray.add(COLOR_BACKGROUND, BDAY_BACKGROUND);
+                colorArray.add(COLOR_NUMPAD, BDAY_NUMPAD);
+                colorArray.add(COLOR_TEXT, BDAY_TEXT);
+                colorArray.add(COLOR_TEXT_SCREEN, BDAY_TEXT_SCREEN);
+                colorArray.add(COLOR_OPPTRAY, BDAY_OPPTRAY);
+                for (Button curr: commonButtons) {
+                    curr.setBackgroundResource(R.drawable.bday_numpad_transition);
+                    curr.setTextColor(colorArray.get(COLOR_TEXT));
+                }
+                for (Button curr: commonOperands) {
+                    if (curr.getId() == R.id.openBrace || curr.getId() == R.id.closeBrace
+                            || curr.getId() == R.id.prcntButton || curr.getId() == R.id.delButton
+                            || curr.getId() == R.id.clrButton)
+                        curr.setBackgroundResource(R.drawable.bday_numpad_transition_noshad);
+                    else if(curr.getId() == R.id.divButton || curr.getId() == R.id.multButton
+                            || curr.getId() == R.id.minusButton || curr.getId() == R.id.addButton
+                            || curr.getId() == R.id.eqlButton)
+                        curr.setBackgroundResource(R.drawable.bday_main_transition);
+                    else if(curr.getId() == R.id.menuButton)
+                        curr.setBackgroundResource(R.drawable.bday_main_transition_top);
+                    curr.setTextColor(colorArray.get(COLOR_TEXT));
+                }
+                if(MainActivity.screenOrientation == Configuration.ORIENTATION_PORTRAIT)
+                    morButton.setBackgroundResource(R.drawable.bday_numpad_transition);
+                break;
+
+            case (PECH_THEME):
+                colorArray.add(COLOR_ACCENT, PECH_ACCENT);
+                colorArray.add(COLOR_COMP, PECH_COMP);
+                colorArray.add(COLOR_BACKGROUND, PECH_BACKGROUND);
+                colorArray.add(COLOR_NUMPAD, PECH_NUMPAD);
+                colorArray.add(COLOR_TEXT, PECH_TEXT);
+                colorArray.add(COLOR_TEXT_SCREEN, PECH_TEXT_SCREEN);
+                colorArray.add(COLOR_OPPTRAY, PECH_OPPTRAY);
+                for (Button curr: commonButtons) {
+                    curr.setBackgroundResource(R.drawable.pech_numpad_transition);
+                    curr.setTextColor(colorArray.get(COLOR_TEXT));
+                }
+                for (Button curr: commonOperands) {
+                    if (curr.getId() == R.id.openBrace || curr.getId() == R.id.closeBrace
+                            || curr.getId() == R.id.prcntButton || curr.getId() == R.id.delButton
+                            || curr.getId() == R.id.clrButton)
+                        curr.setBackgroundResource(R.drawable.pech_numpad_transition_noshad);
+                    else if(curr.getId() == R.id.divButton || curr.getId() == R.id.multButton
+                            || curr.getId() == R.id.minusButton || curr.getId() == R.id.addButton
+                            || curr.getId() == R.id.eqlButton)
+                        curr.setBackgroundResource(R.drawable.pech_main_transition);
+                    else if(curr.getId() == R.id.menuButton)
+                        curr.setBackgroundResource(R.drawable.pech_main_transition_top);
+                    curr.setTextColor(colorArray.get(COLOR_TEXT));
+                }
+                if(MainActivity.screenOrientation == Configuration.ORIENTATION_PORTRAIT)
+                    morButton.setBackgroundResource(R.drawable.pech_numpad_transition);
+                break;
+            
         }
         //float[] hsv = new float[3];
         //Color.colorToHSV(colorArray.get(COLOR_ACCENT), hsv);
@@ -1033,6 +1129,14 @@ public class Themer {
 
                 case (STRW_THEME):
                     curr.setBackgroundResource(R.drawable.strw_numpad_transition);
+                    break;
+
+                case (BDAY_THEME):
+                    curr.setBackgroundResource(R.drawable.bday_numpad_transition);
+                    break;
+
+                case (PECH_THEME):
+                    curr.setBackgroundResource(R.drawable.pech_numpad_transition);
                     break;
 
             }

@@ -120,7 +120,7 @@
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
-                android:text="SUSHI"
+                android:text="SUSHI ROLL"
                 android:id="@+id/sushButton"
                 android:textColor="@color/SUSH_text_screen"
                 android:background="@color/SUSH_colorAccent"
@@ -128,6 +128,19 @@
                 android:drawableLeft="@drawable/sush_icon"
                 android:paddingRight="20dp"
                 android:paddingLeft="20dp"/>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:text="Birthday Cake"
+                android:id="@+id/bdayButton"
+                android:background="@color/BDAY_numpad"
+                android:textColor="@color/BDAY_colorAccent"
+                android:drawableRight="@drawable/bday_icon"
+                android:drawableLeft="@drawable/bday_icon"
+                android:paddingRight="20dp"
+                android:paddingLeft="20dp"/>
+            
 
             <Button
                 android:layout_width="match_parent"
@@ -144,11 +157,23 @@
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
+                android:text="PEACH"
+                android:id="@+id/pechButton"
+                android:background="@color/PECH_colorAccent"
+                android:textColor="@color/PECH_text_screen"
+                android:drawableRight="@drawable/pech_icon"
+                android:drawableLeft="@drawable/pech_icon"
+                android:paddingRight="20dp"
+                android:paddingLeft="20dp"/>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
                 android:text="BANANA"
                 android:id="@+id/banButton"
                 android:background="@color/BAN_oppTray"
-                android:textColor="@color/BAN_colorAccent"
-                android:drawableRight="@drawable/ban_icon"
+                android:textColor="@color/BAN_text_screen"
+                android:drawableRight="@drawable/ban_icon_2"
                 android:drawableLeft="@drawable/ban_icon"
                 android:paddingRight="20dp"
                 android:paddingLeft="20dp"/>
