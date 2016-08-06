@@ -31,7 +31,7 @@
 
     <!-- Chocolate theme -->
     <color name="CHOC_colorAccent">#796140</color>
-    <color name="CHOC_colorComp">#FFFFFF</color>
+    <color name="CHOC_colorComp">#7350aa</color>
     <color name="CHOC_background">@color/CHOC_numpad</color>
     <color name="CHOC_numpad">#2d241e</color>
     <color name="CHOC_text">#FFFFFF</color>
@@ -97,7 +97,7 @@
     <color name="PIN_colorComp">#76ffb4</color>
     <color name="PIN_background">#a64340</color>
     <color name="PIN_numpad">#b14643</color>
-    <color name="PIN_text_screen">#cd7d2f</color>
+    <color name="PIN_text_screen">#656452</color>
     <color name="PIN_text">#ffffff</color>
     <color name="PIN_oppTray">#e18f3e</color>
 
@@ -182,13 +182,22 @@
     <color name="BDAY_text">#ffffff</color>
     <color name="BDAY_oppTray">#5cbbc9</color>
 
-    <!-- B-Day cake theme -->
-    <color name="PECH_colorAccent">#fd9363</color>
-    <color name="PECH_colorComp">#f0efd0</color>
-    <color name="PECH_background">#9d3b36</color>
-    <color name="PECH_numpad">#a8433d</color>
-    <color name="PECH_text_screen">#7a4730</color>
+    <!-- Peach cake theme -->
+    <color name="PECH_colorAccent">#a0d55a</color>
+    <color name="PECH_colorComp">#e64e47</color>
+    <color name="PECH_background">#c16841</color>
+    <color name="PECH_numpad">#d87448</color>
+    <color name="PECH_text_screen">#324618</color>
     <color name="PECH_text">#ffffff</color>
-    <color name="PECH_oppTray">#5a6c43</color>
+    <color name="PECH_oppTray">#fd9363</color>
+
+    <!-- Green Tea theme -->
+    <color name="GTEA_colorAccent">#e3eeb4</color>
+    <color name="GTEA_colorComp">#e64e47</color>
+    <color name="GTEA_background">#395e2f</color>
+    <color name="GTEA_numpad">#3f6335</color>
+    <color name="GTEA_text_screen">#324618</color>
+    <color name="GTEA_text">#ffffff</color>
+    <color name="GTEA_oppTray">#9db648</color>
 
 </resources>

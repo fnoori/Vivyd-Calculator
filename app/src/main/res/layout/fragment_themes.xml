@@ -94,12 +94,25 @@
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
-                android:text="CARAMEL"
+                android:text="MOCHA"
                 android:id="@+id/chocButton"
                 android:background="@color/CHOC_numpad"
                 android:textColor="@color/CHOC_text"
-                android:drawableRight="@drawable/choc_icon"
+                android:drawableRight="@drawable/moch_icon"
                 android:drawableLeft="@drawable/choc_icon"
+                android:paddingRight="20dp"
+                android:paddingLeft="20dp"
+                />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:text="GREEN TEA"
+                android:id="@+id/gteaButton"
+                android:background="@color/GTEA_numpad"
+                android:textColor="@color/GTEA_text"
+                android:drawableRight="@drawable/gtea_icon"
+                android:drawableLeft="@drawable/gtea_icon"
                 android:paddingRight="20dp"
                 android:paddingLeft="20dp"
                 />
@@ -159,8 +172,8 @@
                 android:layout_height="100dp"
                 android:text="PEACH"
                 android:id="@+id/pechButton"
-                android:background="@color/PECH_colorAccent"
-                android:textColor="@color/PECH_text_screen"
+                android:background="@color/PECH_numpad"
+                android:textColor="@color/PECH_colorAccent"
                 android:drawableRight="@drawable/pech_icon"
                 android:drawableLeft="@drawable/pech_icon"
                 android:paddingRight="20dp"

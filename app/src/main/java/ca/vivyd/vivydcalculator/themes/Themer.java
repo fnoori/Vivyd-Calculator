@@ -56,6 +56,7 @@ public class Themer {
     public final static int STRW_THEME = 19;
     public final static int BDAY_THEME = 20;
     public final static int PECH_THEME = 21;
+    public final static int GTEA_THEME = 22;
 
 
     // Basic themes
@@ -232,6 +233,15 @@ public class Themer {
     public static int PECH_TEXT;
     public static int PECH_TEXT_SCREEN;
     public static int PECH_OPPTRAY;
+    
+    // Green Tea Theme
+    public static int GTEA_ACCENT;
+    public static int GTEA_COMP;
+    public static int GTEA_BACKGROUND;
+    public static int GTEA_NUMPAD;
+    public static int GTEA_TEXT;
+    public static int GTEA_TEXT_SCREEN;
+    public static int GTEA_OPPTRAY;
 
     public Themer(Context inContext,
                   ArrayList<Button> inCommonButtons,
@@ -429,6 +439,15 @@ public class Themer {
         PECH_TEXT            = ContextCompat.getColor(context, R.color.PECH_text);
         PECH_TEXT_SCREEN     = ContextCompat.getColor(context, R.color.PECH_text_screen);
         PECH_OPPTRAY         = ContextCompat.getColor(context, R.color.PECH_oppTray);
+        
+        //Initialize Green Tea Theme
+        GTEA_ACCENT          = ContextCompat.getColor(context, R.color.GTEA_colorAccent);
+        GTEA_COMP            = ContextCompat.getColor(context, R.color.GTEA_colorComp);
+        GTEA_BACKGROUND      = ContextCompat.getColor(context, R.color.GTEA_background);
+        GTEA_NUMPAD          = ContextCompat.getColor(context, R.color.GTEA_numpad);
+        GTEA_TEXT            = ContextCompat.getColor(context, R.color.GTEA_text);
+        GTEA_TEXT_SCREEN     = ContextCompat.getColor(context, R.color.GTEA_text_screen);
+        GTEA_OPPTRAY         = ContextCompat.getColor(context, R.color.GTEA_oppTray);
         
     }
 
@@ -1044,6 +1063,35 @@ public class Themer {
                     morButton.setBackgroundResource(R.drawable.pech_numpad_transition);
                 break;
             
+            case (GTEA_THEME):
+                colorArray.add(COLOR_ACCENT, GTEA_ACCENT);
+                colorArray.add(COLOR_COMP, GTEA_COMP);
+                colorArray.add(COLOR_BACKGROUND, GTEA_BACKGROUND);
+                colorArray.add(COLOR_NUMPAD, GTEA_NUMPAD);
+                colorArray.add(COLOR_TEXT, GTEA_TEXT);
+                colorArray.add(COLOR_TEXT_SCREEN, GTEA_TEXT_SCREEN);
+                colorArray.add(COLOR_OPPTRAY, GTEA_OPPTRAY);
+                for (Button curr: commonButtons) {
+                    curr.setBackgroundResource(R.drawable.gtea_numpad_transition);
+                    curr.setTextColor(colorArray.get(COLOR_TEXT));
+                }
+                for (Button curr: commonOperands) {
+                    if (curr.getId() == R.id.openBrace || curr.getId() == R.id.closeBrace
+                            || curr.getId() == R.id.prcntButton || curr.getId() == R.id.delButton
+                            || curr.getId() == R.id.clrButton)
+                        curr.setBackgroundResource(R.drawable.gtea_numpad_transition_noshad);
+                    else if(curr.getId() == R.id.divButton || curr.getId() == R.id.multButton
+                            || curr.getId() == R.id.minusButton || curr.getId() == R.id.addButton
+                            || curr.getId() == R.id.eqlButton)
+                        curr.setBackgroundResource(R.drawable.gtea_main_transition);
+                    else if(curr.getId() == R.id.menuButton)
+                        curr.setBackgroundResource(R.drawable.gtea_main_transition_top);
+                    curr.setTextColor(colorArray.get(COLOR_TEXT));
+                }
+                if(MainActivity.screenOrientation == Configuration.ORIENTATION_PORTRAIT)
+                    morButton.setBackgroundResource(R.drawable.gtea_numpad_transition);
+                break;
+            
         }
         //float[] hsv = new float[3];
         //Color.colorToHSV(colorArray.get(COLOR_ACCENT), hsv);
@@ -1137,6 +1185,10 @@ public class Themer {
 
                 case (PECH_THEME):
                     curr.setBackgroundResource(R.drawable.pech_numpad_transition);
+                    break;
+
+                case (GTEA_THEME):
+                    curr.setBackgroundResource(R.drawable.gtea_numpad_transition);
                     break;
 
             }
