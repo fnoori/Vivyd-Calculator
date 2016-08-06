@@ -1,303 +1,354 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorMain"
-    >
+    android:orientation="vertical">
 
-    <ScrollView
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/themeScroll">
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
 
-        <LinearLayout
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:id="@+id/themeScroll">
 
-            <Button
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:text="Original Black"
-                android:id="@+id/blkButton"
-                android:background="@color/BLK_colorAccent"
-                android:textColor="@color/BLK_text_screen"
-                android:drawableRight="@drawable/blk_icon"
-                android:drawableLeft="@drawable/blk_icon"
-                android:paddingRight="20dp"
-                android:paddingLeft="20dp" />
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:text="WatermelÓn"
-                android:id="@+id/wtrmButton"
-                android:background="@color/WTRM_numpad"
-                android:textColor="@color/WTRM_colorAccent"
-                android:textAlignment="center"
-                android:drawableRight="@drawable/wtrm_icon"
-                android:drawableLeft="@drawable/wtrm_icon"
-                android:paddingRight="20dp"
-                android:paddingLeft="20dp" />
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:text="Original Black"
+                    android:id="@+id/blkButton"
+                    android:background="@color/BLK_colorAccent"
+                    android:textColor="@color/BLK_text_screen"
+                    android:drawableRight="@drawable/blk_icon"
+                    android:drawableLeft="@drawable/blk_icon"
+                    android:paddingRight="20dp"
+                    android:paddingLeft="20dp" />
 
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:text="Piña colada"
-                android:id="@+id/pinButton"
-                android:background="@color/PIN_colorAccent"
-                android:textColor="@color/PIN_numpad"
-                android:drawableRight="@drawable/pin_icon"
-                android:drawableLeft="@drawable/pin_icon"
-                android:paddingRight="20dp"
-                android:paddingLeft="20dp"
-                />
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:text="WatermelÓn"
+                    android:id="@+id/wtrmButton"
+                    android:background="@color/WTRM_numpad"
+                    android:textColor="@color/WTRM_colorAccent"
+                    android:textAlignment="center"
+                    android:drawableRight="@drawable/wtrm_icon"
+                    android:drawableLeft="@drawable/wtrm_icon"
+                    android:paddingRight="20dp"
+                    android:paddingLeft="20dp" />
 
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:text="Blueberry"
-                android:id="@+id/papButton"
-                android:background="@color/PAP_numpad"
-                android:textColor="@color/PAP_text_screen"
-                android:drawableRight="@drawable/pap_icon"
-                android:drawableLeft="@drawable/pap_icon"
-                android:paddingRight="20dp"
-                android:paddingLeft="20dp"/>
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:text="Piña colada"
+                    android:id="@+id/pinButton"
+                    android:background="@color/PIN_colorAccent"
+                    android:textColor="@color/PIN_numpad"
+                    android:drawableRight="@drawable/pin_icon"
+                    android:drawableLeft="@drawable/pin_icon"
+                    android:paddingRight="20dp"
+                    android:paddingLeft="20dp"
+                    />
 
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:text="SORBET"
-                android:id="@+id/snoButton"
-                android:background="@color/SNO_numpad"
-                android:textColor="@color/SNO_oppTray"
-                android:drawableRight="@drawable/sund_icon"
-                android:drawableLeft="@drawable/cher_icon"
-                android:paddingRight="20dp"
-                android:paddingLeft="20dp"/>
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:text="Blueberry"
+                    android:id="@+id/papButton"
+                    android:background="@color/PAP_numpad"
+                    android:textColor="@color/PAP_text_screen"
+                    android:drawableRight="@drawable/pap_icon"
+                    android:drawableLeft="@drawable/pap_icon"
+                    android:paddingRight="20dp"
+                    android:paddingLeft="20dp"/>
 
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:text="PEPPERMINT"
-                android:id="@+id/pepButton"
-                android:background="@color/PEP_oppTray"
-                android:textColor="#ffffff"
-                android:drawableRight="@drawable/pep_icon"
-                android:drawableLeft="@drawable/pep_icon"
-                android:paddingRight="20dp"
-                android:paddingLeft="20dp"
-                />
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:text="SORBET"
+                    android:id="@+id/snoButton"
+                    android:background="@color/SNO_numpad"
+                    android:textColor="@color/SNO_oppTray"
+                    android:drawableRight="@drawable/sund_icon"
+                    android:drawableLeft="@drawable/cher_icon"
+                    android:paddingRight="20dp"
+                    android:paddingLeft="20dp"/>
 
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:text="MOCHA"
-                android:id="@+id/chocButton"
-                android:background="@color/CHOC_numpad"
-                android:textColor="@color/CHOC_text"
-                android:drawableRight="@drawable/moch_icon"
-                android:drawableLeft="@drawable/choc_icon"
-                android:paddingRight="20dp"
-                android:paddingLeft="20dp"
-                />
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:text="MOCHA"
+                    android:id="@+id/chocButton"
+                    android:background="@color/CHOC_numpad"
+                    android:textColor="@color/CHOC_text"
+                    android:drawableRight="@drawable/moch_icon"
+                    android:drawableLeft="@drawable/choc_icon"
+                    android:paddingRight="20dp"
+                    android:paddingLeft="20dp"
+                    />
 
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:text="GREEN TEA"
-                android:id="@+id/gteaButton"
-                android:background="@color/GTEA_numpad"
-                android:textColor="@color/GTEA_text"
-                android:drawableRight="@drawable/gtea_icon"
-                android:drawableLeft="@drawable/gtea_icon"
-                android:paddingRight="20dp"
-                android:paddingLeft="20dp"
-                />
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:text="PEPPERMINT"
+                    android:id="@+id/pepButton"
+                    android:background="@color/PEP_oppTray"
+                    android:textColor="#ffffff"
+                    android:drawableRight="@drawable/pep_icon"
+                    android:drawableLeft="@drawable/pep_icon"
+                    android:paddingRight="20dp"
+                    android:paddingLeft="20dp"
+                    />
 
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:text="Red Velvet"
-                android:id="@+id/rvelButton"
-                android:background="@color/RVEL_colorAccent"
-                android:textColor="@color/RVEL_text"
-                android:drawableRight="@drawable/rvel_icon"
-                android:drawableLeft="@drawable/rvel_icon"
-                android:paddingRight="20dp"
-                android:paddingLeft="20dp"
-                />
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:text="GREEN TEA"
+                    android:id="@+id/gteaButton"
+                    android:background="@color/GTEA_numpad"
+                    android:textColor="@color/GTEA_text"
+                    android:drawableRight="@drawable/gtea_icon"
+                    android:drawableLeft="@drawable/gtea_icon"
+                    android:paddingRight="20dp"
+                    android:paddingLeft="20dp"
+                    />
 
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:text="SUSHI ROLL"
-                android:id="@+id/sushButton"
-                android:textColor="@color/SUSH_text_screen"
-                android:background="@color/SUSH_colorAccent"
-                android:drawableRight="@drawable/sush_icon"
-                android:drawableLeft="@drawable/sush_icon"
-                android:paddingRight="20dp"
-                android:paddingLeft="20dp"/>
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:text="MASALA"
+                    android:id="@+id/spicButton"
+                    android:background="@color/SPIC_numpad"
+                    android:textColor="@color/SPIC_text"
+                    android:drawableRight="@drawable/spic_icon"
+                    android:drawableLeft="@drawable/spic_icon"
+                    android:paddingRight="20dp"
+                    android:paddingLeft="20dp"
+                    />
 
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:text="Birthday Cake"
-                android:id="@+id/bdayButton"
-                android:background="@color/BDAY_numpad"
-                android:textColor="@color/BDAY_colorAccent"
-                android:drawableRight="@drawable/bday_icon"
-                android:drawableLeft="@drawable/bday_icon"
-                android:paddingRight="20dp"
-                android:paddingLeft="20dp"/>
-            
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:text="Red Velvet"
+                    android:id="@+id/rvelButton"
+                    android:background="@color/RVEL_colorAccent"
+                    android:textColor="@color/RVEL_text"
+                    android:drawableRight="@drawable/rvel_icon"
+                    android:drawableLeft="@drawable/rvel_icon"
+                    android:paddingRight="20dp"
+                    android:paddingLeft="20dp"
+                    />
 
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:text="sundae"
-                android:id="@+id/sundaeButton"
-                android:background="#FFF9C4"
-                android:textColor="#EF5350"
-                android:drawableRight="@drawable/sund_icon"
-                android:drawableLeft="@drawable/sund_icon"
-                android:paddingRight="20dp"
-                android:paddingLeft="20dp"/>
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:text="SUSHI ROLL"
+                    android:id="@+id/sushButton"
+                    android:textColor="@color/SUSH_text_screen"
+                    android:background="@color/SUSH_colorAccent"
+                    android:drawableRight="@drawable/sush_icon"
+                    android:drawableLeft="@drawable/sush_icon"
+                    android:paddingRight="20dp"
+                    android:paddingLeft="20dp"/>
 
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:text="PEACH"
-                android:id="@+id/pechButton"
-                android:background="@color/PECH_numpad"
-                android:textColor="@color/PECH_colorAccent"
-                android:drawableRight="@drawable/pech_icon"
-                android:drawableLeft="@drawable/pech_icon"
-                android:paddingRight="20dp"
-                android:paddingLeft="20dp"/>
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:text="Birthday Cake"
+                    android:id="@+id/bdayButton"
+                    android:background="@color/BDAY_numpad"
+                    android:textColor="@color/BDAY_colorAccent"
+                    android:drawableRight="@drawable/bday_icon"
+                    android:drawableLeft="@drawable/bday_icon"
+                    android:paddingRight="20dp"
+                    android:paddingLeft="20dp"/>
 
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:text="BANANA"
-                android:id="@+id/banButton"
-                android:background="@color/BAN_oppTray"
-                android:textColor="@color/BAN_text_screen"
-                android:drawableRight="@drawable/ban_icon_2"
-                android:drawableLeft="@drawable/ban_icon"
-                android:paddingRight="20dp"
-                android:paddingLeft="20dp"/>
 
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:text="KIWI"
-                android:id="@+id/kiwiButton"
-                android:background="@color/KIWI_colorAccent"
-                android:textColor="@color/KIWI_oppTray"
-                android:drawableRight="@drawable/kiwi_icon"
-                android:drawableLeft="@drawable/kiwi_icon"
-                android:paddingRight="20dp"
-                android:paddingLeft="20dp"
-                />
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:text="sundae"
+                    android:id="@+id/sundaeButton"
+                    android:background="#FFF9C4"
+                    android:textColor="#EF5350"
+                    android:drawableRight="@drawable/sund_icon"
+                    android:drawableLeft="@drawable/sund_icon"
+                    android:paddingRight="20dp"
+                    android:paddingLeft="20dp"/>
 
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:text="STRAWBERRY"
-                android:id="@+id/strwButton"
-                android:background="@color/STRW_colorAccent"
-                android:textColor="@color/STRW_oppTray"
-                android:drawableRight="@drawable/strw_icon"
-                android:drawableLeft="@drawable/strw_icon"
-                android:paddingRight="20dp"
-                android:paddingLeft="20dp"
-                />
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:text="PEACH"
+                    android:id="@+id/pechButton"
+                    android:background="@color/PECH_numpad"
+                    android:textColor="@color/PECH_colorAccent"
+                    android:drawableRight="@drawable/pech_icon"
+                    android:drawableLeft="@drawable/pech_icon"
+                    android:paddingRight="20dp"
+                    android:paddingLeft="20dp"/>
 
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:text="Electrolyte"
-                android:id="@+id/elecButton"
-                android:textColor="@color/ELEC_colorAccent"
-                android:background="@color/ELEC_numpad"
-                android:drawableRight="@drawable/elec_icon"
-                android:drawableLeft="@drawable/elec_icon_2"
-                android:paddingRight="20dp"
-                android:paddingLeft="20dp"/>
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:text="BANANA"
+                    android:id="@+id/banButton"
+                    android:background="@color/BAN_oppTray"
+                    android:textColor="@color/BAN_text_screen"
+                    android:drawableRight="@drawable/ban_icon_2"
+                    android:drawableLeft="@drawable/ban_icon"
+                    android:paddingRight="20dp"
+                    android:paddingLeft="20dp"/>
 
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:text="PINEAPPLE"
-                android:id="@+id/pineButton"
-                android:textColor="@color/PINE_colorAccent"
-                android:background="@color/PINE_numpad"
-                android:drawableRight="@drawable/pine_icon"
-                android:drawableLeft="@drawable/pine_icon"
-                android:paddingRight="20dp"
-                android:paddingLeft="20dp"/>
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:text="KIWI"
+                    android:id="@+id/kiwiButton"
+                    android:background="@color/KIWI_colorAccent"
+                    android:textColor="@color/KIWI_oppTray"
+                    android:drawableRight="@drawable/kiwi_icon"
+                    android:drawableLeft="@drawable/kiwi_icon"
+                    android:paddingRight="20dp"
+                    android:paddingLeft="20dp"
+                    />
 
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:text="Tango"
-                android:id="@+id/mangButton"
-                android:background="#E65100"
-                android:textColor="#ffffff"
-                android:drawableRight="@drawable/mang_icon"
-                android:drawableLeft="@drawable/mang_icon"
-                android:paddingRight="20dp"
-                android:paddingLeft="20dp"
-                />
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:text="STRAWBERRY"
+                    android:id="@+id/strwButton"
+                    android:background="@color/STRW_colorAccent"
+                    android:textColor="@color/STRW_oppTray"
+                    android:drawableRight="@drawable/strw_icon"
+                    android:drawableLeft="@drawable/strw_icon"
+                    android:paddingRight="20dp"
+                    android:paddingLeft="20dp"
+                    />
 
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:text="CLASSIC PINK"
-                android:id="@+id/pinkButton"
-                android:background="@color/PINK_colorAccent"
-                android:textColor="#ffffff"
-                android:drawableRight="@drawable/pink_icon"
-                android:drawableLeft="@drawable/pink_icon"
-                android:paddingRight="20dp"
-                android:paddingLeft="20dp"/>
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:text="Electrolyte"
+                    android:id="@+id/elecButton"
+                    android:textColor="@color/ELEC_colorAccent"
+                    android:background="@color/ELEC_numpad"
+                    android:drawableRight="@drawable/elec_icon"
+                    android:drawableLeft="@drawable/elec_icon_2"
+                    android:paddingRight="20dp"
+                    android:paddingLeft="20dp"/>
 
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:text="CLASSIC BLUE"
-                android:id="@+id/blueButton"
-                android:background="@color/BLUE_colorAccent"
-                android:textColor="#ffffff"
-                android:drawableRight="@drawable/blue_icon"
-                android:drawableLeft="@drawable/blue_icon"
-                android:paddingRight="20dp"
-                android:paddingLeft="20dp"
-                />
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:text="PINEAPPLE"
+                    android:id="@+id/pineButton"
+                    android:textColor="@color/PINE_colorAccent"
+                    android:background="@color/PINE_numpad"
+                    android:drawableRight="@drawable/pine_icon"
+                    android:drawableLeft="@drawable/pine_icon"
+                    android:paddingRight="20dp"
+                    android:paddingLeft="20dp"/>
 
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:text="BOLD"
-                android:id="@+id/clasButton"
-                android:background="@color/CLAS_numpad"
-                android:textColor="@color/CLAS_text"
-                android:drawableRight="@drawable/clas_icon_2"
-                android:drawableLeft="@drawable/clas_icon"
-                android:paddingRight="20dp"
-                android:paddingLeft="20dp"
-                />
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:text="Tango"
+                    android:id="@+id/mangButton"
+                    android:background="#E65100"
+                    android:textColor="#ffffff"
+                    android:drawableRight="@drawable/mang_icon"
+                    android:drawableLeft="@drawable/mang_icon"
+                    android:paddingRight="20dp"
+                    android:paddingLeft="20dp"
+                    />
 
-        </LinearLayout>
-    </ScrollView>
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:text="CLASSIC PINK"
+                    android:id="@+id/pinkButton"
+                    android:background="@color/PINK_colorAccent"
+                    android:textColor="#ffffff"
+                    android:drawableRight="@drawable/pink_icon"
+                    android:drawableLeft="@drawable/pink_icon"
+                    android:paddingRight="20dp"
+                    android:paddingLeft="20dp"/>
 
-    <ImageView
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:text="CLASSIC BLUE"
+                    android:id="@+id/blueButton"
+                    android:background="@color/BLUE_colorAccent"
+                    android:textColor="#ffffff"
+                    android:drawableRight="@drawable/blue_icon"
+                    android:drawableLeft="@drawable/blue_icon"
+                    android:paddingRight="20dp"
+                    android:paddingLeft="20dp"
+                    />
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:text="BOLD"
+                    android:id="@+id/clasButton"
+                    android:background="@color/CLAS_numpad"
+                    android:textColor="@color/CLAS_text"
+                    android:drawableRight="@drawable/clas_icon_2"
+                    android:drawableLeft="@drawable/clas_icon"
+                    android:paddingRight="20dp"
+                    android:paddingLeft="20dp"
+                    />
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:text="FINE DINE"
+                    android:id="@+id/fineButton"
+                    android:background="@color/FINE_oppTray"
+                    android:textColor="@color/FINE_text_screen"
+                    android:drawableRight="@drawable/fine_icon_2"
+                    android:drawableLeft="@drawable/fine_icon"
+                    android:paddingRight="20dp"
+                    android:paddingLeft="20dp"
+                    />
+
+            </LinearLayout>
+        </ScrollView>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/imageView3"
+            android:src="@drawable/a_main_shad_updown" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/imageView8"
+            android:src="@drawable/a_main_shad_downup" />
+    </FrameLayout>
+
+    <Button
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/imageView3"
-        android:src="@drawable/a_main_shad_updown" />
-</FrameLayout>
+        android:text="Like our themes? Tell us in a review!"
+        android:id="@+id/revButton"
+        android:textAlignment="center"
+        android:paddingTop="2dp"
+        android:paddingBottom="2dp"
+        android:background="@color/BASIC_background"
+        android:layout_weight="8"
+        android:layout_gravity="center"
+        android:gravity="center" />
+</LinearLayout>

@@ -51,6 +51,9 @@ public class ThemesFragment extends Fragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View thmView = inflater.inflate(R.layout.fragment_themes, container, false);
 
+        Button revButton = (Button) thmView.findViewById(R.id.revButton);
+        revButton.setBackgroundColor(Themer.colorArray.get(Themer.COLOR_BACKGROUND));
+
         final Button blueButton = (Button) thmView.findViewById(R.id.blueButton);
         final Button pinkButton = (Button) thmView.findViewById(R.id.pinkButton);
         final Button mangButton = (Button) thmView.findViewById(R.id.mangButton);
@@ -73,6 +76,8 @@ public class ThemesFragment extends Fragment implements View.OnClickListener {
         final Button bdayButton = (Button) thmView.findViewById(R.id.bdayButton);
         final Button pechButton = (Button) thmView.findViewById(R.id.pechButton);
         final Button gteaButton = (Button) thmView.findViewById(R.id.gteaButton);
+        final Button spicButton = (Button) thmView.findViewById(R.id.spicButton);
+        final Button fineButton = (Button) thmView.findViewById(R.id.fineButton);
 
         blueButton.setTag(Themer.BLUE_THEME);
         pinkButton.setTag(Themer.PINK_THEME);
@@ -96,6 +101,8 @@ public class ThemesFragment extends Fragment implements View.OnClickListener {
         bdayButton.setTag(Themer.BDAY_THEME);
         pechButton.setTag(Themer.PECH_THEME);
         gteaButton.setTag(Themer.GTEA_THEME);
+        spicButton.setTag(Themer.SPIC_THEME);
+        fineButton.setTag(Themer.FINE_THEME);
 
         buttList = new ArrayList<Button>(){{
             add(blueButton);
@@ -120,6 +127,8 @@ public class ThemesFragment extends Fragment implements View.OnClickListener {
             add(bdayButton);
             add(pechButton);
             add(gteaButton);
+            add(spicButton);
+            add(fineButton);
         }};
 
         // Set Current Theme drawables

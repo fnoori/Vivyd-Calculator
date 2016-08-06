@@ -77,18 +77,18 @@
     <!-- Simple Black theme -->
     <color name="BLK_colorAccent">#474747</color>
     <color name="BLK_colorComp">#e4621b</color>
-    <color name="BLK_background">#252525</color>
-    <color name="BLK_numpad">#2a2929</color>
+    <color name="BLK_background">#0d0d0d</color>
+    <color name="BLK_numpad">#1a1919</color>
     <color name="BLK_text_screen">#ffffff</color>
     <color name="BLK_text">#ffffff</color>
-    <color name="BLK_oppTray">#1a1919</color>
+    <color name="BLK_oppTray">#2a2929</color>
 
     <!-- Peppermint theme -->
     <color name="PEP_colorAccent">#CEFFCE</color>
     <color name="PEP_colorComp">#8ee2d7</color>
-    <color name="PEP_background">#3b5c45</color>
-    <color name="PEP_numpad">#41654c</color>
-    <color name="PEP_text_screen">#44674e</color>
+    <color name="PEP_background">#37533f</color>
+    <color name="PEP_numpad">#37533f</color>
+    <color name="PEP_text_screen">#344f3c</color>
     <color name="PEP_text">#ffffff</color>
     <color name="PEP_oppTray">#3ea45e</color>
 
@@ -102,17 +102,17 @@
     <color name="PIN_oppTray">#e18f3e</color>
 
     <!-- Electrolyte theme -->
-    <color name="ELEC_colorAccent">#e87f47</color>
-    <color name="ELEC_colorComp">#363536</color>
-    <color name="ELEC_background">#04462c</color>
-    <color name="ELEC_numpad">#0f5337</color>
-    <color name="ELEC_text_screen">#ffffff</color>
+    <color name="ELEC_colorAccent">#ffffff</color>
+    <color name="ELEC_colorComp">#7ac6ee</color>
+    <color name="ELEC_background">#036345</color>
+    <color name="ELEC_numpad">#016948</color>
+    <color name="ELEC_text_screen">#164435</color>
     <color name="ELEC_text">#ffffff</color>
-    <color name="ELEC_oppTray">#902c2f</color>
+    <color name="ELEC_oppTray">#e5632f</color>
 
     <!-- Banana theme -->
     <color name="BAN_colorAccent">#f1e9cb</color>
-    <color name="BAN_colorComp">#559d53</color>
+    <color name="BAN_colorComp">#6cac6a</color>
     <color name="BAN_background">#99936f</color>
     <color name="BAN_numpad">#a7a179</color>
     <color name="BAN_text_screen">#7c562a</color>
@@ -184,8 +184,8 @@
 
     <!-- Peach cake theme -->
     <color name="PECH_colorAccent">#a0d55a</color>
-    <color name="PECH_colorComp">#e64e47</color>
-    <color name="PECH_background">#c16841</color>
+    <color name="PECH_colorComp">#63b2e3</color>
+    <color name="PECH_background">#cd6a3e</color>
     <color name="PECH_numpad">#d87448</color>
     <color name="PECH_text_screen">#324618</color>
     <color name="PECH_text">#ffffff</color>
@@ -193,11 +193,29 @@
 
     <!-- Green Tea theme -->
     <color name="GTEA_colorAccent">#e3eeb4</color>
-    <color name="GTEA_colorComp">#e64e47</color>
+    <color name="GTEA_colorComp">#d9a75d</color>
     <color name="GTEA_background">#395e2f</color>
     <color name="GTEA_numpad">#3f6335</color>
     <color name="GTEA_text_screen">#324618</color>
     <color name="GTEA_text">#ffffff</color>
-    <color name="GTEA_oppTray">#9db648</color>
+    <color name="GTEA_oppTray">#8da43c</color>
+
+    <!-- Masala theme -->
+    <color name="SPIC_colorAccent">#8cbf45</color>
+    <color name="SPIC_colorComp">#d98f36</color>
+    <color name="SPIC_background">#833027</color>
+    <color name="SPIC_numpad">#833027</color>
+    <color name="SPIC_text_screen">#ffffff</color>
+    <color name="SPIC_text">#ffffff</color>
+    <color name="SPIC_oppTray">#d18529</color>
+
+    <!-- Fine Dine theme -->
+    <color name="FINE_colorAccent">#631a19</color>
+    <color name="FINE_colorComp">#d98f36</color>
+    <color name="FINE_background">#11100e</color>
+    <color name="FINE_numpad">#100f0d</color>
+    <color name="FINE_text_screen">#ffffff</color>
+    <color name="FINE_text">#ffffff</color>
+    <color name="FINE_oppTray">#161211</color>
 
 </resources>

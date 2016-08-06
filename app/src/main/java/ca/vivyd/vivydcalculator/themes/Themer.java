@@ -57,6 +57,8 @@ public class Themer {
     public final static int BDAY_THEME = 20;
     public final static int PECH_THEME = 21;
     public final static int GTEA_THEME = 22;
+    public final static int SPIC_THEME = 23;
+    public final static int FINE_THEME = 24;
 
 
     // Basic themes
@@ -241,7 +243,25 @@ public class Themer {
     public static int GTEA_NUMPAD;
     public static int GTEA_TEXT;
     public static int GTEA_TEXT_SCREEN;
-    public static int GTEA_OPPTRAY;
+    public static int GTEA_OPPTRAY; 
+    
+    // Green Tea Theme
+    public static int SPIC_ACCENT;
+    public static int SPIC_COMP;
+    public static int SPIC_BACKGROUND;
+    public static int SPIC_NUMPAD;
+    public static int SPIC_TEXT;
+    public static int SPIC_TEXT_SCREEN;
+    public static int SPIC_OPPTRAY;
+
+    // Fine Dine Theme
+    public static int FINE_ACCENT;
+    public static int FINE_COMP;
+    public static int FINE_BACKGROUND;
+    public static int FINE_NUMPAD;
+    public static int FINE_TEXT;
+    public static int FINE_TEXT_SCREEN;
+    public static int FINE_OPPTRAY;
 
     public Themer(Context inContext,
                   ArrayList<Button> inCommonButtons,
@@ -448,6 +468,24 @@ public class Themer {
         GTEA_TEXT            = ContextCompat.getColor(context, R.color.GTEA_text);
         GTEA_TEXT_SCREEN     = ContextCompat.getColor(context, R.color.GTEA_text_screen);
         GTEA_OPPTRAY         = ContextCompat.getColor(context, R.color.GTEA_oppTray);
+        
+        //Initialize Spicy Theme
+        SPIC_ACCENT          = ContextCompat.getColor(context, R.color.SPIC_colorAccent);
+        SPIC_COMP            = ContextCompat.getColor(context, R.color.SPIC_colorComp);
+        SPIC_BACKGROUND      = ContextCompat.getColor(context, R.color.SPIC_background);
+        SPIC_NUMPAD          = ContextCompat.getColor(context, R.color.SPIC_numpad);
+        SPIC_TEXT            = ContextCompat.getColor(context, R.color.SPIC_text);
+        SPIC_TEXT_SCREEN     = ContextCompat.getColor(context, R.color.SPIC_text_screen);
+        SPIC_OPPTRAY         = ContextCompat.getColor(context, R.color.SPIC_oppTray);
+
+        //Initialize Fine Dine Theme
+        FINE_ACCENT          = ContextCompat.getColor(context, R.color.FINE_colorAccent);
+        FINE_COMP            = ContextCompat.getColor(context, R.color.FINE_colorComp);
+        FINE_BACKGROUND      = ContextCompat.getColor(context, R.color.FINE_background);
+        FINE_NUMPAD          = ContextCompat.getColor(context, R.color.FINE_numpad);
+        FINE_TEXT            = ContextCompat.getColor(context, R.color.FINE_text);
+        FINE_TEXT_SCREEN     = ContextCompat.getColor(context, R.color.FINE_text_screen);
+        FINE_OPPTRAY         = ContextCompat.getColor(context, R.color.FINE_oppTray);
         
     }
 
@@ -1091,6 +1129,64 @@ public class Themer {
                 if(MainActivity.screenOrientation == Configuration.ORIENTATION_PORTRAIT)
                     morButton.setBackgroundResource(R.drawable.gtea_numpad_transition);
                 break;
+
+            case (SPIC_THEME):
+                colorArray.add(COLOR_ACCENT, SPIC_ACCENT);
+                colorArray.add(COLOR_COMP, SPIC_COMP);
+                colorArray.add(COLOR_BACKGROUND, SPIC_BACKGROUND);
+                colorArray.add(COLOR_NUMPAD, SPIC_NUMPAD);
+                colorArray.add(COLOR_TEXT, SPIC_TEXT);
+                colorArray.add(COLOR_TEXT_SCREEN, SPIC_TEXT_SCREEN);
+                colorArray.add(COLOR_OPPTRAY, SPIC_OPPTRAY);
+                for (Button curr: commonButtons) {
+                    curr.setBackgroundResource(R.drawable.spic_numpad_transition);
+                    curr.setTextColor(colorArray.get(COLOR_TEXT));
+                }
+                for (Button curr: commonOperands) {
+                    if (curr.getId() == R.id.openBrace || curr.getId() == R.id.closeBrace
+                            || curr.getId() == R.id.prcntButton || curr.getId() == R.id.delButton
+                            || curr.getId() == R.id.clrButton)
+                        curr.setBackgroundResource(R.drawable.spic_numpad_transition_noshad);
+                    else if(curr.getId() == R.id.divButton || curr.getId() == R.id.multButton
+                            || curr.getId() == R.id.minusButton || curr.getId() == R.id.addButton
+                            || curr.getId() == R.id.eqlButton)
+                        curr.setBackgroundResource(R.drawable.spic_main_transition);
+                    else if(curr.getId() == R.id.menuButton)
+                        curr.setBackgroundResource(R.drawable.spic_main_transition_top);
+                    curr.setTextColor(colorArray.get(COLOR_TEXT));
+                }
+                if(MainActivity.screenOrientation == Configuration.ORIENTATION_PORTRAIT)
+                    morButton.setBackgroundResource(R.drawable.spic_numpad_transition);
+                break;
+            
+            case (FINE_THEME):
+                colorArray.add(COLOR_ACCENT, FINE_ACCENT);
+                colorArray.add(COLOR_COMP, FINE_COMP);
+                colorArray.add(COLOR_BACKGROUND, FINE_BACKGROUND);
+                colorArray.add(COLOR_NUMPAD, FINE_NUMPAD);
+                colorArray.add(COLOR_TEXT, FINE_TEXT);
+                colorArray.add(COLOR_TEXT_SCREEN, FINE_TEXT_SCREEN);
+                colorArray.add(COLOR_OPPTRAY, FINE_OPPTRAY);
+                for (Button curr: commonButtons) {
+                    curr.setBackgroundResource(R.drawable.fine_numpad_transition);
+                    curr.setTextColor(colorArray.get(COLOR_TEXT));
+                }
+                for (Button curr: commonOperands) {
+                    if (curr.getId() == R.id.openBrace || curr.getId() == R.id.closeBrace
+                            || curr.getId() == R.id.prcntButton || curr.getId() == R.id.delButton
+                            || curr.getId() == R.id.clrButton)
+                        curr.setBackgroundResource(R.drawable.fine_numpad_transition_noshad);
+                    else if(curr.getId() == R.id.divButton || curr.getId() == R.id.multButton
+                            || curr.getId() == R.id.minusButton || curr.getId() == R.id.addButton
+                            || curr.getId() == R.id.eqlButton)
+                        curr.setBackgroundResource(R.drawable.fine_main_transition);
+                    else if(curr.getId() == R.id.menuButton)
+                        curr.setBackgroundResource(R.drawable.fine_main_transition_top);
+                    curr.setTextColor(colorArray.get(COLOR_TEXT));
+                }
+                if(MainActivity.screenOrientation == Configuration.ORIENTATION_PORTRAIT)
+                    morButton.setBackgroundResource(R.drawable.fine_numpad_transition);
+                break;
             
         }
         //float[] hsv = new float[3];
@@ -1189,6 +1285,14 @@ public class Themer {
 
                 case (GTEA_THEME):
                     curr.setBackgroundResource(R.drawable.gtea_numpad_transition);
+                    break;
+
+                case (SPIC_THEME):
+                    curr.setBackgroundResource(R.drawable.spic_numpad_transition);
+                    break;
+
+                case (FINE_THEME):
+                    curr.setBackgroundResource(R.drawable.fine_numpad_transition);
                     break;
 
             }
