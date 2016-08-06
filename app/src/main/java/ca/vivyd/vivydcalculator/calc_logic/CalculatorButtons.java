@@ -193,6 +193,7 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
         }
 
         for(Button curr : commonOperands){
+            if(curr.getId() == R.id.clrButton){curr.setOnLongClickListener(this);}
             curr.setOnClickListener(this);
             curr.setOnTouchListener(this);
         }
@@ -274,6 +275,11 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
                     setBraceColor();
                 }
                 break;
+            case R.id.clrButton:
+                Log.d("LONG_CLICK", "CLEAR_BUTTON");
+                answerView.setText(BLANK_STRING);
+                equationView.setText(BLANK_STRING);
+                return true;
             default:
                 break;
         }
@@ -458,12 +464,14 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
     public void animBtnLogic(View v, TransitionDrawable transition, MotionEvent event, String type, int num) {
         switch (event.getActionMasked()) {
             case MotionEvent.ACTION_DOWN:
+                Log.d("WHERE_IS", event.toString());
                 transComplete = 0;
                 rect = new Rect(v.getLeft(), v.getTop(), v.getRight(), v.getBottom());
                 transition.startTransition(startTran);
                 prevMotionEvent = "ACTION_DOWN";
                 break;
             case MotionEvent.ACTION_MOVE:
+                Log.d("WHERE_IS", event.toString());
                 if (!rect.contains(v.getLeft() + (int) event.getX(), v.getTop() + (int) event.getY())) {
                     if (transComplete != 1) {
                         transition.reverseTransition(fast_endTran);
@@ -473,6 +481,7 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
                 prevMotionEvent = "ACTION_MOVE";
                 break;
             case MotionEvent.ACTION_UP:
+                Log.d("WHERE_IS", event.toString());
                 if (transComplete == 1){
                     return;
                 }
@@ -758,6 +767,8 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
                     }
                     answerView.setText(calculatorUtilities.replaceForAnsViewDisplay(expressionToEvaluate));
                     answerView.setSelection(answerView.getText().toString().length());
+                    leftBracketCounter.setText(String.valueOf(openBracket));
+                    rightBracketCounter.setText(String.valueOf(closeBracket));
                     equalButtonLogic();
                 }
             } catch (IllegalArgumentException e) {
@@ -864,9 +875,6 @@ public class CalculatorButtons implements View.OnClickListener, View.OnTouchList
 
         checkBrackets(type);
         prevInput = calculatorUtilities.getPreviousInput(expressionToEvaluate);
-        Log.d("PREV_INPUT", prevInput);
-
-
         cursorLocation = answerView.getSelectionStart();
         if(calculatorUtilities.checkIfMoreOperandIsPossible(prevInput, type, previousInputType, isExceptionToRule)){
             return;

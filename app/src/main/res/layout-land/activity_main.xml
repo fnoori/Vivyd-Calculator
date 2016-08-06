@@ -80,7 +80,7 @@
                 android:layout_height="match_parent"
                 android:id="@+id/ansView"
                 android:textIsSelectable="true"
-                android:inputType="none|textNoSuggestions"
+                android:inputType="numberDecimal|textNoSuggestions"
                 android:cursorVisible="true"
                 android:textSize="35sp"
                 android:background="#00ffffff"
