@@ -11,35 +11,23 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.drawable.TransitionDrawable;
 import android.os.Handler;
-import android.text.Editable;
-import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.TypedValue;
-import android.view.Display;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.WindowManager;
-import android.view.animation.AccelerateInterpolator;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.view.animation.BounceInterpolator;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.LinearInterpolator;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import net.objecthunter.exp4j.Expression;
 import net.objecthunter.exp4j.ExpressionBuilder;
 import net.objecthunter.exp4j.function.Function;
 import net.objecthunter.exp4j.operator.Operator;
-
-import org.apache.commons.lang3.StringEscapeUtils;
-import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.math3.geometry.Point;
-import org.apache.commons.math3.geometry.Space;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
@@ -47,11 +35,9 @@ import java.util.ArrayList;
 import java.util.EmptyStackException;
 import java.util.List;
 
-import ca.vivyd.vivydcalculator.Exceptions.BadBracketsException;
 import ca.vivyd.vivydcalculator.MainActivity;
 import ca.vivyd.vivydcalculator.R;
 import ca.vivyd.vivydcalculator.menu.MenuActivity;
-import ca.vivyd.vivydcalculator.sqlite_database.DatabaseTable;
 import ca.vivyd.vivydcalculator.sqlite_database.HistoryData;
 import ca.vivyd.vivydcalculator.themes.Themer;
 import ca.vivyd.vivydcalculator.utilities.CalculatorUtilities;

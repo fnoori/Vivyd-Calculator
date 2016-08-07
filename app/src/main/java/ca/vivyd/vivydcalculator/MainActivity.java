@@ -42,13 +42,12 @@ import com.google.android.gms.ads.MobileAds;
 import java.util.ArrayList;
 
 import ca.vivyd.vivydcalculator.calc_logic.CalculatorButtons;
+import ca.vivyd.vivydcalculator.in_app_purchase_util.IabHelper;
 import ca.vivyd.vivydcalculator.menu.ThemesFragment;
 import ca.vivyd.vivydcalculator.themes.Themer;
 
 
 public class MainActivity extends AppCompatActivity {
-
-
     public static String CONTACT_EMAIL = "solutions.teamvivyd@gmail.com";
 
     private Context context = this;
@@ -71,6 +70,10 @@ public class MainActivity extends AppCompatActivity {
 
     private Themer themer;
 
+
+    private boolean mIsPremium;
+    private IabHelper mHelper;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         long oldTime = System.currentTimeMillis();
@@ -79,6 +82,20 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         long startTime = System.currentTimeMillis();
+
+
+        // boolean to check if user is premium
+        mIsPremium = false;
+
+        // app's public key
+        String base64EncodedPublicKey = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA5cF7H6fN2UQduXRx6RZEHue+nYclBlTDXgTHGKHlBHrBAYwcw9IFVJvEX4+HXqrGsHqGy4r975wb9lx3Zxt2PS0e/IwoGmZcN0i2epFB/CCTqC5ZKGTnfBKsGtMM+QYRQN73R83BkiytWW8buRR0Y+Ov8EN3exXgGGi4mRvPgddeMw6ehXqeFWTsbxhENMPT9jlXfeiNm13K/RGDtIUDdLwLDktuUB2VUNAtHtoAHQ6mqp63puVRzdpK8FE3Kq36jMLlbgFQnJaUXQtr4Lxp62Yl0IuO/RgnWyhgUPxqYMprlzkiM/oneeIruNP3Q0V5flbQGHeW9/w/8PJ+2kDuVwIDAQAB";
+
+        // Create the helper, passing it our context and the public key to verify signatures with
+        mHelper = new IabHelper(this, base64EncodedPublicKey);
+
+        // enable debug logging (for a production application, you should set this to false).
+        mHelper.enableDebugLogging(true);
+
         final AdView mAdView = (AdView) findViewById(R.id.adView);
         assert mAdView != null;
 /**
