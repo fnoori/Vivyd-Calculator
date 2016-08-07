@@ -1,6 +1,7 @@
 package ca.vivyd.vivydcalculator;
 
 import android.animation.LayoutTransition;
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -43,12 +44,16 @@ import java.util.ArrayList;
 
 import ca.vivyd.vivydcalculator.calc_logic.CalculatorButtons;
 import ca.vivyd.vivydcalculator.in_app_purchase_util.IabHelper;
+import ca.vivyd.vivydcalculator.in_app_purchase_util.IabResult;
+import ca.vivyd.vivydcalculator.in_app_purchase_util.Inventory;
+import ca.vivyd.vivydcalculator.in_app_purchase_util.Purchase;
 import ca.vivyd.vivydcalculator.menu.ThemesFragment;
 import ca.vivyd.vivydcalculator.themes.Themer;
 
 
 public class MainActivity extends AppCompatActivity {
     public static String CONTACT_EMAIL = "solutions.teamvivyd@gmail.com";
+    static final String ITEM_SKU = "com.example.buttonclick";
 
     private Context context = this;
     private LinearLayout display;
@@ -70,8 +75,9 @@ public class MainActivity extends AppCompatActivity {
 
     private Themer themer;
 
-
-    private boolean mIsPremium;
+    private Button upgradeButton;
+    private static boolean mIsPremium;
+    private static String base64EncodedPublicKey;
     private IabHelper mHelper;
 
     @Override
@@ -84,17 +90,55 @@ public class MainActivity extends AppCompatActivity {
         long startTime = System.currentTimeMillis();
 
 
+
+
+
+
+
         // boolean to check if user is premium
         mIsPremium = false;
 
         // app's public key
-        String base64EncodedPublicKey = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA5cF7H6fN2UQduXRx6RZEHue+nYclBlTDXgTHGKHlBHrBAYwcw9IFVJvEX4+HXqrGsHqGy4r975wb9lx3Zxt2PS0e/IwoGmZcN0i2epFB/CCTqC5ZKGTnfBKsGtMM+QYRQN73R83BkiytWW8buRR0Y+Ov8EN3exXgGGi4mRvPgddeMw6ehXqeFWTsbxhENMPT9jlXfeiNm13K/RGDtIUDdLwLDktuUB2VUNAtHtoAHQ6mqp63puVRzdpK8FE3Kq36jMLlbgFQnJaUXQtr4Lxp62Yl0IuO/RgnWyhgUPxqYMprlzkiM/oneeIruNP3Q0V5flbQGHeW9/w/8PJ+2kDuVwIDAQAB";
+        base64EncodedPublicKey = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA5cF7H6fN2UQduXRx6RZEHue+nYclBlTDXgTHGKHlBHrBAYwcw9IFVJvEX4+HXqrGsHqGy4r975wb9lx3Zxt2PS0e/IwoGmZcN0i2epFB/CCTqC5ZKGTnfBKsGtMM+QYRQN73R83BkiytWW8buRR0Y+Ov8EN3exXgGGi4mRvPgddeMw6ehXqeFWTsbxhENMPT9jlXfeiNm13K/RGDtIUDdLwLDktuUB2VUNAtHtoAHQ6mqp63puVRzdpK8FE3Kq36jMLlbgFQnJaUXQtr4Lxp62Yl0IuO/RgnWyhgUPxqYMprlzkiM/oneeIruNP3Q0V5flbQGHeW9/w/8PJ+2kDuVwIDAQAB";
 
-        // Create the helper, passing it our context and the public key to verify signatures with
         mHelper = new IabHelper(this, base64EncodedPublicKey);
 
-        // enable debug logging (for a production application, you should set this to false).
-        mHelper.enableDebugLogging(true);
+        mHelper.startSetup(new
+               IabHelper.OnIabSetupFinishedListener() {
+                   public void onIabSetupFinished(IabResult result)
+                   {
+                       if (!result.isSuccess()) {
+                           Log.d("IN_APP_PURCHASE", "In-app Billing setup failed: " +
+                                   result);
+                       } else {
+                           Log.d("IN_APP_PURCHASE", "In-app Billing is set up OK");
+                       }
+                   }
+               });
+
+
+        upgradeButton = (Button) findViewById(R.id.adFreeButton);
+        assert upgradeButton != null;
+        upgradeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    mHelper.launchPurchaseFlow((Activity) context, ITEM_SKU, 10001,
+                            mPurchaseFinishedListener, "mypurchasetoken");
+                } catch (IabHelper.IabAsyncInProgressException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+
+
+
+
+
+
+
+
 
         final AdView mAdView = (AdView) findViewById(R.id.adView);
         assert mAdView != null;
@@ -259,6 +303,115 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode,
+                                    Intent data){
+        if (!mHelper.handleActivityResult(requestCode,
+                resultCode, data)) {
+            super.onActivityResult(requestCode, resultCode, data);
+        }
+    }
+
+    IabHelper.OnIabPurchaseFinishedListener mPurchaseFinishedListener
+            = new IabHelper.OnIabPurchaseFinishedListener() {
+        public void onIabPurchaseFinished(IabResult result,
+                                          Purchase purchase)
+        {
+            if (result.isFailure()) {
+                // Handle error
+                return;
+            }
+            else if (purchase.getSku().equals(ITEM_SKU)) {
+                consumeItem();
+                upgradeButton.setEnabled(false);
+            }
+
+        }
+    };
+
+    public void consumeItem() {
+        try {
+            mHelper.queryInventoryAsync(mReceivedInventoryListener);
+        } catch (IabHelper.IabAsyncInProgressException e) {
+            e.printStackTrace();
+        }
+    }
+
+    IabHelper.QueryInventoryFinishedListener mReceivedInventoryListener
+            = new IabHelper.QueryInventoryFinishedListener() {
+        public void onQueryInventoryFinished(IabResult result,
+                                             Inventory inventory) {
+
+
+            if (result.isFailure()) {
+                // Handle failure
+            } else {
+                try {
+                    mHelper.consumeAsync(inventory.getPurchase(ITEM_SKU),
+                            mConsumeFinishedListener);
+                } catch (IabHelper.IabAsyncInProgressException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    };
+
+    IabHelper.OnConsumeFinishedListener mConsumeFinishedListener =
+            new IabHelper.OnConsumeFinishedListener() {
+                public void onConsumeFinished(Purchase purchase,
+                                              IabResult result) {
+
+                    if (result.isSuccess()) {
+                        Log.d("CONSUME", "FINISHED");
+                    } else {
+                        // handle error
+                    }
+                }
+            };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (mHelper != null) try {
+            mHelper.dispose();
+        } catch (IabHelper.IabAsyncInProgressException e) {
+            e.printStackTrace();
+        }
+        mHelper = null;
+    }
 
     @Override
     public void onResume(){

@@ -100,6 +100,19 @@
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:paddingBottom="7dp" />
+
+            <Button
+                android:text="Upgrade"
+                android:id="@+id/adFreeButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorNumpad"
+                android:layout_alignParentBottom="true"
+                style="@style/Base.Widget.AppCompat.Button.Borderless"
+                android:gravity="bottom|center_horizontal"
+                android:paddingBottom="7dp"
+                android:layout_toRightOf="@+id/degRandButton"
+                android:layout_toEndOf="@+id/degRandButton" />
         </RelativeLayout>
 
     </LinearLayout>
