@@ -67,7 +67,7 @@
                 android:layout_height="match_parent"
                 android:id="@+id/ansView"
                 android:textIsSelectable="true"
-                android:inputType="numberDecimal|textNoSuggestions"
+                android:inputType="none"
                 android:cursorVisible="true"
                 android:textSize="55sp"
                 android:textColor="#EF5350"

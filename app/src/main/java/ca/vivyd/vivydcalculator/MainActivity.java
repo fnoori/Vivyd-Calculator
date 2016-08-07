@@ -53,7 +53,7 @@ import ca.vivyd.vivydcalculator.themes.Themer;
 
 public class MainActivity extends AppCompatActivity {
     public static String CONTACT_EMAIL = "solutions.teamvivyd@gmail.com";
-    static final String ITEM_SKU = "com.example.buttonclick";
+    static final String ITEM_SKU = "android.test.purchased";
 
     private Context context = this;
     private LinearLayout display;
