@@ -34,7 +34,7 @@ public class adfFragment extends Fragment implements View.OnClickListener {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View adfView = inflater.inflate(R.layout.fragment_adfree, container, false);
-        adfView.setBackgroundColor(Themer.colorArray.get(Themer.COLOR_BACKGROUND));
+        adfView.setBackgroundColor(Themer.colorArray.get(Themer.COLOR_NUMPAD));
 
 
         Button adfreeButton = (Button) adfView.findViewById(R.id.adfButton);

@@ -138,7 +138,7 @@
 
                 <Button
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:text="log"
                     android:textAllCaps="false"
                     android:id="@+id/logButton"
@@ -150,7 +150,7 @@
 
                 <Button
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:text="ln"
                     android:textAllCaps="false"
                     android:id="@+id/lnButton"
@@ -165,7 +165,7 @@
 
                 <Button
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:text="Ans"
                     android:textAllCaps="false"
                     android:id="@+id/ansButton"
@@ -180,7 +180,7 @@
 
                 <Button
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:textAllCaps="false"
                     android:text="ᴇᴇ"
                     android:id="@+id/powerOfTenButton"
@@ -613,7 +613,7 @@
 
                             <Button
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                                android:layout_height="match_parent"
                                 android:text="7"
                                 android:id="@+id/sevenButton"
                                 android:background="@drawable/blue_numpad_transition_top"
@@ -626,7 +626,7 @@
 
                             <Button
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                                android:layout_height="match_parent"
                                 android:text="8"
                                 android:id="@+id/eightButton"
                                 android:background="@drawable/blue_numpad_transition_top"
@@ -639,7 +639,7 @@
 
                             <Button
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                                android:layout_height="match_parent"
                                 android:text="9"
                                 android:id="@+id/nineButton"
                                 android:background="@drawable/blue_numpad_transition_top"
