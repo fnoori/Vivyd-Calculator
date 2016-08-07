@@ -3,8 +3,10 @@
     <string name="banner_ad_unit_id">ca-app-pub-7966297715259412/8066957483</string>
 
     <string name="answer">Ans</string>
-    <string name="inputVarName">Input Variable Details</string>
+    <string name="inputVarName">Create Variable</string>
     <string name="enterName">Enter Name…</string>
     <string name="enterValue">Enter Value…</string>
     <string name="clear">Clear</string>
+    <string name="cancel">Cancel</string>
+    <string name="create">Create</string>
 </resources>

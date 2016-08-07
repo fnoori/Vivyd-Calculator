@@ -92,9 +92,6 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-
-
-
         // boolean to check if user is premium
         mIsPremium = false;
 
@@ -130,11 +127,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-
-
-
-
-
 
 
 
@@ -205,47 +197,6 @@ public class MainActivity extends AppCompatActivity {
         if (screenOrientation == Configuration.ORIENTATION_PORTRAIT) {
             morButton = (Button) findViewById(R.id.morButton);
             moreButtonListener(morButton, calcButtons);
-        }
-
-        if (screenOrientation == Configuration.ORIENTATION_LANDSCAPE) {
-            ImageButton inspButton = (ImageButton) findViewById(R.id.inspireButton);
-            assert inspButton != null;
-            inspButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    AlertDialog.Builder inspBuilder = new AlertDialog.Builder(context);
-                    inspBuilder.setMessage("Thank you for your support!\n\nWe need your feedback to get rid of all these bugs. " +
-                            "Email us and share your suggestions, issues, and/or life problems.");
-                    inspBuilder.setCancelable(true);
-
-                    inspBuilder.setPositiveButton(
-                            "Email",
-                            new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int id) {
-                                    Intent i = new Intent(Intent.ACTION_SENDTO, Uri.fromParts("mailto", MainActivity.CONTACT_EMAIL, null));
-                                    //i.setType("message/rfc822");
-                                    i.putExtra(Intent.EXTRA_SUBJECT, "User Feedback");
-                                    try {
-                                        startActivity(Intent.createChooser(i, "Send feedback..."));
-                                    } catch (android.content.ActivityNotFoundException ex) {
-                                        // Toast.makeText(OptFragment.this, "You don't have an email client!", Toast.LENGTH_LONG).show();
-                                    }
-                                    dialog.cancel();
-                                }
-                            });
-
-                    inspBuilder.setNegativeButton(
-                            "cancel",
-                            new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int id) {
-                                    dialog.cancel();
-                                }
-                            });
-
-                    AlertDialog alert = inspBuilder.create();
-                    alert.show();
-                }
-            });
         }
 
         // For themes. This must come after any button initializations.
@@ -653,10 +604,6 @@ public class MainActivity extends AppCompatActivity {
         } else if (screenOrientation == Configuration.ORIENTATION_LANDSCAPE){
             ArrayList<Button> advancedOperands = setScienceButts();
             themer.setSciButtsAnim(advancedOperands);
-            ImageButton helpButton = (ImageButton) findViewById(R.id.inspireButton);
-            assert helpButton != null;
-            helpButton.setBackgroundColor(colorComp);
-
         }
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {

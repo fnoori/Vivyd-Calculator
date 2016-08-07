@@ -12,6 +12,7 @@ import android.widget.Toast;
 import org.apache.commons.lang3.StringUtils;
 
 import ca.vivyd.vivydcalculator.R;
+import ca.vivyd.vivydcalculator.themes.Themer;
 
 
 /**
@@ -40,6 +41,8 @@ public class UserDefinedButtons {
         final Button varValueClear = (Button) theView.findViewById(R.id.valueClearButton);
         Button confirmButton = (Button) theView.findViewById(R.id.confirmVarButton);
         Button cancelButton = (Button) theView.findViewById(R.id.cancelVarButton);
+
+        theView.setBackgroundColor(Themer.colorArray.get(Themer.COLOR_BACKGROUND));
 
         setFieldsValues(inButton, varName, varValue);
 

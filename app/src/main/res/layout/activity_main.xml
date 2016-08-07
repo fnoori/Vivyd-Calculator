@@ -13,7 +13,7 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="1dp"
+        android:layout_marginBottom="2dp"
         android:layout_gravity="center"
         android:foregroundGravity="center">
 
@@ -105,14 +105,16 @@
                 android:text="Upgrade"
                 android:id="@+id/adFreeButton"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 android:textColor="@color/colorNumpad"
                 android:layout_alignParentBottom="true"
-                style="@style/Base.Widget.AppCompat.Button.Borderless"
                 android:gravity="bottom|center_horizontal"
                 android:paddingBottom="7dp"
                 android:layout_toRightOf="@+id/degRandButton"
-                android:layout_toEndOf="@+id/degRandButton" />
+                android:layout_toEndOf="@+id/degRandButton"
+                android:stateListAnimator="@null"
+                android:textAlignment="gravity"
+                android:background="#00ffffff" />
         </RelativeLayout>
 
     </LinearLayout>
