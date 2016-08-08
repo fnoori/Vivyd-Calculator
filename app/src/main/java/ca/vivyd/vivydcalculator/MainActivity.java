@@ -23,6 +23,7 @@ import android.util.Log;
 import android.util.TypedValue;
 import android.view.Display;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -61,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView leftBraceCounter;
     private TextView rightBraceCounter;
     private Button morButton;
+    private AdView mAdView;
 
 
     // Indicates that only orientation has been changed, and the app has not exited
@@ -91,9 +93,10 @@ public class MainActivity extends AppCompatActivity {
         long startTime = System.currentTimeMillis();
 
 
+        SharedPreferences prefs = getSharedPreferences("CalcData", Context.MODE_PRIVATE);
         // boolean to check if user is premium
         // not entirely sure how we're supposed to handle this yet
-        mIsPremium = false;
+        mIsPremium = prefs.getBoolean("mIsPremium", false);
 
         // app's public key
         base64EncodedPublicKey = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA5cF7H6fN2UQduXRx6RZEHue+nYclBlTDXgTHGKHlBHrBAYwcw9IFVJvEX4+HXqrGsHqGy4r975wb9lx3Zxt2PS0e/IwoGmZcN0i2epFB/CCTqC5ZKGTnfBKsGtMM+QYRQN73R83BkiytWW8buRR0Y+Ov8EN3exXgGGi4mRvPgddeMw6ehXqeFWTsbxhENMPT9jlXfeiNm13K/RGDtIUDdLwLDktuUB2VUNAtHtoAHQ6mqp63puVRzdpK8FE3Kq36jMLlbgFQnJaUXQtr4Lxp62Yl0IuO/RgnWyhgUPxqYMprlzkiM/oneeIruNP3Q0V5flbQGHeW9/w/8PJ+2kDuVwIDAQAB";
@@ -128,41 +131,45 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        mAdView = (AdView) findViewById(R.id.adView);
+        if(!mIsPremium && mAdView != null) {
+            /**
+             * Real ad.
+             * Uncomment following line for real ads, but make sure to comment out subsequent test ad
+             * lines.
+             */
+            //MobileAds.initialize(getApplicationContext(), "ca-app-pub-7966297715259412/8066957483");
+            //AdRequest request = new AdRequest.Builder().build();
+            // mAdView.loadAd(request);
+            /**
+             * Test Ad.
+             * Uncomment following line for test ads, but make sure to comment out previous real ad line
+             */
 
-        final AdView mAdView = (AdView) findViewById(R.id.adView);
-        assert mAdView != null;
-/**
-         * Real ad.
-         * Uncomment following line for real ads, but make sure to comment out subsequent test ad
-         * lines.
-         */
-         //MobileAds.initialize(getApplicationContext(), "ca-app-pub-7966297715259412/8066957483");
-         //AdRequest request = new AdRequest.Builder().build();
-        // mAdView.loadAd(request);
-        /**
-         * Test Ad.
-         * Uncomment following line for test ads, but make sure to comment out previous real ad line
-         */
+            Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    Log.i("PERFORMANCE", "Ad is occuring here");
+                    Toast.makeText(MainActivity.this, "ad is occuring", Toast.LENGTH_LONG).show();
+                    AdRequest request = new AdRequest.Builder()
+                            .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)        // All emulators
+                            // Remember to add a test device ID for each device that should request test ads.
+                            // Device IDs are written to the system log by the Mobile Ads SDK, so you can find
+                            // your device's ID by running your app and checking logcat.
+                            .addTestDevice("AC98C820A50B4AD8A2106EDE96FB87D4")  // An example device ID
+                            .addTestDevice("BD18BDB8D3C29637DDA85D96148E76B2")  // My moto G Decice Id, found in logcat
+                            .addTestDevice("F3F9F302D12D212C9142645902C94D5C")  // Farzam moto E
+                            .build();
 
-        Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-           public void run() {
-                Log.i("PERFORMANCE", "Ad is occuring here");
-                Toast.makeText(MainActivity.this, "ad is occuring", Toast.LENGTH_LONG).show();
-                AdRequest request = new AdRequest.Builder()
-                        .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)        // All emulators
-                        // Remember to add a test device ID for each device that should request test ads.
-                        // Device IDs are written to the system log by the Mobile Ads SDK, so you can find
-                        // your device's ID by running your app and checking logcat.
-                        .addTestDevice("AC98C820A50B4AD8A2106EDE96FB87D4")  // An example device ID
-                        .addTestDevice("BD18BDB8D3C29637DDA85D96148E76B2")  // My moto G Decice Id, found in logcat
-                        .addTestDevice("F3F9F302D12D212C9142645902C94D5C")  // Farzam moto E
-                        .build();
+                    mAdView.loadAd(request);
+                }
+            }, 2000);
+        } else if (mAdView != null){
+            ViewGroup parent = (ViewGroup) mAdView.getParent();
+            parent.removeView(mAdView);
+        }
 
-                mAdView.loadAd(request);
-            }
-        }, 2000);
 
 
         screenOrientation = getScreenOrientation();
@@ -199,11 +206,9 @@ public class MainActivity extends AppCompatActivity {
         }
 
         // For themes. This must come after any button initializations.
-        SharedPreferences prefs = getSharedPreferences("CalcData", Context.MODE_PRIVATE);
         Themer.CURRENT_THEME = prefs.getInt("Theme", Themer.MANGO_THEME);
         themer = new Themer(this, commonButtons, commonOperands, morButton);
         setTheme(themer);
-
 
         /** If the current orientation is landscape, initialize advanced buttons
          *  Must come after initialization of themer or could crash in odd case where app launches
@@ -377,6 +382,7 @@ public class MainActivity extends AppCompatActivity {
         editor.putInt("openBracket", CalculatorButtons.openBracket);
         editor.putInt("closeBracket", CalculatorButtons.closeBracket);
         editor.putString("deg_rad_state", CalculatorButtons.DEG_RAND_STATE);
+        editor.putBoolean("mIsPremium", mIsPremium);
         editor.apply();
     }
 
@@ -612,5 +618,14 @@ public class MainActivity extends AppCompatActivity {
     public static float pixelsToSp(Context context, float px){
         float scaledDensity = context.getResources().getDisplayMetrics().scaledDensity;
         return px/scaledDensity;
+    }
+
+    public void removeAd(View view) {
+        mIsPremium = true;
+        if (mAdView != null) {
+            ViewGroup parent = (ViewGroup)  mAdView.getParent();
+            parent.removeView(mAdView);
+        }
+
     }
 }

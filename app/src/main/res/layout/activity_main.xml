@@ -9,33 +9,24 @@
     tools:context=".MainActivity"
     android:background="@color/colorPopup">
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/adView"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="2dp"
-        android:layout_gravity="center"
-        android:foregroundGravity="center">
-
-        <com.google.android.gms.ads.AdView
-            android:id="@+id/adView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            ads:adSize="SMART_BANNER"
-            ads:adUnitId="@string/banner_ad_unit_id"
-            android:foregroundGravity="center_vertical|center_horizontal"
-            android:layout_gravity="center">
-        </com.google.android.gms.ads.AdView>
-
-    </LinearLayout>
+        ads:adSize="SMART_BANNER"
+        ads:adUnitId="@string/banner_ad_unit_id"
+        android:foregroundGravity="center_vertical|center_horizontal"
+        android:layout_gravity="center">
+    </com.google.android.gms.ads.AdView>
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:background="@color/colorTextAccentLight"
         android:id="@+id/display"
-        android:layout_marginLeft="2dp">
+        android:layout_marginLeft="2dp"
+        android:layout_weight="1.5">
 
         <EditText
             android:layout_width="match_parent"
@@ -46,7 +37,7 @@
             android:textSize="25sp"
             android:textColor="#EF5350"
             android:paddingTop="20dp"
-            android:gravity="end"
+            android:gravity="bottom"
             android:paddingStart="25dp"
             android:paddingLeft="25dp"
             android:paddingRight="35dp"
@@ -56,11 +47,12 @@
             android:background="@android:color/transparent"
             android:textAlignment="textStart"
             android:fontFamily="sans-serif-light"
-            android:focusableInTouchMode="false" />
+            android:focusableInTouchMode="false"
+            android:layout_gravity="bottom" />
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="110dp">
+            android:layout_height="match_parent">
 
             <EditText
                 android:layout_width="wrap_content"
@@ -87,7 +79,7 @@
 
             <Button
                 android:layout_width="70dp"
-                android:layout_height="50dp"
+                android:layout_height="wrap_content"
                 android:text="DEG"
                 android:id="@+id/degRandButton"
                 android:textColor="@color/colorNumpad"
@@ -105,16 +97,32 @@
                 android:text="Upgrade"
                 android:id="@+id/adFreeButton"
                 android:layout_width="wrap_content"
-                android:layout_height="50dp"
+                android:layout_height="wrap_content"
                 android:textColor="@color/colorNumpad"
                 android:layout_alignParentBottom="true"
                 android:gravity="bottom|center_horizontal"
-                android:paddingBottom="7dp"
                 android:layout_toRightOf="@+id/degRandButton"
                 android:layout_toEndOf="@+id/degRandButton"
                 android:stateListAnimator="@null"
                 android:textAlignment="gravity"
-                android:background="#00ffffff" />
+                android:background="#00ffffff"
+                android:paddingBottom="7dp" />
+
+            <Button
+                android:text="Remove Ad"
+                android:id="@+id/rmvadButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorNumpad"
+                android:layout_alignParentBottom="true"
+                android:gravity="bottom|center_horizontal"
+                android:layout_toRightOf="@+id/adFreeButton"
+                android:stateListAnimator="@null"
+                android:textAlignment="gravity"
+                android:background="#00ffffff"
+                android:onClick="removeAd"
+                android:paddingBottom="7dp" />
+
         </RelativeLayout>
 
     </LinearLayout>
@@ -122,7 +130,7 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="315dp"
         android:baselineAligned="false"
         android:splitMotionEvents="false"
         android:id="@+id/fourByfour"
