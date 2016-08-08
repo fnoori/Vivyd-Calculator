@@ -107,7 +107,7 @@
                 android:textAlignment="gravity"
                 android:background="#00ffffff"
                 android:paddingBottom="7dp"
-                android:visibility="gone"
+                android:visibility="visible"
                 />
 
         </RelativeLayout>
