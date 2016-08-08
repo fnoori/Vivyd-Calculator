@@ -134,7 +134,7 @@ public class MainActivity extends AppCompatActivity {
         mAdView = (AdView) findViewById(R.id.adView);
         if(!mIsPremium && mAdView != null) {
             /**
-             * Real ad.
+             * Real ad..
              * Uncomment following line for real ads, but make sure to comment out subsequent test ad
              * lines.
              */
