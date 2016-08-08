@@ -88,7 +88,7 @@
             <Button
                 android:layout_width="70dp"
                 android:layout_height="50dp"
-                android:text="RAD"
+                android:text="DEG"
                 android:id="@+id/degRandButton"
                 android:textColor="@color/colorNumpad"
                 android:elegantTextHeight="false"
