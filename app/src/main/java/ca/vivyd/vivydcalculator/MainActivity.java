@@ -2,10 +2,14 @@ package ca.vivyd.vivydcalculator;
 
 import android.animation.LayoutTransition;
 import android.app.Activity;
+import android.app.PendingIntent;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.IntentSender;
+import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.graphics.Typeface;
@@ -14,6 +18,8 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.IBinder;
+import android.os.RemoteException;
 import android.os.SystemClock;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -38,9 +44,13 @@ import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.vending.billing.IInAppBillingService;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
@@ -54,17 +64,13 @@ import ca.vivyd.vivydcalculator.menu.ThemesFragment;
 import ca.vivyd.vivydcalculator.themes.Themer;
 
 
-public class MainActivity extends AppCompatActivity implements IabBroadcastReceiver.IabBroadcastListener {
+public class MainActivity extends AppCompatActivity {
     public static String CONTACT_EMAIL = "solutions.teamvivyd@gmail.com";
-
 
     // For in app billing **work in progress
     public static final String ITEM_SKU = "ad_free";
     static final String TAG = "VivydCalculator";
     static final int RC_REQUEST = 10001;
-
-
-
 
     private Context context = this;
     private LinearLayout display;
@@ -87,14 +93,7 @@ public class MainActivity extends AppCompatActivity implements IabBroadcastRecei
 
     private Themer themer;
 
-
-
     private Button upgradeButton;
-
-    private IabHelper mHelper;
-    private IabBroadcastReceiver mBroadcastReceiver;
-
-
     private static boolean mIsPremium;
     private static String base64EncodedPublicKey;
     public  static int wantToPurchase = 0;
@@ -108,18 +107,7 @@ public class MainActivity extends AppCompatActivity implements IabBroadcastRecei
 
         long startTime = System.currentTimeMillis();
 
-
         SharedPreferences prefs = getSharedPreferences("CalcData", Context.MODE_PRIVATE);
-
-
-
-
-
-
-
-
-
-
 
         // boolean to check if user is premium
         // not entirely sure how we're supposed to handle this yet
@@ -128,120 +116,14 @@ public class MainActivity extends AppCompatActivity implements IabBroadcastRecei
         // app's public key
         base64EncodedPublicKey = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA5cF7H6fN2UQduXRx6RZEHue+nYclBlTDXgTHGKHlBHrBAYwcw9IFVJvEX4+HXqrGsHqGy4r975wb9lx3Zxt2PS0e/IwoGmZcN0i2epFB/CCTqC5ZKGTnfBKsGtMM+QYRQN73R83BkiytWW8buRR0Y+Ov8EN3exXgGGi4mRvPgddeMw6ehXqeFWTsbxhENMPT9jlXfeiNm13K/RGDtIUDdLwLDktuUB2VUNAtHtoAHQ6mqp63puVRzdpK8FE3Kq36jMLlbgFQnJaUXQtr4Lxp62Yl0IuO/RgnWyhgUPxqYMprlzkiM/oneeIruNP3Q0V5flbQGHeW9/w/8PJ+2kDuVwIDAQAB";
 
-        // Create IabHelper
-        mHelper = new IabHelper(this, base64EncodedPublicKey);
-
-        // enable debug logging (for a production application, you should set this to false).
-        mHelper.enableDebugLogging(true);
-
-        // Start setup. This is asynchronous and the specified listener
-        // will be called once setup completes.
-        Log.d(TAG, "Starting setup.");
-        mHelper.startSetup(new IabHelper.OnIabSetupFinishedListener() {
-            public void onIabSetupFinished(IabResult result) {
-                Log.d(TAG, "Setup finished.");
-
-                if (!result.isSuccess()) {
-                    // Oh noes, there was a problem.
-                    Log.d("PROBLEM", "IN IN APP BUILDING");
-                    return;
-                }
-
-                // Have we been disposed of in the meantime? If so, quit.
-                if (mHelper == null) return;
-
-                // Important: Dynamically register for broadcast messages about updated purchases.
-                // We register the receiver here instead of as a <receiver> in the Manifest
-                // because we always call getPurchases() at startup, so therefore we can ignore
-                // any broadcasts sent while the app isn't running.
-                // Note: registering this listener in an Activity is a bad idea, but is done here
-                // because this is a SAMPLE. Regardless, the receiver must be registered after
-                // IabHelper is setup, but before first call to getPurchases().
-                mBroadcastReceiver = new IabBroadcastReceiver(MainActivity.this);
-                IntentFilter broadcastFilter = new IntentFilter(IabBroadcastReceiver.ACTION);
-                registerReceiver(mBroadcastReceiver, broadcastFilter);
-
-                // IAB is fully set up. Now, let's get an inventory of stuff we own.
-                Log.d(TAG, "Setup successful. Querying inventory.");
-                try {
-                    mHelper.queryInventoryAsync(mGotInventoryListener);
-                    Toast.makeText(context, mIsPremium+"", Toast.LENGTH_SHORT).show();
-                } catch (IabHelper.IabAsyncInProgressException e) {
-                    Log.d("QUERYING_INVENTROY", "ERROR");
-                }
-            }
-        });
-
-
-
 
         upgradeButton = (Button) findViewById(R.id.adFreeButton);
         assert upgradeButton != null;
         upgradeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, "Upgrade Pressed", Toast.LENGTH_SHORT).show();
-                String payload = "";
-                try {
-                    mHelper.launchPurchaseFlow((Activity) context, ITEM_SKU, RC_REQUEST,
-                            mPurchaseFinishedListener, "mypurchasetoken");
-                } catch (IabHelper.IabAsyncInProgressException e) {
-                    Log.d("PURCHASE FLOW", "ERROR");
-                }
             }
         });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         mAdView = (AdView) findViewById(R.id.adView);
         if(!mIsPremium && mAdView != null) {
@@ -250,9 +132,9 @@ public class MainActivity extends AppCompatActivity implements IabBroadcastRecei
              * Uncomment following line for real ads, but make sure to comment out subsequent test ad
              * lines.
              */
-             //MobileAds.initialize(getApplicationContext(), "ca-app-pub-7966297715259412/8066957483");
-             //AdRequest request = new AdRequest.Builder().build();
-             //mAdView.loadAd(request);
+             MobileAds.initialize(getApplicationContext(), "ca-app-pub-7966297715259412/8066957483");
+             AdRequest request = new AdRequest.Builder().build();
+             mAdView.loadAd(request);
             /**
              * Test Ad.
              * Uncomment following line for test ads, but make sure to comment out previous real ad line
@@ -283,7 +165,6 @@ public class MainActivity extends AppCompatActivity implements IabBroadcastRecei
             ViewGroup parent = (ViewGroup) mAdView.getParent();
             parent.removeView(mAdView);
         }
-
 
         screenOrientation = getScreenOrientation();
         answerView = (EditText) findViewById(R.id.ansView);
@@ -370,131 +251,6 @@ public class MainActivity extends AppCompatActivity implements IabBroadcastRecei
         //Toast.makeText(this, "onCreate took this long: " + totTime, Toast.LENGTH_LONG).show();
 
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-    // Listener that's called when we finish querying the items and subscriptions we own
-    IabHelper.QueryInventoryFinishedListener mGotInventoryListener = new IabHelper.QueryInventoryFinishedListener() {
-        public void onQueryInventoryFinished(IabResult result, Inventory inventory) {
-            Log.d(TAG, "Query inventory finished.");
-
-            // Have we been disposed of in the meantime? If so, quit.
-            if (mHelper == null) return;
-
-            // Is it a failure?
-            if (result.isFailure()) {
-                Log.d("QUERY_INVENTORY", "FAILED");
-                Toast.makeText(context, "QUERY_FAILED", Toast.LENGTH_SHORT).show();
-                return;
-            }
-
-            Log.d(TAG, "Query inventory was successful.");
-
-            /*
-             * Check for items we own. Notice that for each purchase, we check
-             * the developer payload to see if it's correct! See
-             * verifyDeveloperPayload().
-             */
-
-            // Do we have the premium upgrade?
-            Purchase premiumPurchase = inventory.getPurchase(ITEM_SKU);
-            mIsPremium = (premiumPurchase != null && verifyDeveloperPayload(premiumPurchase));
-            Log.d("HAS_PURCHASED", "User is " + (mIsPremium ? "PREMIUM" : "NOT PREMIUM"));
-            Toast.makeText(context, mIsPremium+"", Toast.LENGTH_SHORT).show();
-
-        }
-    };
-
-    // Callback for when a purchase is finished
-    IabHelper.OnIabPurchaseFinishedListener mPurchaseFinishedListener = new IabHelper.OnIabPurchaseFinishedListener() {
-        public void onIabPurchaseFinished(IabResult result, Purchase purchase) {
-            Log.d(TAG, "Purchase finished: " + result + ", purchase: " + purchase);
-
-            // if we were disposed of in the meantime, quit.
-            if (mHelper == null) return;
-
-            if (result.isFailure()) {
-                Log.d("PURCHASING", "ERROR");
-                return;
-            }
-            if (!verifyDeveloperPayload(purchase)) {
-                Log.d("PURCHASING", "AUTHENTICATION ERROR");
-                return;
-            }
-
-            Log.d(TAG, "Purchase successful.");
-
-            if (purchase.getSku().equals(ITEM_SKU)) {
-                // bought the premium upgrade!
-                Log.d(TAG, "Purchase is premium upgrade. Congratulating user.");
-                Log.d("PURCHASING", "SUCCESSFUL");
-                mIsPremium = true;
-            }
-        }
-    };
-
-
-
-    /** Verifies the developer payload of a purchase. */
-    boolean verifyDeveloperPayload(Purchase p) {
-        String payload = p.getDeveloperPayload();
-
-        /*
-         * TODO: verify that the developer payload of the purchase is correct. It will be
-         * the same one that you sent when initiating the purchase.
-         *
-         * WARNING: Locally generating a random string when starting a purchase and
-         * verifying it here might seem like a good approach, but this will fail in the
-         * case where the user purchases an item on one device and then uses your app on
-         * a different device, because on the other device you will not have access to the
-         * random string you originally generated.
-         *
-         * So a good developer payload has these characteristics:
-         *
-         * 1. If two different users purchase an item, the payload is different between them,
-         *    so that one user's purchase can't be replayed to another user.
-         *
-         * 2. The payload must be such that you can verify it even when the app wasn't the
-         *    one who initiated the purchase flow (so that items purchased by the user on
-         *    one device work on other devices owned by the user).
-         *
-         * Using your own server to store and verify developer payloads across app
-         * installations is recommended.
-         */
-
-        return true;
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-    @Override
-    public void receivedBroadcast() {
-
-    }
-
-
-
-
-
 
     @Override
     public void onResume(){
@@ -776,6 +532,4 @@ public class MainActivity extends AppCompatActivity implements IabBroadcastRecei
         }
 
     }
-
-
 }
