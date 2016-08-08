@@ -1,5 +1,6 @@
 package ca.vivyd.vivydcalculator.menu;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import android.widget.Button;
 
 import ca.vivyd.vivydcalculator.MainActivity;
 import ca.vivyd.vivydcalculator.R;
+import ca.vivyd.vivydcalculator.in_app_purchase_util.IabHelper;
 import ca.vivyd.vivydcalculator.themes.Themer;
 
 
@@ -47,14 +49,10 @@ public class adfFragment extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.adfButton:
-                Intent i = new Intent(Intent.ACTION_SENDTO, Uri.fromParts("mailto", MainActivity.CONTACT_EMAIL, null));
-                //i.setType("message/rfc822");
-                i.putExtra(Intent.EXTRA_SUBJECT, "User Feedback");
-                try {
-                    startActivity(Intent.createChooser(i, "Send feedback..."));
-                } catch (android.content.ActivityNotFoundException ex) {
-                    // Toast.makeText(OptFragment.this, "You don't have an email client!", Toast.LENGTH_LONG).show();
-                }
+                getActivity().finish();
+                getActivity().overridePendingTransition(R.anim.right_out, R.anim.left_in);
+                MainActivity.wantToPurchase = 1;
+
         }
     }
 }

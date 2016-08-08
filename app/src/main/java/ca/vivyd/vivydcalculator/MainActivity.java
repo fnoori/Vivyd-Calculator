@@ -53,7 +53,7 @@ import ca.vivyd.vivydcalculator.themes.Themer;
 
 public class MainActivity extends AppCompatActivity {
     public static String CONTACT_EMAIL = "solutions.teamvivyd@gmail.com";
-    static final String ITEM_SKU = "ad_free";
+    public static final String ITEM_SKU = "ad_free";
 
     private Context context = this;
     private LinearLayout display;
@@ -78,7 +78,8 @@ public class MainActivity extends AppCompatActivity {
     private Button upgradeButton;
     private static boolean mIsPremium;
     private static String base64EncodedPublicKey;
-    private IabHelper mHelper;
+    public  static IabHelper mHelper;
+    public  static int wantToPurchase = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -254,17 +255,6 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode,
                                     Intent data){
@@ -332,25 +322,6 @@ public class MainActivity extends AppCompatActivity {
             };
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     @Override
     public void onDestroy() {
         super.onDestroy();
@@ -385,6 +356,16 @@ public class MainActivity extends AppCompatActivity {
         long endTime = System.currentTimeMillis() - oldTime;
         //Toast.makeText(this, "onResume took this long: " + endTime, Toast.LENGTH_LONG).show();
         Log.i("PERFORMANCE", " onResume took this long: " + endTime);
+
+        if (wantToPurchase == 1){
+            try {
+                mHelper.launchPurchaseFlow((Activity) context, ITEM_SKU, 10001,
+                        mPurchaseFinishedListener, "mypurchasetoken");
+            } catch (IabHelper.IabAsyncInProgressException e) {
+                e.printStackTrace();
+            }
+            wantToPurchase = 0;
+        }
     }
 
     @Override
