@@ -53,7 +53,7 @@ import ca.vivyd.vivydcalculator.themes.Themer;
 
 public class MainActivity extends AppCompatActivity {
     public static String CONTACT_EMAIL = "solutions.teamvivyd@gmail.com";
-    static final String ITEM_SKU = "android.test.purchased";
+    static final String ITEM_SKU = "ad_free";
 
     private Context context = this;
     private LinearLayout display;
@@ -90,9 +90,8 @@ public class MainActivity extends AppCompatActivity {
         long startTime = System.currentTimeMillis();
 
 
-
-
         // boolean to check if user is premium
+        // not entirely sure how we're supposed to handle this yet
         mIsPremium = false;
 
         // app's public key
@@ -129,9 +128,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-
-
-
         final AdView mAdView = (AdView) findViewById(R.id.adView);
         assert mAdView != null;
 /**
@@ -139,9 +135,9 @@ public class MainActivity extends AppCompatActivity {
          * Uncomment following line for real ads, but make sure to comment out subsequent test ad
          * lines.
          */
-         MobileAds.initialize(getApplicationContext(), "ca-app-pub-7966297715259412/8066957483");
-         AdRequest request = new AdRequest.Builder().build();
-         mAdView.loadAd(request);
+         //MobileAds.initialize(getApplicationContext(), "ca-app-pub-7966297715259412/8066957483");
+         //AdRequest request = new AdRequest.Builder().build();
+         //mAdView.loadAd(request);
         /**
          * Test Ad.
          * Uncomment following line for test ads, but make sure to comment out previous real ad line
