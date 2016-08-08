@@ -15,7 +15,7 @@ public class ViewPager_adapter extends FragmentPagerAdapter {
     public ViewPager_adapter(FragmentManager fm){
         super(fm);
         tabNames[0] = "Themes";
-        tabNames[1] = "Ad-Free";
+        //tabNames[1] = "Ad-Free";
     }
 
     @Override
@@ -23,8 +23,8 @@ public class ViewPager_adapter extends FragmentPagerAdapter {
         switch(position) {
             case 0:
                 return new ThemesFragment();
-            case 1:
-                return new adfFragment();
+            //case 1:
+            //    return new adfFragment();
         }
         return null;
     }
@@ -36,6 +36,6 @@ public class ViewPager_adapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        return 2;
+        return 1;
     }
 }

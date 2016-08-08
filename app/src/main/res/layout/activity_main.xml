@@ -106,22 +106,9 @@
                 android:stateListAnimator="@null"
                 android:textAlignment="gravity"
                 android:background="#00ffffff"
-                android:paddingBottom="7dp" />
-
-            <Button
-                android:text="Remove Ad"
-                android:id="@+id/rmvadButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/colorNumpad"
-                android:layout_alignParentBottom="true"
-                android:gravity="bottom|center_horizontal"
-                android:layout_toRightOf="@+id/adFreeButton"
-                android:stateListAnimator="@null"
-                android:textAlignment="gravity"
-                android:background="#00ffffff"
-                android:onClick="removeAd"
-                android:paddingBottom="7dp" />
+                android:paddingBottom="7dp"
+                android:visibility="gone"
+                />
 
         </RelativeLayout>
 
