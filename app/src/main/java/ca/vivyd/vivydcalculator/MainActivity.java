@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
     private Button upgradeButton;
     private static boolean mIsPremium;
     private static String base64EncodedPublicKey;
-    public  static IabHelper mHelper;
+    private IabHelper mHelper;
     public  static int wantToPurchase = 0;
 
     @Override

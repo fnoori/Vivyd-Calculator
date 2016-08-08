@@ -218,4 +218,13 @@
     <color name="FINE_text">#ffffff</color>
     <color name="FINE_oppTray">#161211</color>
 
+    <!-- Catch 'em theme -->
+    <color name="PMON_colorAccent">#631a19</color>
+    <color name="PMON_colorComp">#d98f36</color>
+    <color name="PMON_background">#11100e</color>
+    <color name="PMON_numpad">#100f0d</color>
+    <color name="PMON_text_screen">#ffffff</color>
+    <color name="PMON_text">#ffffff</color>
+    <color name="PMON_oppTray">#161211</color>
+
 </resources>

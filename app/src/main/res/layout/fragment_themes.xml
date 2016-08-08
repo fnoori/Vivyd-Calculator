@@ -24,6 +24,18 @@
                 <Button
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
+                    android:text="Catch &apos;em all"
+                    android:id="@+id/pmonButton"
+                    android:background="@color/PMON_colorAccent"
+                    android:textColor="@color/PMON_text_screen"
+                    android:drawableRight="@drawable/blk_icon"
+                    android:drawableLeft="@drawable/blk_icon"
+                    android:paddingRight="20dp"
+                    android:paddingLeft="20dp" />
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
                     android:text="Original Black"
                     android:id="@+id/blkButton"
                     android:background="@color/BLK_colorAccent"
