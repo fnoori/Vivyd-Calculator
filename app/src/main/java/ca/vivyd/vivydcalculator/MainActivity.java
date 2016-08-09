@@ -67,11 +67,6 @@ import ca.vivyd.vivydcalculator.themes.Themer;
 public class MainActivity extends AppCompatActivity {
     public static String CONTACT_EMAIL = "solutions.teamvivyd@gmail.com";
 
-    // For in app billing **work in progress
-    public static final String ITEM_SKU = "ad_free";
-    static final String TAG = "VivydCalculator";
-    static final int RC_REQUEST = 10001;
-
     private Context context = this;
     private LinearLayout display;
     private EditText answerView;
@@ -79,7 +74,6 @@ public class MainActivity extends AppCompatActivity {
     private TextView rightBraceCounter;
     private Button morButton;
     private AdView mAdView;
-
 
     // Indicates that only orientation has been changed, and the app has not exited
     private static int notExited = 0;
@@ -93,9 +87,7 @@ public class MainActivity extends AppCompatActivity {
 
     private Themer themer;
 
-    private Button upgradeButton;
     private static boolean mIsPremium;
-    private static String base64EncodedPublicKey;
     public  static int wantToPurchase = 0;
 
     @Override
@@ -112,18 +104,6 @@ public class MainActivity extends AppCompatActivity {
         // boolean to check if user is premium
         // not entirely sure how we're supposed to handle this yet
         mIsPremium = prefs.getBoolean("mIsPremium", false);
-
-        // app's public key
-        base64EncodedPublicKey = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA5cF7H6fN2UQduXRx6RZEHue+nYclBlTDXgTHGKHlBHrBAYwcw9IFVJvEX4+HXqrGsHqGy4r975wb9lx3Zxt2PS0e/IwoGmZcN0i2epFB/CCTqC5ZKGTnfBKsGtMM+QYRQN73R83BkiytWW8buRR0Y+Ov8EN3exXgGGi4mRvPgddeMw6ehXqeFWTsbxhENMPT9jlXfeiNm13K/RGDtIUDdLwLDktuUB2VUNAtHtoAHQ6mqp63puVRzdpK8FE3Kq36jMLlbgFQnJaUXQtr4Lxp62Yl0IuO/RgnWyhgUPxqYMprlzkiM/oneeIruNP3Q0V5flbQGHeW9/w/8PJ+2kDuVwIDAQAB";
-
-
-        upgradeButton = (Button) findViewById(R.id.adFreeButton);
-        assert upgradeButton != null;
-        upgradeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-            }
-        });
 
         mAdView = (AdView) findViewById(R.id.adView);
         if(!mIsPremium && mAdView != null) {
